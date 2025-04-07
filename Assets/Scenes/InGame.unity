@@ -3802,6 +3802,7 @@ GameObject:
   - component: {fileID: 691240171}
   - component: {fileID: 691240173}
   - component: {fileID: 691240174}
+  - component: {fileID: 691240175}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3922,7 +3923,6 @@ MonoBehaviour:
   rb2D: {fileID: 691240171}
   moveSpeed: 3
   canMove: 1
-  playerCommands: 0
 --- !u!95 &691240173
 Animator:
   serializedVersion: 7
@@ -3991,6 +3991,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.38695323, y: 0.7418034}
   m_EdgeRadius: 0
+--- !u!114 &691240175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691240168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 802119791047fd1468a5b67bd98344d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ani: {fileID: 691240173}
+  playerCommands: 0
+  playerBehave: 0
 --- !u!1 &728040782
 GameObject:
   m_ObjectHideFlags: 0

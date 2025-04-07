@@ -1,17 +1,6 @@
 using System;
 using UnityEngine;
 
-[Flags]
-public enum PlayerCommands
-{
-    None = 0,
-    Up = 1<<0,
-    Down = 1<<1,
-    Left = 1<<2,
-    Right = 1<<3
-    
-}
-
 public class PlayerMove : MonoBehaviour
 {
     public static PlayerMove Instance { get; private set; }
@@ -22,10 +11,12 @@ public class PlayerMove : MonoBehaviour
     [Header("플레이어 설정")]
     public float moveSpeed;
     public bool canMove;
-    public PlayerCommands playerCommands;
 
-    private float horizontal;
-    private float vertical;
+    private float _horizontal;
+    private float _vertical;
+    private Animator _ani;
+    private PlayerCommands _playerCommands;
+    private PlayerBehave _playerBehave;
 
     private void Awake()
     {
@@ -35,6 +26,9 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         canMove = true;
+        _ani = PlayerAnimator.Instance.ani;
+        _playerBehave = PlayerAnimator.Instance.playerBehave;
+        _playerCommands = PlayerAnimator.Instance.playerCommands;
     }
 
     public void Flip(float dir)
@@ -46,7 +40,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (canMove)
         {
-            rb2D.linearVelocity = new Vector2(horizontal, vertical).normalized*moveSpeed;
+            rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized*moveSpeed;
         }
         else
         {
@@ -56,40 +50,53 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        horizontal = 0;
-        vertical = 0;
-        playerCommands = PlayerCommands.None;
-
+        _horizontal = 0;
+        _vertical = 0;
+        _playerCommands = PlayerCommands.None;
+        _playerBehave = PlayerBehave.Idel;
         if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Up"]))
         {
-            vertical = 1;
-            playerCommands |= PlayerCommands.Up;
+            _vertical = 1;
+            _playerCommands |= PlayerCommands.Up;
+            _playerBehave = PlayerBehave.Walk;
         }
         if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Down"])) 
         {
-            vertical = -1;
-            playerCommands |= PlayerCommands.Down;
+            _vertical = -1;
+            _playerCommands |= PlayerCommands.Down;
+            _playerBehave = PlayerBehave.Walk;
         }
         if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Right"]))
         {
-            horizontal = -1;
-            playerCommands |= PlayerCommands.Right;
+            _horizontal = -1;
+            _playerCommands |= PlayerCommands.Right;
+            _playerBehave = PlayerBehave.Walk;
             Flip(1);
         }
         if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Left"]))
         {
-            horizontal = 1;
-            playerCommands |= PlayerCommands.Left;
+            _horizontal = 1;
+            _playerCommands |= PlayerCommands.Left;
+            _playerBehave = PlayerBehave.Walk;
             Flip(-1);
         }
-        if (playerCommands.HasFlag(PlayerCommands.Left) && playerCommands.HasFlag(PlayerCommands.Right))
+        if (_playerCommands.HasFlag(PlayerCommands.Left) && _playerCommands.HasFlag(PlayerCommands.Right))
         {
-            horizontal = 0;
+            _horizontal = 0;
         }
-        if (playerCommands.HasFlag(PlayerCommands.Down) && playerCommands.HasFlag(PlayerCommands.Up))
+        if (_playerCommands.HasFlag(PlayerCommands.Down) && _playerCommands.HasFlag(PlayerCommands.Up))
         {
-            vertical = 0;
+            _vertical = 0;
+        }
+
+        switch (_playerBehave)
+        {
+            case PlayerBehave.Idel:
+                _ani.SetInteger("Behave",0);
+                break;
+            case PlayerBehave.Walk:
+                _ani.SetInteger("Behave", 1);
+                break;
         }
     }
-
 }
