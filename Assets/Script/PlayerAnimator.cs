@@ -8,13 +8,17 @@ public enum PlayerCommands
     Up = 1 << 0,
     Down = 1 << 1,
     Left = 1 << 2,
-    Right = 1 << 3
+    Right = 1 << 3,
+    Dash = 1 << 4,
+    Run = 1<<5
 }
 
 public enum PlayerBehave
 {
     Idel,
-    Walk
+    Walk,
+    KnockBack,
+    Dash,
 }
 
 public class PlayerAnimator : MonoBehaviour
@@ -31,15 +35,5 @@ public class PlayerAnimator : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 }

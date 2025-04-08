@@ -34,8 +34,4 @@ public class GameEventManager : MonoBehaviour
         PlayMode = mode;
     }
   
-    private void Update()
-    {
-        
-    }
 }
