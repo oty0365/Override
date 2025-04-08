@@ -18,7 +18,7 @@ public enum PlayerBehave
     Idel,
     Walk,
     KnockBack,
-    Dash,
+    Dash
 }
 
 public class PlayerAnimator : MonoBehaviour

@@ -27,10 +27,6 @@ public class KeyBindingManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
-    void Start()
-    {
-        dualKeyPannel.SetActive(false);
 
         keyBindings["Up"] = KeyCode.W;
         keyBindings["Down"] = KeyCode.S;
@@ -44,6 +40,10 @@ public class KeyBindingManager : MonoBehaviour
         keyBindings["Dash"] = KeyCode.Space;
         keyBindings["Interact"] = KeyCode.F;
         keyBindings["Heal"] = KeyCode.LeftControl;
+    }
+    void Start()
+    {
+        dualKeyPannel.SetActive(false);
 
         foreach (var i in keyBinders)
         {

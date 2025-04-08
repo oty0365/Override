@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e2b834869e05144b32d648b7867992, type: 3}
+  m_Name: MagicStaf
+  m_EditorClassIdentifier: 
+  weaponCode: 3
+  weaponName: "\uB9C8\uBC95\uC758 \uC2A4\uD0DC\uD504"
+  weaponSprite: {fileID: -6025010955828807945, guid: db22f9690497bc04296e7561e5098b24, type: 3}
+  weaponDesc: "\uC5EC\uB7EC \uB9C8\uBC95\uC744 \uBD80\uB9B4 \uC218 \uC788\uB294 \uC2A4\uD0DC\uD504\uC774\uB2E4.\n\uADFC\uC811\uC804\uC740
+    \uBD88\uAC00\uD558\uC9C0\uB9CC \uAC15\uD55C \uC6D0\uAC70\uB9AC \uACF5\uACA9\uC744
+    \uAD6C\uC0AC\uD55C\uB2E4."
+  weaponRange: 0
+  weaponStartDamage: 0
+  weaponAttackSpeed: 0.3
