@@ -9,4 +9,5 @@ public class WeaponData : ScriptableObject
     public float weaponRange;
     public float weaponStartDamage;
     public float weaponAttackSpeed;
+    public Color weaponColor;
 }

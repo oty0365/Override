@@ -11,6 +11,7 @@ public class WeaponDataEditor : Editor
     private SerializedProperty weaponRange;
     private SerializedProperty weaponStartDamage;
     private SerializedProperty weaponAttackSpeed;
+    private SerializedProperty weaponColor;
 
     private void OnEnable()
     {
@@ -21,6 +22,8 @@ public class WeaponDataEditor : Editor
         weaponRange = serializedObject.FindProperty("weaponRange");
         weaponStartDamage = serializedObject.FindProperty("weaponStartDamage");
         weaponAttackSpeed = serializedObject.FindProperty("weaponAttackSpeed");
+        weaponColor = serializedObject.FindProperty("weaponColor");
+        
     }
 
     public override void OnInspectorGUI()
@@ -60,6 +63,8 @@ public class WeaponDataEditor : Editor
         EditorGUILayout.Slider(weaponAttackSpeed, 0f, 2.5f, new GUIContent("공속 딜레이"));
         GUILayout.Space(5);
         EditorGUILayout.PropertyField((weaponStartDamage), new GUIContent("기초공격력"));
+        GUILayout.Space(5);
+        EditorGUILayout.PropertyField((weaponColor), new GUIContent("무기 프레임색"));
         serializedObject.ApplyModifiedProperties();
     }
 }

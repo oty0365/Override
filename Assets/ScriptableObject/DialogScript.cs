@@ -8,4 +8,5 @@ public class DialogScript : ScriptableObject
     public Sprite talkersFace;
     [TextArea]
     public string dialogue;
+    public InGameEvent[] eventsWhileTalk;
 }

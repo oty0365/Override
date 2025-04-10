@@ -20,5 +20,6 @@ MonoBehaviour:
     \uBC29\uD328\uB85C \uC801\uC758\uACF5\uACA9\uC744 \uB9C9\uC544\uC11C \uD295\uACA8\uB0BC
     \uC218 \uC788\uB2E4."
   weaponRange: 1
-  weaponStartDamage: 15
-  weaponAttackSpeed: 0.4
+  weaponStartDamage: 10
+  weaponAttackSpeed: 1.5
+  weaponColor: {r: 0, g: 0.23278427, b: 1, a: 1}

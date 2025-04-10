@@ -155,7 +155,7 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Dash"]) && PlayerBehave != PlayerBehave.Dash)
         {
             PlayerCommands |= PlayerCommands.Run;
-            moveSpeed = 4f;
+            moveSpeed = 5f;
         }
         else if (PlayerBehave != PlayerBehave.Dash)
         {
@@ -166,12 +166,12 @@ public class PlayerMove : MonoBehaviour
 
     private void InputMove()
     {
+
+        _horizontal = 0;
+        _vertical = 0;
+        PlayerCommands = PlayerCommands.None;
         if (canInput)
         {
-            _horizontal = 0;
-            _vertical = 0;
-            PlayerCommands = PlayerCommands.None;
-
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Up"]))
             {
                 _vertical = 1;

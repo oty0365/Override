@@ -4,11 +4,6 @@ using UnityEngine;
 public abstract class AInteractable:MonoBehaviour
 {
     public GameObject interactionKeyPos;
-
-    public void OnInteractMode(int mode)
-    {
-        PlayerMove.Instance.canInput = mode != 0;
-    }
     public abstract void OnInteract();
 }
 
@@ -20,6 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     public float interactionRange;
     public LayerMask interactionLayer;
     public GameObject interactionKey;
+    public bool isInteracting;
 
     private Collider2D[] _hits;
     private GameObject _currentObject;
@@ -74,12 +70,18 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (_currentObject != null && Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Interact"]))
+        if (_currentObject != null && Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Interact"])&&!isInteracting)
         {
             if (_currentObject.TryGetComponent<AInteractable>(out var interactable))
             {
                 interactable.OnInteract();
             }
         }
+    }
+
+    public void OnInteractMode(int mode)
+    {
+        PlayerMove.Instance.canInput = mode != 0;
+        isInteracting = mode == 0;
     }
 }

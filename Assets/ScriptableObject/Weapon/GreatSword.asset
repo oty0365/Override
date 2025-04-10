@@ -21,4 +21,5 @@ MonoBehaviour:
     \uB4A4\uB85C \uBC00\uB824\uB09C\uB2E4."
   weaponRange: 4
   weaponStartDamage: 30
-  weaponAttackSpeed: 0.8
+  weaponAttackSpeed: 0.5
+  weaponColor: {r: 1, g: 0, b: 0, a: 1}

@@ -8,6 +8,7 @@ public class DialogScriptEditor : Editor
     SerializedProperty hasSelection;
     SerializedProperty talkersFace;
     SerializedProperty dialogue;
+    SerializedProperty eventsWhileTalk;
 
     private void OnEnable()
     {
@@ -15,6 +16,7 @@ public class DialogScriptEditor : Editor
         hasSelection = serializedObject.FindProperty("hasSelection");
         talkersFace = serializedObject.FindProperty("talkersFace");
         dialogue = serializedObject.FindProperty("dialogue");
+        eventsWhileTalk = serializedObject.FindProperty("eventsWhileTalk");
     }
 
     public override void OnInspectorGUI()
@@ -61,7 +63,8 @@ public class DialogScriptEditor : Editor
         {
             EditorGUILayout.HelpBox("선택지 모드에서는 초상과 대사가 비활성화됩니다.", MessageType.Info);
         }
-
+        EditorGUILayout.Space(5);
+        EditorGUILayout.PropertyField(eventsWhileTalk, new GUIContent("대화 중 이벤트"));
         serializedObject.ApplyModifiedProperties();
     }
 }

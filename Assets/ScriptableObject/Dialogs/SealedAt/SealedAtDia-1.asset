@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b77675c898816a4f9c54ef13e785dff, type: 3}
+  m_Name: SealedAtDia-1
+  m_EditorClassIdentifier: 
+  dialogScripts:
+  - {fileID: 11400000, guid: 69369c08200944241b51d5ab79b3249e, type: 2}
+  - {fileID: 11400000, guid: b510656c681dd7841b824ddb2ddb23ff, type: 2}
+  - {fileID: 11400000, guid: 0448fd62f2959f743b657de91e328ca4, type: 2}
