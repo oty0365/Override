@@ -59,9 +59,19 @@ public class PlayerMove : MonoBehaviour
         _originMoveSpeed = moveSpeed;
     }
 
-    public void Flip(float dir)
+    public void Flip()
     {
+        var dir = 0;
+        if(gameObject.transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 0)
+        {
+            dir = 1;
+        }
+        else
+        {
+            dir = -1;
+        }
         gameObject.transform.localScale = new Vector2(dir, transform.localScale.y);
+
     }
 
     private void FixedUpdate()
@@ -136,6 +146,7 @@ public class PlayerMove : MonoBehaviour
             PlayerBehave = PlayerBehave.Idel;
         }
 
+        Flip();
         HandleMoveSpeed();  
         InputMove();
 
@@ -192,7 +203,6 @@ public class PlayerMove : MonoBehaviour
                 PlayerCommands |= PlayerCommands.Right;
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
-                Flip(1);
             }
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Left"]))
             {
@@ -200,7 +210,6 @@ public class PlayerMove : MonoBehaviour
                 PlayerCommands |= PlayerCommands.Left;
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
-                Flip(-1);
             }
 
             if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]))

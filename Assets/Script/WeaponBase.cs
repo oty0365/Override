@@ -16,4 +16,7 @@ public abstract class WeaponBase : MonoBehaviour
 
     public abstract void SetColider(int mode, int index);
     public abstract void EndAnimation();
+
+    public abstract void StartCombo();
+    public abstract void EndCombo();
 }
