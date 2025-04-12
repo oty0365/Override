@@ -5241,7 +5241,6 @@ MonoBehaviour:
   isAttacking: 0
   combo: 0
   comboDuration: 0.7
-  sheild: {fileID: 0}
 --- !u!1 &937995694
 GameObject:
   m_ObjectHideFlags: 0
