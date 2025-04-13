@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SwordAndShiled_0: -7628619642697478568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

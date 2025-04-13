@@ -5,6 +5,7 @@ public class WeaponCore : MonoBehaviour
 {
     public GameObject player;
     public GameObject weaponObject;
+    public GameObject weaponCore;
     private SpriteRenderer _weaponApearance;
     private WeaponBase _weapon;
 

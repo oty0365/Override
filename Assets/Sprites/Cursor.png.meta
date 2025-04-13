@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 4cae3137fb02ab04285f1d15ca186b61
+guid: fb180d35a83f3c64fa5fe6e0af588d84
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3822241027680897451
-    second: New Piskel (22)_0
+      213: -857270020218531044
+    second: Cursor 1_0
   - first:
-      213: 1222608924547438505
-    second: New Piskel (22)_1
+      213: -8455972242612403161
+    second: Cursor 1_1
   - first:
-      213: -7450310935994093684
-    second: New Piskel (22)_2
+      213: 6494991218663545492
+    second: Cursor 1_2
   - first:
-      213: -9144782868629335776
-    second: New Piskel (22)_3
+      213: -6112173431101609114
+    second: Cursor 1_3
   - first:
-      213: 8886752520228584274
-    second: New Piskel (22)_4
+      213: 3394224308310127646
+    second: Cursor 1_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -58,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,40 +108,115 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: New Piskel (22)_0
+      name: Cursor 1_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 24
-        width: 84
-        height: 84
+        x: 87
+        y: 118
+        width: 27
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 556f723590ca4fac0800000000000000
-      internalID: -3822241027680897451
+      spriteID: c135848657d5a14f0800000000000000
+      internalID: -857270020218531044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursor 1_1
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 86
+        width: 70
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72446880c0a56aa80800000000000000
+      internalID: -8455972242612403161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursor 1_2
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 86
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49ad8b7f918d22a50800000000000000
+      internalID: 6494991218663545492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursor 1_3
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 86
+        width: 71
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66bab99e5a23d2ba0800000000000000
+      internalID: -6112173431101609114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursor 1_4
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 11
+        width: 27
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1432d86605ba1f20800000000000000
+      internalID: 3394224308310127646
       vertices: []
       indices: 
       edges: []
@@ -150,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 89567a4b25f82a64ebaf4327ecb65f4d
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -160,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      New Piskel (22)_0: -3822241027680897451
+      Cursor 1_0: -857270020218531044
+      Cursor 1_1: -8455972242612403161
+      Cursor 1_2: 6494991218663545492
+      Cursor 1_3: -6112173431101609114
+      Cursor 1_4: 3394224308310127646
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -7,30 +7,30 @@ public class SwordAndSheild: WeaponBase
     private const int maxComboCount = 3;
     private bool isBlocking;
 
-    private static readonly int Attack1Hash = Animator.StringToHash("Attack1");
-    private static readonly int Attack2Hash = Animator.StringToHash("Attack2");
-    private static readonly int Attack3Hash = Animator.StringToHash("Attack3");
-    private static readonly int ReturnHash = Animator.StringToHash("Return");
-   
+    private static readonly int AttackHash = Animator.StringToHash("Attack");
+    private static readonly int BlockHash = Animator.StringToHash("isBlocking");
+ 
 
-    private Coroutine comboCoroutine;
-    private Coroutine attackResetCoroutine;
+    private void Start()
+    {
+        DisableAllHitbox();
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking)
+        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking && !isBlocking)
         {
 
             OnAttack1Pressed();
         }
 
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]))
+        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]) && !isAttacking)
         {
             OnAttack2Pressed();
         }
         if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"])) 
         {
-            OnAttack1Released();
+            OnAttack2Released();
         }
     }
 
@@ -47,28 +47,28 @@ public class SwordAndSheild: WeaponBase
 
     private void ComboCheck()
     {
-        switch (combo)
-        {
-            case 1:
-                ani.SetTrigger(Attack1Hash);
-                break;
-            case 2:
-                ani.SetTrigger(Attack2Hash);
-                break;
-            case 3:
-                ani.SetTrigger(Attack3Hash);
-                break;
-        }
+        ani.SetInteger(AttackHash, combo);
+    }
+    public override void SetColider(int index)
+    {
+        colliders[index].enabled = true;
     }
 
     public override void OnAttack1Released() { }
 
     public override void OnAttack2Pressed()
     {
+        isBlocking = true;
+        isAttacking = false;
+        combo = 0;
+        ComboCheck();
+        ani.SetBool(BlockHash,true);
     }
 
     public override void OnAttack2Released()
     {
+        ani.SetBool(BlockHash, false);
+        isBlocking = false;
     }
 
     public override void EndAnimation()
@@ -83,10 +83,6 @@ public class SwordAndSheild: WeaponBase
     public override void EndCombo()
     {
         combo = 0;
-        ani.SetTrigger(ReturnHash);
-    }
-
-    public override void SetColider(int mode, int index)
-    {
+        ComboCheck();
     }
 }
