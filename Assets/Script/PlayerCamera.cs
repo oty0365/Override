@@ -54,7 +54,6 @@ public class PlayerCamera : MonoBehaviour
     private Coroutine _previousFallowCoroutine;
     private Coroutine _previousZoomCoroutine;
     private Coroutine _previousShakeCoroutine;
-    private Coroutine _previousQuickMoveCoroutine;
     
     private void Awake()
     {
@@ -226,18 +225,27 @@ public class PlayerCamera : MonoBehaviour
         float halfHeight = playerCam.orthographicSize;
         float halfWidth = halfHeight * playerCam.aspect;
 
-        float minX = camBound.transform.position.x - camBound.size.x / 2 + halfWidth;
-        float maxX = camBound.transform.position.x + camBound.size.x / 2 - halfWidth;
-        float minY = camBound.transform.position.y - camBound.size.y / 2 + halfHeight;
-        float maxY = camBound.transform.position.y + camBound.size.y / 2 - halfHeight;
+        float boundHalfWidth = camBound.size.x / 2;
+        float boundHalfHeight = camBound.size.y / 2;
+
+        float minX = camBound.transform.position.x - boundHalfWidth + halfWidth;
+        float maxX = camBound.transform.position.x + boundHalfWidth - halfWidth;
+        float minY = camBound.transform.position.y - boundHalfHeight + halfHeight;
+        float maxY = camBound.transform.position.y + boundHalfHeight - halfHeight;
+
+        bool isTooWide = halfWidth * 2f > camBound.size.x;
+        bool isTooTall = halfHeight * 2f > camBound.size.y;
 
         while (elapsed < shakeTime)
         {
             float dampingFactor = 1f - (elapsed / shakeTime);
             float strength = shakingPower * dampingFactor * shakeDamping;
 
-            float offsetX = Random.Range(-1f, 1f) * strength * 0.1f;
-            float offsetY = Random.Range(-1f, 1f) * strength * 0.1f;
+            float offsetX = 0f;
+            float offsetY = 0f;
+
+            if (!isTooWide) offsetX = Random.Range(-1f, 1f) * strength * 0.1f;
+            if (!isTooTall) offsetY = Random.Range(-1f, 1f) * strength * 0.1f;
 
             Vector3 targetPos = originalPos + new Vector3(offsetX, offsetY, 0f);
 
@@ -249,10 +257,12 @@ public class PlayerCamera : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+
         playerCam.transform.position = new Vector3(
             Mathf.Clamp(originalPos.x, minX, maxX),
             Mathf.Clamp(originalPos.y, minY, maxY),
             originalPos.z);
     }
+
 
 }

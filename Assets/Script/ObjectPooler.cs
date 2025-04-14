@@ -34,7 +34,7 @@ public class ObjectPooler : MonoBehaviour
 
     public void ReBakeObjectPooler()
     {
-        objectPoolList = new Dictionary<PoolObjectType, Queue<APoolingObject>>();
+        objectPoolList.Clear();
     }
 
     public GameObject Get(APoolingObject prefab, Vector2 position, Vector3 rotation)

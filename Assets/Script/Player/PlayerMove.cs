@@ -13,6 +13,10 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed;
     private float _originMoveSpeed;
     public bool canInput;
+    public float dashTime;
+
+    [Header("¥ÎΩ¨ ¿‹ªÛ")]
+    public APoolingObject afterImage;
 
     private float _horizontal;
     private float _vertical;
@@ -133,8 +137,18 @@ public class PlayerMove : MonoBehaviour
     private IEnumerator DashFlow()
     {
         canInput = false;
-        yield return new WaitForSeconds(0.15f);
         PlayerBehave = PlayerBehave.Idel;
+        var step = 1;
+        for (var t = 0f; t <= dashTime; t += Time.deltaTime)
+        {
+            if(t >= dashTime*step / 8)
+            {
+                var o = ObjectPooler.Instance.Get(afterImage, gameObject.transform.position, new Vector3(gameObject.transform.rotation.x, gameObject.transform.rotation.y, gameObject.transform.rotation.z));
+                //o.GetComponent<PlayerAfterImage>().
+                step++;
+            }
+            yield return null;
+        }
         rb2D.linearVelocity = Vector2.zero;
         _isDashing = false;
         canInput = true;
