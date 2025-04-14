@@ -12,6 +12,7 @@ public class WeaponDataEditor : Editor
     private SerializedProperty weaponStartDamage;
     private SerializedProperty weaponAttackSpeed;
     private SerializedProperty weaponColor;
+    private SerializedProperty weaponPrefab;
 
     private void OnEnable()
     {
@@ -23,6 +24,7 @@ public class WeaponDataEditor : Editor
         weaponStartDamage = serializedObject.FindProperty("weaponStartDamage");
         weaponAttackSpeed = serializedObject.FindProperty("weaponAttackSpeed");
         weaponColor = serializedObject.FindProperty("weaponColor");
+        weaponPrefab = serializedObject.FindProperty("weaponPrefab");
         
     }
 
@@ -49,6 +51,10 @@ public class WeaponDataEditor : Editor
         {
             GUILayout.Label(((Sprite)weaponSprite.objectReferenceValue).texture, GUILayout.Height(100));
         }
+        GUILayout.Space(10);
+        GUILayout.Label("무기 프리팹", headerStyle);
+        GUILayout.Space(5);
+        EditorGUILayout.PropertyField(weaponPrefab, new GUIContent("프리팹"));
 
         GUILayout.Space(10);
         GUILayout.Label("무기 설명", headerStyle);

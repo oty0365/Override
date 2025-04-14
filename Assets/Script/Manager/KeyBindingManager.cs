@@ -30,8 +30,8 @@ public class KeyBindingManager : MonoBehaviour
 
         keyBindings["Up"] = KeyCode.W;
         keyBindings["Down"] = KeyCode.S;
-        keyBindings["Left"] = KeyCode.A;
-        keyBindings["Right"] = KeyCode.D;
+        keyBindings["Left"] = KeyCode.D;
+        keyBindings["Right"] = KeyCode.A;
         keyBindings["Attack1"] = KeyCode.Mouse0;
         keyBindings["Attack2"] = KeyCode.Mouse1;
         keyBindings["SpecialAttack1"] = KeyCode.Q;

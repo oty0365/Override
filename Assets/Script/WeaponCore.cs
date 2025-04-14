@@ -3,14 +3,23 @@ using UnityEngine;
 
 public class WeaponCore : MonoBehaviour
 {
+    public static WeaponCore Instance { get; private set; }
+
     public GameObject player;
     public GameObject weaponObject;
-    public GameObject weaponCore;
+    public GameObject weaponSlot;
     private SpriteRenderer _weaponApearance;
     private WeaponBase _weapon;
 
-    private void Start()
+    private void Awake()
     {
+        Instance = this;
+    }
+
+    public void ChangeWeapon(GameObject weapon)
+    {
+        var w =Instantiate(weapon, weaponSlot.transform);
+        weaponObject = w;
         _weaponApearance = weaponObject.GetComponent<SpriteRenderer>();
         _weapon = weaponObject.GetComponent<WeaponBase>();
     }
@@ -20,21 +29,25 @@ public class WeaponCore : MonoBehaviour
         gameObject.transform.position = player.transform.position;
         var dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        if (_weapon.isAttacking)
+        if(weaponObject != null)
         {
-            if (dir.x > 0)
+            if (_weapon.isAttacking)
             {
-                _weaponApearance.flipY = false;
+                if (dir.x > 0)
+                {
+                    _weaponApearance.flipY = false;
+                }
+                else
+                {
+                    _weaponApearance.flipY = true;
+                }
             }
             else
             {
-                _weaponApearance.flipY = true;
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
             }
         }
-        else
-        {
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
+
     }
     public void EndAttack()
     {

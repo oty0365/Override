@@ -42,6 +42,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+
     private Vector2 _dir;
     private float _force;
     private float _knockBackTime;
@@ -97,7 +98,7 @@ public class PlayerMove : MonoBehaviour
             case PlayerBehave.Dash:
                 if (!_isDashing)
                 {
-                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * 10f; 
+                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * 11f; 
                     _isDashing = true;
                     StartCoroutine(DashFlow());
                 }

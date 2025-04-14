@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AtInCage : AInteractable
+public class AtInCage : AInteractable,IHitable
 {
     [Header("ด๋ป็")]
     public Dialogs dialogs;
@@ -12,6 +12,11 @@ public class AtInCage : AInteractable
     void Update()
     {
         
+    }
+    
+    public void OnHit()
+    {
+
     }
 
     public override void OnInteract()

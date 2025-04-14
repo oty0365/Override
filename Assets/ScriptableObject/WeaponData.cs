@@ -5,6 +5,7 @@ public class WeaponData : ScriptableObject
     public WeaponCode weaponCode;
     public string weaponName;
     public Sprite weaponSprite;
+    public GameObject weaponPrefab;
     [TextArea] public string weaponDesc;
     public float weaponRange;
     public float weaponStartDamage;

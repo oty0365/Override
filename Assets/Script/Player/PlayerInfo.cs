@@ -16,6 +16,7 @@ public class PlayerInfo : MonoBehaviour
             _playerWeapon = value;
             playerWeaponData = WeaponManager.Instance.weaponDict[value];
             weaponCore.sprite = playerWeaponData.weaponSprite;
+            WeaponCore.Instance.ChangeWeapon(playerWeaponData.weaponPrefab);
         }
     }
 
