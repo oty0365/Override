@@ -1,6 +1,6 @@
 using System.Collections;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public enum CameraState
 {
@@ -14,33 +14,27 @@ public class PlayerCamera : MonoBehaviour
 {
     public static PlayerCamera Instance { get; private set; }
 
-    [Header("카메라 본체")]
+    [Header("카메라 구성")]
     public Camera playerCam;
-    [Header("쫒아갈 대상")]
+    public PixelPerfectCamera ppc;
+
+    [Header("타겟 & 움직임")]
     public GameObject target;
-    [Header("카메라 이동 속도")]
-    public float fallowSpeed;
-    [Header("카메라 바운더리 설정")]
+    [Range(0.1f, 10f)] public float fallowSpeed;
+
+    [Header("바운더리")]
     public CameraBoundArea camBound;
-    [Range(0f, 200f), Header("카메라 흔들림 값")]
-    public float shakingPower;
-    [Header("카메라 흔들림 시간")]
+
+    [Header("흔들림")]
+    [Range(0f, 200f)] public float shakingPower;
     public float shakeTime;
     public float shakeDamping;
-    [Range(0.1f, 20),Header("카메라의 크기")]
+
+    [Header("줌 & 해상도")]
     public float cameraSize;
-
-    private void OnValidate()
-    {
-        if (playerCam != null)
-        {
-            StartState(CameraState.Zoom);
-        }
-
-    }
-
-    [Header("카메라 줌 속도")]
+    public int ppcSize;
     public float cameraZoomSpeed;
+    [Range(0, 45)] public int pixelPerfectSize;
 
     [Header("기본값")]
     [SerializeField] private float originFallowSpeed = 2.2f;
@@ -48,38 +42,44 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float originShakeTime = 1f;
     [SerializeField] private float originDamping = 0.5f;
     [SerializeField] private float originShakingPower = 12f;
-    [SerializeField] private float originCamSize = 4.5f;
-
+    [SerializeField] private float originCameraSize = 4.5f;
+    [SerializeField] private int originPpcSize = 20;
 
     private Coroutine _previousFallowCoroutine;
     private Coroutine _previousZoomCoroutine;
     private Coroutine _previousShakeCoroutine;
-    
+
     private void Awake()
     {
         Instance = this;
     }
 
-    void Start()
+    private void Start()
     {
-        cameraSize = originCamSize;
+        cameraSize = originCameraSize;
+        ppcSize = originPpcSize;
+        pixelPerfectSize = originPpcSize;
         fallowSpeed = originFallowSpeed;
         cameraZoomSpeed = originZoomSpeed;
         shakingPower = originShakingPower;
 
         StartState(CameraState.CinematicFallow);
     }
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SetShake(0.3f, 10, 0.2f);
-        }
-    }*/
 
-    public void SetFallow(int mode,float speed)
+    private void OnValidate()
+    {
+        int min = 0;
+        int max = 45;
+        int step = 5;
+
+        int nearest = Mathf.RoundToInt((pixelPerfectSize - min) / (float)step) * step + min;
+        pixelPerfectSize = Mathf.Clamp(nearest, min, max);
+    }
+
+    public void SetFallow(int mode, float speed)
     {
         fallowSpeed = speed;
+
         if (mode == 0)
         {
             StartState(CameraState.MathFallow);
@@ -90,13 +90,16 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
-    public void SetZoom(float speed)
+    public void SetZoom(int size, float speed)
     {
+        cameraSize = originCameraSize * originPpcSize / size;
+        ppcSize = size;
         cameraZoomSpeed = speed;
+        ppc.enabled = false;
         StartState(CameraState.Zoom);
     }
 
-    public void SetShake(float time,float amount,float damping) 
+    public void SetShake(float time, float amount, float damping)
     {
         shakeTime = time;
         shakingPower = amount;
@@ -104,75 +107,87 @@ public class PlayerCamera : MonoBehaviour
         StartState(CameraState.Shake);
     }
 
-
     public void StartState(CameraState cmState)
     {
         switch (cmState)
         {
             case CameraState.MathFallow:
-                if (_previousFallowCoroutine != null)
-                {
-                    StopCoroutine(_previousFallowCoroutine);
-                }
-                _previousFallowCoroutine = StartCoroutine(FallowFlow(0));
-                break;
             case CameraState.CinematicFallow:
-                if (_previousFallowCoroutine != null)
                 {
-                    StopCoroutine(_previousFallowCoroutine);
+                    if (_previousFallowCoroutine != null)
+                    {
+                        StopCoroutine(_previousFallowCoroutine);
+                    }
+
+                    int mode = (cmState == CameraState.MathFallow) ? 0 : 1;
+                    _previousFallowCoroutine = StartCoroutine(FallowFlow(mode));
+                    break;
                 }
-                _previousFallowCoroutine = StartCoroutine(FallowFlow(1));
-                break;
+
             case CameraState.Zoom:
-                if (_previousZoomCoroutine != null)
                 {
-                    StopCoroutine(_previousZoomCoroutine);
+                    if (_previousZoomCoroutine != null)
+                    {
+                        StopCoroutine(_previousZoomCoroutine);
+                    }
+
+                    _previousZoomCoroutine = StartCoroutine(ZoomFlow());
+                    break;
                 }
-                _previousZoomCoroutine = StartCoroutine(ZoomFlow());
-                break;
+
             case CameraState.Shake:
-                if (_previousShakeCoroutine != null)
                 {
-                    StopCoroutine(_previousShakeCoroutine);
+                    if (_previousShakeCoroutine != null)
+                    {
+                        StopCoroutine(_previousShakeCoroutine);
+                    }
+
+                    _previousShakeCoroutine = StartCoroutine(ShakeFlow());
+                    break;
                 }
-                _previousShakeCoroutine = StartCoroutine(ShakeFlow());
-                break;
         }
     }
+
     public void StopState(CameraState cmState)
     {
         switch (cmState)
         {
             case CameraState.MathFallow:
-                if (_previousFallowCoroutine != null)
-                {
-                    fallowSpeed = originFallowSpeed;
-                    StopCoroutine(_previousFallowCoroutine);
-                }
-                break;
             case CameraState.CinematicFallow:
-                if (_previousFallowCoroutine != null)
                 {
+                    if (_previousFallowCoroutine != null)
+                    {
+                        StopCoroutine(_previousFallowCoroutine);
+                    }
+
                     fallowSpeed = originFallowSpeed;
-                    StopCoroutine(_previousFallowCoroutine);
+                    break;
                 }
-                break;
+
             case CameraState.Zoom:
-                if (_previousZoomCoroutine != null)
                 {
+                    if (_previousZoomCoroutine != null)
+                    {
+                        StopCoroutine(_previousZoomCoroutine);
+                    }
+
                     cameraZoomSpeed = originZoomSpeed;
-                    StopCoroutine(_previousZoomCoroutine);
+                    SetPpc();
+                    break;
                 }
-                break;
+
             case CameraState.Shake:
-                if (_previousShakeCoroutine != null)
                 {
+                    if (_previousShakeCoroutine != null)
+                    {
+                        StopCoroutine(_previousShakeCoroutine);
+                    }
+
                     shakingPower = originShakingPower;
                     shakeDamping = originDamping;
                     shakeTime = originShakeTime;
-                    StopCoroutine(_previousShakeCoroutine);
+                    break;
                 }
-                break;
         }
     }
 
@@ -180,14 +195,23 @@ public class PlayerCamera : MonoBehaviour
     {
         while (true)
         {
-            Vector2 newPos;
-            if(mode == 0)
+            Vector2 targetPos;
+
+            if (mode == 0)
             {
-                newPos = Vector2.MoveTowards(playerCam.transform.position, target.transform.position, fallowSpeed * Time.deltaTime);
+                targetPos = Vector2.MoveTowards(
+                    playerCam.transform.position,
+                    target.transform.position,
+                    fallowSpeed * Time.deltaTime
+                );
             }
             else
             {
-                newPos = Vector2.Lerp(playerCam.transform.position, target.transform.position, fallowSpeed * Time.deltaTime);
+                targetPos = Vector2.Lerp(
+                    playerCam.transform.position,
+                    target.transform.position,
+                    fallowSpeed * Time.deltaTime
+                );
             }
 
             float halfHeight = playerCam.orthographicSize;
@@ -198,8 +222,8 @@ public class PlayerCamera : MonoBehaviour
             float minY = camBound.transform.position.y - camBound.size.y / 2 + halfHeight;
             float maxY = camBound.transform.position.y + camBound.size.y / 2 - halfHeight;
 
-            float clampedX = Mathf.Clamp(newPos.x, minX, maxX);
-            float clampedY = Mathf.Clamp(newPos.y, minY, maxY);
+            float clampedX = Mathf.Clamp(targetPos.x, minX, maxX);
+            float clampedY = Mathf.Clamp(targetPos.y, minY, maxY);
 
             playerCam.transform.position = new Vector3(clampedX, clampedY, -10);
             yield return null;
@@ -208,13 +232,24 @@ public class PlayerCamera : MonoBehaviour
 
     private IEnumerator ZoomFlow()
     {
-        while (Mathf.Abs(playerCam.orthographicSize-cameraSize)>0.05f)
+        while (Mathf.Abs(playerCam.orthographicSize - cameraSize) > 0.05f)
         {
-            playerCam.orthographicSize = Mathf.Lerp(playerCam.orthographicSize, cameraSize,Time.deltaTime*cameraZoomSpeed);
+            playerCam.orthographicSize = Mathf.Lerp(
+                playerCam.orthographicSize,
+                cameraSize,
+                Time.deltaTime * cameraZoomSpeed
+            );
             yield return null;
         }
-        playerCam.orthographicSize = cameraSize;
 
+        playerCam.orthographicSize = cameraSize;
+        SetPpc();
+    }
+
+    private void SetPpc()
+    {
+        ppc.assetsPPU = ppcSize;
+        ppc.enabled = true;
     }
 
     private IEnumerator ShakeFlow()
@@ -244,8 +279,15 @@ public class PlayerCamera : MonoBehaviour
             float offsetX = 0f;
             float offsetY = 0f;
 
-            if (!isTooWide) offsetX = Random.Range(-1f, 1f) * strength * 0.1f;
-            if (!isTooTall) offsetY = Random.Range(-1f, 1f) * strength * 0.1f;
+            if (!isTooWide)
+            {
+                offsetX = Random.Range(-1f, 1f) * strength * 0.1f;
+            }
+
+            if (!isTooTall)
+            {
+                offsetY = Random.Range(-1f, 1f) * strength * 0.1f;
+            }
 
             Vector3 targetPos = originalPos + new Vector3(offsetX, offsetY, 0f);
 
@@ -261,8 +303,7 @@ public class PlayerCamera : MonoBehaviour
         playerCam.transform.position = new Vector3(
             Mathf.Clamp(originalPos.x, minX, maxX),
             Mathf.Clamp(originalPos.y, minY, maxY),
-            originalPos.z);
+            originalPos.z
+        );
     }
-
-
 }

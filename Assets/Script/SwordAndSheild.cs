@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SwordAndSheild: WeaponBase
 {
@@ -65,6 +66,7 @@ public class SwordAndSheild: WeaponBase
             if(hitable != null)
             {
                 //충돌 이펙트 생성
+                PlayerCamera.Instance.SetShake(0.5f, 20, 0.03f);
                 Debug.Log("검과충돌");
             }
 
@@ -86,17 +88,17 @@ public class SwordAndSheild: WeaponBase
 
     public override void OnAttack2Pressed()
     {
-        PlayerMove.Instance.canInput = false;
         isBlocking = true;
         isAttacking = false;
         combo = 0;
+        PlayerCamera.Instance.SetZoom(30, 4);
         ComboCheck();
         ani.SetBool(BlockHash,true);
     }
 
     public override void OnAttack2Released()
     {
-        PlayerMove.Instance.canInput = true;
+        PlayerCamera.Instance.SetZoom(20, 4);
         DisableAllHitbox();
         ani.SetBool(BlockHash, false);
         isBlocking = false;

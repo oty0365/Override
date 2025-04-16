@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour
     private float _horizontal;
     private float _vertical;
     private Animator _ani;
+    private SpriteRenderer _sr;
     private bool _isKnockBacking;
     private bool _isDashing;
 
@@ -46,7 +47,6 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-
     private Vector2 _dir;
     private float _force;
     private float _knockBackTime;
@@ -62,12 +62,13 @@ public class PlayerMove : MonoBehaviour
         _isKnockBacking = false;
         _ani = PlayerAnimator.Instance.ani;
         _originMoveSpeed = moveSpeed;
+        _sr = GetComponent<SpriteRenderer>();
     }
 
     public void Flip()
     {
         var dir = 0;
-        if(gameObject.transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 0)
+        if (gameObject.transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 0)
         {
             dir = 1;
         }
@@ -76,7 +77,6 @@ public class PlayerMove : MonoBehaviour
             dir = -1;
         }
         gameObject.transform.localScale = new Vector2(dir, transform.localScale.y);
-
     }
 
     private void FixedUpdate()
@@ -102,7 +102,7 @@ public class PlayerMove : MonoBehaviour
             case PlayerBehave.Dash:
                 if (!_isDashing)
                 {
-                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * 11f; 
+                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * 11f;
                     _isDashing = true;
                     StartCoroutine(DashFlow());
                 }
@@ -131,24 +131,31 @@ public class PlayerMove : MonoBehaviour
     public void Dash()
     {
         PlayerBehave = PlayerBehave.Dash;
-        PlayerCommands |= PlayerCommands.Dash;
+        AddCommand(PlayerCommands.Dash);
     }
 
     private IEnumerator DashFlow()
     {
         canInput = false;
-        PlayerBehave = PlayerBehave.Idel;
-        var step = 1;
-        for (var t = 0f; t <= dashTime; t += Time.deltaTime)
+        float step = dashTime / 8f;
+        float nextStep = step;
+
+        float alpha = 1;
+        float size = 1;
+
+        for (float t = 0f; t <= dashTime; t += Time.deltaTime)
         {
-            if(t >= dashTime*step / 8)
+            if (t >= nextStep)
             {
-                var o = ObjectPooler.Instance.Get(afterImage, gameObject.transform.position, new Vector3(gameObject.transform.rotation.x, gameObject.transform.rotation.y, gameObject.transform.rotation.z));
-                //o.GetComponent<PlayerAfterImage>().
-                step++;
+                var o = ObjectPooler.Instance.Get(afterImage, transform.position, transform.rotation.eulerAngles);
+                o.GetComponent<PlayerAfterImage>().SetIamge(_sr.sprite, alpha, size,gameObject.transform.localScale.x);
+
+                nextStep += step;
             }
             yield return null;
         }
+
+        PlayerBehave = PlayerBehave.Idel;
         rb2D.linearVelocity = Vector2.zero;
         _isDashing = false;
         canInput = true;
@@ -162,7 +169,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         Flip();
-        HandleMoveSpeed();  
+        HandleMoveSpeed();
         InputMove();
 
         switch (PlayerBehave)
@@ -178,63 +185,87 @@ public class PlayerMove : MonoBehaviour
 
     private void HandleMoveSpeed()
     {
-        if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Dash"]) && PlayerBehave != PlayerBehave.Dash)
+        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]) && PlayerBehave != PlayerBehave.Dash)
         {
-            PlayerCommands |= PlayerCommands.Run;
+            AddCommand(PlayerCommands.Run);
             moveSpeed = 5f;
         }
-        else if (PlayerBehave != PlayerBehave.Dash)
+
+        if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Dash"]) && PlayerBehave != PlayerBehave.Dash)
         {
-            PlayerCommands &= ~PlayerCommands.Run;
+            RemoveCommand(PlayerCommands.Run);
             moveSpeed = _originMoveSpeed;
+        }
+    }
+
+    public void AddCommand(PlayerCommands command)
+    {
+        if (!_playerCommands.HasFlag(command))
+        {
+            _playerCommands |= command;
+            PlayerAnimator.Instance.playerCommands = _playerCommands;
+        }
+    }
+
+    public void RemoveCommand(PlayerCommands command)
+    {
+        if (_playerCommands.HasFlag(command))
+        {
+            _playerCommands &= ~command;
+            PlayerAnimator.Instance.playerCommands = _playerCommands;
         }
     }
 
     private void InputMove()
     {
-
         _horizontal = 0;
         _vertical = 0;
-        PlayerCommands = PlayerCommands.None;
+        _playerCommands = PlayerCommands.None;
+
         if (canInput)
         {
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Up"]))
             {
                 _vertical = 1;
-                PlayerCommands |= PlayerCommands.Up;
+                AddCommand(PlayerCommands.Up);
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
             }
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Down"]))
             {
                 _vertical = -1;
-                PlayerCommands |= PlayerCommands.Down;
+                AddCommand(PlayerCommands.Down);
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
             }
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Right"]))
             {
                 _horizontal = -1;
-                PlayerCommands |= PlayerCommands.Right;
+                AddCommand(PlayerCommands.Right);
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
             }
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Left"]))
             {
                 _horizontal = 1;
-                PlayerCommands |= PlayerCommands.Left;
+                AddCommand(PlayerCommands.Left);
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
             }
 
             if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]))
             {
-                Dash();
+                if(PlayerCommands != PlayerCommands.None)
+                {
+                    Dash();
+                }
             }
-            if (PlayerCommands.HasFlag(PlayerCommands.Left) && PlayerCommands.HasFlag(PlayerCommands.Right))
+            if (_playerCommands.HasFlag(PlayerCommands.Left) && _playerCommands.HasFlag(PlayerCommands.Right))
                 _horizontal = 0;
-            if (PlayerCommands.HasFlag(PlayerCommands.Down) && PlayerCommands.HasFlag(PlayerCommands.Up))
+            if (_playerCommands.HasFlag(PlayerCommands.Down) && _playerCommands.HasFlag(PlayerCommands.Up))
                 _vertical = 0;
         }
+
+        PlayerAnimator.Instance.playerCommands = _playerCommands;
     }
 }
