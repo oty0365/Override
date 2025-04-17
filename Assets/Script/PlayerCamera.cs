@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public enum CameraState
 {
@@ -16,7 +15,6 @@ public class PlayerCamera : MonoBehaviour
 
     [Header("카메라 구성")]
     public Camera playerCam;
-    public PixelPerfectCamera ppc;
 
     [Header("타겟 & 움직임")]
     public GameObject target;
@@ -30,11 +28,9 @@ public class PlayerCamera : MonoBehaviour
     public float shakeTime;
     public float shakeDamping;
 
-    [Header("줌 & 해상도")]
+    [Header("줌")]
     public float cameraSize;
-    public int ppcSize;
     public float cameraZoomSpeed;
-    [Range(0, 45)] public int pixelPerfectSize;
 
     [Header("기본값")]
     [SerializeField] private float originFallowSpeed = 2.2f;
@@ -43,7 +39,6 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float originDamping = 0.5f;
     [SerializeField] private float originShakingPower = 12f;
     [SerializeField] private float originCameraSize = 4.5f;
-    [SerializeField] private int originPpcSize = 20;
 
     private Coroutine _previousFallowCoroutine;
     private Coroutine _previousZoomCoroutine;
@@ -57,23 +52,11 @@ public class PlayerCamera : MonoBehaviour
     private void Start()
     {
         cameraSize = originCameraSize;
-        ppcSize = originPpcSize;
-        pixelPerfectSize = originPpcSize;
         fallowSpeed = originFallowSpeed;
         cameraZoomSpeed = originZoomSpeed;
         shakingPower = originShakingPower;
 
         StartState(CameraState.CinematicFallow);
-    }
-
-    private void OnValidate()
-    {
-        int min = 0;
-        int max = 45;
-        int step = 5;
-
-        int nearest = Mathf.RoundToInt((pixelPerfectSize - min) / (float)step) * step + min;
-        pixelPerfectSize = Mathf.Clamp(nearest, min, max);
     }
 
     public void SetFallow(int mode, float speed)
@@ -90,12 +73,10 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
-    public void SetZoom(int size, float speed)
+    public void SetZoom(float size, float speed)
     {
-        cameraSize = originCameraSize * originPpcSize / size;
-        ppcSize = size;
+        cameraSize = size;
         cameraZoomSpeed = speed;
-        ppc.enabled = false;
         StartState(CameraState.Zoom);
     }
 
@@ -172,7 +153,7 @@ public class PlayerCamera : MonoBehaviour
                     }
 
                     cameraZoomSpeed = originZoomSpeed;
-                    SetPpc();
+                    cameraSize = originCameraSize;
                     break;
                 }
 
@@ -232,7 +213,7 @@ public class PlayerCamera : MonoBehaviour
 
     private IEnumerator ZoomFlow()
     {
-        while (Mathf.Abs(playerCam.orthographicSize - cameraSize) > 0.05f)
+        while (Mathf.Abs(playerCam.orthographicSize - cameraSize) > 0.02f)
         {
             playerCam.orthographicSize = Mathf.Lerp(
                 playerCam.orthographicSize,
@@ -243,13 +224,6 @@ public class PlayerCamera : MonoBehaviour
         }
 
         playerCam.orthographicSize = cameraSize;
-        SetPpc();
-    }
-
-    private void SetPpc()
-    {
-        ppc.assetsPPU = ppcSize;
-        ppc.enabled = true;
     }
 
     private IEnumerator ShakeFlow()
@@ -276,18 +250,8 @@ public class PlayerCamera : MonoBehaviour
             float dampingFactor = 1f - (elapsed / shakeTime);
             float strength = shakingPower * dampingFactor * shakeDamping;
 
-            float offsetX = 0f;
-            float offsetY = 0f;
-
-            if (!isTooWide)
-            {
-                offsetX = Random.Range(-1f, 1f) * strength * 0.1f;
-            }
-
-            if (!isTooTall)
-            {
-                offsetY = Random.Range(-1f, 1f) * strength * 0.1f;
-            }
+            float offsetX = isTooWide ? 0f : Random.Range(-1f, 1f) * strength * 0.1f;
+            float offsetY = isTooTall ? 0f : Random.Range(-1f, 1f) * strength * 0.1f;
 
             Vector3 targetPos = originalPos + new Vector3(offsetX, offsetY, 0f);
 

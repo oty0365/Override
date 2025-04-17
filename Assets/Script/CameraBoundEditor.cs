@@ -1,5 +1,7 @@
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+
 
 [CustomEditor(typeof(CameraBoundArea))]
 public class CameraBoundAreaEditor : Editor
@@ -53,3 +55,4 @@ public class CameraBoundAreaEditor : Editor
             Handles.DrawLine(rectCorners[i], rectCorners[(i + 1) % 4]);
     }
 }
+#endif

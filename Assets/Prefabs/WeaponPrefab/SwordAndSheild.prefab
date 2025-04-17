@@ -46,7 +46,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7722430145331283437}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -136,7 +136,8 @@ MonoBehaviour:
   - {fileID: 1866109381027112964}
   isAttacking: 0
   combo: 0
-  colideParticle: {fileID: 0}
+  colideParticle: {fileID: 9089905416252372434, guid: cb5fdc914ea0cec46b169013be5c5482, type: 3}
+  range: 0.9
 --- !u!58 &9212949366427838366
 CircleCollider2D:
   m_ObjectHideFlags: 0

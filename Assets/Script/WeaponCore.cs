@@ -18,10 +18,15 @@ public class WeaponCore : MonoBehaviour
 
     public void ChangeWeapon(GameObject weapon)
     {
+        if (weaponSlot.transform.childCount != 0)
+        {
+            Destroy(weaponSlot.transform.GetChild(0).gameObject);
+        }
         var w =Instantiate(weapon, weaponSlot.transform);
         weaponObject = w;
         _weaponApearance = weaponObject.GetComponent<SpriteRenderer>();
         _weapon = weaponObject.GetComponent<WeaponBase>();
+        weaponSlot.transform.localPosition = new Vector3(_weapon.range,weaponSlot.transform.localPosition.y,weaponSlot.transform.localPosition.z);
     }
 
     void Update()

@@ -1,4 +1,5 @@
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 
 [CustomEditor(typeof(DialogScript))]
@@ -68,3 +69,4 @@ public class DialogScriptEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif

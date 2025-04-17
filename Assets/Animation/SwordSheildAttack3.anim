@@ -459,14 +459,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.26666668
-    functionName: EndAnimation
+    functionName: EndCombo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.26666668
-    functionName: EndCombo
+  - time: 0.28333333
+    functionName: EndAnimation
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

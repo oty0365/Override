@@ -4,6 +4,7 @@ using UnityEngine;
 public enum PoolObjectType
 {
     PlayerAfterImage,
+    Particle,
     Bullet,
     Monster,
 }
@@ -55,10 +56,10 @@ public class ObjectPooler : MonoBehaviour
         else
         {
             obj = objectPoolList[key].Dequeue();
-            obj.OnBirth();
             obj.transform.position = position;
             obj.transform.rotation = Quaternion.Euler(rotation);
             obj.gameObject.SetActive(true);
+            obj.OnBirth();
         }
 
         return obj.gameObject;
