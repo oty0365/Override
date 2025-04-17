@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e2b834869e05144b32d648b7867992, type: 3}
+  m_Name: Katana
+  m_EditorClassIdentifier: 
+  weaponCode: 1
+  weaponName: "\uCE74\uD0C0\uB098"
+  weaponSprite: {fileID: 4089796923838250065, guid: 7dc6d5402f1c010468ad4a9b63e5eb9d, type: 3}
+  weaponDesc: "\uAC00\uB290\uB2E4\uB780 \uB3C4 \uD615\uD0DC\uC758 \uBB34\uAE30 \uB370\uBBF8\uC9C0\uB294
+    \uC57D\uD558\uC9C0\uB9CC \uBE60\uB974\uACE0 \uAC15\uD55C \uCE74\uC6B4\uD130\uACF5\uACA9\uC744
+    \uD560 \uC218 \uC788\uB2E4."
+  weaponRange: 2
+  weaponStartDamage: 15
+  weaponAttackSpeed: 1
+  weaponColor: {r: 0, g: 0.6377357, b: 0.095035195, a: 1}
