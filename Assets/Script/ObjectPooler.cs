@@ -7,6 +7,7 @@ public enum PoolObjectType
     Particle,
     Bullet,
     Monster,
+    ThrownDagger,
 }
 
 public abstract class APoolingObject:MonoBehaviour
@@ -58,6 +59,35 @@ public class ObjectPooler : MonoBehaviour
             obj = objectPoolList[key].Dequeue();
             obj.transform.position = position;
             obj.transform.rotation = Quaternion.Euler(rotation);
+            obj.gameObject.SetActive(true);
+            obj.OnBirth();
+        }
+
+        return obj.gameObject;
+    }
+
+    public GameObject Get(APoolingObject prefab, Vector2 position, Vector3 rotation, Vector2 size)
+    {
+        PoolObjectType key = prefab.objectType;
+
+        if (!objectPoolList.ContainsKey(key))
+            objectPoolList[key] = new Queue<APoolingObject>();
+
+        APoolingObject obj;
+
+        if (objectPoolList[key].Count == 0)
+        {
+            obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
+            obj.transform.localScale = new Vector3(size.x, size.y);
+            obj.objectType = key;
+            obj.OnBirth();
+        }
+        else
+        {
+            obj = objectPoolList[key].Dequeue();
+            obj.transform.position = position;
+            obj.transform.rotation = Quaternion.Euler(rotation);
+            obj.transform.localScale = new Vector3(size.x, size.y);
             obj.gameObject.SetActive(true);
             obj.OnBirth();
         }

@@ -107,6 +107,10 @@ public class PlayerMove : MonoBehaviour
                     StartCoroutine(DashFlow());
                 }
                 break;
+            case PlayerBehave.SpearRun:
+                rb2D.linearVelocity = Vector2.zero;
+                rb2D.linearVelocity = WeaponCore.Instance.mouseDir.normalized * 4.8f;
+                break;
         }
     }
 
@@ -163,7 +167,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (PlayerBehave != PlayerBehave.KnockBack && PlayerBehave != PlayerBehave.Dash && PlayerCommands == PlayerCommands.None)
+        if (PlayerBehave != PlayerBehave.KnockBack && PlayerBehave != PlayerBehave.Dash && PlayerBehave != PlayerBehave.SpearRun && PlayerCommands == PlayerCommands.None)
         {
             PlayerBehave = PlayerBehave.Idel;
         }

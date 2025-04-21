@@ -7,7 +7,7 @@ public enum WeaponCode
     Katana,
     GreatSword,
     MagicStaf,
-    Spear
+    Dagger
 }
 
 public class WeaponManager : MonoBehaviour

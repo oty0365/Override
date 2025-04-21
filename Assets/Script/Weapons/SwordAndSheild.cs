@@ -66,7 +66,7 @@ public class SwordAndSheild: WeaponBase
             if(hitable != null)
             {
                 Vector2 contactPoint = other.ClosestPoint(transform.position);
-                ObjectPooler.Instance.Get(colideParticle, contactPoint, new Vector3(0, 0, 0));
+                ObjectPooler.Instance.Get(colideParticle, contactPoint, new Vector3(0, 0, 0),new Vector2(1.5f,1.5f));
                 PlayerCamera.Instance.SetShake(0.5f, 20, 0.03f);
                 Debug.Log("검과충돌");
             }
