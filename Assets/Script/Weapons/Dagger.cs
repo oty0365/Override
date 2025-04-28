@@ -1,10 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
-public class Dagger: WeaponBase
+public class Dagger : WeaponBase
 {
     [SerializeField] private APoolingObject daggerBullet;
+    public float daggerThrowCooldown;
+
     private GameObject _curdagger;
-    private bool isThrowing;
+    private bool _isThrowing;
+    private bool _canThrow;
+
     private static readonly int AttackHash = Animator.StringToHash("Attack");
     private static readonly int ReturnHash = Animator.StringToHash("Return");
 
@@ -14,9 +19,9 @@ public class Dagger: WeaponBase
         if (hitable != null)
         {
             Vector2 contactPoint = other.ClosestPoint(transform.position);
-            ObjectPooler.Instance.Get(colideParticle, contactPoint, new Vector3(0, 0, 0),new Vector2(1,1));
+            ObjectPooler.Instance.Get(colideParticle, contactPoint, Vector3.zero, Vector2.one);
             PlayerCamera.Instance.SetShake(0.4f, 20, 0.02f);
-            Debug.Log("검과충돌");
+            Debug.Log("검과 충돌");
         }
     }
 
@@ -25,75 +30,100 @@ public class Dagger: WeaponBase
         isAttacking = true;
         ani.SetTrigger(AttackHash);
     }
+
     public override void SetColider(int index)
     {
         colliders[index].enabled = true;
     }
+
     public override void StartCombo()
     {
         isAttacking = false;
     }
-    public override void EndCombo()
-    {
-    }
+
+    public override void EndCombo() { }
+
     public override void OnAttack2Pressed()
     {
         if (_curdagger != null && _curdagger.activeSelf)
         {
-            var parentObj = PlayerMove.Instance.gameObject;
-            parentObj.transform.position = _curdagger.transform.position;
+            Vector2 targetPos = _curdagger.transform.position;
+            Vector2 currentPos = PlayerMove.Instance.transform.position;
+            Vector2 dir = (targetPos - currentPos).normalized;
+
+            RaycastHit2D hit = Physics2D.Raycast(currentPos, dir, Vector2.Distance(currentPos, targetPos), LayerMask.GetMask("Wall"));
+            if (hit.collider == null)
+            {
+                PlayerMove.Instance.transform.position = targetPos;
+            }
+            else
+            {
+                PlayerMove.Instance.transform.position = hit.point - dir * 0.1f;
+            }
+
             ObjectPooler.Instance.Return(_curdagger.GetComponent<APoolingObject>());
-            isThrowing = false;
+            _isThrowing = false;
         }
-        else if (_curdagger==null||!_curdagger.activeSelf&&!isThrowing)
+
+        if ((_curdagger == null || !_curdagger.activeSelf) && !_isThrowing && _canThrow)
         {
-            isThrowing = true;
+            _isThrowing = true;
+            _canThrow = false;
+
             var playerMove = PlayerMove.Instance;
-            _curdagger = ObjectPooler.Instance.Get(daggerBullet, playerMove.transform.position, new Vector3(0, 0, WeaponCore.Instance.rotaion));
+            _curdagger = ObjectPooler.Instance.Get(
+                daggerBullet,
+                playerMove.transform.position,
+                new Vector3(0, 0, WeaponCore.Instance.rotaion)
+            );
+
+            StartCoroutine(DaggerCooldown());
         }
-       
     }
-    public override void OnAttack2Released()
-    {/*
-        var playerMove = PlayerMove.Instance;
-        runWay.SetActive(false);
-        PlayerCamera.Instance.SetZoom(4.5f, 4);
-        playerMove.canInput = true;
-        playerMove.PlayerBehave = PlayerBehave.Idel;
-        */
-    }
-    public override void OnAttack1Released()
-    {
 
-    }
-    public override void EndAnimation()
+    private IEnumerator DaggerCooldown()
     {
-
+        yield return new WaitForSeconds(daggerThrowCooldown);
+        _canThrow = true;
     }
+
+    public override void OnAttack2Released() { }
+
+    public override void OnAttack1Released() { }
+
+    public override void EndAnimation() { }
+
     void Start()
     {
-        isThrowing = false;
+        _canThrow = true;
+        _isThrowing = false;
         DisableAllHitbox();
     }
 
     void Update()
     {
-        if (_curdagger != null && !_curdagger.activeSelf&&isThrowing)
+        if (_curdagger != null && !_curdagger.activeSelf && _isThrowing)
         {
-            isThrowing = false;
+            _isThrowing = false;
+        }
+        if (canInput)
+        {
+            if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking)
+            {
+                OnAttack1Pressed();
+            }
+
+            if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]))
+            {
+                OnAttack2Pressed();
+            }
+
+            if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"]))
+            {
+                OnAttack2Released();
+            }
         }
 
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking)
-        {
-            OnAttack1Pressed();
-        }
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]) && !isAttacking)
-        {
-            OnAttack2Pressed();
-        }
-        if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"]))
-        {
-            OnAttack2Released();
-        }
+
     }
 }

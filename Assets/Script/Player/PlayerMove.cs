@@ -85,8 +85,15 @@ public class PlayerMove : MonoBehaviour
         {
             case PlayerBehave.Idel:
             case PlayerBehave.Walk:
-                rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * moveSpeed;
-                break;
+                if (canInput)
+                {
+                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * moveSpeed;
+                }
+                else
+                {
+                    rb2D.linearVelocity = Vector2.zero;
+                }
+                    break;
 
             case PlayerBehave.KnockBack:
                 if (!_isKnockBacking)
@@ -102,14 +109,10 @@ public class PlayerMove : MonoBehaviour
             case PlayerBehave.Dash:
                 if (!_isDashing)
                 {
-                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * 11f;
+                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * 20f;
                     _isDashing = true;
                     StartCoroutine(DashFlow());
                 }
-                break;
-            case PlayerBehave.SpearRun:
-                rb2D.linearVelocity = Vector2.zero;
-                rb2D.linearVelocity = WeaponCore.Instance.mouseDir.normalized * 4.8f;
                 break;
         }
     }

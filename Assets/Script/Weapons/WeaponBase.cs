@@ -8,6 +8,7 @@ public interface IHitable
 
 public abstract class WeaponBase : MonoBehaviour
 {
+    public static bool canInput;
     public Animator ani;
     public Collider2D[] colliders;
     public bool isAttacking;

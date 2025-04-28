@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace9780e36fe78942a4840fb3908c788, type: 3}
+  m_Name: TheExplorer
+  m_EditorClassIdentifier: 
+  overridealbeName: "\uBAA8\uD5D8\uAC00"
+  rarity: 0
+  animationClips:
+  - {fileID: 7400000, guid: 90431e8c868eede459c7e0c0a7ecc149, type: 2}
+  - {fileID: 7400000, guid: f8cbc773c21f21c4d97d873ab3442313, type: 2}
+  desc: "\uBAA8\uC2B5\uC774 \uB04A\uC784\uC5C6\uC774 \uBCC0\uD558\uB294 \uD0D1\uC744
+    \uC5EC\uD589\uD558\uB294 \uBAA8\uD5D8\uAC00.\n\uBB34\uD55C\uD788 \uC8FD\uACE0
+    \uC0B4\uC544\uB098\uBA70 \uD0D1\uC758 \uBE44\uBC00\uC744 \uD30C\uD574\uCE5C\uB2E4.\n\uB3C8,
+    \uBA85\uC608, \uB4F1\uB4F1 \uD2B9\uC815 \uBAA9\uC801\uC744 \uAC00\uC84C\uAE30\uBCF4\uB2E8
+    \uADF8\uC800 \uBAA8\uD5D8\uC744 \uC0AC\uB791\uD588\uB358 \uADF8\uC758 \uC5EC\uC815\uC740
+    \uC774\uC81C \uC774 \uC791\uC740 \uB370\uC774\uD130\uC5D0 \uB2F4\uAE30\uAC8C
+    \uB418\uC5C8\uB2E4."
+  prefabObject: {fileID: 6966159450669360162, guid: 5b15b44c89fdfe1439f12dfc7a21d353, type: 3}

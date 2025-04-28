@@ -131,12 +131,12 @@ TextureImporter:
       name: PlayerIdel_0
       rect:
         serializedVersion: 2
-        x: 134
-        y: 759
-        width: 47
-        height: 87
+        x: 0
+        y: 640
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: PlayerIdel_1
       rect:
         serializedVersion: 2
-        x: 454
-        y: 759
-        width: 47
-        height: 87
+        x: 320
+        y: 640
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,12 +175,12 @@ TextureImporter:
       name: PlayerIdel_2
       rect:
         serializedVersion: 2
-        x: 134
-        y: 439
-        width: 47
-        height: 87
+        x: 0
+        y: 320
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -197,12 +197,12 @@ TextureImporter:
       name: PlayerIdel_3
       rect:
         serializedVersion: 2
-        x: 454
-        y: 439
-        width: 47
-        height: 87
+        x: 320
+        y: 320
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -219,12 +219,12 @@ TextureImporter:
       name: PlayerIdel_4
       rect:
         serializedVersion: 2
-        x: 134
-        y: 119
-        width: 47
-        height: 87
+        x: 0
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -241,12 +241,12 @@ TextureImporter:
       name: PlayerIdel_5
       rect:
         serializedVersion: 2
-        x: 454
-        y: 119
-        width: 47
-        height: 87
+        x: 320
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

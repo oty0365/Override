@@ -5,7 +5,7 @@ public enum PoolObjectType
 {
     PlayerAfterImage,
     Particle,
-    Bullet,
+    SoulBullet,
     Monster,
     ThrownDagger,
 }

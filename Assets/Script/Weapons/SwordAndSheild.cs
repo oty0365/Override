@@ -25,19 +25,23 @@ public class SwordAndSheild: WeaponBase
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking && !isBlocking)
+        if (canInput)
         {
-            OnAttack1Pressed();
+            if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking && !isBlocking)
+            {
+                OnAttack1Pressed();
+            }
+
+            if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]) && !isAttacking)
+            {
+                OnAttack2Pressed();
+            }
+            if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"]))
+            {
+                OnAttack2Released();
+            }
         }
 
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]) && !isAttacking)
-        {
-            OnAttack2Pressed();
-        }
-        if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"])) 
-        {
-            OnAttack2Released();
-        }
     }
 
     private void ComboCheck()
@@ -116,7 +120,6 @@ public class SwordAndSheild: WeaponBase
                 Vector2 contactPoint = other.ClosestPoint(transform.position);
                 ObjectPooler.Instance.Get(colideParticle, contactPoint, new Vector3(0, 0, 0),new Vector2(1.5f,1.5f));
                 PlayerCamera.Instance.SetShake(0.5f, 20, 0.03f);
-                Debug.Log("검과충돌");
             }
 
         }    

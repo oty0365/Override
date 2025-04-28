@@ -20,6 +20,7 @@ public class WeaponCore : MonoBehaviour
 
     public void ChangeWeapon(GameObject weapon)
     {
+        PlayerCamera.Instance.SetZoom(4.5f, 8f);
         if (weaponSlot.transform.childCount != 0)
         {
             Destroy(weaponSlot.transform.GetChild(0).gameObject);

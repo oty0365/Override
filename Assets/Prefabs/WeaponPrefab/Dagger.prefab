@@ -133,6 +133,7 @@ MonoBehaviour:
   colideParticle: {fileID: 9089905416252372434, guid: cb5fdc914ea0cec46b169013be5c5482, type: 3}
   range: 0.7
   daggerBullet: {fileID: 2839827225341748836, guid: 081bea90275964a4c8eb780c2c5b074c, type: 3}
+  daggerThrowCooldown: 2
 --- !u!61 &6127272323391154129
 BoxCollider2D:
   m_ObjectHideFlags: 0

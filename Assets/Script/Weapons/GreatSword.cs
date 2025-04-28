@@ -22,20 +22,24 @@ public class GreatSword : WeaponBase
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking && !isBlocking)
+        if (canInput)
         {
-            OnAttack1Pressed();
+            if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking && !isBlocking)
+            {
+                OnAttack1Pressed();
+            }
+
+            if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]) && !isAttacking)
+            {
+                OnAttack2Pressed();
+            }
+
+            if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"]))
+            {
+                OnAttack2Released();
+            }
         }
 
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]) && !isAttacking)
-        {
-            OnAttack2Pressed();
-        }
-
-        if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"]))
-        {
-            OnAttack2Released();
-        }
     }
 
     private void ComboCheck()
@@ -96,7 +100,6 @@ public class GreatSword : WeaponBase
     private IEnumerator AttackRoutine()
     {
         ani.speed = attackSpeed;
-        Debug.Log(ani.GetCurrentAnimatorStateInfo(0).length);
         float animLength = ani.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(animLength / attackSpeed);
         ani.speed = 1f;

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace9780e36fe78942a4840fb3908c788, type: 3}
+  m_Name: TheLightLess
+  m_EditorClassIdentifier: 
+  overridealbeName: "\uB2EC\uBE5B\uC783\uC740\uC790"
+  rarity: 0
+  animationClips:
+  - {fileID: 7400000, guid: 67ac6787e143d6f4a9e457043fb61755, type: 2}
+  - {fileID: 7400000, guid: bd65740d6f4cb114893ac89ea7cb6209, type: 2}
+  desc: "\uB2EC\uBE5B\uC744 \uBC1B\uC9C0 \uBABB\uD574\uC11C \uC232\uC5D0 \uBC84\uB824\uC9C4
+    \uB098\uBC29\n\uC791\uAC8C \uAC78\uCCD0\uC9C4 \uB0A0\uAC1C\uB97C \uB4A4\uB85C\uD558\uACE0
+    \uACE0\uCE58\uC2E4\uB9CC\uC73C\uB85C \uB098\uBB34\uB97C \uAC00\uB85C\uC9C0\uB978\uB2E4.\n\uC218\uB9CE\uC740
+    \uC5B4\uB824\uC6C0\uC774 \uB2E5\uCCD0\uC640\uB3C4 \uB098\uBC29\uC740 \uB3C4\uC57D\uC744
+    \uBA48\uCD94\uC9C0 \uC54A\uB294\uB2E4."
+  prefabObject: {fileID: 1120186496489677759, guid: b6f289a346be13844a05981c1d17d255, type: 3}

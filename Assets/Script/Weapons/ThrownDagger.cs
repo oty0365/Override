@@ -16,11 +16,11 @@ public class ThrownDagger: APoolingObject
         rb.linearVelocity = transform.right.normalized*shootSpeed;
         StartCoroutine(DaggerRemainFlow());
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         rb.linearVelocity = Vector2.zero;
-        Vector2 contactPoint = other.ClosestPoint(transform.position);
-        ObjectPooler.Instance.Get(colideParticle, contactPoint, new Vector3(0, 0, 0), new Vector2(0.65f, 0.65f));
+        //Vector2 contactPoint = other.ClosestPoint(transform.position);
+        ObjectPooler.Instance.Get(colideParticle, gameObject.transform.position, new Vector3(0, 0, 0), new Vector2(0.65f, 0.65f));
     }
     private IEnumerator DaggerRemainFlow()
     {

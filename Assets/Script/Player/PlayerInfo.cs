@@ -7,6 +7,20 @@ public class PlayerInfo : MonoBehaviour
     [Header("플레이어 정보")]
     public WeaponData playerWeaponData;
     public SpriteRenderer weaponCore;
+    private GameObject _currentOverridingObject;
+    public GameObject CurrentOverridingObject
+    {
+        get => _currentOverridingObject;
+        set
+        {
+            if (_currentOverridingObject != null)
+            {
+                Instantiate(_currentOverridingObject,gameObject.transform.position,Quaternion.identity);
+            }
+            Debug.Log(_currentOverridingObject);
+            _currentOverridingObject = value;
+        }
+    }
     private WeaponCode _playerWeapon;
     public WeaponCode PlayerWeapon
     {
