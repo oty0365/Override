@@ -8,6 +8,8 @@ public class PlayerInfo : MonoBehaviour
     public WeaponData playerWeaponData;
     public SpriteRenderer weaponCore;
     private GameObject _currentOverridingObject;
+    public OverrideablesData currentCharacterData;
+    public CharacterSkillData currentSkillData;
     public GameObject CurrentOverridingObject
     {
         get => _currentOverridingObject;
@@ -15,7 +17,11 @@ public class PlayerInfo : MonoBehaviour
         {
             if (_currentOverridingObject != null)
             {
-                Instantiate(_currentOverridingObject,gameObject.transform.position,Quaternion.identity);
+                var o = Instantiate(_currentOverridingObject,gameObject.transform.position,Quaternion.identity);
+                var over = o.GetComponent<Overrideables>();
+                currentCharacterData = over.characterData;
+                currentSkillData = over.characterSkillData;
+                //이후 설정 변경
             }
             Debug.Log(_currentOverridingObject);
             _currentOverridingObject = value;

@@ -20,7 +20,7 @@ public class Dagger : WeaponBase
         {
             Vector2 contactPoint = other.ClosestPoint(transform.position);
             ObjectPooler.Instance.Get(colideParticle, contactPoint, Vector3.zero, Vector2.one);
-            PlayerCamera.Instance.SetShake(0.4f, 20, 0.02f);
+            PlayerCamera.Instance.SetShake(0.4f, 25, 0.02f);
             Debug.Log("검과 충돌");
         }
     }

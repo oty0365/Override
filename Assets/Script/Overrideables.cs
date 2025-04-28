@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Overrideables : AInteractable
 {
-    [SerializeField] private OverrideablesData data;
+    public OverrideablesData characterData;
+    public CharacterSkillData characterSkillData;
     [SerializeField] private ParticleSystem prt;
     private SpriteRenderer _sr;
 
     void Start()
     {
-
         _sr = GetComponent<SpriteRenderer>();
         var main = prt.main;
-        switch (data.rarity)
+        switch (characterData.rarity)
         {
             case Rarity.Common:
                 main.startColor = Color.white;
@@ -29,8 +29,6 @@ public class Overrideables : AInteractable
                 main.startColor = Color.red;
                 break;
         }
-        
-
     }
 
     void Update()
@@ -39,7 +37,7 @@ public class Overrideables : AInteractable
     }
     public override void OnInteract()
     {
-        PlayerAnimator.Instance.Override(data.animationClips,gameObject.transform,data.prefabObject);
+        PlayerAnimator.Instance.Override(characterData.animationClips,gameObject.transform,characterData.prefabObject);
         Destroy(gameObject);
     }
 }
