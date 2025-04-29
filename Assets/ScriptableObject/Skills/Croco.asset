@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Croco
   m_EditorClassIdentifier: 
   identitySkills:
-  - {fileID: 11400000, guid: 4c676708a89fcf649953fecd1afd209b, type: 2}
-  ultimateSkills: []
-  characterSkill: {fileID: 0}
+  - skillData: {fileID: 11400000, guid: 4c676708a89fcf649953fecd1afd209b, type: 2}
+    characterSkill: {fileID: 0}
+  ultimateSkills:
+  - skillData: {fileID: 11400000, guid: 13e6bf9609a9e0d42ba2d063a30ba01e, type: 2}
+    characterSkill: {fileID: 0}

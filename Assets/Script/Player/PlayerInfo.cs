@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -17,14 +18,14 @@ public class PlayerInfo : MonoBehaviour
         {
             if (_currentOverridingObject != null)
             {
-                var o = Instantiate(_currentOverridingObject,gameObject.transform.position,Quaternion.identity);
-                var over = o.GetComponent<Overrideables>();
-                currentCharacterData = over.characterData;
-                currentSkillData = over.characterSkillData;
-                //이후 설정 변경
+                Instantiate(_currentOverridingObject,gameObject.transform.position,Quaternion.identity);
             }
             Debug.Log(_currentOverridingObject);
             _currentOverridingObject = value;
+            var over = _currentOverridingObject.GetComponent<Overrideables>();
+            currentCharacterData = over.characterData;
+            currentSkillData = over.characterSkillData;
+            SkillManager.Instance.ChangeCharacterSkill();
         }
     }
     private WeaponCode _playerWeapon;
