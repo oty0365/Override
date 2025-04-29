@@ -3852,7 +3852,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17021,7 +17021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.010000001, y: 0.023295559}
   m_AnchorMax: {x: 0.09783417, y: 0.17836948}
-  m_AnchoredPosition: {x: 97.982925, y: 111.82754}
+  m_AnchoredPosition: {x: 97.982956, y: 111.82754}
   m_SizeDelta: {x: 138.03711, y: 157.18398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1166585546
