@@ -8,6 +8,8 @@ public enum PoolObjectType
     SoulBullet,
     Monster,
     ThrownDagger,
+    CrunchBite,
+
 }
 
 public abstract class APoolingObject:MonoBehaviour

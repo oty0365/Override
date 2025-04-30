@@ -1,3 +1,4 @@
+using UnityEditor.Localization.Plugins.Google.Columns;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,16 @@ public class PlayerInfo : MonoBehaviour
     private GameObject _currentOverridingObject;
     public OverrideablesData currentCharacterData;
     public CharacterSkillData currentSkillData;
+    [Header("플레이어 스테이터스")]
+    public readonly float playerHp;
+    public float playerCurHp;
+    public readonly float playerExp;
+    public float playerCurExp;
+    public readonly float playerStamina;
+    public float playerCurStamina;
+    public float playerSkillcooldown;
+    public float playerDeffence;
+
     public GameObject CurrentOverridingObject
     {
         get => _currentOverridingObject;
@@ -26,6 +37,7 @@ public class PlayerInfo : MonoBehaviour
             currentCharacterData = over.characterData;
             currentSkillData = over.characterSkillData;
             SkillManager.Instance.ChangeCharacterSkill();
+            
         }
     }
     private WeaponCode _playerWeapon;

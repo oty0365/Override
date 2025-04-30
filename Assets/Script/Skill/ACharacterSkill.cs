@@ -6,6 +6,8 @@ public enum SkillForm
 {
     PassiveIdentity,
     ActiveIdentity,
+    PassiveAt,
+    ActiveAt,
     PassiveUltimate,
     ActiveUltimate
 }
@@ -17,7 +19,8 @@ public interface SkillMoudle
 public struct InstantinateModule:SkillMoudle
 {
     public APoolingObject attackObj;
-    public GameObject attackPos; 
+    public Transform attackTransform;
+    public float range;
 }
 [System.Serializable]
 public struct EffectableModule : SkillMoudle
@@ -29,6 +32,8 @@ public abstract class ACharacterSkill:MonoBehaviour
 {
     public SkillForm skillForm;
     private float _skillCooldown;
+    protected KeyCode _currentKey;
+
     public float SkillCooldown {
         get => _skillCooldown;
         set
@@ -41,20 +46,24 @@ public abstract class ACharacterSkill:MonoBehaviour
         }
     }
 
-    public void UpdateSkillCooldown()
+    public void UpdateSkill()
     {
         switch (skillForm)
         {
             case SkillForm.PassiveIdentity:
             case SkillForm.ActiveIdentity:
                 SkillCooldown+=SkillManager.Instance.curridentitySkill.basicCoolDown;
+                _currentKey = KeyBindingManager.Instance.keyBindings["SpecialAttack1"];
                 break;
             case SkillForm.PassiveUltimate:
             case SkillForm.ActiveUltimate:
                 SkillCooldown += SkillManager.Instance.currultimateSkill.basicCoolDown;
+                _currentKey = KeyBindingManager.Instance.keyBindings["Ultiamte"];
                 break;
         }
     }
 
     public abstract void UseSkill();
+
+    
 }
