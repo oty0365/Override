@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionKeyPos: {fileID: 5679327013566984255}
   characterData: {fileID: 11400000, guid: d589ad4da0ceea44dabeb351101f8fed, type: 2}
-  characterSkillData: {fileID: 0}
+  characterSkillData: {fileID: 11400000, guid: 5df6a91f0ce03614b8af5cbac6ecb879, type: 2}
   prt: {fileID: 4021203998762992305}
 --- !u!61 &3735476120140653278
 BoxCollider2D:

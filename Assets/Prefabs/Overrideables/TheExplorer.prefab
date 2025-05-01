@@ -4969,7 +4969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionKeyPos: {fileID: 373826835566846050}
   characterData: {fileID: 11400000, guid: 5a60804c38424f04a8284b9302d3f219, type: 2}
-  characterSkillData: {fileID: 0}
+  characterSkillData: {fileID: 11400000, guid: eca0c23f1ef7e9d4e9e607c22f09c662, type: 2}
   prt: {fileID: 6883704328156654146}
 --- !u!61 &1769624087496467906
 BoxCollider2D:

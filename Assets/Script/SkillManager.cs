@@ -55,10 +55,10 @@ public class SkillManager : MonoBehaviour
 
         ChangeCharacterSkill();
         ChangeAtSkill();
-        ShowInputKey();
+        SetInputKey();
     }
 
-    public void ShowInputKey()
+    public void SetInputKey()
     {
         skillSlot[0].skillKey.text = KeyBindingManager.Instance.keyBindings["SpecialAttack1"].ToString();
         skillSlot[1].skillKey.text = KeyBindingManager.Instance.keyBindings["SpecialAttack2"].ToString();
@@ -67,6 +67,7 @@ public class SkillManager : MonoBehaviour
 
     public void ChangeCharacterSkill()
     {
+
         foreach (var i in characterSkillList)
         {
             Destroy(i.gameObject);
@@ -99,6 +100,15 @@ public class SkillManager : MonoBehaviour
             {
                 InstantinateSkillManager(s.ultimateSkills[0]);
             }
+            if (s.identitySkills[0].characterSkill != null)
+            {
+                Updatekey(s.identitySkills[0].characterSkill.skillForm);
+            }
+            if (s.ultimateSkills[0].characterSkill != null)
+            {
+                Updatekey(s.ultimateSkills[0].characterSkill.skillForm);
+            }
+
             skillSlot[0].skillIcon.sprite = curridentitySkill.skillIcon;
             skillSlot[2].skillIcon.sprite = currultimateSkill.skillIcon;
         }
@@ -115,6 +125,26 @@ public class SkillManager : MonoBehaviour
         skillSlot[1].skillFrame.color = Color.gray;
         //atSkillIcon.color = Color.white;
         //atSkillFrame.color = Color.white;
+    }
+
+    public void Updatekey(SkillForm skillForm)
+    {
+        switch (skillForm)
+        {
+            case SkillForm.PassiveIdentity:
+                skillSlot[0].skillKey.text = "";
+                break;
+            case SkillForm.PassiveAt:
+                skillSlot[1].skillKey.text = "";
+                break;
+            case SkillForm.PassiveUltimate:
+                skillSlot[2].skillKey.text = "";
+                break;
+            default:
+                SetInputKey();
+                break;
+
+        }
     }
 
     public bool CheckToUseSkill(SkillForm skillForm)
