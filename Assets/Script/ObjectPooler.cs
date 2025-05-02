@@ -9,6 +9,7 @@ public enum PoolObjectType
     Monster,
     ThrownDagger,
     CrunchBite,
+    BlazeOfEvil,
 
 }
 

@@ -64,6 +64,25 @@ public class SkillManager : MonoBehaviour
         skillSlot[1].skillKey.text = KeyBindingManager.Instance.keyBindings["SpecialAttack2"].ToString();
         skillSlot[2].skillKey.text  = KeyBindingManager.Instance.keyBindings["Ultimate"].ToString();
     }
+    public void BreakSkillCooldown(int index)
+    {
+        if (skillSlot[index].skillCoolCoroutine != null)
+        {
+            StopCoroutine(skillSlot[index].skillCoolCoroutine);
+            skillSlot[index].skillCooldown.text = "";
+            skillSlot[index].skillCooldownImage.fillAmount = 0f;
+            skillSlot[index].skillCooldownImage.gameObject.SetActive(false);
+            switch (index)
+            {
+                case 0:
+                    enableSkills |= EnableSkills.Identity;
+                    break;
+                case 2:
+                    enableSkills |= EnableSkills.Ultimate;
+                    break;
+            }
+        }
+    }
 
     public void ChangeCharacterSkill()
     {

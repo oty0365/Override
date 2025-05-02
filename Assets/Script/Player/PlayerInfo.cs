@@ -37,7 +37,9 @@ public class PlayerInfo : MonoBehaviour
             currentCharacterData = over.characterData;
             currentSkillData = over.characterSkillData;
             SkillManager.Instance.ChangeCharacterSkill();
-            
+            SkillManager.Instance.BreakSkillCooldown(0);
+            SkillManager.Instance.BreakSkillCooldown(1);
+
         }
     }
     private WeaponCode _playerWeapon;

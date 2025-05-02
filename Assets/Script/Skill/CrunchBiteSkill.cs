@@ -17,7 +17,9 @@ public class CrunchBiteSkill : ACharacterSkill
     }
     public override void UseSkill()
     {
-        ObjectPooler.Instance.Get(instantinateModule.attackObj, instantinateModule.attackTransform.position, new Vector3(0, 0, WeaponCore.Instance.rotaion));
+        var o =ObjectPooler.Instance.Get(instantinateModule.attackObj, instantinateModule.attackTransform.position, new Vector3(0, 0, WeaponCore.Instance.rotaion));
+        var cb = o.gameObject.GetComponent<CrunchBite>();
+        cb.curDir = WeaponCore.Instance.mouseDir.normalized * instantinateModule.range;
         SkillManager.Instance.StartSkillCooldown(skillForm);
     }
 
