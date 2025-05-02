@@ -2015,6 +2015,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2153,6 +2154,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaler: {fileID: 192945480}
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e758edc443b2304d9c5d934f3415457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letterboxColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &528185745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4143,8 +4157,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD0A4\uAC00 \uACC2\uCE69\uB2C8\uB2E4!!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 41f614114137b3445ab41a61f368de52, type: 2}
-  m_sharedMaterial: {fileID: -928370831345085790, guid: 41f614114137b3445ab41a61f368de52, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 580801faa559dba4ab1ae61c111f9d1c, type: 2}
+  m_sharedMaterial: {fileID: -1221954749001101741, guid: 580801faa559dba4ab1ae61c111f9d1c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4761,8 +4775,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC124\uC815"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 41f614114137b3445ab41a61f368de52, type: 2}
-  m_sharedMaterial: {fileID: -928370831345085790, guid: 41f614114137b3445ab41a61f368de52, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 580801faa559dba4ab1ae61c111f9d1c, type: 2}
+  m_sharedMaterial: {fileID: -1221954749001101741, guid: 580801faa559dba4ab1ae61c111f9d1c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5590,8 +5604,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uAC8C\uC784 \uC2DC\uC791"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 41f614114137b3445ab41a61f368de52, type: 2}
-  m_sharedMaterial: {fileID: -928370831345085790, guid: 41f614114137b3445ab41a61f368de52, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 580801faa559dba4ab1ae61c111f9d1c, type: 2}
+  m_sharedMaterial: {fileID: -1221954749001101741, guid: 580801faa559dba4ab1ae61c111f9d1c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6703,8 +6717,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uAC8C\uC784 \uC885\uB8CC\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 41f614114137b3445ab41a61f368de52, type: 2}
-  m_sharedMaterial: {fileID: -928370831345085790, guid: 41f614114137b3445ab41a61f368de52, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 580801faa559dba4ab1ae61c111f9d1c, type: 2}
+  m_sharedMaterial: {fileID: -1221954749001101741, guid: 580801faa559dba4ab1ae61c111f9d1c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

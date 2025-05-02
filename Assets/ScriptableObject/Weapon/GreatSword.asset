@@ -15,6 +15,7 @@ MonoBehaviour:
   weaponCode: 2
   weaponName: "\uB300\uAC80"
   weaponSprite: {fileID: -6360951540215640696, guid: 216fc396ff242a142b4793286ba31bfe, type: 3}
+  weaponPrefab: {fileID: 7471120163724153827, guid: fde98da930d51f84dba8f622fafe8bc3, type: 3}
   weaponDesc: "\uACF5\uC18D\uC774 \uB9E4\uC6B0 \uB290\uB9AC\uC9C0\uB9CC \uAC15\uD55C
     \uD55C\uBC29\uC744 \uC790\uB791\uD558\uB294 \uBB34\uAE30\n\uD06C\uAC70\uB098
     \uAC15\uD55C \uC801\uC774 \uC544\uB2CC \uC801\uB4E4\uC740 \uD53C\uACA9 \uC2DC

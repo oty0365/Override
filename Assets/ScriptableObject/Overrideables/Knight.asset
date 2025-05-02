@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace9780e36fe78942a4840fb3908c788, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  overridealbeName: "\uAE30\uC0AC"
+  rarity: 4
+  animationClips:
+  - {fileID: 7400000, guid: c36b4cb0c6c3fad42acd796b9dc5a77a, type: 2}
+  - {fileID: 7400000, guid: e00db4acda255d94ab79a9a98f3d4543, type: 2}
+  desc: "\uD55C\uB54C\uB294 \uCC2C\uB780\uD588\uC9C0\uB9CC \uC774\uC81C\uB294 \uC7AC\uC640
+    \uC6A9\uC5F0\uD5A5\uC73C\uB85C \uAC00\uB4DD\uD55C\n\uBCA0\uC774\uB3C4\uC2A4\uC758
+    \uAE30\uC0AC.\n\uC0C8\uB07C \uC0D0\uB7EC\uB9E8\uB354\uB3C4 \uBB34\uC11C\uC6CC\uD574\uC11C
+    \uCE5C\uAD6C\uB4E4\uD55C\uD14C \uB180\uB9BC\uBC1B\uB358 \uACFC\uAC70\uC640 \uB2EC\uB9AC\n\uC774\uC81C\uB294
+    \uC218\uB9CE\uC740 \uC0AC\uB78C\uB4E4\uC744 \uC9C0\uD0A4\uAE30 \uC704\uD574 \uACE0\uB8E1\uACFC\uB3C4
+    \uC2F8\uC6B0\uB294 \n\uBCA0\uC774\uB3C4\uC2A4\uC758 \uAC80\uC774\uB418\uC5C8\uB2E4."
+  prefabObject: {fileID: 1866769916314368044, guid: 57910fd6fd4836947b77a1b223233d59, type: 3}

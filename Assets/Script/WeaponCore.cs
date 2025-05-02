@@ -8,6 +8,8 @@ public class WeaponCore : MonoBehaviour
     public GameObject player;
     public GameObject weaponObject;
     public GameObject weaponSlot;
+    public Vector2 mouseDir;
+    public float rotaion;
     private SpriteRenderer _weaponApearance;
     private WeaponBase _weapon;
 
@@ -18,6 +20,7 @@ public class WeaponCore : MonoBehaviour
 
     public void ChangeWeapon(GameObject weapon)
     {
+        PlayerCamera.Instance.SetZoom(4.5f, 8f);
         if (weaponSlot.transform.childCount != 0)
         {
             Destroy(weaponSlot.transform.GetChild(0).gameObject);
@@ -32,13 +35,13 @@ public class WeaponCore : MonoBehaviour
     void Update()
     {
         gameObject.transform.position = player.transform.position;
-        var dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        mouseDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;
+        rotaion = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
         if(weaponObject != null)
         {
             if (_weapon.isAttacking)
             {
-                if (dir.x > 0)
+                if (mouseDir.x > 0)
                 {
                     _weaponApearance.flipY = false;
                 }
@@ -49,7 +52,7 @@ public class WeaponCore : MonoBehaviour
             }
             else
             {
-                gameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, rotaion);
             }
         }
 

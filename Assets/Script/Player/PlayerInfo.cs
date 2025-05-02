@@ -1,4 +1,6 @@
+using UnityEditor.Localization.Plugins.Google.Columns;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -7,6 +9,39 @@ public class PlayerInfo : MonoBehaviour
     [Header("플레이어 정보")]
     public WeaponData playerWeaponData;
     public SpriteRenderer weaponCore;
+    private GameObject _currentOverridingObject;
+    public OverrideablesData currentCharacterData;
+    public CharacterSkillData currentSkillData;
+    [Header("플레이어 스테이터스")]
+    public readonly float playerHp;
+    public float playerCurHp;
+    public readonly float playerExp;
+    public float playerCurExp;
+    public readonly float playerStamina;
+    public float playerCurStamina;
+    public float playerSkillcooldown;
+    public float playerDeffence;
+
+    public GameObject CurrentOverridingObject
+    {
+        get => _currentOverridingObject;
+        set
+        {
+            if (_currentOverridingObject != null)
+            {
+                Instantiate(_currentOverridingObject,gameObject.transform.position,Quaternion.identity);
+            }
+            Debug.Log(_currentOverridingObject);
+            _currentOverridingObject = value;
+            var over = _currentOverridingObject.GetComponent<Overrideables>();
+            currentCharacterData = over.characterData;
+            currentSkillData = over.characterSkillData;
+            SkillManager.Instance.ChangeCharacterSkill();
+            SkillManager.Instance.BreakSkillCooldown(0);
+            SkillManager.Instance.BreakSkillCooldown(1);
+
+        }
+    }
     private WeaponCode _playerWeapon;
     public WeaponCode PlayerWeapon
     {

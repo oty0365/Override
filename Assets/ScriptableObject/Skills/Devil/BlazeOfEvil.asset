@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b652a02b32c374cb243d519af13d01, type: 3}
+  m_Name: BlazeOfEvil
+  m_EditorClassIdentifier: 
+  skillName: "\uB9C8\uC758 \uD0C4\uD658"
+  skillIcon: {fileID: 21300000, guid: 9ff238c6e3ecde142b6f58d8d9a0b420, type: 3}
+  basicCoolDown: 5
+  skillDesc: "\uC804\uBC29\uC5D0 \uB9C8\uC758 \uD0C4\uD658\uC744 \uBC1C\uC0AC\uD558\uC5EC
+    /b30b/\uC758 /b\uB9C8\uB825 \uD53C\uD574b/\uB97C \uC785\uD78C\uB2E4."

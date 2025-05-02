@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace9780e36fe78942a4840fb3908c788, type: 3}
+  m_Name: Slime
+  m_EditorClassIdentifier: 
+  overridealbeName: "\uC2AC\uB77C\uC784\uB9E8"
+  rarity: 2
+  animationClips:
+  - {fileID: 7400000, guid: e297c36902e78e5409ef21d30d4001e4, type: 2}
+  - {fileID: 7400000, guid: e53c148b5371cfa448fa567f7f5ca56a, type: 2}
+  desc: "\uC2E4\uD5D8\uC2E4\uC5D0 \uC218\uAC10\uB418\uC5C8\uB358 \uC2E4\uD5D8\uCCB4\uC911
+    \uD558\uB098\n\uD2B9\uC720\uC758 \uCD08\uC6D4\uC801\uC778 \uD68C\uBCF5\uB825\uC73C\uB85C
+    \uADF8 \uC5B4\uB5A4 \uC2E4\uD5D8\uB3C4 \uBC84\uD168\uB0C8\uB358 \uADF8\uB294\n\uADF8\uC800
+    \uC790\uC720\uB97C \uC6D0\uD588\uC744\uBFD0\uC774\uB2E4."
+  prefabObject: {fileID: 1476071057245314960, guid: 7e84138a81e2d614ca2a19659ad95f49, type: 3}

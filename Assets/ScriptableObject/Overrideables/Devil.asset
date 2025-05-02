@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace9780e36fe78942a4840fb3908c788, type: 3}
+  m_Name: Devil
+  m_EditorClassIdentifier: 
+  overridealbeName: "\uC545\uB9C8"
+  rarity: 3
+  animationClips:
+  - {fileID: 7400000, guid: fcdf019e5831b3146ba6ad13162d02df, type: 2}
+  - {fileID: 7400000, guid: 7b741a59470c9ca46ae1522188c587b1, type: 2}
+  desc: "\uC545\uB9C8\uC131\uC5D0 \uC0B4\uB358 \uC545\uB9C8\n\uC218\uB9CE\uC740 \uBBF8\uC9C0\uC758
+    \uC77C\uC5D0\uB300\uD55C \uC6D0\uD749\uC778 \uB4EF \uD558\uB2E4.\n"
+  prefabObject: {fileID: 2357447399000075700, guid: 3ae92b14c7239f44086d28a42295f4c7, type: 3}
