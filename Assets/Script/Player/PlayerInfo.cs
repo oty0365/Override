@@ -12,15 +12,80 @@ public class PlayerInfo : MonoBehaviour
     private GameObject _currentOverridingObject;
     public OverrideablesData currentCharacterData;
     public CharacterSkillData currentSkillData;
+
     [Header("플레이어 스테이터스")]
-    public readonly float playerHp;
-    public float playerCurHp;
-    public readonly float playerExp;
-    public float playerCurExp;
-    public readonly float playerStamina;
-    public float playerCurStamina;
-    public float playerSkillcooldown;
-    public float playerDeffence;
+    public Slider hpBar;
+    public Slider staminaBar;
+    public Image defenceBar;
+
+    [System.NonSerialized] public float playerMaxHp = 30f;
+    private float _playerCurHp;
+    public float PlayerCurHp
+    {
+        get => _playerCurHp;
+        set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+            _playerCurHp = value;
+            hpBar.value = _playerCurHp;
+            
+        }
+    }
+    [System.NonSerialized] public float playerMaxStamina = 30f;
+    private float _playerCurStamina;
+    public float PlayerCurStamina
+    {
+        get => _playerCurStamina;
+        set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+            _playerCurStamina = value;
+            staminaBar.value = _playerCurStamina;
+        }
+    }
+    [System.NonSerialized] public float playerBasicSkillCooldown = 1f;
+    private float _playerSkillCooldown;
+    public float PlayerSkillCooldown
+    {
+        get => _playerSkillCooldown;
+        set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+            _playerSkillCooldown = value;
+        }
+    }
+    private float _playerDefence;
+    public float PlayerDefence
+    {
+        get => _playerDefence;
+        set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+            _playerDefence = value;
+            defenceBar.fillAmount = _playerDefence / 100f;
+        }
+    }
+
+    public void InitializeStatus()
+    {
+        hpBar.maxValue = playerMaxHp;
+        staminaBar.maxValue = playerMaxStamina;
+        defenceBar.fillAmount = PlayerDefence / 100f;
+        PlayerCurHp = playerMaxHp;
+        PlayerCurStamina = playerMaxStamina;
+    }
 
     public GameObject CurrentOverridingObject
     {
@@ -61,7 +126,7 @@ public class PlayerInfo : MonoBehaviour
     }
     void Start()
     {
-        
+        InitializeStatus();
     }
     void Update()
     {
