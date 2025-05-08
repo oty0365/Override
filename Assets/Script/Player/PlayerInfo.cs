@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEditor.Localization.Plugins.Google.Columns;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class PlayerInfo : MonoBehaviour
     [Header("플레이어 스테이터스")]
     public Slider hpBar;
     public Slider staminaBar;
+    public TextMeshProUGUI hpRange;
+    public TextMeshProUGUI staminaRange;
     public Image defenceBar;
 
     [System.NonSerialized] public float playerMaxHp = 30f;
@@ -30,6 +33,7 @@ public class PlayerInfo : MonoBehaviour
                 value = 0;
             }
             _playerCurHp = value;
+            hpRange.text = value.ToString() + "/" + playerMaxHp.ToString();
             hpBar.value = _playerCurHp;
             
         }
@@ -46,6 +50,7 @@ public class PlayerInfo : MonoBehaviour
                 value = 0;
             }
             _playerCurStamina = value;
+            staminaRange.text = value.ToString() + "/" + playerMaxStamina.ToString();
             staminaBar.value = _playerCurStamina;
         }
     }
@@ -61,6 +66,20 @@ public class PlayerInfo : MonoBehaviour
                 value = 0;
             }
             _playerSkillCooldown = value;
+        }
+    }
+    [System.NonSerialized] public float playerBasicAttackDamage = 0f;
+    private float _playerAttackDamage;
+    public float PlayerAttackDamage
+    {
+        get => _playerAttackDamage;
+        set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+            _playerAttackDamage= value;
         }
     }
     private float _playerDefence;

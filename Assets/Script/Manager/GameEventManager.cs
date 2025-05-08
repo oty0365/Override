@@ -7,7 +7,11 @@ public enum InGameEvent
 {
     None,
     WeaponSelection,
-    FullHp
+    AugmentOrItemSelection,
+    FullHp,
+    HpUp,
+    CoolTimeUp,
+    AttackUp
 }
 
 public class GameEventManager : MonoBehaviour
