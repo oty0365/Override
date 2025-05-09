@@ -7,7 +7,6 @@ public class AugmentDataEditor : Editor
 {
     SerializedProperty augmentSprite;
     SerializedProperty augmentName;
-    SerializedProperty augmentType;
     SerializedProperty augmentDesc;
     SerializedProperty effect;
 
@@ -15,7 +14,6 @@ public class AugmentDataEditor : Editor
     {
         augmentSprite = serializedObject.FindProperty("augmentSprite");
         augmentName = serializedObject.FindProperty("augmentName");
-        augmentType = serializedObject.FindProperty("augmentType");
         augmentDesc = serializedObject.FindProperty("augmentDesc");
         effect = serializedObject.FindProperty("effect");
     }
@@ -32,7 +30,6 @@ public class AugmentDataEditor : Editor
         EditorGUILayout.LabelField("증강설정", headerStyle);
         EditorGUILayout.Space(10);
 
-        EditorGUILayout.PropertyField(augmentType, new GUIContent("증강 타입"));
         EditorGUILayout.PropertyField(augmentName, new GUIContent("증강이름"));
         EditorGUILayout.Space(5);
         EditorGUILayout.PropertyField(augmentSprite, new GUIContent("증강이미지"));

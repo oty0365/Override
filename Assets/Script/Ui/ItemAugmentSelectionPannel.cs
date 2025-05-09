@@ -28,7 +28,7 @@ public class ItemAugmentSelectionPannel : MonoBehaviour
     }
     public void OnSelection(int code)
     {
-        //PlayerInfo.Instance.PlayerWeapon = (WeaponCode)code;
+        AugmentManager.Instance.ActiveAugment(code);
         OnConfirm();
     }
 

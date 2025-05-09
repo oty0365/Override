@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   augmentSprite: {fileID: 21300000, guid: ade5d7002440e284c9087f5f55bb3995, type: 3}
   augmentName: "\uAD11\uD3ED\uC758 \uB8EC"
-  augmentType: 0
   augmentDesc: "\uAD11\uB8E1\uC758 \uD798\uC774 \uB2F4\uAE34 \uAD11\uD3ED\uC758 \uB8EC\uC744
-    \uD761\uC218\uD558\uC5EC /r\uAE30\uBCF8 \uACF5\uB825\uB825/\uC744 /r15/\uB9CC\uD07C
-    \uB298\uB9B0\uB2E4."
-  effect: 
+    \uD761\uC218\uD558\uC5EC <color=red>\uAE30\uBCF8 \uACF5\uB825\uB825</color>\uC744
+    <color=red>15</color>\uB9CC\uD07C \uB298\uB9B0\uB2E4."
+  effect: 06000000

@@ -32,6 +32,10 @@ public class PlayerInfo : MonoBehaviour
             {
                 value = 0;
             }
+            if (value > playerMaxHp)
+            {
+                playerMaxHp = value;
+            }
             _playerCurHp = value;
             hpRange.text = value.ToString() + "/" + playerMaxHp.ToString();
             hpBar.value = _playerCurHp;
@@ -48,6 +52,10 @@ public class PlayerInfo : MonoBehaviour
             if (value < 0)
             {
                 value = 0;
+            }
+            if (value > playerMaxStamina)
+            {
+                playerMaxStamina = value;
             }
             _playerCurStamina = value;
             staminaRange.text = value.ToString() + "/" + playerMaxStamina.ToString();

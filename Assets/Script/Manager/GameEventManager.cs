@@ -54,5 +54,12 @@ public class GameEventManager : MonoBehaviour
     {
         eventsDict.Add(inGameEvent, action);
     }
+    public void PrintEvnets()
+    {
+        foreach(var i in eventsDict)
+        {
+            Debug.Log(i);
+        }
+    }
   
 }
