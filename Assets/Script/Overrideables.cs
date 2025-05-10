@@ -40,4 +40,8 @@ public class Overrideables : AInteractable
         PlayerAnimator.Instance.Override(characterData.animationClips,gameObject.transform,characterData.prefabObject);
         Destroy(gameObject);
     }
+    public override void ExitInteract()
+    {
+        
+    }
 }

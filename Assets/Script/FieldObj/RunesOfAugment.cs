@@ -15,4 +15,8 @@ public class RunesOfAugment : AInteractable
         yield return new WaitForSecondsRealtime(0.4f);
         Destroy(gameObject);
     }
+    public override void ExitInteract()
+    {
+        
+    }
 }

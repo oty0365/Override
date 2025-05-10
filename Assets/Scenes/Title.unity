@@ -3896,7 +3896,7 @@ GameObject:
   - component: {fileID: 874078898}
   - component: {fileID: 874078897}
   m_Layer: 5
-  m_Name: LeftMove
+  m_Name: RightMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3943,7 +3943,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC67C\uCABD \uC774\uB3D9"
+  m_text: "\uC624\uB978\uCABD \uC774\uB3D9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41f614114137b3445ab41a61f368de52, type: 2}
   m_sharedMaterial: {fileID: -928370831345085790, guid: 41f614114137b3445ab41a61f368de52, type: 2}
@@ -5693,7 +5693,7 @@ GameObject:
   - component: {fileID: 1408399155}
   - component: {fileID: 1408399154}
   m_Layer: 5
-  m_Name: RightMove
+  m_Name: LeftMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5740,7 +5740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC624\uB978\uCABD \uC774\uB3D9"
+  m_text: "\uC67C\uCABD \uC774\uB3D9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41f614114137b3445ab41a61f368de52, type: 2}
   m_sharedMaterial: {fileID: -928370831345085790, guid: 41f614114137b3445ab41a61f368de52, type: 2}

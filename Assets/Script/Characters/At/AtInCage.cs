@@ -24,4 +24,8 @@ public class AtInCage : AInteractable,IHitable
         PlayerInteraction.Instance.OnInteractMode(0);
         DialogManager.Instance.StartConversation(dialogs);
     }
+    public override void ExitInteract()
+    {
+       
+    }
 }

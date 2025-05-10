@@ -247,14 +247,14 @@ public class PlayerMove : MonoBehaviour
             }
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Right"]))
             {
-                _horizontal = -1;
+                _horizontal = 1;
                 AddCommand(PlayerCommands.Right);
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
             }
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Left"]))
             {
-                _horizontal = 1;
+                _horizontal = -1;
                 AddCommand(PlayerCommands.Left);
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
