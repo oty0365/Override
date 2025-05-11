@@ -143,6 +143,7 @@ public class PlayerMove : MonoBehaviour
 
     private IEnumerator DashFlow()
     {
+        PlayerInfo.Instance.PlayerCurStamina -= 10f;
         canInput = false;
         float step = dashTime / 8f;
         float nextStep = step;
@@ -262,7 +263,7 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]))
             {
-                if(PlayerCommands != PlayerCommands.None)
+                if(PlayerCommands != PlayerCommands.None && PlayerInfo.Instance.PlayerCurStamina >= 10f)
                 {
                     Dash();
                 }

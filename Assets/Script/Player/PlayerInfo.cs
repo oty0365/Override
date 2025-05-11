@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEditor.Localization.Plugins.Google.Columns;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +25,7 @@ public class PlayerInfo : MonoBehaviour
 
     [System.NonSerialized] public float playerMaxHp = 30f;
     private float _playerCurHp;
+    private Coroutine _playerHpCoroutine;
     public float PlayerCurHp
     {
         get => _playerCurHp;
@@ -44,22 +47,45 @@ public class PlayerInfo : MonoBehaviour
     }
     [System.NonSerialized] public float playerMaxStamina = 30f;
     private float _playerCurStamina;
+    private Coroutine _playerStaminaCoroutine;
+    private Coroutine _playerWaitStaminaCoroutine;
     public float PlayerCurStamina
     {
         get => _playerCurStamina;
         set
         {
-            if (value < 0)
+            float prev = _playerCurStamina;
+
+            if (value < 0) 
             {
                 value = 0;
             }
+
             if (value > playerMaxStamina)
             {
-                playerMaxStamina = value;
+                value = playerMaxStamina;
             }
+
+
             _playerCurStamina = value;
-            staminaRange.text = value.ToString() + "/" + playerMaxStamina.ToString();
+
+            staminaRange.text = $"{(int)_playerCurStamina}/{playerMaxStamina}";
             staminaBar.value = _playerCurStamina;
+
+            if (_playerCurStamina < playerMaxStamina && value < prev)
+            {
+                if (_playerStaminaCoroutine != null)
+                {
+                    StopCoroutine(_playerStaminaCoroutine);
+                    _playerStaminaCoroutine = null;
+                }
+                if (_playerWaitStaminaCoroutine != null)
+                {
+                    StopCoroutine(_playerWaitStaminaCoroutine);
+                    _playerWaitStaminaCoroutine = null;
+                }
+                _playerWaitStaminaCoroutine = StartCoroutine(StaminaWaitFlow());
+            }
         }
     }
     [System.NonSerialized] public float playerBasicSkillCooldown = 1f;
@@ -158,5 +184,18 @@ public class PlayerInfo : MonoBehaviour
     void Update()
     {
         
+    }
+    private IEnumerator StaminaChargeFlow()
+    {
+        while (playerMaxStamina>PlayerCurStamina)
+        {
+            PlayerCurStamina += Time.deltaTime * 10f;
+            yield return null;
+        }
+    }
+    private IEnumerator StaminaWaitFlow()
+    {
+        yield return new WaitForSeconds(1f);
+        _playerStaminaCoroutine = StartCoroutine(StaminaChargeFlow());
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 public class TutorialBot : AInteractable
@@ -10,6 +11,8 @@ public class TutorialBot : AInteractable
     [TextArea]public string text;
     public TextMeshPro description;
     public float inputDuration;
+    public float desolveDuration;
+    public float exitTime;
     private Coroutine _currentCoroutine;
 
     private void Start()
@@ -35,8 +38,15 @@ public class TutorialBot : AInteractable
         }
         description.text = "";
         description.gameObject.SetActive(true);
-        _currentCoroutine = StartCoroutine(SetTextFlow());
-
+        if (!autoInteraction)
+        {
+            PlayerInteraction.Instance.OnInteractMode(0);
+            _currentCoroutine = StartCoroutine(SetTextFlow());
+        }
+        else
+        {
+            _currentCoroutine = StartCoroutine(SetTextFlow());
+        }
     }
     private IEnumerator SetTextFlow()
     {
@@ -47,6 +57,12 @@ public class TutorialBot : AInteractable
             description.text = newText;
             yield return new WaitForSeconds(inputDuration);
         }
+        if (!autoInteraction)
+        {
+            yield return new WaitForSeconds(exitTime);
+            description.gameObject.SetActive(false);
+            PlayerInteraction.Instance.OnInteractMode(1);
+        }
     }
     private IEnumerator RemoveTextFlow()
     {
@@ -55,12 +71,15 @@ public class TutorialBot : AInteractable
         {
             newText.Pop();
             description.text = new string(string.Join("", newText).Reverse().ToArray());
-            yield return new WaitForSeconds(inputDuration);
+            yield return new WaitForSeconds(desolveDuration);
         }
     }
     public override void ExitInteract()
     {
-        StopCoroutine(_currentCoroutine);
+        if (_currentCoroutine != null)
+        {
+            StopCoroutine(_currentCoroutine);
+        }
         _currentCoroutine = StartCoroutine(RemoveTextFlow());
     }
 }

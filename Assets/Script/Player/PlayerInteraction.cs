@@ -56,30 +56,49 @@ public class PlayerInteraction : MonoBehaviour
                 _currentObject = hit.gameObject;
             }
         }
-        if(_currentObject != null)
+        if (_currentObject != null)
         {
+            _currentObejctInteractable = _currentObject.GetComponent<AInteractable>();
+
             if (_currentObject == _prevObject)
             {
-                if (!_currentObejctInteractable.autoInteraction)
+                if (_currentObejctInteractable.autoInteraction)
                 {
-                    interactionKey.SetActive(true);
-                    interactionKey.transform.position = _currentObject.GetComponent<AInteractable>().interactionKeyPos.transform.position;
+                    interactionKey.SetActive(false);
+                }
+                else
+                {
+                    if (!isInteracting)
+                    {
+                        interactionKey.SetActive(true);
+                        interactionKey.transform.position = _currentObejctInteractable.interactionKeyPos.transform.position;
+                    }
+                    else
+                    {
+                        interactionKey.SetActive(false);
+                    }
                 }
             }
             else
             {
-                _currentObejctInteractable = _currentObject.GetComponent<AInteractable>();
+                if (_prevObject != null)
+                {
+                    _prevObject.GetComponent<AInteractable>().ExitInteract();
+                }
+
                 if (_currentObejctInteractable.autoInteraction)
                 {
                     interactionKey.SetActive(false);
                     _currentObejctInteractable.OnInteract();
                 }
-                if (_prevObject != null)
+                else if (!isInteracting)
                 {
-                    _prevObject.GetComponent<AInteractable>().ExitInteract();
+                    interactionKey.SetActive(true);
+                    interactionKey.transform.position = _currentObejctInteractable.interactionKeyPos.transform.position;
                 }
             }
         }
+
         else
         {
             interactionKey.SetActive(false);
