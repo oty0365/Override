@@ -143,7 +143,7 @@ public class PlayerMove : MonoBehaviour
 
     private IEnumerator DashFlow()
     {
-        PlayerInfo.Instance.PlayerCurStamina -= 10f;
+        PlayerInfo.Instance.PlayerCurStamina -= 6f;
         canInput = false;
         float step = dashTime / 8f;
         float nextStep = step;
@@ -153,6 +153,13 @@ public class PlayerMove : MonoBehaviour
 
         for (float t = 0f; t <= dashTime; t += Time.deltaTime)
         {
+            if (PlayerInteraction.Instance.isInteracting)
+            {
+                PlayerBehave = PlayerBehave.Idel;
+                rb2D.linearVelocity = Vector2.zero;
+                _isDashing = false;
+                yield break;
+            }
             if (t >= nextStep)
             {
                 var o = ObjectPooler.Instance.Get(afterImage, transform.position, transform.rotation.eulerAngles);
@@ -263,7 +270,7 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]))
             {
-                if(PlayerCommands != PlayerCommands.None && PlayerInfo.Instance.PlayerCurStamina >= 10f)
+                if(PlayerCommands != PlayerCommands.None && PlayerInfo.Instance.PlayerCurStamina >= 6f)
                 {
                     Dash();
                 }

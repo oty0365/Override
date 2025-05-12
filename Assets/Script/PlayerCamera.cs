@@ -215,11 +215,7 @@ public class PlayerCamera : MonoBehaviour
     {
         while (Mathf.Abs(playerCam.orthographicSize - cameraSize) > 0.02f)
         {
-            playerCam.orthographicSize = Mathf.Lerp(
-                playerCam.orthographicSize,
-                cameraSize,
-                Time.deltaTime * cameraZoomSpeed
-            );
+            playerCam.orthographicSize = Mathf.Lerp(playerCam.orthographicSize,cameraSize,Time.deltaTime * cameraZoomSpeed);
             yield return null;
         }
 
