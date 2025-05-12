@@ -145,6 +145,7 @@ public class PlayerMove : MonoBehaviour
     {
         PlayerInfo.Instance.PlayerCurStamina -= 6f;
         canInput = false;
+        PlayerInfo.Instance.SetInfinateTime(dashTime);
         float step = dashTime / 8f;
         float nextStep = step;
 

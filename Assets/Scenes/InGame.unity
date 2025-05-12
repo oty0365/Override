@@ -1191,7 +1191,7 @@ RectTransform:
   m_Father: {fileID: 171184359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1362,7 +1362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &227308765
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2719,7 +2719,8 @@ GameObject:
   - component: {fileID: 393772212}
   - component: {fileID: 393772213}
   - component: {fileID: 393772214}
-  m_Layer: 0
+  - component: {fileID: 393772215}
+  m_Layer: 12
   m_Name: RedLayzer
   m_TagString: hitable
   m_Icon: {fileID: 0}
@@ -2870,6 +2871,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &393772215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393772210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28dcd74d9c8c6f4c9a02cf07cd3e6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  infinateTime: 2
+  contactPoint: {x: 0, y: 0}
 --- !u!1 &403467406
 GameObject:
   m_ObjectHideFlags: 0
@@ -5203,7 +5219,7 @@ GameObject:
   - component: {fileID: 691240178}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5441,6 +5457,11 @@ MonoBehaviour:
   weaponCore: {fileID: 1123678389}
   currentCharacterData: {fileID: 0}
   currentSkillData: {fileID: 0}
+  playerCollider: {fileID: 691240174}
+  damageAbles:
+    serializedVersion: 2
+    m_Bits: 4096
+  isInfinate: 0
   hpBar: {fileID: 1830652231}
   staminaBar: {fileID: 1493417989}
   hpRange: {fileID: 1899141064}
@@ -6597,7 +6618,8 @@ GameObject:
   - component: {fileID: 907145423}
   - component: {fileID: 907145422}
   - component: {fileID: 907145421}
-  m_Layer: 0
+  - component: {fileID: 907145424}
+  m_Layer: 12
   m_Name: RedLayzer (1)
   m_TagString: hitable
   m_Icon: {fileID: 0}
@@ -6748,6 +6770,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &907145424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907145419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28dcd74d9c8c6f4c9a02cf07cd3e6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  infinateTime: 2
+  contactPoint: {x: 0, y: 0}
 --- !u!1 &919643362
 GameObject:
   m_ObjectHideFlags: 0
@@ -7061,7 +7098,7 @@ RectTransform:
   m_Father: {fileID: 1212755413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7832,6 +7869,7 @@ GameObject:
   - component: {fileID: 1052180663}
   - component: {fileID: 1052180662}
   - component: {fileID: 1052180661}
+  - component: {fileID: 1052180664}
   m_Layer: 0
   m_Name: Ground
   m_TagString: ground
@@ -22096,6 +22134,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1052180664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052180657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28dcd74d9c8c6f4c9a02cf07cd3e6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  infinateTime: 0.3
+  contactPoint: {x: 0, y: 0}
 --- !u!1 &1068049087
 GameObject:
   m_ObjectHideFlags: 0
@@ -22153,7 +22206,8 @@ GameObject:
   - component: {fileID: 1087535284}
   - component: {fileID: 1087535283}
   - component: {fileID: 1087535282}
-  m_Layer: 0
+  - component: {fileID: 1087535285}
+  m_Layer: 12
   m_Name: RedLayzer (2)
   m_TagString: hitable
   m_Icon: {fileID: 0}
@@ -22304,6 +22358,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1087535285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087535280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28dcd74d9c8c6f4c9a02cf07cd3e6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  infinateTime: 2
+  contactPoint: {x: 0, y: 0}
 --- !u!1 &1092496124
 GameObject:
   m_ObjectHideFlags: 0
@@ -23195,7 +23264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.010000001, y: 0.023295559}
   m_AnchorMax: {x: 0.09783417, y: 0.17836948}
-  m_AnchoredPosition: {x: 97.986145, y: 111.82754}
+  m_AnchoredPosition: {x: 97.98634, y: 111.82754}
   m_SizeDelta: {x: 138.03711, y: 157.18398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1166585546
@@ -24088,7 +24157,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4055
+    m_Bits: 8151
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

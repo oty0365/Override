@@ -15,6 +15,10 @@ public class PlayerInfo : MonoBehaviour
     private GameObject _currentOverridingObject;
     public OverrideablesData currentCharacterData;
     public CharacterSkillData currentSkillData;
+    public Collider2D playerCollider;
+    public LayerMask damageAbles;
+    public bool isInfinate;
+    private Coroutine _infinityCoroutine;
 
     [Header("플레이어 스테이터스")]
     public Slider hpBar;
@@ -181,10 +185,16 @@ public class PlayerInfo : MonoBehaviour
     {
         InitializeStatus();
     }
-    void Update()
+
+    public void SetInfinateTime(float time)
     {
-        
+        if (_infinityCoroutine != null)
+        {
+            StopCoroutine(_infinityCoroutine);
+        }
+        _infinityCoroutine = StartCoroutine(InfinityTimeFlow(time));
     }
+
     private IEnumerator StaminaChargeFlow()
     {
         while (playerMaxStamina>PlayerCurStamina)
@@ -197,5 +207,13 @@ public class PlayerInfo : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _playerStaminaCoroutine = StartCoroutine(StaminaChargeFlow());
+    }
+    private IEnumerator InfinityTimeFlow(float time)
+    {
+        playerCollider.excludeLayers += damageAbles;
+        isInfinate = true;
+        yield return new WaitForSeconds(time);
+        isInfinate = false;
+        playerCollider.excludeLayers -= damageAbles;
     }
 }
