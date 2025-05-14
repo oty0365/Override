@@ -1,5 +1,9 @@
 using System.Collections;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.Universal;
 
 public enum CameraState
 {
@@ -7,6 +11,8 @@ public enum CameraState
     CinematicFallow,
     Shake,
     Zoom,
+    GetDamage,
+
 }
 
 public class PlayerCamera : MonoBehaviour
@@ -40,9 +46,17 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float originShakingPower = 12f;
     [SerializeField] private float originCameraSize = 4.5f;
 
+    [Header("È­¸é")]
+    [SerializeField] private Volume volume;
+    private UnityEngine.Rendering.Universal.Vignette _vignette;
+    private float _fadeSpeed;
+    private float _fadeAmount;
+
+
     private Coroutine _previousFallowCoroutine;
     private Coroutine _previousZoomCoroutine;
     private Coroutine _previousShakeCoroutine;
+    private Coroutine _previousGetDamageCoroutine;
 
     private void Awake()
     {
@@ -51,6 +65,10 @@ public class PlayerCamera : MonoBehaviour
 
     private void Start()
     {
+        if (volume.profile.TryGet(out UnityEngine.Rendering.Universal.Vignette vignette))
+        {
+            _vignette = vignette;
+        }
         cameraSize = originCameraSize;
         fallowSpeed = originFallowSpeed;
         cameraZoomSpeed = originZoomSpeed;
@@ -86,6 +104,13 @@ public class PlayerCamera : MonoBehaviour
         shakingPower = amount;
         shakeDamping = damping;
         StartState(CameraState.Shake);
+    }
+
+    public void SetDamge(float speed, float amount)
+    {
+        _fadeSpeed = speed;
+        _fadeAmount = amount;
+        StartState(CameraState.GetDamage);
     }
 
     public void StartState(CameraState cmState)
@@ -124,6 +149,16 @@ public class PlayerCamera : MonoBehaviour
                     }
 
                     _previousShakeCoroutine = StartCoroutine(ShakeFlow());
+                    break;
+                }
+            case CameraState.GetDamage:
+                {
+                    if (_previousGetDamageCoroutine != null)
+                    {
+                        StopCoroutine(_previousGetDamageCoroutine);
+                    }
+
+                    _previousGetDamageCoroutine = StartCoroutine(RedBlinkFlow(_fadeSpeed,_fadeAmount));
                     break;
                 }
         }
@@ -167,6 +202,14 @@ public class PlayerCamera : MonoBehaviour
                     shakingPower = originShakingPower;
                     shakeDamping = originDamping;
                     shakeTime = originShakeTime;
+                    break;
+                }
+            case CameraState.GetDamage:
+                {
+                    if (_previousGetDamageCoroutine != null)
+                    {
+                        StopCoroutine(_previousGetDamageCoroutine);
+                    }
                     break;
                 }
         }
@@ -220,6 +263,21 @@ public class PlayerCamera : MonoBehaviour
         }
 
         playerCam.orthographicSize = cameraSize;
+    }
+
+    private IEnumerator RedBlinkFlow(float fadeSpeed,float redBlinkRange)
+    {
+        for(var i = 0f; i <= redBlinkRange; i += Time.deltaTime * fadeSpeed)
+        {
+            _vignette.intensity.value = i;
+            yield return null;
+        }
+        for (var i = redBlinkRange; i >= 0; i -= Time.deltaTime * fadeSpeed)
+        {
+            _vignette.intensity.value = i;
+            yield return null;
+        }
+
     }
 
     private IEnumerator ShakeFlow()

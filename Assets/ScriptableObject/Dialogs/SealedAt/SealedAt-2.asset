@@ -15,5 +15,6 @@ MonoBehaviour:
   talker: "\uC573"
   hasSelection: 0
   talkersFace: {fileID: 21300000, guid: a1581d0931fd8664fb18a78ea08f9ce1, type: 3}
-  dialogue: "\uBD80\uC11C\uC9C0\uC9C0 \uC54A\uB294 \uBB34\uAE30\uC640 \uC804\uC9C0\uC804\uB2A5\uD55C
-    \uB2A5\uB825\uC744 \uC8FC\uACA0\uB2E4.."
+  dialogue: "\uB108 \uB610\uD55C \uC774 \uBAA8\uC21C\uB9CE\uC740 \uAC10\uC625\uC5D0
+    \uAC07\uD600\uC788\uAD70.."
+  eventsWhileTalk: 

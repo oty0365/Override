@@ -44,7 +44,6 @@ public class PlayerAfterImage : APoolingObject
     {
         if (other.CompareTag("hitable"))
         {
-            Debug.Log("!");
             _currentColor = 1;
         }
     }

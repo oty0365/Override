@@ -4,7 +4,7 @@ using UnityEngine;
 public class ParticleObject : APoolingObject
 {
     public ParticleSystem prt;
-    public float waitTime;
+    private float waitTime;
 
 
     public override void OnDeathInit()
@@ -13,6 +13,7 @@ public class ParticleObject : APoolingObject
     }
     public override void OnBirth()
     {
+        waitTime = prt.main.duration;
         StartCoroutine(ParticleFlow());
     }
     private IEnumerator ParticleFlow()

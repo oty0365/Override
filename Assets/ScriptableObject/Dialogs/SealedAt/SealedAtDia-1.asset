@@ -15,4 +15,11 @@ MonoBehaviour:
   dialogScripts:
   - {fileID: 11400000, guid: 69369c08200944241b51d5ab79b3249e, type: 2}
   - {fileID: 11400000, guid: b510656c681dd7841b824ddb2ddb23ff, type: 2}
+  - {fileID: 11400000, guid: 7e54655ef4f419b44b1d846a24210280, type: 2}
   - {fileID: 11400000, guid: 0448fd62f2959f743b657de91e328ca4, type: 2}
+  - {fileID: 11400000, guid: b633bea2f9513bc45b13704eb047b295, type: 2}
+  - {fileID: 11400000, guid: 8e938de937f961c46a494744543a474e, type: 2}
+  - {fileID: 11400000, guid: f745d08e471dde349acb6dd44ef3927e, type: 2}
+  - {fileID: 11400000, guid: f295a9bc6cd25e741a2ce7113a294a15, type: 2}
+  - {fileID: 11400000, guid: 82e58eada08e76a4a9e743d5280b6aa7, type: 2}
+  - {fileID: 11400000, guid: fc0c627c5733bd44fa307db854931f1d, type: 2}

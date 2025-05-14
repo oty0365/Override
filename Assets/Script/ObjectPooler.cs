@@ -10,6 +10,8 @@ public enum PoolObjectType
     ThrownDagger,
     CrunchBite,
     BlazeOfEvil,
+    HitByLayzer,
+
 
 }
 

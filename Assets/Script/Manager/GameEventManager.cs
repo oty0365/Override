@@ -11,7 +11,8 @@ public enum InGameEvent
     FullHp,
     HpUp,
     CoolTimeUp,
-    AttackUp
+    AttackUp,
+    AtDown,
 }
 
 public class GameEventManager : MonoBehaviour

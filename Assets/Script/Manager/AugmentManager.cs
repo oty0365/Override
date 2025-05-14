@@ -91,7 +91,7 @@ public class AugmentManager : MonoBehaviour
     }
 
 
-    [EventUpload()]
+    [EventUpload]
     public void HpUp()
     {
         PlayerInfo.Instance.playerMaxHp += 15;

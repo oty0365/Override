@@ -17,7 +17,7 @@ public class PlayerInfo : MonoBehaviour
     public CharacterSkillData currentSkillData;
     public Collider2D playerCollider;
     public LayerMask damageAbles;
-    public bool isInfinate;
+    public bool isInfinite;
     private Coroutine _infinityCoroutine;
 
     [Header("플레이어 스테이터스")]
@@ -186,13 +186,33 @@ public class PlayerInfo : MonoBehaviour
         InitializeStatus();
     }
 
-    public void SetInfinateTime(float time)
+    public void SetInfiniteTime(float time)
     {
         if (_infinityCoroutine != null)
         {
             StopCoroutine(_infinityCoroutine);
+            RemoveDamageAbleLayers();
         }
-        _infinityCoroutine = StartCoroutine(InfinityTimeFlow(time));
+        _infinityCoroutine = StartCoroutine(InfiniteTimeFlow(time));
+    }
+
+    private IEnumerator InfiniteTimeFlow(float time)
+    {
+        ApplyDamageAbleLayers();
+        isInfinite = true;
+        yield return new WaitForSeconds(time);
+        isInfinite = false;
+        RemoveDamageAbleLayers();
+    }
+
+    private void ApplyDamageAbleLayers()
+    {
+        playerCollider.excludeLayers |= damageAbles;
+    }
+
+    private void RemoveDamageAbleLayers()
+    {
+        playerCollider.excludeLayers &= ~damageAbles;
     }
 
     private IEnumerator StaminaChargeFlow()
@@ -208,12 +228,5 @@ public class PlayerInfo : MonoBehaviour
         yield return new WaitForSeconds(1f);
         _playerStaminaCoroutine = StartCoroutine(StaminaChargeFlow());
     }
-    private IEnumerator InfinityTimeFlow(float time)
-    {
-        playerCollider.excludeLayers += damageAbles;
-        isInfinate = true;
-        yield return new WaitForSeconds(time);
-        isInfinate = false;
-        playerCollider.excludeLayers -= damageAbles;
-    }
+
 }

@@ -111,6 +111,7 @@ public class PlayerMove : MonoBehaviour
                 {
                     rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * 20f;
                     _isDashing = true;
+                    PlayerInfo.Instance.SetInfiniteTime(dashTime);
                     StartCoroutine(DashFlow());
                 }
                 break;
@@ -145,14 +146,19 @@ public class PlayerMove : MonoBehaviour
     {
         PlayerInfo.Instance.PlayerCurStamina -= 6f;
         canInput = false;
-        PlayerInfo.Instance.SetInfinateTime(dashTime);
-        float step = dashTime / 8f;
-        float nextStep = step;
+
+        float startTime = Time.time;
+        float endTime = startTime + dashTime;
+
+        int totalAfterImages = 8;
+        float afterImageInterval = dashTime / totalAfterImages;
+        float nextAfterImageTime = startTime + afterImageInterval;
 
         float alpha = 1;
         float size = 1;
+        Vector2 dashDirection = new Vector2(_horizontal, _vertical).normalized;
 
-        for (float t = 0f; t <= dashTime; t += Time.deltaTime)
+        while (Time.time < endTime)
         {
             if (PlayerInteraction.Instance.isInteracting)
             {
@@ -161,13 +167,15 @@ public class PlayerMove : MonoBehaviour
                 _isDashing = false;
                 yield break;
             }
-            if (t >= nextStep)
+
+            if (Time.time >= nextAfterImageTime)
             {
                 var o = ObjectPooler.Instance.Get(afterImage, transform.position, transform.rotation.eulerAngles);
-                o.GetComponent<PlayerAfterImage>().SetIamge(_sr.sprite, alpha, size,gameObject.transform.localScale.x);
+                o.GetComponent<PlayerAfterImage>().SetIamge(_sr.sprite, alpha, size, gameObject.transform.localScale.x);
 
-                nextStep += step;
+                nextAfterImageTime += afterImageInterval;
             }
+
             yield return null;
         }
 

@@ -32,6 +32,8 @@ public class PlayerAnimator : MonoBehaviour
     public Animator ani;
     public AnimatorOverrideController overrideController;
 
+
+
     [Header("플레이어 설정")]
     public PlayerCommands playerCommands;
     public PlayerBehave playerBehave;
