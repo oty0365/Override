@@ -121,12 +121,27 @@ public class DialogManager : MonoBehaviour
     {
         talkerDialogTmp.text = "";
 
-        foreach (var c in dialog)
+        int i = 0;
+        while (i < dialog.Length)
         {
-            talkerDialogTmp.text += c;
+            if (dialog[i] == '<')
+            {
+                int tagEnd = dialog.IndexOf('>', i);
+                if (tagEnd != -1)
+                {
+                    string tag = dialog.Substring(i, tagEnd - i + 1);
+                    talkerDialogTmp.text += tag;
+                    i = tagEnd + 1;
+                    continue;
+                }
+            }
+            talkerDialogTmp.text += dialog[i];
+            i++;
+
             yield return new WaitForSeconds(textSpeed);
         }
 
         _isPuttingText = false;
     }
+
 }

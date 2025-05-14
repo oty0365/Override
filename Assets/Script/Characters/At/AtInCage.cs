@@ -5,10 +5,15 @@ public class AtInCage : AInteractable,IHitable
     [Header("ด๋ป็")]
     public Dialogs dialogs;
     public Animator ani;
+
+    public GameObject[] sealedObjects;
     void Start()
     {
         GameEventManager.Instance.UploadEvent(InGameEvent.AtDown, AtDown);
-
+        foreach( var i in sealedObjects)
+        {
+            i.SetActive(false);
+        }
     }
 
     void Update()
@@ -32,6 +37,10 @@ public class AtInCage : AInteractable,IHitable
     public override void OnInteract()
     {
         PlayerInteraction.Instance.OnInteractMode(0);
+        foreach (var i in sealedObjects)
+        {
+            i.SetActive(true);
+        }
         DialogManager.Instance.StartConversation(dialogs);
     }
     public override void ExitInteract()
