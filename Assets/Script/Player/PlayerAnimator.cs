@@ -48,14 +48,8 @@ public class PlayerAnimator : MonoBehaviour
         
     }
 
-
-    public void Override(AnimationClip[] newClips,Transform pos,GameObject overrideable)
+    public void OverrideAnimation(AnimationClip[] newClips)
     {
-        WeaponBase.canInput = false;
-        PlayerMove.Instance.canInput = false;
-        PlayerInfo.Instance.CurrentOverridingObject = overrideable;
-        gameObject.transform.position = pos.position;
-        PlayerCamera.Instance.SetZoom(2f, 7.8f);
         var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
         overrideController.GetOverrides(overrides);
 
@@ -65,6 +59,15 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         overrideController.ApplyOverrides(overrides);
+    }
+    public void Override(AnimationClip[] newClips,Transform pos,GameObject overrideable)
+    {
+        WeaponBase.canInput = false;
+        PlayerMove.Instance.canInput = false;
+        PlayerInfo.Instance.CurrentOverridingObject = overrideable;
+        gameObject.transform.position = pos.position;
+        PlayerCamera.Instance.SetZoom(2f, 7.8f);
+        OverrideAnimation(newClips);
         ani.runtimeAnimatorController = overrideController;
         StartCoroutine(OverrideFlow());
     }

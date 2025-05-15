@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5afc3180f14d4e41ae8d2a45ef9eaed, type: 3}
-  m_Name: SealedAt-1
+  m_Script: {fileID: 11500000, guid: 0b77675c898816a4f9c54ef13e785dff, type: 3}
+  m_Name: AtAnvil
   m_EditorClassIdentifier: 
-  talker: "\uC573"
-  hasSelection: 0
-  talkersFace: {fileID: 21300000, guid: a1581d0931fd8664fb18a78ea08f9ce1, type: 3}
-  dialogue: ???
-  eventsWhileTalk: 
+  dialogScripts: []

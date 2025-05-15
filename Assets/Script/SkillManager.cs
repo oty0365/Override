@@ -173,21 +173,21 @@ public class SkillManager : MonoBehaviour
         {
             case SkillForm.PassiveIdentity:
             case SkillForm.ActiveIdentity:
-                if ((enableSkills &= EnableSkills.Identity) != 0)
+                if ((enableSkills & EnableSkills.Identity) != 0)
                 {
                     value = true;
                 }
                 break;
             case SkillForm.PassiveAt:
             case SkillForm.ActiveAt:
-                if ((enableSkills &= EnableSkills.AtSkill) != 0)
+                if ((enableSkills & EnableSkills.AtSkill) != 0)
                 {
                     value = true;
                 }
                 break;
             case SkillForm.PassiveUltimate:
             case SkillForm.ActiveUltimate:
-                if ((enableSkills &= EnableSkills.Ultimate) != 0)
+                if ((enableSkills & EnableSkills.Ultimate) != 0)
                 {
                     value = true;
                 }
@@ -243,7 +243,7 @@ public class SkillManager : MonoBehaviour
         curObj.SetActive(true);
         while (timer < waitTime)
         {
-            timer += Time.deltaTime;
+            timer += Time.deltaTime*PlayerInfo.Instance.PlayerSkillCooldown;
             skillSlot[index].skillCooldown.text = Mathf.CeilToInt(waitTime - timer).ToString();
             skillSlot[index].skillCooldownImage.fillAmount = Mathf.Clamp01(1f - (timer / waitTime));
             yield return null;

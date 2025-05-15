@@ -58,7 +58,7 @@ public abstract class ACharacterSkill:MonoBehaviour
             case SkillForm.PassiveUltimate:
             case SkillForm.ActiveUltimate:
                 SkillCooldown += SkillManager.Instance.currultimateSkill.basicCoolDown;
-                _currentKey = KeyBindingManager.Instance.keyBindings["Ultiamte"];
+                _currentKey = KeyBindingManager.Instance.keyBindings["Ultimate"];
                 break;
         }
     }

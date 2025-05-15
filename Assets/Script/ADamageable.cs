@@ -22,6 +22,17 @@ public abstract class ADamageable : MonoBehaviour
             OnHit();
         }
     }
-
+    protected void GiveDamage(float damage)
+    {
+        var playerInfo = PlayerInfo.Instance;
+        if(playerInfo.PlayerDefence - damage >= 0)
+        {
+            playerInfo.PlayerDefence -= damage;
+        }
+        else
+        {
+            playerInfo.PlayerCurHp += playerInfo.PlayerDefence - damage;
+        }
+    }
     public abstract void OnHit();
 }

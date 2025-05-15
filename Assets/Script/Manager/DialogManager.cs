@@ -112,7 +112,6 @@ public class DialogManager : MonoBehaviour
             _isPuttingText = true;
             talkerPortraitImage.sprite = currentDia.talkersFace;
             talkerNameTmp.text = currentDia.talker;
-
             _putTextFlow = StartCoroutine(PutTextFlow(currentDia.dialogue));
         }
     }

@@ -13,6 +13,8 @@ public enum InGameEvent
     CoolTimeUp,
     AttackUp,
     AtDown,
+    SelectDemon,
+    SelectAdventureWeapon
 }
 
 public class GameEventManager : MonoBehaviour

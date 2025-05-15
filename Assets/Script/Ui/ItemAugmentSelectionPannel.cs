@@ -31,7 +31,11 @@ public class ItemAugmentSelectionPannel : MonoBehaviour
         AugmentManager.Instance.ActiveAugment(code);
         OnConfirm();
     }
+    public void OnSelectionDemon()
+    {
+        OnSelectionStart();
 
+    }
 
 
 }

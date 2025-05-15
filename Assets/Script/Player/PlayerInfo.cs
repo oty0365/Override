@@ -27,7 +27,16 @@ public class PlayerInfo : MonoBehaviour
     public TextMeshProUGUI staminaRange;
     public Image defenceBar;
 
-    [System.NonSerialized] public float playerMaxHp = 30f;
+    [System.NonSerialized] private float playerMaxHp = 30f;
+    public float PlayerMaxHp
+    {
+        get => playerMaxHp;
+        set
+        {
+            hpBar.maxValue= value;
+            playerMaxHp = value;
+        }
+    }
     private float _playerCurHp;
     private Coroutine _playerHpCoroutine;
     public float PlayerCurHp
@@ -142,6 +151,7 @@ public class PlayerInfo : MonoBehaviour
         defenceBar.fillAmount = PlayerDefence / 100f;
         PlayerCurHp = playerMaxHp;
         PlayerCurStamina = playerMaxStamina;
+        _playerSkillCooldown = playerBasicSkillCooldown;
     }
 
     public GameObject CurrentOverridingObject

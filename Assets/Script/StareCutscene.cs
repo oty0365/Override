@@ -7,16 +7,23 @@ public enum StareMode
     Up_Bottom,
     Both
 }
+public enum PlayMode
+{
+    PlayOnce,
+    Repeat
+}
 
 
 public class StareCutscene : AInteractable
 {
     public GameObject starePoint;
     public float waitTime;
+    public bool isPlayedOnce;
+    public PlayMode playMode;
     public StareMode stareMode;
     void Start()
     {
-        
+
     }
     void Update()
     {
@@ -24,6 +31,18 @@ public class StareCutscene : AInteractable
     }
     public override void OnInteract()
     {
+        switch (playMode)
+        {
+            case PlayMode.PlayOnce:
+                if (isPlayedOnce)
+                {
+                    return;
+                }
+                break;
+            case PlayMode.Repeat:
+                break;
+        }
+        
         switch (stareMode)
         {
             case StareMode.Battom_Up:
@@ -49,6 +68,7 @@ public class StareCutscene : AInteractable
     }
     private IEnumerator LookAtFlow()
     {
+        isPlayedOnce = true;
         PlayerCamera.Instance.target = starePoint;
         yield return new WaitForSeconds(waitTime);
         PlayerCamera.Instance.target = PlayerInfo.Instance.gameObject;

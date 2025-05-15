@@ -19,9 +19,7 @@ public class AugmentManager : MonoBehaviour
     public AugmentDatas augmentDatas;
     private List<AugmentData> _augmentDatas = new List<AugmentData>();
     public AugmentData[] randomDatas = new AugmentData[3];
-    public AugmentUI[] augmentUIs = new AugmentUI[3]; 
-
-
+    public AugmentUI[] augmentUIs = new AugmentUI[3];
     private void Awake()
     {
         Instance = this;
@@ -38,10 +36,10 @@ public class AugmentManager : MonoBehaviour
 
     public void ActiveAugment(int index)
     {
-        foreach(var i in randomDatas[index].effect)
-        {
-            GameEventManager.Instance.eventsDict[i].Invoke();
-        }
+            foreach (var i in randomDatas[index].effect)
+            {
+                GameEventManager.Instance.eventsDict[i].Invoke();
+            }
 
     }
 
@@ -94,18 +92,19 @@ public class AugmentManager : MonoBehaviour
     [EventUpload]
     public void HpUp()
     {
-        PlayerInfo.Instance.playerMaxHp += 15;
-        PlayerInfo.Instance.PlayerCurHp += 15;
+        var playerInfo = PlayerInfo.Instance;
+        playerInfo.PlayerMaxHp += 15;
+        playerInfo.PlayerCurHp += 15;
     }
     [EventUpload]
     public void FullHp()
     {
-        PlayerInfo.Instance.PlayerCurHp = PlayerInfo.Instance.playerMaxHp;
+        PlayerInfo.Instance.PlayerCurHp = PlayerInfo.Instance.PlayerMaxHp;
     }
     [EventUpload]
     public void CoolTimeUp()
     {
-        PlayerInfo.Instance.playerBasicSkillCooldown += 0.15f;
+        PlayerInfo.Instance.PlayerSkillCooldown += 0.15f;
     }
     [EventUpload]
     public void AttackUp()
