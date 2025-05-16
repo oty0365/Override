@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : HalfSingleMono<PlayerMove>
 {
-    public static PlayerMove Instance { get; private set; }
 
     [Header("플레이어 컴포넌트")]
     public Rigidbody2D rb2D;
@@ -50,11 +49,6 @@ public class PlayerMove : MonoBehaviour
     private Vector2 _dir;
     private float _force;
     private float _knockBackTime;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     void Start()
     {

@@ -9,9 +9,8 @@ public abstract class AInteractable:MonoBehaviour
     public abstract void ExitInteract();
 }
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
 {
-    public static PlayerInteraction Instance { get; private set; }
 
     [Header("¼³Á¤°ª")]
     public float interactionRange;
@@ -25,11 +24,6 @@ public class PlayerInteraction : MonoBehaviour
     private Vector2 _playerPos;
     private AInteractable _currentObejctInteractable;
     private TextMeshPro _interactText;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     private void Start()
     {

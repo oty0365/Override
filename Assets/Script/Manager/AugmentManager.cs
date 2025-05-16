@@ -13,17 +13,12 @@ public class AugmentUI
     public TextMeshProUGUI augmentUIDesc;
 }
 
-public class AugmentManager : MonoBehaviour
+public class AugmentManager : HalfSingleMono<AugmentManager>
 {
-    public static AugmentManager Instance { get; private set; }
     public AugmentDatas augmentDatas;
     private List<AugmentData> _augmentDatas = new List<AugmentData>();
     public AugmentData[] randomDatas = new AugmentData[3];
     public AugmentUI[] augmentUIs = new AugmentUI[3];
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     void Start()
     {

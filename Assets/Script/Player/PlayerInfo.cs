@@ -5,9 +5,8 @@ using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerInfo : MonoBehaviour
+public class PlayerInfo : HalfSingleMono<PlayerInfo>
 {
-    public static PlayerInfo Instance { get; private set; }
 
     [Header("플레이어 정보")]
     public WeaponData playerWeaponData;
@@ -38,7 +37,6 @@ public class PlayerInfo : MonoBehaviour
         }
     }
     private float _playerCurHp;
-    private Coroutine _playerHpCoroutine;
     public float PlayerCurHp
     {
         get => _playerCurHp;
@@ -185,11 +183,6 @@ public class PlayerInfo : MonoBehaviour
             weaponCore.sprite = playerWeaponData.weaponSprite;
             WeaponCore.Instance.ChangeWeapon(playerWeaponData.weaponPrefab);
         }
-    }
-
-    private void Awake()
-    {
-        Instance = this;
     }
     void Start()
     {

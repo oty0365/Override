@@ -6,22 +6,21 @@ public enum WeaponCode
     SwordShiled=0,
     Katana,
     GreatSword,
-    MagicStaf,
+    MagicStaff,
     Dagger
 }
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : HalfSingleMono<WeaponManager>
 {
-    public static WeaponManager Instance { get; private set; }
 
     [Header("무기 배열")]
     public WeaponSets weaponSets;
 
     public Dictionary<WeaponCode, WeaponData> weaponDict = new Dictionary<WeaponCode, WeaponData>();
 
-    private void Awake()
+    protected override void Awake()
     {
-        Instance = this;
+        base.Awake();
         foreach(var i in weaponSets.weaponDatas)
         {
             weaponDict.Add(i.weaponCode, i);

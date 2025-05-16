@@ -13,9 +13,8 @@ public class KeyBinder
     public Button button;
 }
 
-public class KeyBindingManager : MonoBehaviour
+public class KeyBindingManager : SingleMono<KeyBindingManager>
 {
-    public static KeyBindingManager Instance;
     public List<KeyBinder> keyBinders;
     public Dictionary<string, KeyBinder> keyBindDict = new();
     public Dictionary<string, KeyCode> keyBindings = new();
@@ -24,10 +23,9 @@ public class KeyBindingManager : MonoBehaviour
     private string currentSelectingKey;
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        Instance = this;
-
+        base.Awake();
         keyBindings["Up"] = KeyCode.W;
         keyBindings["Down"] = KeyCode.S;
         keyBindings["Left"] = KeyCode.D;

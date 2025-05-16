@@ -3,9 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogManager : MonoBehaviour
+public class DialogManager : HalfSingleMono<DialogManager>
 {
-    public static DialogManager Instance { get; private set; }
 
     [Header("다이얼로그 데이터")]
     public Dialogs currentDialogs;
@@ -24,11 +23,6 @@ public class DialogManager : MonoBehaviour
 
     private bool _isPuttingText;
     private Coroutine _putTextFlow;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     private void Start()
     {

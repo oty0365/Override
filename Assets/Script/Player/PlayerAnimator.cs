@@ -24,9 +24,8 @@ public enum PlayerBehave
     SpearRun
 }
 
-public class PlayerAnimator : MonoBehaviour
+public class PlayerAnimator : HalfSingleMono<PlayerAnimator>
 {
-    public static PlayerAnimator Instance { get; private set; }
 
     [Header("플레이어 컴포넌트")]
     public Animator ani;
@@ -38,10 +37,6 @@ public class PlayerAnimator : MonoBehaviour
     public PlayerCommands playerCommands;
     public PlayerBehave playerBehave;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
     private void Start()
     {
         WeaponBase.canInput = true;

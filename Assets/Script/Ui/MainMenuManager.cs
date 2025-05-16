@@ -1,14 +1,8 @@
 using UnityEngine;
 
-public class MainMenuManager : MonoBehaviour
+public class MainMenuManager : SingleMono<MainMenuManager>
 {
-    public static MainMenuManager Instance { get; private set; }
     public GameObject optionPannel;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
     private void Start()
     {
         optionPannel.SetActive(false);

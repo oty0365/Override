@@ -17,20 +17,14 @@ public enum InGameEvent
     SelectAdventureWeapon
 }
 
-public class GameEventManager : MonoBehaviour
+public class GameEventManager : HalfSingleMono<GameEventManager>
 {
-    public static GameEventManager Instance { get; private set; }
 
     public Dictionary<InGameEvent,Action> eventsDict = new Dictionary<InGameEvent,Action>();
 
     private int _playMode;
     public int PlayMode { get => _playMode; private set=> _playMode = value; }
     public int currentStoryIndex;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     void Start()
     {

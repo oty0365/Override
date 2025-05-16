@@ -14,9 +14,8 @@ public enum MapCode
 
 }
 
-public class MapManager : MonoBehaviour
+public class MapManager : HalfSingleMono<MapManager>
 {
-    public static MapManager Instance { get; private set; }
     [Header("¸Ê UI")]
     public GameObject banner;
     public Image header;

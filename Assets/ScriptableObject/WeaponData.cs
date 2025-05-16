@@ -3,10 +3,10 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     public WeaponCode weaponCode;
-    public string weaponName;
+    public WeaponDialogKey weaponName;
     public Sprite weaponSprite;
     public GameObject weaponPrefab;
-    [TextArea] public string weaponDesc;
+    public WeaponDialogKey weaponDesc;
     public float weaponRange;
     public float weaponStartDamage;
     public float weaponAttackSpeed;
