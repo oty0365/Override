@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,10 +15,11 @@ public class UiWeapon : MonoBehaviour
      
     void Start()
     {
+        var scripter = Scripter.Instance;
         weaponImage.sprite= weapon.weaponSprite;
         weaponFrame.color = weapon.weaponColor;
-        weaponName.text = weapon.weaponName;
-        weaponDesc.text = weapon.weaponDesc;
+        weaponName.text = scripter.scripts[weapon.weaponName.ToString()].currentText;
+        weaponDesc.text = scripter.scripts[weapon.weaponDesc.ToString()].currentText;
         weaponDamage.text = weapon.weaponStartDamage.ToString();
         attackDelay.text = weapon.weaponAttackSpeed.ToString();
     }

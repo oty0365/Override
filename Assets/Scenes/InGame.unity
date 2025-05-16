@@ -163,7 +163,8 @@ GameObject:
   - component: {fileID: 41694722}
   - component: {fileID: 41694724}
   - component: {fileID: 41694723}
-  m_Layer: 0
+  - component: {fileID: 41694725}
+  m_Layer: 6
   m_Name: Anvil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionKeyPos: {fileID: 1556674288}
   autoInteraction: 0
-  dialogs: {fileID: 0}
+  dialogs: {fileID: 11400000, guid: dcbeedad284e66946af1fb1f5198e11b, type: 2}
 --- !u!212 &41694724
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -259,6 +260,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &41694725
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41694721}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.04852715, y: -1.0417408}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.2, y: 3.2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.331703, y: 0.50790143}
+  m_EdgeRadius: 0
 --- !u!1 &49850444
 GameObject:
   m_ObjectHideFlags: 0
@@ -6346,7 +6393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6f439755a336243b8e2a302d753aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curLanguage: 1
+  curLanguage: 0
   csvNameArray:
   - Override_Weapons_Data
 --- !u!4 &818581908
@@ -30385,7 +30432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.010000001, y: 0.023295559}
   m_AnchorMax: {x: 0.09783417, y: 0.17836948}
-  m_AnchoredPosition: {x: 97.98799, y: 111.82754}
+  m_AnchoredPosition: {x: 97.98796, y: 111.827545}
   m_SizeDelta: {x: 138.03711, y: 157.18398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1166585546

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b77675c898816a4f9c54ef13e785dff, type: 3}
   m_Name: AtAnvil
   m_EditorClassIdentifier: 
-  dialogScripts: []
+  dialogScripts:
+  - {fileID: 11400000, guid: cadf81ffd0096cf42be2f723a004f24d, type: 2}
+  - {fileID: 11400000, guid: 553d1f7c473706744847513befd29dcd, type: 2}

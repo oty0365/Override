@@ -36,9 +36,9 @@ public class Scripter : SingleMono<Scripter>
     public string[] csvNameArray;
     public Dictionary<string, Script> scripts = new();
 
-
-    public void Start()
+    protected override void Awake()
     {
+        base.Awake();
         LoadAllCsv();
     }
 
