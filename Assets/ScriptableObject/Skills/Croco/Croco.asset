@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002eddc1dd3e58648b3416a746e27ce8, type: 3}
+  m_Name: Croco
+  m_EditorClassIdentifier: 
+  identitySkills:
+  - skillData: {fileID: 11400000, guid: 4c676708a89fcf649953fecd1afd209b, type: 2}
+    characterSkill: {fileID: 7286087600570053681, guid: 8999bef4e8aff2647a3b9716fe93a4aa, type: 3}
+  ultimateSkills:
+  - skillData: {fileID: 11400000, guid: 13e6bf9609a9e0d42ba2d063a30ba01e, type: 2}
+    characterSkill: {fileID: 0}

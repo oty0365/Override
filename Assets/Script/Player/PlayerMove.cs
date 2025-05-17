@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : HalfSingleMono<PlayerMove>
 {
-    public static PlayerMove Instance { get; private set; }
 
     [Header("플레이어 컴포넌트")]
     public Rigidbody2D rb2D;
@@ -51,11 +50,6 @@ public class PlayerMove : MonoBehaviour
     private float _force;
     private float _knockBackTime;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     void Start()
     {
         canInput = true;
@@ -85,8 +79,15 @@ public class PlayerMove : MonoBehaviour
         {
             case PlayerBehave.Idel:
             case PlayerBehave.Walk:
-                rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * moveSpeed;
-                break;
+                if (canInput)
+                {
+                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * moveSpeed;
+                }
+                else
+                {
+                    rb2D.linearVelocity = Vector2.zero;
+                }
+                    break;
 
             case PlayerBehave.KnockBack:
                 if (!_isKnockBacking)
@@ -102,8 +103,9 @@ public class PlayerMove : MonoBehaviour
             case PlayerBehave.Dash:
                 if (!_isDashing)
                 {
-                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * 11f;
+                    rb2D.linearVelocity = new Vector2(_horizontal, _vertical).normalized * 20f;
                     _isDashing = true;
+                    PlayerInfo.Instance.SetInfiniteTime(dashTime);
                     StartCoroutine(DashFlow());
                 }
                 break;
@@ -136,22 +138,38 @@ public class PlayerMove : MonoBehaviour
 
     private IEnumerator DashFlow()
     {
+        PlayerInfo.Instance.PlayerCurStamina -= 6f;
         canInput = false;
-        float step = dashTime / 8f;
-        float nextStep = step;
+
+        float startTime = Time.time;
+        float endTime = startTime + dashTime;
+
+        int totalAfterImages = 8;
+        float afterImageInterval = dashTime / totalAfterImages;
+        float nextAfterImageTime = startTime + afterImageInterval;
 
         float alpha = 1;
         float size = 1;
+        Vector2 dashDirection = new Vector2(_horizontal, _vertical).normalized;
 
-        for (float t = 0f; t <= dashTime; t += Time.deltaTime)
+        while (Time.time < endTime)
         {
-            if (t >= nextStep)
+            if (PlayerInteraction.Instance.isInteracting)
+            {
+                PlayerBehave = PlayerBehave.Idel;
+                rb2D.linearVelocity = Vector2.zero;
+                _isDashing = false;
+                yield break;
+            }
+
+            if (Time.time >= nextAfterImageTime)
             {
                 var o = ObjectPooler.Instance.Get(afterImage, transform.position, transform.rotation.eulerAngles);
-                o.GetComponent<PlayerAfterImage>().SetIamge(_sr.sprite, alpha, size,gameObject.transform.localScale.x);
+                o.GetComponent<PlayerAfterImage>().SetIamge(_sr.sprite, alpha, size, gameObject.transform.localScale.x);
 
-                nextStep += step;
+                nextAfterImageTime += afterImageInterval;
             }
+
             yield return null;
         }
 
@@ -163,7 +181,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (PlayerBehave != PlayerBehave.KnockBack && PlayerBehave != PlayerBehave.Dash && PlayerCommands == PlayerCommands.None)
+        if (PlayerBehave != PlayerBehave.KnockBack && PlayerBehave != PlayerBehave.Dash && PlayerBehave != PlayerBehave.SpearRun && PlayerCommands == PlayerCommands.None)
         {
             PlayerBehave = PlayerBehave.Idel;
         }
@@ -240,14 +258,14 @@ public class PlayerMove : MonoBehaviour
             }
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Right"]))
             {
-                _horizontal = -1;
+                _horizontal = 1;
                 AddCommand(PlayerCommands.Right);
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
             }
             if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Left"]))
             {
-                _horizontal = 1;
+                _horizontal = -1;
                 AddCommand(PlayerCommands.Left);
                 if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
                     PlayerBehave = PlayerBehave.Walk;
@@ -255,7 +273,7 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]))
             {
-                if(PlayerCommands != PlayerCommands.None)
+                if(PlayerCommands != PlayerCommands.None && PlayerInfo.Instance.PlayerCurStamina >= 6f)
                 {
                     Dash();
                 }

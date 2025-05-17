@@ -1,0 +1,7 @@
+﻿Key,Type,Priority,Ko,En
+Tuto-1,1,1,<Up>{COMMA}<Left>{COMMA}<Down>{COMMA}<Right>로 이동,Use <Up>{COMMA}<Left>{COMMA}<Down> and <Right> to move.
+Tuto-2,2,1,이동중 <Dash>로 대쉬,Press <Dash> to dash while moving.
+Tuto-3,3,1,<Dash>로 회피,Press <Dash> to evade while moving.
+Tuto-4,4,1,<Interact>로 상호작용,<Interact> to interact.
+Tuto-5,5,1,테스트케이스#117 성공! 실험체의 상호작용 능력및 기동력이 확인되었습니다...,Test Case #117 passed! The test subject's interaction capabilities and maneuverability have been verified...
+Tuto-6,6,1,테스트케이스#45 성공! 실험체의 기본적인\n자기보호 능력이 확인되었습니다..,Test Case #45 passed! The test subject's fundamental self-defense capability has been verified..

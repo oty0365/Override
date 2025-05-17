@@ -10,7 +10,13 @@ public class SwordAndSheild: WeaponBase
 
     private static readonly int AttackHash = Animator.StringToHash("Attack");
     private static readonly int BlockHash = Animator.StringToHash("isBlocking");
- 
+
+    private Coroutine comboResetCoroutine;
+
+    [Header("Attack Settings")]
+    public float attackSpeed = 1f;
+    public float comboInputWindow = 1f;
+
 
     private void Start()
     {
@@ -19,29 +25,35 @@ public class SwordAndSheild: WeaponBase
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking && !isBlocking)
+        if (canInput)
         {
-            OnAttack1Pressed();
+            if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack1"]) && !isAttacking && !isBlocking)
+            {
+                OnAttack1Pressed();
+            }
+
+            if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]) && !isAttacking)
+            {
+                OnAttack2Pressed();
+            }
+            if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"]))
+            {
+                OnAttack2Released();
+            }
         }
 
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]) && !isAttacking)
-        {
-            OnAttack2Pressed();
-        }
-        if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"])) 
-        {
-            OnAttack2Released();
-        }
     }
 
     private void ComboCheck()
     {
         ani.SetInteger(AttackHash, combo);
     }
+
     public override void SetColider(int index)
     {
         colliders[index].enabled = true;
     }
+
     public override void EndAnimation()
     {
         isAttacking = false;
@@ -58,6 +70,46 @@ public class SwordAndSheild: WeaponBase
         ComboCheck();
     }
 
+
+    public override void OnAttack1Pressed()
+    {
+        StartCombo();
+        combo++;
+        if (combo > maxComboCount)
+        {
+            combo = 1;
+        }
+
+        ComboCheck();
+
+        if (comboResetCoroutine != null)
+            StopCoroutine(comboResetCoroutine);
+
+        StartCoroutine(AttackRoutine());
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        ani.speed = attackSpeed;
+        float animLength = ani.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animLength / attackSpeed);
+        ani.speed = 1f;
+        EndAnimation();
+        if (combo < maxComboCount)
+        {
+            comboResetCoroutine = StartCoroutine(ComboResetRoutine());
+        }
+        else
+        {
+            EndCombo();
+        }
+    }
+
+    private IEnumerator ComboResetRoutine()
+    {
+        yield return new WaitForSeconds(comboInputWindow);
+        EndCombo();
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!isBlocking)
@@ -66,15 +118,14 @@ public class SwordAndSheild: WeaponBase
             if(hitable != null)
             {
                 Vector2 contactPoint = other.ClosestPoint(transform.position);
-                ObjectPooler.Instance.Get(colideParticle, contactPoint, new Vector3(0, 0, 0));
-                PlayerCamera.Instance.SetShake(0.5f, 20, 0.03f);
-                Debug.Log("검과충돌");
+                ObjectPooler.Instance.Get(colideParticle, contactPoint, new Vector3(0, 0, 0),new Vector2(1.5f,1.5f));
+                PlayerCamera.Instance.SetShake(0.5f, 45, 0.03f);
             }
 
         }    
     }
 
-    public override void OnAttack1Pressed()
+   /* public override void OnAttack1Pressed()
     {
         combo++;
         if (combo > maxComboCount)
@@ -83,7 +134,7 @@ public class SwordAndSheild: WeaponBase
         }
 
         ComboCheck();
-    }
+    }*/
 
     public override void OnAttack1Released() { }
 

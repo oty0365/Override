@@ -3,9 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogManager : MonoBehaviour
+public class DialogManager : HalfSingleMono<DialogManager>
 {
-    public static DialogManager Instance { get; private set; }
 
     [Header("다이얼로그 데이터")]
     public Dialogs currentDialogs;
@@ -24,17 +23,16 @@ public class DialogManager : MonoBehaviour
 
     private bool _isPuttingText;
     private Coroutine _putTextFlow;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+    private Scripter scripter;
 
     private void Start()
     {
         dialogPannel.SetActive(false);
         if (nextIndicator != null)
+        {
             nextIndicator.SetActive(false);
+        }
+        scripter = Scripter.Instance;
     }
 
     private void Update()
@@ -67,7 +65,7 @@ public class DialogManager : MonoBehaviour
             if (_isPuttingText)
             {
                 StopCoroutine(_putTextFlow);
-                talkerDialogTmp.text = currentDialogs.dialogScripts[currentIndex].dialogue;
+                talkerDialogTmp.text = scripter.scripts[currentDialogs.dialogScripts[currentIndex].dialogue[0]].currentText;
                 _isPuttingText = false;
                 return;
             }
@@ -111,9 +109,8 @@ public class DialogManager : MonoBehaviour
         {
             _isPuttingText = true;
             talkerPortraitImage.sprite = currentDia.talkersFace;
-            talkerNameTmp.text = currentDia.talker;
-
-            _putTextFlow = StartCoroutine(PutTextFlow(currentDia.dialogue));
+            talkerNameTmp.text = scripter.scripts[currentDia.talker].currentText;
+            _putTextFlow = StartCoroutine(PutTextFlow(scripter.scripts[currentDia.dialogue[0]].currentText));
         }
     }
 
@@ -121,12 +118,37 @@ public class DialogManager : MonoBehaviour
     {
         talkerDialogTmp.text = "";
 
-        foreach (var c in dialog)
+        dialog = dialog.Replace("\\n", "\n");
+
+        int i = 0;
+        while (i < dialog.Length)
         {
-            talkerDialogTmp.text += c;
+            if (dialog[i] == '<')
+            {
+                int tagEnd = dialog.IndexOf('>', i);
+                if (tagEnd != -1)
+                {
+                    string tag = dialog.Substring(i, tagEnd - i + 1);
+                    talkerDialogTmp.text += tag;
+                    i = tagEnd + 1;
+                    continue;
+                }
+            }
+
+            if (dialog[i] == '\n')
+            {
+                talkerDialogTmp.text += '\n';
+                i++;
+                continue;
+            }
+
+            talkerDialogTmp.text += dialog[i];
+            i++;
+
             yield return new WaitForSeconds(textSpeed);
         }
 
         _isPuttingText = false;
     }
+
 }

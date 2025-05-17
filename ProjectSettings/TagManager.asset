@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ground
   - wall
+  - augmentsui
+  - hitable
   layers:
   - Default
   - TransparentFX
@@ -15,11 +17,11 @@ TagManager:
   - UI
   - Interactable
   - Weapon
-  - 
-  - 
-  - 
-  - 
-  - 
+  - CodeWorld
+  - Player
+  - Wall
+  - Bullet
+  - DamageAble
   - 
   - 
   - 

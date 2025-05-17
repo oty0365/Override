@@ -7,6 +7,7 @@ public class WeaponSelectionPannel : MonoBehaviour
     void Start()
     {
         _ani=GetComponent<Animator>();
+        _ani.updateMode = AnimatorUpdateMode.UnscaledTime;
         GameEventManager.Instance.UploadEvent(InGameEvent.WeaponSelection, OnSelectionStart);
     }
 

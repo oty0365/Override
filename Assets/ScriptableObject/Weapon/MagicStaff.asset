@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e2b834869e05144b32d648b7867992, type: 3}
+  m_Name: MagicStaff
+  m_EditorClassIdentifier: 
+  weaponCode: 3
+  weaponName: MagicStaffName
+  weaponSprite: {fileID: -6025010955828807945, guid: db22f9690497bc04296e7561e5098b24, type: 3}
+  weaponPrefab: {fileID: 7491445019100716610, guid: c11119bcebf1857408342c39ae557ede, type: 3}
+  weaponDesc: MagicStaffDesc
+  weaponRange: 0
+  weaponStartDamage: 0
+  weaponAttackSpeed: 1.2
+  weaponColor: {r: 1, g: 0.9667699, b: 0, a: 1}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b77675c898816a4f9c54ef13e785dff, type: 3}
+  m_Name: AtTutorialBotAnvil
+  m_EditorClassIdentifier: 
+  dialogScripts:
+  - {fileID: 11400000, guid: ed1b7367b58898c41936c6eb87d7f8b0, type: 2}
+  - {fileID: 11400000, guid: 1d71e661571b09b41821b4d98bfdd80b, type: 2}
+  - {fileID: 11400000, guid: e66b27fad2ff89b40ba1c681270a45f5, type: 2}
+  - {fileID: 11400000, guid: d2747522f319b4341beadd2ffe5c30cc, type: 2}

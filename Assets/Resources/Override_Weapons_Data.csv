@@ -1,0 +1,9 @@
+﻿Key,Type,Priority,Ko,En
+DaggerName,1,1,단검,Dagger
+GreatSwordName,2,1,대검,GreatSword
+MagicStaffName,3,1,마법의 스태프,MagicStaff
+SwordAndShieldName,4,1,직검과 방패,SwordAndShield
+DaggerDesc,5,1,빠른공격속도와 특출난\n기동력으로 적들을\n교란시키는 무기,A weapon that disrupts enemies\nwith rapid attack speed \nand exceptional mobility.
+GreatSwordDesc,6,1,공속이 매우 느리지만 강한 한방을 자랑하는 무기,A weapon with extremely slow\nattack speed but delivers\na powerful blow.
+MagicStaffDesc,7,1,근접전은 불가하지만 강한 원거리 공격을 구사하는 무기,A weapon that cannot be used in close combat,\nbut delivers powerful ranged attacks.
+SwordAndShieldDesc,8,1,직검과 방패로 이루어진 무기\n직검으로 빠른 공격이 가능하고\n방패로 적의 공격을 막을 수 있다.,A weapon consisting of a longsword and shield.\nThe longsword allows for fast attacks, while the shield can block enemy strikes.

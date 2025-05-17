@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b652a02b32c374cb243d519af13d01, type: 3}
+  m_Name: Bounce
+  m_EditorClassIdentifier: 
+  skillName: "\uBE44\uBC00\uBCD1\uAE30"
+  skillIcon: {fileID: 21300000, guid: 07aaf7b9c6c6e0949ac5aea7120b14e8, type: 3}
+  basicCoolDown: 90
+  skillDesc: "\uD06C\uAE30\uAC00 \uCEE4\uC9C0\uBA70 /r\uBB3C\uB9AC\uACF5\uACA9\uB825r/\uC774
+    /r20%r/\uC99D\uAC00\uD558\uACE0 /g\uCCB4\uB825\uC774g/ 2\uBC30\uAC00 \uB41C\uB2E4. "

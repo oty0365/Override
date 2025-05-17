@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002eddc1dd3e58648b3416a746e27ce8, type: 3}
+  m_Name: TheKnight
+  m_EditorClassIdentifier: 
+  identitySkills:
+  - skillData: {fileID: 11400000, guid: a6496c283c335c4418ca7c3503679d5d, type: 2}
+    characterSkill: {fileID: 6905831410321558963, guid: 6d5e3e5b760311a41a2115bb3f54f593, type: 3}
+  ultimateSkills:
+  - skillData: {fileID: 11400000, guid: b40bfe6187cd62840af6b9d5751d2232, type: 2}
+    characterSkill: {fileID: 0}

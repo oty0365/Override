@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b77675c898816a4f9c54ef13e785dff, type: 3}
+  m_Name: AtTutorialBotOverrideables
+  m_EditorClassIdentifier: 
+  dialogScripts:
+  - {fileID: 11400000, guid: dd8aba573b33bce48ae793a37b66cd76, type: 2}
+  - {fileID: 11400000, guid: 6dbe9ad483be3ca40b8440c9dc85c7ca, type: 2}
+  - {fileID: 11400000, guid: 42bae8f89687d4c44a9dac877b6b3967, type: 2}
+  - {fileID: 11400000, guid: adc956f57cd8f1d40b318868bd106db7, type: 2}

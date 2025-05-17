@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundManager : MonoBehaviour
-{
-    public static SoundManager Instance { get; private set; }
+public class SoundManager : SingleMono<SoundManager>
+{ 
     [SerializeField] private Slider volume;
     public float SoundVolume
     {
@@ -12,11 +11,6 @@ public class SoundManager : MonoBehaviour
         {
             volume.value = value;
         }
-    }
-
-    private void Awake()
-    {
-        Instance = this;
     }
     void Start()
     {
