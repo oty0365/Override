@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5afc3180f14d4e41ae8d2a45ef9eaed, type: 3}
   m_Name: ATB-4
   m_EditorClassIdentifier: 
-  talker: "\uC573"
+  talker: AtName
   hasSelection: 0
   talkersFace: {fileID: 21300000, guid: a1581d0931fd8664fb18a78ea08f9ce1, type: 3}
-  dialogue: "\uB098\uC758 \uB2A5\uB825\uC744 \uC774\uC6A9\uD574\uC11C <color=red>\uC624\uBC84\uB77C\uC774\uB4DC</color>
-    \uD574\uBCF4\uC544\uB77C..\n\uC758\uC9C0\uAC00 \uB110 \uC774\uB04C\uC5B4\uC11C
-    \uC0C8\uB85C\uC6B4 \uB2A5\uB825\uACFC \uC678\uAD00\uC744 \uAC00\uC9C0\uAC8C \uD574
-    \uC904\uAC70\uB2E4."
+  dialogue:
+  - ATBwill-4
   eventsWhileTalk: 

@@ -6,7 +6,6 @@ public class DialogScript : ScriptableObject
     public string talker;
     public bool hasSelection;
     public Sprite talkersFace;
-    [TextArea]
-    public string dialogue;
+    public string[] dialogue;
     public InGameEvent[] eventsWhileTalk;
 }

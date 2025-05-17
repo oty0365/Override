@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5afc3180f14d4e41ae8d2a45ef9eaed, type: 3}
   m_Name: Parlem-2
   m_EditorClassIdentifier: 
-  talker: "\uD30C\uB984"
+  talker: ParinName
   hasSelection: 0
   talkersFace: {fileID: 21300000, guid: dd41b4b15f9aa32499261bc9ec316e98, type: 3}
-  dialogue: "\uC544\uBB34 \uAE30\uC5B5\uB3C4 \uB098\uC9C0 \uC54A\uC544...\n\uB108\uBB34
-    \uAE34 \uC7A0\uC744 \uC790\uC11C \uBA38\uB9AC\uAC00 \uC544\uD508 \uB290\uB08C\uC774\uB784\uAE4C.."
+  dialogue:
+  - Parin-2
   eventsWhileTalk: 

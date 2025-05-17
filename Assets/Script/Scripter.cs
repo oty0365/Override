@@ -7,18 +7,6 @@ public enum Language
     Ko,
     En
 }
-public enum WeaponDialogKey
-{
-    DaggerName,
-    GreatSwordName,
-    MagicStaffName,
-    SwordAndShieldName,
-    DaggerDesc,
-    GreatSwordDesc,
-    MagicStaffDesc,
-    SwordAndShieldDesc
-}
-
 
 public class Script
 {
@@ -33,7 +21,7 @@ public class Script
 public class Scripter : SingleMono<Scripter>
 {
     public Language curLanguage;
-    public string[] csvNameArray;
+    [SerializeField] private ScriptingArray array;
     public Dictionary<string, Script> scripts = new();
 
     protected override void Awake()
@@ -44,7 +32,7 @@ public class Scripter : SingleMono<Scripter>
 
     public void LoadAllCsv()
     {
-        foreach (var i in csvNameArray)
+        foreach (var i in array.scriptingArray)
         {
             TextAsset csv = Resources.Load<TextAsset>(i);
             if (csv == null)
@@ -74,8 +62,8 @@ public class Scripter : SingleMono<Scripter>
                 string key = values[0].Trim();
                 string typeStr = values[1].Trim();
                 string priorityStr = values[2].Trim();
-                string ko = values[3].Trim();
-                string en = values[4].Trim();
+                string ko = values[3].Trim().Replace("{COMMA}",",");
+                string en = values[4].Trim().Replace("{COMMA}", ",");
 
                 if (!int.TryParse(priorityStr, out int priority))
                 {

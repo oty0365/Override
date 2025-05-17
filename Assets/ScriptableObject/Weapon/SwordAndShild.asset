@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SwordAndShild
   m_EditorClassIdentifier: 
   weaponCode: 0
-  weaponName: 3
+  weaponName: SwordAndShieldName
   weaponSprite: {fileID: -7628619642697478568, guid: e941410cebd63e14fab03a0072f0ede7, type: 3}
   weaponPrefab: {fileID: 7722430145331283437, guid: 73977135044c94d4ba593f326c535bbb, type: 3}
-  weaponDesc: 7
+  weaponDesc: SwordAndShieldDesc
   weaponRange: 1
   weaponStartDamage: 10
   weaponAttackSpeed: 1.5

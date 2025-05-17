@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: RuneOfLoops
   m_EditorClassIdentifier: 
   augmentSprite: {fileID: 21300000, guid: 19d3c6e6e70ff5841baf64e1fe73cdda, type: 3}
-  augmentName: "\uB8E8\uD504\uC2A4\uC758 \uB8EC"
-  augmentDesc: "\uB300\uB9C8\uBC95\uC0AC \uB8E8\uD504\uC2A4\uC758 \uD798\uC774 \uB2F4\uAE34
-    \uB8E8\uD504\uC2A4\uC758 \uB8EC\uC744 \uD761\uC218\uD558\uC5EC <color=blue>\uCFE8\uD0C0\uC784
-    \uAC10\uC18C\uB97C</color>\uC744 <color=blue>15</color>\uB9CC\uD07C \uB298\uB9B0\uB2E4."
+  augmentName: RunesOfLoopsName
+  augmentDesc: RunesOfLoopsDesc
   effect: 05000000

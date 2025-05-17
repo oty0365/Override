@@ -1,0 +1,9 @@
+﻿Key,Type,Priority,Ko,En
+GiftOfGodName,1,1,하늘의 선물,Gift Of God
+GiftOfGodDesc,2,1,하늘에서 은총을 내려 <color=green>체력</color>을 최대치로<color=green>회복</color>한다.,Blessings rain down from the heavens fully <color=green>restoring</color> your <color=green>health</color>.
+RunesOfHealthName,3,1,생명의 룬,Runes Of Health
+RunesOfHealthDesc,4,1,생명의 힘이 담긴 강건의 룬을 흡수하여 <color=green>최대체력</color>을<color=green>15</color>만큼 늘린다.,Absorb the Rune of Vitality imbued with the power of life increasing your <color=green>maximum health</color> by <color=green>15</color>.
+RunesOfLoopsName,5,1,루프스의 룬,Runes Of Loops
+RunesOfLoopsDesc,6,1,대마법사 루프스의 힘이 담긴 루프스의 룬을 흡수하여 <color=blue>쿨타임 감소를</color>을 <color=blue>15</color>만큼 늘린다.,Absorb the Rune of Lupus infused with the wisdom of the Great Sage Lupus increasing <color=blue>cooldown reduction</color> by <color=blue>15</color>.
+RunesOfRageName,7,1,광폭의 룬,Runes Of Rage
+RunesOfRageDesc,8,1,광룡의 힘이 담긴 광폭의 룬을 흡수하여 <color=red>기본 공력력</color>을 <color=red>15</color>만큼 늘린다.,Absorb the Rune of Fury imbued with the power of the Raged Dragon increasing your <color=red>base attack power</color> by <color=red>15</color>.

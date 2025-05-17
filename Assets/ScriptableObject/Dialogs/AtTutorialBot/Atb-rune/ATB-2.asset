@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5afc3180f14d4e41ae8d2a45ef9eaed, type: 3}
   m_Name: ATB-2
   m_EditorClassIdentifier: 
-  talker: "\uC573"
+  talker: AtName
   hasSelection: 0
   talkersFace: {fileID: 21300000, guid: a1581d0931fd8664fb18a78ea08f9ce1, type: 3}
-  dialogue: "<color=yellow>\uB8EC</color>\uB4E4\uC740 \uAC01\uC790 \uC2E0\uBE44\uB85C\uC6B4
-    \uD798\uC744 \uB2F4\uACE0 \uC788\uC9C0..."
+  dialogue:
+  - ATBrune-2
   eventsWhileTalk: 

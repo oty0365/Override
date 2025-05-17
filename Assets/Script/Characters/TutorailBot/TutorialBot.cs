@@ -8,16 +8,19 @@ using UnityEngine;
 
 public class TutorialBot : AInteractable
 {
-    [TextArea]public string text;
+    public string text;
     public TextMeshPro description;
     public float inputDuration;
     public float desolveDuration;
     public float exitTime;
     private Coroutine _currentCoroutine;
+    private Scripter scripter;
 
     private void Start()
     {
+        scripter = Scripter.Instance;
         description.text = "";
+        text = scripter.scripts[text].currentText;
         var matches = Regex.Matches(text, @"<(\w+)>");
         foreach(Match match in matches)
         {

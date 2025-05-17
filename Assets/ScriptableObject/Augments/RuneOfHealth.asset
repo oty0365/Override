@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: RuneOfHealth
   m_EditorClassIdentifier: 
   augmentSprite: {fileID: 21300000, guid: aa52999a5d7331b4f8d51db4c448d923, type: 3}
-  augmentName: "\uAC15\uAC74\uC758 \uB8EC"
-  augmentDesc: "\uC0DD\uBA85\uC758 \uD798\uC774 \uB2F4\uAE34 \uAC15\uAC74\uC758 \uB8EC\uC744
-    \uD761\uC218\uD558\uC5EC <color=green>\uCD5C\uB300\uCCB4\uB825</color>\uC744
-    <color=green>15</color>\uB9CC\uD07C \uB298\uB9B0\uB2E4."
+  augmentName: RunesOfHealthName
+  augmentDesc: RunesOfHealthDesc
   effect: 04000000

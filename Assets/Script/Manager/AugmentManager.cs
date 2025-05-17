@@ -40,6 +40,7 @@ public class AugmentManager : HalfSingleMono<AugmentManager>
 
     public void RandomAugmentOutput()
     {
+        var scripter = Scripter.Instance;
         _augmentDatas.Clear();
         _augmentDatas.AddRange(augmentDatas.augments);
         var range = _augmentDatas.Count;
@@ -48,8 +49,8 @@ public class AugmentManager : HalfSingleMono<AugmentManager>
             var index =UnityEngine.Random.Range(0, range);
             randomDatas[i] = _augmentDatas[index];
             augmentUIs[i].augmentUIImage.sprite = randomDatas[i].augmentSprite;
-            augmentUIs[i].augmentUIName.text = randomDatas[i].augmentName;
-            augmentUIs[i].augmentUIDesc.text = randomDatas[i].augmentDesc;
+            augmentUIs[i].augmentUIName.text = scripter.scripts[randomDatas[i].augmentName].currentText;
+            augmentUIs[i].augmentUIDesc.text = scripter.scripts[randomDatas[i].augmentDesc].currentText;
             _augmentDatas.Remove(randomDatas[i]);
             range--;
         }

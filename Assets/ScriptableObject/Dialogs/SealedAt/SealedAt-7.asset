@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5afc3180f14d4e41ae8d2a45ef9eaed, type: 3}
   m_Name: SealedAt-7
   m_EditorClassIdentifier: 
-  talker: "\uC573"
+  talker: AtName
   hasSelection: 1
   talkersFace: {fileID: 21300000, guid: a1581d0931fd8664fb18a78ea08f9ce1, type: 3}
   dialogue: "\uC790 \uADF8\uB7FC \uC774\uC81C \uC5EC\uAE30\uB97C \uD0C8\uCD9C\uD574\uBCF4\uC790"

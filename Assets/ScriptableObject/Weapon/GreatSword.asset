@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: GreatSword
   m_EditorClassIdentifier: 
   weaponCode: 2
-  weaponName: 1
+  weaponName: GreatSwordName
   weaponSprite: {fileID: -6360951540215640696, guid: 216fc396ff242a142b4793286ba31bfe, type: 3}
   weaponPrefab: {fileID: 7471120163724153827, guid: fde98da930d51f84dba8f622fafe8bc3, type: 3}
-  weaponDesc: 5
+  weaponDesc: GreatSwordDesc
   weaponRange: 4
   weaponStartDamage: 30
   weaponAttackSpeed: 0.5

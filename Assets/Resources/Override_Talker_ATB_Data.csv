@@ -1,0 +1,12 @@
+﻿Key,Type,Priority,Ko,En
+ATBanvil-1,3,1,저 모루가 보이지?,You see that anvil over there{COMMA} don't you?
+ATBanvil-2,3,1,모루를 사용하면 내가 너에게 원하는 무기를 하나 만들어 줄 수 있다.,If you use the anvil{COMMA} I can forge for you the weapon I desire you to have.
+ATBanvil-3,3,1,무기는 너가 이 험난한 세상을 살아남기 아주 좋은 도구지..,A weapon... is the perfect tool for you to survive in this harsh world.
+ATBanvil-4,3,1,때와 장소에 맞는 무기 사용법을 익혀두도록 해.,Learn to use your weapon wisely{COMMA} fitting the time and place.
+ATBwill-1,3,1,내 뒤에 놓여져있는것이 바로 누군가의 <color=blue>의지</color>다..\n보통 의지는 차원이 붕괴하면 이렇게 빈 껍대기의 모습으로 등장하게 되지..,Behind me rests a <color=blue>will</color>...\nWhen a dimension shatters{COMMA} such wills manifest as hollow shells{COMMA} stripped of their essence.
+ATBwill-2,3,1,그럼에도 <color=blue>의지</color>가 대단한 이유는\n저것들이 생전엔 한 세계관을 이끌었을정도로\n<b>강하거나</b>{COMMA}<b>정의롭거나</b>{COMMA}<b>강한 목표의식</b>을 지었지.. ,What makes the <color=blue>will</color> so extraordinary\nis that they once commanded entire realms\nby virtue of being <b>mighty</b>{COMMA} <b>just</b>{COMMA} and fueled by an unshakable <b>sense of purpose</b>.
+ATBwill-3,3,1,넌 특이하게도 이런 모든 의지들과 별 다를것 없는 속성인 것 같구나..아니{COMMA}그것보다도 훨씬 더 포괄적인 것 같아.,You're oddly similar to those wills..\nNo{COMMA} you're something far more vast and inclusive.
+ATBwill-4,3,1,나의 능력을 이용해서 <color=red>오버라이드</color> 해보아라..\n의지가 널 이끌어서 새로운 능력과 외관을 가지게 해 줄거다.,Try to <color=red>override</color> using my power...\nYour <color=blue>will</color> will guide you to gain new abilities and appearance.
+ATBrune-1,3,1,내 뒤의 작은 수정은 <color=yellow>룬</color>이라고 불린다.,The small structure behind me is called a <color=yellow>rune</color>.
+ATBrune-2,3,1,<color=yellow>룬</color>들은 각자 신비로운 힘을 담고 있지...,<color=yellow>Runes</color> each hold their own mysterious power...
+ATBrune-3,3,1,너의 긴 모험에 도움이 될거야\n볼때마다 흡수해둬.,It will help you on your long journey.\nAbsorb it whenever you see it.

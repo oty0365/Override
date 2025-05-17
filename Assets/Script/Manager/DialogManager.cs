@@ -23,12 +23,16 @@ public class DialogManager : HalfSingleMono<DialogManager>
 
     private bool _isPuttingText;
     private Coroutine _putTextFlow;
+    private Scripter scripter;
 
     private void Start()
     {
         dialogPannel.SetActive(false);
         if (nextIndicator != null)
+        {
             nextIndicator.SetActive(false);
+        }
+        scripter = Scripter.Instance;
     }
 
     private void Update()
@@ -61,7 +65,7 @@ public class DialogManager : HalfSingleMono<DialogManager>
             if (_isPuttingText)
             {
                 StopCoroutine(_putTextFlow);
-                talkerDialogTmp.text = currentDialogs.dialogScripts[currentIndex].dialogue;
+                talkerDialogTmp.text = scripter.scripts[currentDialogs.dialogScripts[currentIndex].dialogue[0]].currentText;
                 _isPuttingText = false;
                 return;
             }
@@ -105,14 +109,16 @@ public class DialogManager : HalfSingleMono<DialogManager>
         {
             _isPuttingText = true;
             talkerPortraitImage.sprite = currentDia.talkersFace;
-            talkerNameTmp.text = currentDia.talker;
-            _putTextFlow = StartCoroutine(PutTextFlow(currentDia.dialogue));
+            talkerNameTmp.text = scripter.scripts[currentDia.talker].currentText;
+            _putTextFlow = StartCoroutine(PutTextFlow(scripter.scripts[currentDia.dialogue[0]].currentText));
         }
     }
 
     private IEnumerator PutTextFlow(string dialog)
     {
         talkerDialogTmp.text = "";
+
+        dialog = dialog.Replace("\\n", "\n");
 
         int i = 0;
         while (i < dialog.Length)
@@ -128,6 +134,14 @@ public class DialogManager : HalfSingleMono<DialogManager>
                     continue;
                 }
             }
+
+            if (dialog[i] == '\n')
+            {
+                talkerDialogTmp.text += '\n';
+                i++;
+                continue;
+            }
+
             talkerDialogTmp.text += dialog[i];
             i++;
 

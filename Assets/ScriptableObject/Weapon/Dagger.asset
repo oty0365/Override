@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Dagger
   m_EditorClassIdentifier: 
   weaponCode: 4
-  weaponName: 0
+  weaponName: DaggerName
   weaponSprite: {fileID: 21300000, guid: 3c11b33820d4d624986fec0fa1d0cb41, type: 3}
   weaponPrefab: {fileID: 797471903412696677, guid: ffc3c4f10e0c3804b97aef6dbe5045b4, type: 3}
-  weaponDesc: 4
+  weaponDesc: DaggerDesc
   weaponRange: 0.8
   weaponStartDamage: 5
   weaponAttackSpeed: 2
