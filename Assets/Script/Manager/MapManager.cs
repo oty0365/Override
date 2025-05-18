@@ -72,6 +72,13 @@ public class MapManager : HalfSingleMono<MapManager>
         _playerCamera = PlayerCamera.Instance;
 
     }
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CurrentDimention = Dimention.Code;
+        }
+    }
+
 
 }
