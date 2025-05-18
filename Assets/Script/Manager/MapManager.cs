@@ -1,6 +1,16 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
+
+public enum Dimention
+{
+    Normal,
+    Code
+}
 
 public enum MapCode
 {
@@ -16,23 +26,52 @@ public enum MapCode
 
 public class MapManager : HalfSingleMono<MapManager>
 {
+    public Action mapChange;
     [Header("¸Ê UI")]
     public GameObject banner;
     public Image header;
     public Image endl;
     public TextMeshProUGUI mapNameTmp;
-    private MapCode _currentMapCode;
+
+    private PlayerCamera _playerCamera;
+
+    [SerializeField]
+    private MapCode currentMapCode;
     public MapCode CurrentMapCode
     {
-        get => _currentMapCode;
+        get => currentMapCode;
         set
         {
-            if (value != _currentMapCode)
+            if (value != currentMapCode)
             {
-                _currentMapCode = value;
+                currentMapCode = value;
             }
         }
     }
+    [SerializeField]
+    private Dimention currentDimention;
+    public Dimention CurrentDimention
+    {
+        get => currentDimention;
+        set
+        {
+            currentDimention = value;
+            if(value == Dimention.Normal)
+            {
+                _playerCamera.colorAdjustments.saturation.value = 0;
+            }
+            else
+            {
+                _playerCamera.colorAdjustments.saturation.value = -100;
+            }
+                mapChange.Invoke();
+        }
+    }
+    private void Start()
+    {
+        _playerCamera = PlayerCamera.Instance;
 
+    }
+    
 
 }

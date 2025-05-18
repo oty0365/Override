@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c815442c056c7843abb2916763a96f7, type: 3}
   m_Name: DeamersPrison-1
   m_EditorClassIdentifier: 
-  mapPrefab: {fileID: 0}
+  mapPrefab: {fileID: 8076572968436554322, guid: 60608e2229d01c8498e22fdd744832aa, type: 3}
   mapCode: 0
-  mapName: 
+  mapSubName: "\uAE4A\uC740 \uB3C5"
   mapLevel: 0
+  mapHardness: 0
