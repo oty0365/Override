@@ -11,7 +11,7 @@ public enum PoolObjectType
     CrunchBite,
     BlazeOfEvil,
     HitByLayzer,
-
+    StaminaPoint,
 
 }
 
@@ -67,6 +67,7 @@ public class ObjectPooler : MonoBehaviour
             obj.gameObject.SetActive(true);
             obj.OnBirth();
         }
+
 
         return obj.gameObject;
     }

@@ -21,3 +21,5 @@ MonoBehaviour:
   - Override_Talker_AtAnvil_Data
   - Override_Talker_ATB_Data
   - Override_Talker_Parin_Data
+  - Override_TMI_Data
+  - Override_MapName_Data

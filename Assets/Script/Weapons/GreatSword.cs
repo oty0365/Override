@@ -74,8 +74,7 @@ public class GreatSword : WeaponBase
             if (hitable != null)
             {
                 Vector2 contactPoint = other.ClosestPoint(transform.position);
-                ObjectPooler.Instance.Get(colideParticle, contactPoint, Vector3.zero, new Vector2(2f, 2f));
-                PlayerCamera.Instance.SetShake(0.6f, 68, 0.04f);
+                hitable.OnHit();
             }
     }
 

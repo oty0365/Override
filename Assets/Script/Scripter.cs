@@ -91,6 +91,10 @@ public class Scripter : SingleMono<Scripter>
                         scripts[key].currentText = en;
                         break;
                 }
+                /*foreach(var a in scripts)
+                {
+                    Debug.Log(a.Key + "," + a.Value.currentText);
+                }*/
             }
         }
     }

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: DeamersPrison-1
   m_EditorClassIdentifier: 
   mapPrefab: {fileID: 8076572968436554322, guid: 60608e2229d01c8498e22fdd744832aa, type: 3}
-  mapCode: 0
-  mapSubName: "\uAE4A\uC740 \uB3C5"
+  mapCode: 1
+  mapSubName: 
   mapLevel: 0
   mapHardness: 0
+  spawnVector: {x: 0, y: 0}
+  playerSpawn: {x: 0, y: 0}

@@ -8,4 +8,7 @@ public class MapData : ScriptableObject
     public string mapSubName;
     public int mapLevel;
     public int mapHardness;
+    public Vector2 spawnVector;
+    public Vector2 playerSpawn;
+
 }

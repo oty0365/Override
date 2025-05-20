@@ -14,7 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
   m_GUID: cd27921b488f6cc498767246ca67e661
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 1b1204a037e758b4f806b86ec9476127
+    m_Address: DreamersPrisonImage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2519e9359ecbb4438410f1a5647afcd
+    m_Address: DeamersPrison-1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e3915f4bcb703a04b89cb29052bda6c7, type: 2}
   m_SchemaSet:

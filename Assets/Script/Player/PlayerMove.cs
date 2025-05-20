@@ -75,6 +75,12 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
 
     private void FixedUpdate()
     {
+        if (PlayerInteraction.Instance.isInteracting)
+        {
+            rb2D.linearVelocity = Vector2.zero;
+            return;
+        }
+
         switch (PlayerBehave)
         {
             case PlayerBehave.Idel:
@@ -87,7 +93,7 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
                 {
                     rb2D.linearVelocity = Vector2.zero;
                 }
-                    break;
+                break;
 
             case PlayerBehave.KnockBack:
                 if (!_isKnockBacking)
@@ -159,6 +165,7 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
                 PlayerBehave = PlayerBehave.Idel;
                 rb2D.linearVelocity = Vector2.zero;
                 _isDashing = false;
+                canInput = true;
                 yield break;
             }
 
@@ -181,6 +188,17 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
 
     void Update()
     {
+        if (PlayerInteraction.Instance.isInteracting)
+        {
+            PlayerBehave = PlayerBehave.Idel;
+            _horizontal = 0;
+            _vertical = 0;
+            _playerCommands = PlayerCommands.None;
+            PlayerAnimator.Instance.playerCommands = _playerCommands;
+            _ani.SetInteger("Behave", 0);
+            return;
+        }
+
         if (PlayerBehave != PlayerBehave.KnockBack && PlayerBehave != PlayerBehave.Dash && PlayerBehave != PlayerBehave.SpearRun && PlayerCommands == PlayerCommands.None)
         {
             PlayerBehave = PlayerBehave.Idel;
@@ -203,6 +221,9 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
 
     private void HandleMoveSpeed()
     {
+        if (PlayerInteraction.Instance.isInteracting)
+            return;
+
         if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]) && PlayerBehave != PlayerBehave.Dash)
         {
             AddCommand(PlayerCommands.Run);
@@ -240,49 +261,52 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
         _vertical = 0;
         _playerCommands = PlayerCommands.None;
 
-        if (canInput)
+        if (!canInput || PlayerInteraction.Instance.isInteracting)
         {
-            if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Up"]))
-            {
-                _vertical = 1;
-                AddCommand(PlayerCommands.Up);
-                if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
-                    PlayerBehave = PlayerBehave.Walk;
-            }
-            if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Down"]))
-            {
-                _vertical = -1;
-                AddCommand(PlayerCommands.Down);
-                if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
-                    PlayerBehave = PlayerBehave.Walk;
-            }
-            if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Right"]))
-            {
-                _horizontal = 1;
-                AddCommand(PlayerCommands.Right);
-                if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
-                    PlayerBehave = PlayerBehave.Walk;
-            }
-            if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Left"]))
-            {
-                _horizontal = -1;
-                AddCommand(PlayerCommands.Left);
-                if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
-                    PlayerBehave = PlayerBehave.Walk;
-            }
-
-            if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]))
-            {
-                if(PlayerCommands != PlayerCommands.None && PlayerInfo.Instance.PlayerCurStamina >= 6f)
-                {
-                    Dash();
-                }
-            }
-            if (_playerCommands.HasFlag(PlayerCommands.Left) && _playerCommands.HasFlag(PlayerCommands.Right))
-                _horizontal = 0;
-            if (_playerCommands.HasFlag(PlayerCommands.Down) && _playerCommands.HasFlag(PlayerCommands.Up))
-                _vertical = 0;
+            PlayerAnimator.Instance.playerCommands = _playerCommands;
+            return;
         }
+
+        if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Up"]))
+        {
+            _vertical = 1;
+            AddCommand(PlayerCommands.Up);
+            if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
+                PlayerBehave = PlayerBehave.Walk;
+        }
+        if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Down"]))
+        {
+            _vertical = -1;
+            AddCommand(PlayerCommands.Down);
+            if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
+                PlayerBehave = PlayerBehave.Walk;
+        }
+        if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Right"]))
+        {
+            _horizontal = 1;
+            AddCommand(PlayerCommands.Right);
+            if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
+                PlayerBehave = PlayerBehave.Walk;
+        }
+        if (Input.GetKey(KeyBindingManager.Instance.keyBindings["Left"]))
+        {
+            _horizontal = -1;
+            AddCommand(PlayerCommands.Left);
+            if (PlayerBehave == PlayerBehave.Walk || PlayerBehave == PlayerBehave.Idel)
+                PlayerBehave = PlayerBehave.Walk;
+        }
+
+        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]))
+        {
+            if (PlayerCommands != PlayerCommands.None && PlayerInfo.Instance.PlayerCurStamina >= 6f)
+            {
+                Dash();
+            }
+        }
+        if (_playerCommands.HasFlag(PlayerCommands.Left) && _playerCommands.HasFlag(PlayerCommands.Right))
+            _horizontal = 0;
+        if (_playerCommands.HasFlag(PlayerCommands.Down) && _playerCommands.HasFlag(PlayerCommands.Up))
+            _vertical = 0;
 
         PlayerAnimator.Instance.playerCommands = _playerCommands;
     }

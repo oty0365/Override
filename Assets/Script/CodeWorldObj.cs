@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class CodeWorldObj : MonoBehaviour
 {
-    [SerializeField] private bool isGround;
     private TilemapRenderer _map;
     private Tilemap _tilemap;
     private MapManager mapManager;
@@ -31,10 +30,7 @@ public class CodeWorldObj : MonoBehaviour
         else
         {
             _map.material = materials[1];
-            if(isGround)
-            {
-                _tilemap.color = code;
-            }
+            _tilemap.color = code;
         }
 
     }
