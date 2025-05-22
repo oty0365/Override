@@ -174,7 +174,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             currentSkillData = over.characterSkillData;
             SkillManager.Instance.ChangeCharacterSkill();
             SkillManager.Instance.BreakSkillCooldown(0);
-            SkillManager.Instance.BreakSkillCooldown(1);
+            SkillManager.Instance.BreakSkillCooldown(2);
 
         }
     }

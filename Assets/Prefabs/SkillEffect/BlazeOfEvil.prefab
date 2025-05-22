@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 6
+  type: 16
+  damage: 10
   curAnimation: {fileID: 4690137846327554841}
 --- !u!61 &5256266053868251070
 BoxCollider2D:

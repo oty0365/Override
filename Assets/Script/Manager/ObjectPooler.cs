@@ -17,6 +17,11 @@ public enum PoolObjectType
     ForceFromPeople,
     SwordOfVados,
     RedBlade,
+    VoidSword,
+    BloodKatana,
+    GreatSword,
+    Shovle,
+    WeaponSwip,
 
 
 }
@@ -99,6 +104,31 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
             obj.transform.position = position;
             obj.transform.rotation = Quaternion.Euler(rotation);
             obj.transform.localScale = new Vector3(size.x, size.y);
+            obj.gameObject.SetActive(true);
+            obj.OnBirth();
+        }
+
+        return obj.gameObject;
+    }
+    public GameObject Get(APoolingObject prefab, Transform parent)
+    {
+        PoolObjectType key = prefab.objectType;
+
+        if (!objectPoolList.ContainsKey(key))
+            objectPoolList[key] = new Queue<APoolingObject>();
+
+        APoolingObject obj;
+
+        if (objectPoolList[key].Count == 0)
+        {
+            obj = Instantiate(prefab, parent);
+            obj.objectType = key;
+            obj.OnBirth();
+        }
+        else
+        {
+            obj = objectPoolList[key].Dequeue();
+            obj.transform.parent = parent;
             obj.gameObject.SetActive(true);
             obj.OnBirth();
         }

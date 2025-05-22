@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class CrunchBite : APoolingObject
+public class CrunchBite : AAttack
 {
     public Animator curAnimation;
     public Vector2 curDir;

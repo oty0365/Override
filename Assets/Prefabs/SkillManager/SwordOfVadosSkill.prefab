@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillForm: 5
   instantinateModule:
-    attackObj: {fileID: -6923423531664017312, guid: 4b188722f888314479634ac8d51bb553, type: 3}
+    attackObj: {fileID: 8695324436724881617, guid: 73baf4c879c025346a92c5f88c39a56d, type: 3}
     attackTransform: {fileID: 4701102178204963118}
     range: 0

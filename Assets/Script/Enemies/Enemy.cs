@@ -59,7 +59,7 @@ public abstract class Enemy : APoolingObject
         c.UpLoadEvent();
         
     }
-    public virtual void Hit()
+    public virtual void Hit(float damage)
     {
         CurrentStamina -= 10f;
         if (_currentHitFlow != null)
@@ -98,7 +98,7 @@ public abstract class Enemy : APoolingObject
         Debug.Log(other.tag);
         if (other.CompareTag("damageable"))
         {
-            Hit();
+            other.GetComponent<AAttack>().CastDamage(this);
         }
     }
 }

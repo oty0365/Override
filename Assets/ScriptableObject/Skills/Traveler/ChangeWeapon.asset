@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uBB34\uAE30\uAD50\uCCB4"
   skillIcon: {fileID: 21300000, guid: c5e981ca5c5ddd74080325d3c0918cdd, type: 3}
-  basicCoolDown: 30
+  basicCoolDown: 1
   skillDesc: "\uB79C\uB364\uD55C \uBB34\uAE30\uB85C \uBB34\uAE30\uB97C \uBC14\uAFBC\uB2E4."
