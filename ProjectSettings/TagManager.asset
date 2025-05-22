@@ -8,6 +8,7 @@ TagManager:
   - wall
   - augmentsui
   - hitable
+  - damageable
   layers:
   - Default
   - TransparentFX

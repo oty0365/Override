@@ -1,9 +1,15 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Localization.Plugins.Google.Columns;
 using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.UI;
+
+public interface Buff
+{
+    public void UseBuff();
+}
 
 public class PlayerInfo : HalfSingleMono<PlayerInfo>
 {
@@ -184,10 +190,16 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             WeaponCore.Instance.ChangeWeapon(playerWeaponData.weaponPrefab);
         }
     }
+    public Stack<Buff> shiledBuff = new();
     void Start()
     {
         InitializeStatus();
+
     }
+    /*private void Update()
+    {
+        Debug.Log(shiledBuff.Count);
+    }*/
 
     public void SetInfiniteTime(float time)
     {

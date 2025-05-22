@@ -38,6 +38,9 @@ public class SkillManager : MonoBehaviour
     public SkillData curridentitySkill;
     public SkillData currultimateSkill;
 
+    public List<Code> openCodes;
+    
+
     private void Awake()
     {
         Instance = this;

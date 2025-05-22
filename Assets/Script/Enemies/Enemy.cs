@@ -29,6 +29,14 @@ public abstract class Enemy : APoolingObject
         get => _currentStamia;
         set
         {
+            if (value > monsterData.maxStamina)
+            {
+                value = monsterData.maxStamina;
+            }
+            if (value < 0)
+            {
+                value = 0;
+            }
             if(value != _currentStamia)
             {
                 _currentStamia = value;
@@ -46,7 +54,10 @@ public abstract class Enemy : APoolingObject
         _metProps = new MaterialPropertyBlock();
         var a = ObjGenerator.Instance.generateDict["StaminaPoint"];
         var o = ObjectPooler.Instance.Get(a, stamiaPointPos.transform.position, new Vector3(0, 0, 45));
-        o.GetComponent<StaminaPoint>().currentEnemy = this;
+        var c = o.GetComponent<StaminaPoint>();
+        c.currentEnemy = this;
+        c.UpLoadEvent();
+        
     }
     public virtual void Hit()
     {
@@ -81,5 +92,13 @@ public abstract class Enemy : APoolingObject
         sr.GetPropertyBlock(_metProps);
         _metProps.SetFloat("_Progress", 0);
         sr.SetPropertyBlock(_metProps);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log(other.tag);
+        if (other.CompareTag("damageable"))
+        {
+            Hit();
+        }
     }
 }

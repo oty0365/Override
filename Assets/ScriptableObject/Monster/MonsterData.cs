@@ -15,5 +15,6 @@ public class MonsterData : ScriptableObject
     public float maxHp;
     public float maxStamina;
     public float moveSpeed;
+    public float recoveryTime;
     public DropTable[] dropTable;
 }

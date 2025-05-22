@@ -12,6 +12,12 @@ public enum PoolObjectType
     BlazeOfEvil,
     HitByLayzer,
     StaminaPoint,
+    Dummy,
+    Code,
+    ForceFromPeople,
+    SwordOfVados,
+    RedBlade,
+
 
 }
 
@@ -28,14 +34,13 @@ public abstract class APoolingObject:MonoBehaviour
     public abstract void OnDeathInit();
 }
 
-public class ObjectPooler : MonoBehaviour
+public class ObjectPooler : HalfSingleMono<ObjectPooler>
 {
-    public static ObjectPooler Instance { get; private set; }
     private Dictionary<PoolObjectType, Queue<APoolingObject>> objectPoolList;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Instance = this;
+        base.Awake();
         objectPoolList = new Dictionary<PoolObjectType, Queue<APoolingObject>>();
     }
 
@@ -47,17 +52,17 @@ public class ObjectPooler : MonoBehaviour
     public GameObject Get(APoolingObject prefab, Vector2 position, Vector3 rotation)
     {
         PoolObjectType key = prefab.objectType;
-
         if (!objectPoolList.ContainsKey(key))
+        {
             objectPoolList[key] = new Queue<APoolingObject>();
-
+        }
         APoolingObject obj;
-
         if (objectPoolList[key].Count == 0)
         {
             obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
             obj.objectType = key;
             obj.OnBirth();
+
         }
         else
         {

@@ -16,4 +16,5 @@ MonoBehaviour:
   maxHp: 100
   maxStamina: 100
   moveSpeed: 0
+  recoveryTime: 3.5
   dropTable: []

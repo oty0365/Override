@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 3622482160648680618}
   m_Layer: 11
   m_Name: SoulBullet
-  m_TagString: Untagged
+  m_TagString: damageable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

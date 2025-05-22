@@ -17,6 +17,7 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
     public LayerMask interactionLayer;
     public GameObject interactionKey;
     public bool isInteracting;
+    public bool isCharging;
 
     private Collider2D[] _hits;
     private GameObject _currentObject;
@@ -113,6 +114,28 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
                 _currentObejctInteractable.OnInteract();
             }
 
+        }
+        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Charge"]))
+        {
+            PlayerCamera.Instance.SetZoom(3, 6);
+            isCharging = true;
+
+        }
+        if (isCharging)
+        {
+            var c = SkillManager.Instance.openCodes;
+            OnInteractMode(0);
+            foreach(var i in c)
+            {
+                i.FallowPlayer();
+                i.target = gameObject.transform.position;
+            }
+        }
+        if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Charge"]))
+        {
+            OnInteractMode(1);
+            isCharging = false;
+            PlayerCamera.Instance.SetZoom(4.5f, 6);
         }
     }
 

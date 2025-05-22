@@ -16,7 +16,8 @@ public abstract class ADamageable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")&&!PlayerInfo.Instance.isInfinite)
+        var playerInfo = PlayerInfo.Instance;
+        if (other.CompareTag("Player")&&!playerInfo.isInfinite)
         {
             contactPoint = other.ClosestPoint(transform.position);
             OnHit();
@@ -25,7 +26,7 @@ public abstract class ADamageable : MonoBehaviour
     protected void GiveDamage(float damage)
     {
         var playerInfo = PlayerInfo.Instance;
-        if(playerInfo.PlayerDefence - damage >= 0)
+        if (playerInfo.PlayerDefence - damage >= 0)
         {
             playerInfo.PlayerDefence -= damage;
         }
@@ -35,4 +36,14 @@ public abstract class ADamageable : MonoBehaviour
         }
     }
     public abstract void OnHit();
+    public bool CheckShield()
+    {
+        var playerInfo = PlayerInfo.Instance;
+        if (playerInfo.shiledBuff.Count > 0)
+        {
+            playerInfo.shiledBuff.Pop().UseBuff();
+            return true;
+        }
+        return false;
+    }
 }
