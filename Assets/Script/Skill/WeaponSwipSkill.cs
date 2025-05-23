@@ -71,16 +71,13 @@ public class WeaponSwipSkill : ACharacterSkill
     {
         if (!weaponDict.TryGetValue(CurrentWeapon, out var spinnerPrefab)) return;
 
-        currentWeaponSpiner = ObjectPooler.Instance
-            .Get(spinnerPrefab, currentWeaponSlot.weaponSlot.transform)
-            .GetComponent<WeaponSpiner>();
+        currentWeaponSpiner = ObjectPooler.Instance.Get(spinnerPrefab, currentWeaponSlot.weaponSlot.transform).GetComponent<WeaponSpiner>();
+        //currentWeaponSpiner.gameObject.SetActive(true);
     }
 
     public override void UseSkill()
     {
-        currentWeaponSlot = ObjectPooler.Instance
-            .Get(instantinateModule.attackObj, playerInfo.transform.position, Vector3.zero)
-            .GetComponent<WeaponSwip>();
+        currentWeaponSlot = ObjectPooler.Instance.Get(instantinateModule.attackObj, playerInfo.transform.position, Vector3.zero).GetComponent<WeaponSwip>();
     }
 
     private void OnDestroy()

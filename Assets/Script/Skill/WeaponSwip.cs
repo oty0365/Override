@@ -5,7 +5,7 @@ public class WeaponSwip : APoolingObject
 {
     private PlayerInfo playerInfo;
     public GameObject weaponSlot;  
-    public float rotationSpeed = 400f; 
+    public float rotationSpeed = 500f; 
     private float currentAngle;
 
     void Update()
@@ -18,10 +18,15 @@ public class WeaponSwip : APoolingObject
     public override void OnBirth()
     {
         playerInfo = PlayerInfo.Instance;
+        for(var i = 0; i < weaponSlot.transform.childCount; i++)
+        {
+            weaponSlot.transform.GetChild(i).gameObject.SetActive(false);
+        }
         currentAngle = 0f;
     }
 
     public override void OnDeathInit()
     {
+
     }
 }
