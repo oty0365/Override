@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum CurrentSwippingWeapon
 {
+    None = 30,
     BloodKantana = 0,
     Shovle,
     VoidSword,
@@ -89,6 +90,7 @@ public class WeaponSwipSkill : ACharacterSkill
         {
             currentWeaponSlot.Death();
         }
+        CurrentWeapon = CurrentSwippingWeapon.None;
 
     }
 }

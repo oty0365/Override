@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 522238295063064889}
   - component: {fileID: 8695324436724881617}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SwordOfVados
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,12 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 12
-  type: 1
-  damage: 30
+  attack:
+    type: 0
+    damage: 30
+    infinateTime: 0.1
+    attackCollider: {fileID: 0}
   curAnimation: {fileID: 5369134038700770772}
   blade: {fileID: 2975372670463307207, guid: f1ad9d3069d2a344091b7d28a0d2684e, type: 3}
   curDir: {x: 0, y: 0}
   curRotation: 0
+  isChild: 0
 --- !u!1 &1413669290580528881
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +209,7 @@ GameObject:
   - component: {fileID: 5901426337718820109}
   - component: {fileID: 5588645641858762981}
   - component: {fileID: 8596464756800087691}
+  - component: {fileID: 2925768027736052572}
   m_Layer: 0
   m_Name: Sword
   m_TagString: damageable
@@ -329,3 +334,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.62, y: 0.47}
   m_EdgeRadius: 0
+--- !u!114 &2925768027736052572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6658513560116182512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527d14058953daf41899148e53e1c908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 12
+  attack:
+    type: 1
+    damage: 30
+    infinateTime: 1
+    attackCollider: {fileID: 8596464756800087691}
+  curAnimation: {fileID: 0}
+  blade: {fileID: 0}
+  curDir: {x: 0, y: 0}
+  curRotation: 0
+  isChild: 1

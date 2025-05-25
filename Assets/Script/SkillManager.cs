@@ -58,10 +58,10 @@ public class SkillManager : MonoBehaviour
 
         ChangeCharacterSkill();
         ChangeAtSkill();
-        SetInputKey();
+        InitInputKey();
     }
 
-    public void SetInputKey()
+    public void InitInputKey()
     {
         skillSlot[0].skillKey.text = KeyBindingManager.Instance.keyBindings["SpecialAttack1"].ToString();
         skillSlot[1].skillKey.text = KeyBindingManager.Instance.keyBindings["SpecialAttack2"].ToString();
@@ -156,14 +156,20 @@ public class SkillManager : MonoBehaviour
             case SkillForm.PassiveIdentity:
                 skillSlot[0].skillKey.text = "";
                 break;
+            case SkillForm.ActiveIdentity:
+                skillSlot[0].skillKey.text = KeyBindingManager.Instance.keyBindings["SpecialAttack1"].ToString();
+                break;
             case SkillForm.PassiveAt:
                 skillSlot[1].skillKey.text = "";
+                break;
+            case SkillForm.ActiveAt:
+                skillSlot[1].skillKey.text = KeyBindingManager.Instance.keyBindings["SpecialAttack2"].ToString();
                 break;
             case SkillForm.PassiveUltimate:
                 skillSlot[2].skillKey.text = "";
                 break;
-            default:
-                SetInputKey();
+            case SkillForm.ActiveUltimate:
+                skillSlot[2].skillKey.text = KeyBindingManager.Instance.keyBindings["Ultimate"].ToString();
                 break;
 
         }

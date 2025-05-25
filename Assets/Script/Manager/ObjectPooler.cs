@@ -22,8 +22,11 @@ public enum PoolObjectType
     GreatSword,
     Shovle,
     WeaponSwip,
-
-
+    IceRage,
+    JellyBall,
+    SlimesBleast,
+    ThrownSlik,
+    RiseOfRadiance,
 }
 
 public abstract class APoolingObject:MonoBehaviour

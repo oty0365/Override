@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8929061341553189078}
   - component: {fileID: 2975372670463307207}
   - component: {fileID: 5851172806489646474}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RedBlade
   m_TagString: damageable
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 1261986364820665437, guid: b45e01232e7556c4c96672cd01ce9690, type: 3}
-  m_Color: {r: 0.8863529, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.13424015, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,8 +130,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 13
-  type: 1
-  damage: 30
+  attack:
+    type: 0
+    damage: 30
+    infinateTime: 0.5
+    attackCollider: {fileID: 5851172806489646474}
   rb2D: {fileID: 8929061341553189078}
   speed: 10
 --- !u!58 &5851172806489646474

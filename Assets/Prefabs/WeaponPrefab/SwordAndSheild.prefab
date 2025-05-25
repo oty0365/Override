@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1030725085084645706}
   m_Layer: 7
   m_Name: SwordAndSheild
-  m_TagString: damageable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,6 +140,10 @@ MonoBehaviour:
   range: 0.9
   attackSpeed: 1
   comboInputWindow: 1
+  attack:
+    type: 0
+    damage: 3
+    infinateTime: 0.1
 --- !u!58 &9212949366427838366
 CircleCollider2D:
   m_ObjectHideFlags: 0

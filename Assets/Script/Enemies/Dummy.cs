@@ -9,9 +9,9 @@ public class Dummy : Enemy
     {
         InitEnemy();
     }
-    public override void Hit(float damage)
+    public override void Hit(Collider2D collider, float damage,float infiateTime)
     {
-        base.Hit(damage);
+        base.Hit(collider,damage,infiateTime);
         PlayerCamera.Instance.SetShake(0.2f, 7.5f, 0.13f);
         ani.Play("DumyHit");
         ObjectPooler.Instance.Get(colideParticle, gameObject.transform.position, new Vector3(0, 0, 0), new Vector2(1f, 1f));

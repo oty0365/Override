@@ -54,10 +54,13 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             }
             if (value > playerMaxHp)
             {
-                playerMaxHp = value;
+                _playerCurHp = playerMaxHp;
             }
-            _playerCurHp = value;
-            hpRange.text = value.ToString() + "/" + playerMaxHp.ToString();
+            else
+            {
+                _playerCurHp = value;
+            }
+            hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
             hpBar.value = _playerCurHp;
             
         }

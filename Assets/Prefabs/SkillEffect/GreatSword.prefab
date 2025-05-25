@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7509720947184193266}
   - component: {fileID: 6359448649385810678}
   - component: {fileID: 468681172366297079}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GreatSword
   m_TagString: damageable
   m_Icon: {fileID: 0}
@@ -102,8 +102,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 16
-  type: 0
-  damage: 17
+  attack:
+    type: 0
+    damage: 7
+    infinateTime: 0.5
+    attackCollider: {fileID: 468681172366297079}
 --- !u!61 &468681172366297079
 BoxCollider2D:
   m_ObjectHideFlags: 0

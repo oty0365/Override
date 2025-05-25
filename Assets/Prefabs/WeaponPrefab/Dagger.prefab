@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8767645000335395722}
   m_Layer: 7
   m_Name: Dagger
-  m_TagString: damageable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,6 +134,10 @@ MonoBehaviour:
   range: 0.7
   daggerBullet: {fileID: 2839827225341748836, guid: 081bea90275964a4c8eb780c2c5b074c, type: 3}
   daggerThrowCooldown: 2
+  attack:
+    type: 0
+    damage: 2
+    infinateTime: 0.1
 --- !u!61 &6127272323391154129
 BoxCollider2D:
   m_ObjectHideFlags: 0

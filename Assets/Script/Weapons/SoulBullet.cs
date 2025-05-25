@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
-public class SoulBullet: APoolingObject
+public class SoulBullet: AAttack
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer sr;

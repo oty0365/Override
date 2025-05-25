@@ -325,6 +325,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 4
+  attack:
+    type: 0
+    damage: 4
+    infinateTime: 0.1
   rb: {fileID: 7402398131208078517}
   sr: {fileID: 3441299332645365235}
   fadeSpeed: 8

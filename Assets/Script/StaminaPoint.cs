@@ -18,7 +18,7 @@ public class StaminaPoint : APoolingObject
     }
     void Update()
     {
-        gameObject.transform.position = currentEnemy.stamiaPointPos.position;
+        gameObject.transform.position = currentEnemy.staminaPointPos.position;
     }
     public override void OnBirth()
     {

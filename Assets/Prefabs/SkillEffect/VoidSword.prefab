@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2661772426648283160}
   - component: {fileID: 7994828373670616239}
   - component: {fileID: 330711127680276646}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: VoidSword
   m_TagString: damageable
   m_Icon: {fileID: 0}
@@ -103,8 +103,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 14
-  type: 16
-  damage: 14
+  attack:
+    type: 0
+    damage: 15
+    infinateTime: 0.5
+    attackCollider: {fileID: 330711127680276646}
 --- !u!61 &330711127680276646
 BoxCollider2D:
   m_ObjectHideFlags: 0

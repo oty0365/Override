@@ -17,6 +17,7 @@ public class SwordAndSheild: WeaponBase
     public float attackSpeed = 1f;
     public float comboInputWindow = 1f;
 
+    public Attack attack;
 
     private void Start()
     {
@@ -115,7 +116,12 @@ public class SwordAndSheild: WeaponBase
         if (!isBlocking)
         {
             IHitable hitable = other.GetComponent<IHitable>();
-            if(hitable != null)
+            var a = other.GetComponent<Enemy>();
+            if (a != null)
+            {
+                a.Hit(attack.attackCollider,attack.damage, attack.infinateTime);
+            }
+            if (hitable != null)
             {
                 Vector2 contactPoint = other.ClosestPoint(transform.position);
                 hitable.OnHit();

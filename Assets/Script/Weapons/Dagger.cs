@@ -5,16 +5,21 @@ public class Dagger : WeaponBase
 {
     [SerializeField] private APoolingObject daggerBullet;
     public float daggerThrowCooldown;
-
     private GameObject _curdagger;
     private bool _isThrowing;
     private bool _canThrow;
+    public Attack attack;
 
     private static readonly int AttackHash = Animator.StringToHash("Attack");
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         IHitable hitable = other.GetComponent<IHitable>();
+        var a = other.GetComponent<Enemy>();
+        if(a != null)
+        {
+            a.Hit(attack.attackCollider, attack.damage,attack.infinateTime);
+        }
         if (hitable != null)
         {
             Vector2 contactPoint = other.ClosestPoint(transform.position);

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3874958864748270778}
   - component: {fileID: 8901817162679393174}
   - component: {fileID: 2836522731869533916}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CrunchBite
   m_TagString: damageable
   m_Icon: {fileID: 0}
@@ -125,8 +125,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 5
-  type: 0
-  damage: 15
+  attack:
+    type: 0
+    damage: 10
+    infinateTime: 1
+    attackCollider: {fileID: 2836522731869533916}
   curAnimation: {fileID: 3874958864748270778}
   curDir: {x: 0, y: 0}
 --- !u!61 &2836522731869533916

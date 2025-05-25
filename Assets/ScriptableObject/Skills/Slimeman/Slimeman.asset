@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   identitySkills:
   - skillData: {fileID: 11400000, guid: 369dbe7e668e74349a0256cfd32a1aa8, type: 2}
-    characterSkill: {fileID: 0}
+    characterSkill: {fileID: 4795509842742953024, guid: 0e64017ad4b8af14bb38441898b7368b, type: 3}
   ultimateSkills:
   - skillData: {fileID: 11400000, guid: 8262f0d6ad0cc9744a3ca56390128e12, type: 2}
-    characterSkill: {fileID: 0}
+    characterSkill: {fileID: 4999058896278365026, guid: 4b968ce4c4079b942b53e2caa51a67c3, type: 3}

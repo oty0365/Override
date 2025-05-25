@@ -11,14 +11,21 @@ public enum ElementType
     Grond = 1<<3,
     Dark = 1<<4,
 }
-
-public abstract class AAttack : APoolingObject
+[Serializable]
+public class Attack
 {
     public ElementType type;
     public float damage;
+    public float infinateTime = 0.1f;
+    public Collider2D attackCollider;
+}
+
+public abstract class AAttack : APoolingObject
+{
+    public Attack attack;
 
     public void CastDamage(Enemy target)
     {
-        target.Hit(damage);
+        target.Hit(attack.attackCollider,attack.damage,attack.infinateTime);
     }
 }

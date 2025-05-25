@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HealParticle
+  m_Name: SlickParticle
   m_Shader: {fileID: -6465566751694194690, guid: fde03538e9e75104293614f850172712, type: 3}
   m_Parent: {fileID: 2100000, guid: 171be784be8c37c4ea775d7c73914799, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bef67aaa81fbb614f949726c91288500, type: 3}
+        m_Texture: {fileID: 2800000, guid: a7318e89db17e194f9f0dd3ab0f6289f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []

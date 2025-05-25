@@ -9,6 +9,7 @@ public class SwordOfVados: AAttack
     public float curRotation;
     private AnimatorStateInfo _stateInfo;
     private bool hadTrownBlade;
+    public bool isChild;
     public override void OnBirth()
     {
         hadTrownBlade = false;
@@ -23,6 +24,10 @@ public class SwordOfVados: AAttack
     }
     void Update()
     {
+        if (isChild)
+        {
+            return;
+        }
         gameObject.transform.position = (Vector2)PlayerMove.Instance.gameObject.transform.position+curDir;
         _stateInfo = curAnimation.GetCurrentAnimatorStateInfo(0);
         if (!hadTrownBlade&&_stateInfo.normalizedTime >= 0.54f)
@@ -35,10 +40,6 @@ public class SwordOfVados: AAttack
             Death();
         }
         
-    }
-    public void SpawnBlade()
-    {
-
     }
     
 }
