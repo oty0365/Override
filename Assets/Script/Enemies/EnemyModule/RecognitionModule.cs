@@ -9,7 +9,6 @@ public class RecognitionModule : Module
         RaycastHit2D hit;
         Vector2 dir = target.transform.position-gameObject.transform.position;
         hit = Physics2D.Raycast(gameObject.transform.position, dir,range,layerMask);
-        Debug.Log(hit.collider);
         if (hit.collider == null)
         {
             return false;
