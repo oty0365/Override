@@ -16,7 +16,7 @@ public class RiseOfTheRadiance :APoolingObject
 
     void Update()
     {
-        gameObject.transform.position = playerInfo.gameObject.transform.position;
+        gameObject.transform.position = new Vector2(playerInfo.gameObject.transform.position.x, playerInfo.gameObject.transform.position.y+0.3f);
     }
     public override void OnBirth()
     {
@@ -39,7 +39,8 @@ public class RiseOfTheRadiance :APoolingObject
             if (i > counter)
             {
                 counter+=0.5f;
-                playerInfo.PlayerCurHp++;
+                playerInfo.PlayerCurStamina+=3;
+                playerInfo.PlayerAttackDamage += 20;
             }
             yield return null;
         }
@@ -49,6 +50,7 @@ public class RiseOfTheRadiance :APoolingObject
             yield return null;
         }
         sr.color = Color.clear;
+        playerInfo.PlayerAttackDamage -= 20;
     }
     public override void OnDeathInit()
     {

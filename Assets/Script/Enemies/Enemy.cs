@@ -7,16 +7,24 @@ using UnityEngine;
 
 public abstract class Enemy : APoolingObject
 {
+    [Header("몬스터 데이터")]
     public MonsterData monsterData;
+    [Header("스테미나 포인트 위치")]
     public Transform staminaPointPos;
+    [Header("몬스터 애니메이터")]
     public Animator ani;
     public SpriteRenderer sr;
+    [Header("몬스터 물리연산")]
     public Action onStaminaChange;
     public Collider2D enemyHitBox;
+    public Rigidbody2D rb2D;
     protected MaterialPropertyBlock _metProps;
     protected Coroutine _currentHitFlow;
+    public FSM fsm = new();
     public Dictionary<Collider2D, bool> contactWithDamage = new(); 
     protected Coroutine _currentInfinateFlow;
+    [Header("공격할 대상")]
+    public GameObject target;
 
     [SerializeField]
     private float _currentHp;
@@ -55,9 +63,19 @@ public abstract class Enemy : APoolingObject
         }
     }
 
+    protected void StateUpdate()
+    {
+        fsm.UpdateState();
+    }
+    protected void StateFixedUpdate()
+    {
+        fsm.FixedUpdateState();
+    }
+
     public virtual void InitEnemy()
     {
         contactWithDamage.Clear();
+        fsm.InitState();
         CurrentHp = monsterData.maxHp;
         CurrentStamina = monsterData.maxStamina;
         _metProps = new MaterialPropertyBlock();
@@ -67,6 +85,7 @@ public abstract class Enemy : APoolingObject
         c.currentEnemy = this;
         c.UpLoadEvent();
     }
+    
 
     public virtual void Hit(Collider2D collider, float damage, float infinateTime)
     {
@@ -163,4 +182,11 @@ public abstract class Enemy : APoolingObject
         }
 
     }
+
+
 }
+public abstract class BaseDeath : State { }
+public abstract class BaseWalk : State { }
+public abstract class BaseStun : State { }
+public abstract class BaseIdel : State { }
+public abstract class BaseAttack : State { }

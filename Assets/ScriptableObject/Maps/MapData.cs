@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 
 [CreateAssetMenu(fileName = "MapData", menuName = "Scriptable Objects/MapData")]
 public class MapData : ScriptableObject

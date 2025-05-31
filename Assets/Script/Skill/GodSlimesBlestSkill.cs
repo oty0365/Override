@@ -28,7 +28,11 @@ public class GodSlimesBleastSkill : ACharacterSkill
     }
     private void OnDestroy()
     {
-        Destroy(currentShield.gameObject);
+        if (currentShield != null)
+        {
+            ObjectPooler.Instance.Return(currentShield);
+            currentShield = null;
+        }
 
     }
 }
