@@ -711,6 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1930595358450538619}
+  baseMap: {fileID: 8076572968436554322}
 --- !u!1 &4010453488938847319
 GameObject:
   m_ObjectHideFlags: 0
@@ -29805,7 +29806,7 @@ Transform:
   m_GameObject: {fileID: 8076572968436554322}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.97389597, y: -0.40926597, z: 1.5000603}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5000603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

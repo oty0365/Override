@@ -345,7 +345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0.55999756, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63892110
@@ -20635,7 +20635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2814795, y: 0.14400001}
   m_AnchorMax: {x: 0.48000002, y: 0.842709}
-  m_AnchoredPosition: {x: -0.49975586, y: 1.0000038}
+  m_AnchoredPosition: {x: -0.49975586, y: 1}
   m_SizeDelta: {x: -2.4400024, y: -2}
   m_Pivot: {x: 0.4999993, y: 0.50000024}
 --- !u!114 &476961177
@@ -21531,7 +21531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.52152056, y: 0.14400001}
   m_AnchorMax: {x: 0.717, y: 0.842709}
-  m_AnchoredPosition: {x: 0.0001373291, y: 1.0000076}
+  m_AnchoredPosition: {x: 0.00012207031, y: 1}
   m_SizeDelta: {x: 2.5599976, y: -2}
   m_Pivot: {x: 0.4999993, y: 0.50000024}
 --- !u!114 &600606560
@@ -25294,7 +25294,7 @@ Transform:
   m_GameObject: {fileID: 975054090}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1079.127, y: 295.33417, z: -8.545776}
+  m_LocalPosition: {x: 0, y: 0, z: -8.545776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25427,8 +25427,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e752bcf881c4ec4e8fb2d72d8ed1d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 0}
-  wall: {fileID: 0}
+  tilemap: {fileID: 0}
+  floor: {fileID: 7049665052863720866, guid: dcf1cf70d8838bf4d855c92584d746f6, type: 3}
+  wall: {fileID: 5352016245736568314, guid: 2f8000e786df9f8439b40d1d2dfe8d5a, type: 3}
 --- !u!1 &978985382
 GameObject:
   m_ObjectHideFlags: 0
@@ -25868,7 +25869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.541, y: 0.20255764}
   m_AnchorMax: {x: 0.93048054, y: 0.71000004}
-  m_AnchoredPosition: {x: 0.12496948, y: 0.8500061}
+  m_AnchoredPosition: {x: 0.125, y: 0.8499756}
   m_SizeDelta: {x: -0.25006104, y: 1.3200073}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040400173
@@ -25943,7 +25944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0.55999756, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1051225877
@@ -26854,7 +26855,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8183
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -26900,7 +26901,7 @@ BoxCollider2D:
     m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 7671
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -26948,7 +26949,7 @@ MonoBehaviour:
   ani: {fileID: 1139925011}
   sr: {fileID: 1139925010}
   enemyHitBox: {fileID: 1139925012}
-  rb2D: {fileID: 0}
+  rb2D: {fileID: 1139925015}
   target: {fileID: 0}
   _currentHp: 0
   _currentStamia: 0
@@ -27233,7 +27234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.010000001, y: 0.023295559}
   m_AnchorMax: {x: 0.09783417, y: 0.17836948}
-  m_AnchoredPosition: {x: 97.991196, y: 111.827515}
+  m_AnchoredPosition: {x: 97.99121, y: 111.827515}
   m_SizeDelta: {x: 138.03711, y: 157.18398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1166585546
@@ -29668,7 +29669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0.55999756, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1461883683
@@ -31635,7 +31636,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0.55999756, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1631649280
@@ -32366,7 +32367,7 @@ Transform:
   m_GameObject: {fileID: 1684374702}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.505, y: -2.288, z: -1.4876076}
+  m_LocalPosition: {x: -1.7, y: 8.22, z: -1.4876076}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32432,7 +32433,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 8704
@@ -32473,14 +32474,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684374702}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -32491,7 +32492,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1684374708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32509,7 +32510,7 @@ MonoBehaviour:
   staminaPointPos: {fileID: 710025002}
   ani: {fileID: 1684374709}
   sr: {fileID: 1684374703}
-  enemyHitBox: {fileID: 1684374705}
+  enemyHitBox: {fileID: 1684374706}
   rb2D: {fileID: 1684374707}
   target: {fileID: 691240168}
   _currentHp: 0
@@ -32552,13 +32553,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  wayPoint: {fileID: 0}
-  monsterWidth: 1
-  monsterHeight: 1
-  centerOffset: {x: 0, y: 0}
-  playerWidth: 1
-  playerHeight: 1
-  playerCenterOffset: {x: 0, y: 0}
 --- !u!114 &1684374711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32576,6 +32570,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+  debugRange: 5
 --- !u!114 &1684374712
 MonoBehaviour:
   m_ObjectHideFlags: 0

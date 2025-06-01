@@ -51,6 +51,7 @@ public class RiseOfTheRadiance :APoolingObject
         }
         sr.color = Color.clear;
         playerInfo.PlayerAttackDamage -= 20;
+        Death();
     }
     public override void OnDeathInit()
     {

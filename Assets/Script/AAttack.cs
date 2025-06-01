@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Flags]
@@ -23,9 +25,18 @@ public class Attack
 public abstract class AAttack : APoolingObject
 {
     public Attack attack;
+    public List<Enemy> contactedEnemies;
 
     public void CastDamage(Enemy target)
     {
         target.Hit(attack.attackCollider,attack.damage,attack.infinateTime);
+    }
+
+    public override void OnDeathInit()
+    {
+        foreach(var i in contactedEnemies)
+        {
+            i.RemoveDamaging(attack.attackCollider);
+        }
     }
 }

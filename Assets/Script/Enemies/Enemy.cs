@@ -89,6 +89,7 @@ public abstract class Enemy : APoolingObject
 
     public virtual void Hit(Collider2D collider, float damage, float infinateTime)
     {
+        //Debug.Log("Hit");
         CurrentStamina -= 10f;
         if (_currentHitFlow != null)
         {
@@ -126,7 +127,7 @@ public abstract class Enemy : APoolingObject
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!contactWithDamage.ContainsKey(other) && other.CompareTag("damageable"))
+        if(!contactWithDamage.ContainsKey(other) && other.CompareTag("damageable"))
         {
             contactWithDamage.Add(other, false);
 
@@ -145,12 +146,19 @@ public abstract class Enemy : APoolingObject
     {
         if (other.CompareTag("damageable"))
         {
-            contactWithDamage.Remove(other);
+
+            RemoveDamaging(other);
         }
     }
 
-    private void FixedUpdate()
+    public void RemoveDamaging(Collider2D other)
     {
+        contactWithDamage?.Remove(other);
+    }
+
+    protected void FixedUpdate()
+    {
+        StateFixedUpdate();
         foreach (var kvp in contactWithDamage.ToList())
         {
             if (kvp.Key != null && !kvp.Value)
@@ -166,7 +174,11 @@ public abstract class Enemy : APoolingObject
             }
         }
     }
-
+    protected void Update()
+    {
+        StateUpdate();
+        Flip();
+    }
     protected IEnumerator InfinateTimeFlow(Collider2D collider, float infinateTime)
     {
         if (contactWithDamage.ContainsKey(collider))
@@ -182,9 +194,25 @@ public abstract class Enemy : APoolingObject
         }
 
     }
+    public void Flip()
+    {
+        if(target != null)
+        {
+            if (target.transform.position.x < gameObject.transform.position.x)
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                sr.flipX = false;
+            }
+        }
+
+    }
 
 
 }
+
 public abstract class BaseDeath : State { }
 public abstract class BaseWalk : State { }
 public abstract class BaseStun : State { }

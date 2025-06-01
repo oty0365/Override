@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PassedPoint
 {
@@ -14,24 +15,6 @@ public class PassedPoint
 public class PathFinder : MonoBehaviour
 {
     public GameObject target;
-    public GameObject wayPoint;
-
-    [Header("Monster Size Settings")]
-    [Tooltip("몬스터의 가로 크기 (타일 단위)")]
-    public int monsterWidth = 1;
-    [Tooltip("몬스터의 세로 크기 (타일 단위)")]
-    public int monsterHeight = 1;
-    [Tooltip("몬스터 중심점에서의 오프셋")]
-    public Vector2Int centerOffset = Vector2Int.zero;
-
-    [Header("Player Size Settings")]
-    [Tooltip("플레이어의 가로 크기 (타일 단위)")]
-    public int playerWidth = 1;
-    [Tooltip("플레이어의 세로 크기 (타일 단위)")]
-    public int playerHeight = 1;
-    [Tooltip("플레이어 중심점에서의 오프셋")]
-    public Vector2Int playerCenterOffset = Vector2Int.zero;
-
     private Vector2Int _startPos;
     public Vector2Int StartPos
     {
@@ -47,90 +30,22 @@ public class PathFinder : MonoBehaviour
     private int[] _eightX = new int[8] { 0, 1, 1, 0, -1, -1, 1, -1 };
     private int[] _eightY = new int[8] { 1, 0, 1, -1, 0, -1, -1, 1 };
 
-    private bool CanPlayerFitAt(Vector2Int centerPos)
-    {
-        var mapInfos = TileMapManager.Instance.mapInfos;
-
-        int startX = centerPos.x + playerCenterOffset.x - playerWidth / 2;
-        int startY = centerPos.y + playerCenterOffset.y - playerHeight / 2;
-        int endX = startX + playerWidth;
-        int endY = startY + playerHeight;
-
-        for (int x = startX; x < endX; x++)
-        {
-            for (int y = startY; y < endY; y++)
-            {
-                Vector3Int tilePos = new Vector3Int(x, y, 0);
-                if (!mapInfos.ContainsKey(tilePos) || !mapInfos[tilePos].ableToGo)
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    private bool CanMonsterFitAt(Vector2Int centerPos)
-    {
-        var mapInfos = TileMapManager.Instance.mapInfos;
-
-        int startX = centerPos.x + centerOffset.x - monsterWidth / 2;
-        int startY = centerPos.y + centerOffset.y - monsterHeight / 2;
-        int endX = startX + monsterWidth;
-        int endY = startY + monsterHeight;
-
-        for (int x = startX; x < endX; x++)
-        {
-            for (int y = startY; y < endY; y++)
-            {
-                Vector3Int tilePos = new Vector3Int(x, y, 0);
-                if (!mapInfos.ContainsKey(tilePos) || !mapInfos[tilePos].ableToGo)
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    private bool CanMoveDiagonally(Vector2Int from, Vector2Int to)
-    {
-        if (!CanMonsterFitAt(to))
-            return false;
-
-        var mapInfos = TileMapManager.Instance.mapInfos;
-
-        int deltaX = to.x - from.x;
-        int deltaY = to.y - from.y;
-
-        Vector2Int side1 = new Vector2Int(from.x + deltaX, from.y);
-        Vector2Int side2 = new Vector2Int(from.x, from.y + deltaY);
-
-        if (!CanMonsterFitAt(side1) || !CanMonsterFitAt(side2))
-            return false;
-
-        return true;
-    }
+    // 경로를 저장할 리스트 (기즈모에서 사용)
+    private List<Vector2Int> currentPath = new List<Vector2Int>();
 
     public List<Vector2Int> PathFinding()
     {
-        var curPos = new Vector2Int((int)Mathf.Round(gameObject.transform.position.x), (int)Mathf.Round(gameObject.transform.position.y));
+        Tilemap tilemap = TileMapManager.Instance.tilemap;
+        if (tilemap == null)
+        {
+            return null;
+        }
+
+        Vector3Int cellStart = tilemap.WorldToCell(gameObject.transform.position);
+        Vector3Int cellTarget = tilemap.WorldToCell(target.transform.position);
+        Vector2Int curPos = new Vector2Int(cellStart.x, cellStart.y);
         StartPos = curPos;
-        var targetPos = new Vector2Int((int)Mathf.Round(target.transform.position.x), (int)Mathf.Round(target.transform.position.y));
-
-        if (!CanMonsterFitAt(curPos))
-        {
-            Debug.LogWarning("몬스터가 시작 위치에 맞지 않습니다!");
-            return null;
-        }
-
-        if (!CanPlayerFitAt(targetPos))
-        {
-            Debug.LogWarning("플레이어가 목표 위치에 맞지 않습니다!");
-            return null;
-        }
+        Vector2Int targetPos = new Vector2Int(cellTarget.x, cellTarget.y);
 
         openQueue.Clear();
         closedList.Clear();
@@ -153,43 +68,35 @@ public class PathFinder : MonoBehaviour
         while (openQueue.Count > 0)
         {
             curPos = openQueue.Dequeue();
-            if (!openDict.ContainsKey(curPos))
-            {
-                continue;
-            }
+            if (!openDict.ContainsKey(curPos)) continue;
 
             var curNode = openDict[curPos];
             openDict.Remove(curPos);
             closedDict[curPos] = curNode;
+            var mapInfos = TileMapManager.Instance.mapInfos;
 
-            if (curPos == targetPos)
-            {
-                break;
-            }
+            if (curPos == targetPos) break;
 
             for (int i = 0; i < 8; i++)
             {
                 var newPos = new Vector2Int(curPos.x + _eightX[i], curPos.y + _eightY[i]);
-                if (!CanMonsterFitAt(newPos))
-                {
-                    continue;
-                }
+                var newCellPos = new Vector3Int(newPos.x, newPos.y, 0);
 
-                if (closedDict.ContainsKey(newPos))
-                {
-                    continue;
-                }
+                if (!mapInfos.ContainsKey(newCellPos) || !mapInfos[newCellPos].ableToGo) continue;
+                if (closedDict.ContainsKey(newPos)) continue;
 
                 bool isDiagonal = _eightX[i] != 0 && _eightY[i] != 0;
-                if (isDiagonal && !CanMoveDiagonally(curPos, newPos))
+                if (isDiagonal)
                 {
-                    continue;
+                    Vector3Int adj1 = new Vector3Int(curPos.x + _eightX[i], curPos.y, 0);
+                    Vector3Int adj2 = new Vector3Int(curPos.x, curPos.y + _eightY[i], 0);
+                    if (!mapInfos.ContainsKey(adj1) || !mapInfos[adj1].ableToGo || !mapInfos.ContainsKey(adj2) || !mapInfos[adj2].ableToGo)
+                        continue;
                 }
 
                 float moveCost = isDiagonal ? 1.4f : 1.0f;
                 int g = curNode.gCost + Mathf.RoundToInt(moveCost * 10);
                 int h = (int)Vector2Int.Distance(newPos, targetPos);
-                //h += Random.Range(0, 400);
                 int f = g + h;
 
                 if (openDict.TryGetValue(newPos, out var existingNode))
@@ -230,10 +137,13 @@ public class PathFinder : MonoBehaviour
             path.Add(StartPos);
             path.Reverse();
 
+            // 현재 경로를 업데이트 (기즈모에서 사용)
+            currentPath = path;
+
             /*Debug.Log("경로 출력:");
             foreach (var p in path)
             {
-                Instantiate(wayPoint, p, Quaternion.identity);
+                Debug.Log($"Path Point: {p}");
             }*/
 
             closedList.Clear();
@@ -244,65 +154,59 @@ public class PathFinder : MonoBehaviour
             return path;
         }
 
-        Debug.LogWarning("경로를 찾을 수 없습니다!");
+        // 경로를 찾지 못한 경우 빈 리스트로 설정
+        currentPath.Clear();
         return null;
     }
 
-    // 디버그용: 몬스터와 플레이어가 차지하는 영역 시각화
+    private void OnDrawGizmos()
+    {
+        if (currentPath == null || currentPath.Count == 0) return;
+
+        Tilemap tilemap = TileMapManager.Instance?.tilemap;
+        if (tilemap == null) return;
+
+        // 경로 선 그리기
+        Gizmos.color = Color.green;
+        for (int i = 0; i < currentPath.Count - 1; i++)
+        {
+            Vector3 worldPos1 = tilemap.GetCellCenterWorld(new Vector3Int(currentPath[i].x, currentPath[i].y, 0));
+            Vector3 worldPos2 = tilemap.GetCellCenterWorld(new Vector3Int(currentPath[i + 1].x, currentPath[i + 1].y, 0));
+            Gizmos.DrawLine(worldPos1, worldPos2);
+        }
+
+        // 경로 포인트 그리기
+        Gizmos.color = Color.yellow;
+        foreach (var point in currentPath)
+        {
+            Vector3 worldPos = tilemap.GetCellCenterWorld(new Vector3Int(point.x, point.y, 0));
+            Gizmos.DrawWireSphere(worldPos, 0.1f);
+        }
+
+        // 시작점과 목표점 강조
+        if (currentPath.Count > 0)
+        {
+            Gizmos.color = Color.blue;
+            Vector3 startWorldPos = tilemap.GetCellCenterWorld(new Vector3Int(currentPath[0].x, currentPath[0].y, 0));
+            Gizmos.DrawSphere(startWorldPos, 0.15f);
+            Gizmos.color = Color.red;
+            Vector3 targetWorldPos = tilemap.GetCellCenterWorld(new Vector3Int(currentPath[currentPath.Count - 1].x, currentPath[currentPath.Count - 1].y, 0));
+            Gizmos.DrawSphere(targetWorldPos, 0.15f);
+        }
+    }
+
     /*private void OnDrawGizmosSelected()
     {
-        if (Application.isPlaying)
+
+        if (closedList == null || closedList.Count == 0) return;
+
+        Tilemap tilemap = TileMapManager.Instance?.tilemap;
+        if (tilemap == null) return;
+        Gizmos.color = Color.gray;
+        foreach (var node in closedList)
         {
-            // 몬스터 영역 표시 (빨간색)
-            Vector2Int monsterPos = new Vector2Int(
-                (int)Mathf.Round(transform.position.x),
-                (int)Mathf.Round(transform.position.y)
-            );
-
-            Gizmos.color = Color.red;
-
-            int monsterStartX = monsterPos.x + centerOffset.x - monsterWidth / 2;
-            int monsterStartY = monsterPos.y + centerOffset.y - monsterHeight / 2;
-
-            for (int x = 0; x < monsterWidth; x++)
-            {
-                for (int y = 0; y < monsterHeight; y++)
-                {
-                    Vector3 tileCenter = new Vector3(monsterStartX + x + 0.5f, monsterStartY + y + 0.5f, 0);
-                    Gizmos.DrawWireCube(tileCenter, Vector3.one);
-                }
-            }
-
-            // 플레이어 영역 표시 (파란색)
-            if (target != null)
-            {
-                Vector2Int playerPos = new Vector2Int(
-                    (int)Mathf.Round(target.transform.position.x),
-                    (int)Mathf.Round(target.transform.position.y)
-                );
-
-                Gizmos.color = Color.blue;
-
-                int playerStartX = playerPos.x + playerCenterOffset.x - playerWidth / 2;
-                int playerStartY = playerPos.y + playerCenterOffset.y - playerHeight / 2;
-
-                for (int x = 0; x < playerWidth; x++)
-                {
-                    for (int y = 0; y < playerHeight; y++)
-                    {
-                        Vector3 tileCenter = new Vector3(playerStartX + x + 0.5f, playerStartY + y + 0.5f, 0);
-                        Gizmos.DrawWireCube(tileCenter, Vector3.one);
-                    }
-                }
-
-                // 플레이어 중심점 표시
-                Gizmos.color = Color.cyan;
-                Gizmos.DrawSphere(new Vector3(playerPos.x + 0.5f, playerPos.y + 0.5f, 0), 0.2f);
-            }
-
-            // 몬스터 중심점 표시
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(new Vector3(monsterPos.x + 0.5f, monsterPos.y + 0.5f, 0), 0.2f);
+            Vector3 worldPos = tilemap.GetCellCenterWorld(new Vector3Int(node.pos.x, node.pos.y, 0));
+            Gizmos.DrawWireCube(worldPos, Vector3.one * 0.2f);
         }
     }*/
 }
