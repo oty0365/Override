@@ -29,7 +29,10 @@ public class ForceFromPeopleSkill : ACharacterSkill
     }
     private void OnDestroy()
     {
-        Destroy(currentShield.gameObject);
+        if (currentShield.gameObject!=null)
+        {
+            Destroy(currentShield.gameObject);
+        }
         PlayerInfo.Instance.shiledBuff.Clear();
     }
 }

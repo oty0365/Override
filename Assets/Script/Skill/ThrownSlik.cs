@@ -43,7 +43,7 @@ public class ThrownSlik: AAttack
     }
     private IEnumerator GoToSlik()
     {
-        while (Vector2.Distance(_playerInfo.transform.position, target) > 0.1f)
+        while (Vector2.Distance(_playerInfo.transform.position, target) > 0.4f)
         {
             _playerInfo.transform.position = Vector2.MoveTowards(_playerInfo.transform.position, target, Time.deltaTime * 22f);
             yield return null;

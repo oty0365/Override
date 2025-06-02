@@ -26,6 +26,12 @@ public abstract class Enemy : APoolingObject
     [Header("공격할 대상")]
     public GameObject target;
 
+    public bool isStun;
+    public bool isStunning;
+
+    public StaminaPoint staminaPoint;
+
+
     [SerializeField]
     private float _currentHp;
     public float CurrentHp
@@ -74,6 +80,8 @@ public abstract class Enemy : APoolingObject
 
     public virtual void InitEnemy()
     {
+        isStun = false;
+        isStunning = false;
         contactWithDamage.Clear();
         fsm.InitState();
         CurrentHp = monsterData.maxHp;
@@ -82,6 +90,7 @@ public abstract class Enemy : APoolingObject
         var a = ObjGenerator.Instance.generateDict["StaminaPoint"];
         var o = ObjectPooler.Instance.Get(a, staminaPointPos.transform.position, new Vector3(0, 0, 45));
         var c = o.GetComponent<StaminaPoint>();
+        staminaPoint = c;
         c.currentEnemy = this;
         c.UpLoadEvent();
     }
@@ -90,7 +99,11 @@ public abstract class Enemy : APoolingObject
     public virtual void Hit(Collider2D collider, float damage, float infinateTime)
     {
         //Debug.Log("Hit");
-        CurrentStamina -= 10f;
+        if (!isStunning)
+        {
+            CurrentStamina -= 10f;
+        }
+        CurrentHp -= damage;
         if (_currentHitFlow != null)
         {
             StopCoroutine(_currentHitFlow);
@@ -142,6 +155,8 @@ public abstract class Enemy : APoolingObject
         }
     }
 
+    
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("damageable"))
@@ -156,7 +171,7 @@ public abstract class Enemy : APoolingObject
         contactWithDamage?.Remove(other);
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         StateFixedUpdate();
         foreach (var kvp in contactWithDamage.ToList())
@@ -174,10 +189,9 @@ public abstract class Enemy : APoolingObject
             }
         }
     }
-    protected void Update()
+    protected virtual void Update()
     {
         StateUpdate();
-        Flip();
     }
     protected IEnumerator InfinateTimeFlow(Collider2D collider, float infinateTime)
     {

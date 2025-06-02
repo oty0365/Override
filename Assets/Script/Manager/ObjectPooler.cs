@@ -27,6 +27,7 @@ public enum PoolObjectType
     SlimesBleast,
     ThrownSlik,
     RiseOfRadiance,
+    GoblinKnight,
 }
 
 public abstract class APoolingObject:MonoBehaviour

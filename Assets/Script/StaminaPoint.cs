@@ -34,8 +34,8 @@ public class StaminaPoint : APoolingObject
         progress = (currentEnemy.monsterData.maxStamina - currentEnemy.CurrentStamina) / currentEnemy.monsterData.maxStamina;
         if (progress >= 1)
         {
-            currentEnemy.CurrentStamina = currentEnemy.monsterData.maxStamina;
-            sr.color = Color.black;
+            //currentEnemy.CurrentStamina = currentEnemy.monsterData.maxStamina;
+            currentEnemy.isStun = true;
         }
         else
         {
