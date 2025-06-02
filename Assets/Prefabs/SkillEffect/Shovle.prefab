@@ -107,6 +107,7 @@ MonoBehaviour:
     damage: 4
     infinateTime: 0.5
     attackCollider: {fileID: 5768508399732674111}
+  contactedEnemies: []
 --- !u!61 &5768508399732674111
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -138,6 +138,7 @@ MonoBehaviour:
     type: 0
     damage: 2
     infinateTime: 0.1
+    attackCollider: {fileID: 0}
 --- !u!61 &6127272323391154129
 BoxCollider2D:
   m_ObjectHideFlags: 0

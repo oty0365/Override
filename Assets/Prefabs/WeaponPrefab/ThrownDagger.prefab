@@ -233,7 +233,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -305,7 +305,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 0.4}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -329,6 +329,8 @@ MonoBehaviour:
     type: 0
     damage: 4
     infinateTime: 0.1
+    attackCollider: {fileID: 0}
+  contactedEnemies: []
   rb: {fileID: 7402398131208078517}
   sr: {fileID: 3441299332645365235}
   fadeSpeed: 8

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MothFace (2)_0: 3058614607910331832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

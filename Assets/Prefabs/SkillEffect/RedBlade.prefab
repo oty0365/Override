@@ -135,6 +135,7 @@ MonoBehaviour:
     damage: 30
     infinateTime: 0.5
     attackCollider: {fileID: 5851172806489646474}
+  contactedEnemies: []
   rb2D: {fileID: 8929061341553189078}
   speed: 10
 --- !u!58 &5851172806489646474

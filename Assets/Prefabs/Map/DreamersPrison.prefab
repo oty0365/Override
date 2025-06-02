@@ -5983,7 +5983,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6050,7 +6050,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.2, y: 3.2}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -51183,9 +51183,25 @@ PrefabInstance:
       propertyPath: text
       value: Tuto-1
       objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2763884692869613408, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Name
       value: TutorialBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7691898230359516684, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51356,6 +51372,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6986824786941483343, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986824786941483343, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263176480204905030, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263176480204905030, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51474,6 +51506,14 @@ PrefabInstance:
       value: Tuto-4
       objectReference: {fileID: 0}
     - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -51488,6 +51528,14 @@ PrefabInstance:
     - target: {fileID: 2763884692869613408, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Name
       value: TutorialBot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7691898230359516684, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51595,6 +51643,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6986824786941483343, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986824786941483343, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263176480204905030, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263176480204905030, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51630,6 +51694,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 630286191477218323}
     - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Color.b
       value: 0.3150943
       objectReference: {fileID: 0}
@@ -51660,6 +51732,14 @@ PrefabInstance:
     - target: {fileID: 3683925884615475489, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Color.r
       value: 0.7425129
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7691898230359516684, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52036,6 +52116,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1962163676768728436}
     - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Color.b
       value: 0.3150943
       objectReference: {fileID: 0}
@@ -52066,6 +52154,14 @@ PrefabInstance:
     - target: {fileID: 3683925884615475489, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Color.r
       value: 0.7425129
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7691898230359516684, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52205,6 +52301,22 @@ PrefabInstance:
     - target: {fileID: 2687879870841789163, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986824786941483343, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986824786941483343, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263176480204905030, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263176480204905030, guid: a401f7d74ff771545ab23528cc63211d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -52462,6 +52574,14 @@ PrefabInstance:
       value: Tuto-2
       objectReference: {fileID: 0}
     - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -52476,6 +52596,14 @@ PrefabInstance:
     - target: {fileID: 2763884692869613408, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Name
       value: TutorialBot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7691898230359516684, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52599,9 +52727,25 @@ PrefabInstance:
       propertyPath: 'sealedObjects.Array.data[3]'
       value: 
       objectReference: {fileID: 6584112802991576949}
+    - target: {fileID: 3952442666936061462, guid: 80100f0b0db75b341946304b94a7fdb9, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 3952442666936061462, guid: 80100f0b0db75b341946304b94a7fdb9, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3.11
+      objectReference: {fileID: 0}
     - target: {fileID: 7048790965513242561, guid: 80100f0b0db75b341946304b94a7fdb9, type: 3}
       propertyPath: m_Name
       value: At
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721192006436136402, guid: 80100f0b0db75b341946304b94a7fdb9, type: 3}
+      propertyPath: m_Size.x
+      value: 2.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721192006436136402, guid: 80100f0b0db75b341946304b94a7fdb9, type: 3}
+      propertyPath: m_Size.y
+      value: 3.11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -52624,6 +52768,14 @@ PrefabInstance:
     - target: {fileID: 1659395866326916715, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: text
       value: Tuto-3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 1836440035779663155, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Color.b
@@ -52652,6 +52804,14 @@ PrefabInstance:
     - target: {fileID: 2763884692869613408, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_Name
       value: TutorialBot (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928467571212968150, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7691898230359516684, guid: 830a8a514d151694c988cc0812b1c36e, type: 3}
       propertyPath: m_LocalPosition.x

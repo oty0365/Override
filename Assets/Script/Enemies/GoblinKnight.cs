@@ -12,6 +12,7 @@ public class GoblinKnight : Enemy
     public RecognitionModule recognitionModule;
 
     public GameObject spear;
+    public GameObject attackDir;
     public Vector2 dir;
     
     private void Start()
@@ -21,7 +22,7 @@ public class GoblinKnight : Enemy
     protected override void Update()
     {
         base.Update();
-        if (isStun)
+        if (isStun&&fsm.currentState != fsm.states["Death"])
         {
             fsm.ChangeState(fsm.states["Stun"]);
             isStun = false;
@@ -62,11 +63,11 @@ public class GoblinKnight : Enemy
     }
     public override void OnDeathInit()
     {
-        staminaPoint.Death();
     }
     public override void InitEnemy()
     {
         spear.SetActive(false);
+        attackDir.SetActive(false);
         base.InitEnemy();
         recognitionModule.Initialize();
         finderModule.Initialize();
@@ -160,6 +161,7 @@ public class GoblinKnightDeath : BaseDeath
 {
     public override void OnStateStart()
     {
+        enemy.staminaPoint.Death();
         enemy.ani.Play("GoblinKnightDeath");
         GetEnemyAs<GoblinKnight>().OnDeath();
     }
@@ -208,6 +210,11 @@ public class GoblinKnightAim : BaseAttack
     public override void OnStateStart()
     {
         enemy.ani.Play("GoblinKnightAttack");
+        var gb = GetEnemyAs<GoblinKnight>();
+        gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
+        var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
+        gb.attackDir.gameObject.transform.localRotation = Quaternion.Euler(0, 0, deg-90);
+        gb.attackDir.SetActive(true);
         i = 0f;
         redayaim = 1;
     }
@@ -227,10 +234,16 @@ public class GoblinKnightAim : BaseAttack
                 gb.fsm.ChangeState(enemy.fsm.states["Attack"]);
             }
         }
+        if (redayaim <= 1)
+        {
+            gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
+            var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
+            gb.attackDir.gameObject.transform.localRotation = Quaternion.Euler(0, 0, deg-90);
+        }
         if (i > 1f)
         {
             gb.Flip();
-            gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
+
             if (redayaim <= 1)
             {
                 i = 0;
@@ -240,7 +253,7 @@ public class GoblinKnightAim : BaseAttack
     }
     public override void OnStateEnd()
     {
-
+        GetEnemyAs<GoblinKnight>().attackDir.SetActive(false);
     }
 }
 public class GoblinKnightAttack : BaseAttack

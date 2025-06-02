@@ -4918,7 +4918,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4937,6 +4937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionKeyPos: {fileID: 7288684000781866229}
+  autoInteraction: 0
   characterData: {fileID: 11400000, guid: aeb25672be64d0d46a3f1fd0e7b4d8ea, type: 2}
   characterSkillData: {fileID: 11400000, guid: 82cd623b851cb304e92d68d07ebf0db3, type: 2}
   prt: {fileID: 4931691306092286373}
@@ -4979,7 +4980,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.2, y: 3.2}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

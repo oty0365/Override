@@ -109,6 +109,7 @@ MonoBehaviour:
     damage: 10
     infinateTime: 0.1
     attackCollider: {fileID: 8839555173116003564}
+  contactedEnemies: []
   rb: {fileID: 3564900692793772970}
   sr: {fileID: 9150592122836305537}
   fadeSpeed: 7

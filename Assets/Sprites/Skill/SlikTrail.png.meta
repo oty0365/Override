@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SlikTrail_0: 8164319462565464978
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

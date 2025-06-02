@@ -102,7 +102,7 @@ public class MapManager : HalfSingleMono<MapManager>
     {
         _playerCamera = PlayerCamera.Instance;
         PlayerInteraction.Instance.OnInteractMode(0);
-        LoadMap("DeamersPrison-1");
+        LoadMap("DreamersPrison-1");
 
     }
     /* private void Update()

@@ -176,6 +176,7 @@ MonoBehaviour:
     damage: 5
     infinateTime: 0.02
     attackCollider: {fileID: 5570156410831346781}
+  contactedEnemies: []
   curAnimation: {fileID: 8686757720311460976}
   sr: {fileID: 3073087703429559281}
   curDir: {x: 0, y: 0}

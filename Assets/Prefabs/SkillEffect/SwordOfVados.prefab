@@ -51,6 +51,7 @@ MonoBehaviour:
     damage: 30
     infinateTime: 0.1
     attackCollider: {fileID: 0}
+  contactedEnemies: []
   curAnimation: {fileID: 5369134038700770772}
   blade: {fileID: 2975372670463307207, guid: f1ad9d3069d2a344091b7d28a0d2684e, type: 3}
   curDir: {x: 0, y: 0}
@@ -137,7 +138,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.91, y: 2.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -352,6 +353,7 @@ MonoBehaviour:
     damage: 30
     infinateTime: 1
     attackCollider: {fileID: 8596464756800087691}
+  contactedEnemies: []
   curAnimation: {fileID: 0}
   blade: {fileID: 0}
   curDir: {x: 0, y: 0}
