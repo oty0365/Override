@@ -17,5 +17,11 @@ public class StaticLayzer : ADamageable
         PlayerCamera.Instance.SetShake(0.35f, 7.5f, 0.6f);
         PlayerInfo.Instance.SetInfiniteTime(infinateTime);
     }
+    public override void OnBirth()
+    {
+    }
+    public override void OnDeathInit()
+    {
+    }
 
 }

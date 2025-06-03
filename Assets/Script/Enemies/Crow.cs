@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
-public class GoblinKnight : Enemy
+public class Crow : Enemy
 {
     public APoolingObject colideParticle;
 
@@ -11,11 +11,10 @@ public class GoblinKnight : Enemy
     public PathFinderModule finderModule;
     public RecognitionModule recognitionModule;
 
-    public GameObject spear;
     public GameObject attackDir;
     public Vector2 dir;
 
-    
+    public APoolingObject crowBite;
     
     private void Start()
     {
@@ -29,6 +28,17 @@ public class GoblinKnight : Enemy
             fsm.ChangeState(fsm.states["Stun"]);
             isStun = false;
         }
+    }
+    private IEnumerator AttackCoolDown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(2f);
+        canAttack = true;
+    }
+
+    public void Attacked()
+    {
+        StartCoroutine(AttackCoolDown());
     }
 
     protected override void FixedUpdate()
@@ -66,40 +76,24 @@ public class GoblinKnight : Enemy
     public override void OnDeathInit()
     {
     }
-    private IEnumerator AttackCoolDown()
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(1.4f);
-        canAttack = true;
-    }
-
-    public void Attacked()
-    {
-        StartCoroutine(AttackCoolDown());
-    }
-
     public override void InitEnemy()
     {
-        target = PlayerInfo.Instance.gameObject;
-        spear.SetActive(false);
         attackDir.SetActive(false);
         base.InitEnemy();
         recognitionModule.Initialize();
         finderModule.Initialize();
-        var walk = new GoblinKnightWalk();
-        var death = new GoblinKnightDeath();
-        var idel = new GoblinKnightIdel();
-        var attack = new GoblinKnightAttack();
-        var stun = new GoblinKnightStun();
-        var hit = new GoblinKnightHit();
-        var aim = new GoblinKnightAim();
+        var walk = new CrowWalk();
+        var death = new CrowDeath();
+        var idel = new CrowIdel();
+        var attack = new CrowAttack();
+        var stun = new CrowStun();
+        var hit = new CrowHit();
         fsm.AddState("Walk", walk,this);
         fsm.AddState("Death", death,this);
         fsm.AddState("Idel", idel,this);
         fsm.AddState("Attack", attack,this);
         fsm.AddState("Stun", stun,this);
         fsm.AddState("Hit", hit, this);
-        fsm.AddState("Aim", aim, this);
         fsm.ChangeState(fsm.states["Idel"]);
     }
     public void OnDeath()
@@ -108,18 +102,18 @@ public class GoblinKnight : Enemy
     }
     private IEnumerator DeathFlow()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(0.8f);
         Death();
     }
 }
 
 
-public class GoblinKnightHit : State
+public class CrowHit : State
 {
     float i;
     public override void OnStateStart()
     {
-        enemy.ani.Play("GoblinKnightIdel");
+        enemy.ani.Play("CrowIdelMove");
         i = 0;
     }
     public override void OnStateFixedUpdate()
@@ -128,7 +122,7 @@ public class GoblinKnightHit : State
     }
     public override void OnStateUpdate()
     {
-        var gb = GetEnemyAs<GoblinKnight>();
+        var gb = GetEnemyAs<Crow>();
         i += Time.deltaTime;
         gb.Flip();
         gb.rb2D.linearVelocity = Vector2.zero;
@@ -142,12 +136,12 @@ public class GoblinKnightHit : State
         
     }
 }
-public class GoblinKnightWalk : State
+public class CrowWalk : State
 {
     public override void OnStateStart()
     {
-        enemy.ani.Play("GoblinKnightWalk");
-        GetEnemyAs<GoblinKnight>().finderModule.SetMove();
+        enemy.ani.Play("CrowIdelMove");
+        GetEnemyAs<Crow>().finderModule.SetMove();
     }
     public override void OnStateFixedUpdate()
     {
@@ -156,29 +150,29 @@ public class GoblinKnightWalk : State
 
     public override void OnStateUpdate()
     {
-        GoblinKnight gb = GetEnemyAs<GoblinKnight>();
+        Crow gb = GetEnemyAs<Crow>();
         gb.Flip();
         if (!gb.finderModule.CheckMoveDist()||!gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
         {
             gb.fsm.ChangeState(gb.fsm.states["Idel"]);
         }
-        if (gb.recognitionModule.Recognize(2.8f))
+        if (gb.recognitionModule.Recognize(1f))
         {
-            gb.fsm.ChangeState(gb.fsm.states["Aim"]);
+            gb.fsm.ChangeState(gb.fsm.states["Attack"]);
         }
     }
     public override void OnStateEnd()
     {
-        GetEnemyAs<GoblinKnight>().finderModule.Stop();
+        GetEnemyAs<Crow>().finderModule.Stop();
     }
 }
-public class GoblinKnightDeath : BaseDeath
+public class CrowDeath : BaseDeath
 {
     public override void OnStateStart()
     {
         enemy.staminaPoint.Death();
-        enemy.ani.Play("GoblinKnightDeath");
-        GetEnemyAs<GoblinKnight>().OnDeath();
+        enemy.ani.Play("CrowDeath");
+        GetEnemyAs<Crow>().OnDeath();
     }
     public override void OnStateFixedUpdate()
     {
@@ -193,12 +187,12 @@ public class GoblinKnightDeath : BaseDeath
 
     }
 }
-public class GoblinKnightIdel : BaseIdel
+public class CrowIdel : BaseIdel
 {
     public override void OnStateStart()
     {
         enemy.rb2D.linearVelocity = Vector2.zero;
-        enemy.ani.Play("GoblinKnightIdel");
+        enemy.ani.Play("CrowIdelMove");
     }
     public override void OnStateFixedUpdate()
     {
@@ -206,7 +200,7 @@ public class GoblinKnightIdel : BaseIdel
     }
     public override void OnStateUpdate()
     {
-        GoblinKnight gb = GetEnemyAs<GoblinKnight>();
+        Crow gb = GetEnemyAs<Crow>();
         gb.Flip();
         if (gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
         {
@@ -218,151 +212,64 @@ public class GoblinKnightIdel : BaseIdel
 
     }
 }
-public class GoblinKnightAim : BaseAttack
+public class CrowAttack : BaseAttack
 {
-    float i = 0f;
-    int redayaim = 1;
+    AnimatorStateInfo currAni;
     public override void OnStateStart()
-    {
-        var gb = GetEnemyAs<GoblinKnight>();
-        if (gb.canAttack)
-        {
-            enemy.ani.Play("GoblinKnightAttack");
-            gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
-            var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
-            gb.attackDir.gameObject.transform.localRotation = Quaternion.Euler(0, 0, deg - 90);
-            gb.attackDir.SetActive(true);
-            i = 0f;
-            redayaim = 1;
-        }
-        else
-        {
-            gb.fsm.ChangeState(enemy.fsm.states["Walk"]);
-        }
-
-    }
-    public override void OnStateFixedUpdate()
-    {
-
-    }
-    public override void OnStateUpdate()
-    {
-        var gb = GetEnemyAs<GoblinKnight>();
-        i += Time.deltaTime;
-        gb.rb2D.linearVelocity = Vector2.zero;
-        if (i > 0.35f)
-        {
-            if (redayaim > 1)
-            {
-                gb.fsm.ChangeState(enemy.fsm.states["Attack"]);
-            }
-        }
-        if (redayaim <= 1)
-        {
-            gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
-            var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
-            gb.attackDir.gameObject.transform.localRotation = Quaternion.Euler(0, 0, deg-90);
-        }
-        if (i > 1f)
-        {
-            gb.Flip();
-
-            if (redayaim <= 1)
-            {
-                i = 0;
-                redayaim++;
-            }
-        }
-    }
-    public override void OnStateEnd()
-    {
-        GetEnemyAs<GoblinKnight>().attackDir.SetActive(false);
-    }
-}
-public class GoblinKnightAttack : BaseAttack
-{
-    float i = 0f;
-    bool isUsingRaycast = false;
-    Vector2 targetPosition;
-    float moveSpeed = 13.5f;
-
-    public override void OnStateStart()
-    {
-
-        var gb = GetEnemyAs<GoblinKnight>();
-        gb.Attacked();
-        var deg =Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
-        gb.spear.transform.localPosition = gb.dir.normalized * 1.2f;
-        gb.spear.transform.localRotation = Quaternion.Euler(0, 0, deg);
-        gb.spear.SetActive(true);
-        enemy.ani.Play("GoblinKnightFire");
-        i = 0f;
-
-
-        float attackDistance = 100f;
-        RaycastHit2D hit = Physics2D.Raycast(gb.transform.position, gb.dir, attackDistance, LayerMask.GetMask("Wall"));
-        Debug.Log(hit.collider);
-
-        if (hit.collider != null)
-        {
-
-            isUsingRaycast = true;
-            targetPosition = hit.point - gb.dir * 1f; 
-            gb.rb2D.linearVelocity = Vector2.zero; 
-        }
-        else
-        {
-            isUsingRaycast = false;
-            gb.rb2D.linearVelocity = gb.dir * moveSpeed;
-        }
-    }
-
-    public override void OnStateFixedUpdate()
-    {
-        if (isUsingRaycast)
-        {
-            var gb = GetEnemyAs<GoblinKnight>();
-            Vector2 currentPos = gb.transform.position;
-
-            Vector2 newPos = Vector2.MoveTowards(currentPos, targetPosition, moveSpeed * Time.fixedDeltaTime);
-
-            gb.rb2D.MovePosition(newPos);
-
-            if (Vector2.Distance(currentPos, targetPosition) <1f)
-            {
-                gb.rb2D.linearVelocity = Vector2.zero;
-                gb.fsm.ChangeState(enemy.fsm.states["Idel"]);
-            }
-        }
-    }
-    private IEnumerator AttackCoolDown()
     {
         
-        yield return new WaitForSeconds(1.4f);
+        var gb = GetEnemyAs<Crow>();
+        if (gb.canAttack)
+        {
+            gb.Attacked();
+            gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
+            var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
+            gb.attackDir.SetActive(true);
+            gb.attackDir.transform.rotation = Quaternion.Euler(0, 0, deg - 90);
+            var o = ObjectPooler.Instance.Get(gb.crowBite, gb.transform);
+            o.transform.localScale = new Vector2(1.5f, 1.5f);
+            o.transform.localPosition = gb.dir.normalized * 1.2f;
+            o.transform.rotation = Quaternion.Euler(0, 0, deg);
+
+            enemy.ani.Play("CrowAttack");
+            gb.rb2D.linearVelocity = Vector2.zero;
+        }
+        else
+        {
+            gb.fsm.ChangeState(gb.fsm.states["Idel"]);
+        }
+
     }
+
+
+    public override void OnStateFixedUpdate()
+    {
+        
+    }
+
     public override void OnStateUpdate()
     {
-        var gb = GetEnemyAs<GoblinKnight>();
-        i += Time.deltaTime;
-        if (i > 0.6f)
+        currAni = enemy.ani.GetCurrentAnimatorStateInfo(0);
+        var gb = GetEnemyAs<Crow>();
+        if (currAni.normalizedTime >= 1f)
         {
-            gb.fsm.ChangeState(enemy.fsm.states["Idel"]);
+            gb.fsm.ChangeState(gb.fsm.states["Idel"]);
         }
     }
 
     public override void OnStateEnd()
     {
-        var gb = GetEnemyAs<GoblinKnight>();
+        var gb = GetEnemyAs<Crow>();
+        gb.attackDir.SetActive(false);
         gb.rb2D.linearVelocity = Vector2.zero;
-        gb.spear.SetActive(false);
     }
 }
-public class GoblinKnightStun : BaseStun
+public class CrowStun : BaseStun
 {
     float i;
     public override void OnStateStart()
     {
-        enemy.ani.Play("GoblinKnightStun");
+        enemy.ani.Play("CrowStun");
         i = 0;
         enemy.isStunning = true;
         enemy.staminaPoint.sr.color = Color.black;
@@ -373,11 +280,11 @@ public class GoblinKnightStun : BaseStun
     }
     public override void OnStateUpdate()
     {
-        var gb = GetEnemyAs<GoblinKnight>();
+        var gb = GetEnemyAs<Crow>();
         i += Time.deltaTime;
         gb.Flip();
         gb.rb2D.linearVelocity = Vector2.zero;
-        if (i > 2f)
+        if (i > 1f)
         {
             gb.fsm.ChangeState(enemy.fsm.states["Idel"]);
         }

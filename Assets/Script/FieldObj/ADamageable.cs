@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class ADamageable : MonoBehaviour
+public abstract class ADamageable : APoolingObject
 {
     public float damage;
     public float infinateTime;

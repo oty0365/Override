@@ -28,6 +28,8 @@ public enum PoolObjectType
     ThrownSlik,
     RiseOfRadiance,
     GoblinKnight,
+    MonsterBite,
+    Crow
 }
 
 public abstract class APoolingObject:MonoBehaviour

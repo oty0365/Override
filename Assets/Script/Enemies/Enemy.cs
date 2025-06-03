@@ -27,7 +27,8 @@ public abstract class Enemy : APoolingObject
     public GameObject target;
 
     public bool isStun;
-    public bool isStunning;
+    public bool isStunning; 
+    public bool canAttack;
 
     public StaminaPoint staminaPoint;
 
@@ -80,6 +81,7 @@ public abstract class Enemy : APoolingObject
 
     public virtual void InitEnemy()
     {
+        canAttack = true;
         isStun = false;
         isStunning = false;
         contactWithDamage.Clear();
