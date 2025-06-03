@@ -120,6 +120,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isStun: 0
   isStunning: 0
+  canAttack: 0
   staminaPoint: {fileID: 0}
   _currentHp: 0
   _currentStamia: 0
@@ -172,7 +173,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 25088
+    m_Bits: 25216
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -394,7 +395,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 1931981336, guid: 28764b9ed1b9fb04a82b3409419ff58f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.65471697, b: 0.65471697, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -416,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a969ee5b313124c85a6b58d9f6adaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectType: 0
   damage: 5
   infinateTime: 0.5
   speed: 0

@@ -29,7 +29,9 @@ public enum PoolObjectType
     RiseOfRadiance,
     GoblinKnight,
     MonsterBite,
-    Crow
+    Crow,
+    MonsterDagger,
+    GreenGoblin
 }
 
 public abstract class APoolingObject:MonoBehaviour

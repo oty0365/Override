@@ -1,7 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GoblinKnight : Enemy
 {
@@ -218,6 +216,7 @@ public class GoblinKnightIdel : BaseIdel
 
     }
 }
+
 public class GoblinKnightAim : BaseAttack
 {
     float i = 0f;
@@ -261,7 +260,7 @@ public class GoblinKnightAim : BaseAttack
         {
             gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
             var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
-            gb.attackDir.gameObject.transform.localRotation = Quaternion.Euler(0, 0, deg-90);
+            gb.attackDir.gameObject.transform.localRotation = Quaternion.Euler(0, 0, deg - 90);
         }
         if (i > 1f)
         {
@@ -301,7 +300,6 @@ public class GoblinKnightAttack : BaseAttack
 
         float attackDistance = 100f;
         RaycastHit2D hit = Physics2D.Raycast(gb.transform.position, gb.dir, attackDistance, LayerMask.GetMask("Wall"));
-        Debug.Log(hit.collider);
 
         if (hit.collider != null)
         {

@@ -143,7 +143,7 @@ MonoBehaviour:
   attack:
     type: 0
     damage: 3
-    infinateTime: 0.1
+    infinateTime: 0.3
     attackCollider: {fileID: 0}
 --- !u!58 &9212949366427838366
 CircleCollider2D:

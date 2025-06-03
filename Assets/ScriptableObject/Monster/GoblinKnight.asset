@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoblinKnight
   m_EditorClassIdentifier: 
   monsterCode: GoblinKnight
-  maxHp: 130
+  maxHp: 90
   maxStamina: 20
   moveSpeed: 7
   recoveryTime: 3.5
