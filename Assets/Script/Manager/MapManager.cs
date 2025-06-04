@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -30,19 +31,20 @@ public enum MapCode
 
 }
 
+
 public class MapManager : HalfSingleMono<MapManager>
 {
     public Action mapChange;
     [Header("∏  ±‚∫ª ∞Ê∑Œ")]
     public string basicPath;
     [Header("∏  ¿˙¿Â ∞Ê∑ŒµÈ")]
-    [SerializeField]private MapDatas mapDatas;
-
+    [SerializeField] private MapDatas mapDatas;
+    public List<MapData> mapList;
     public HashSet<string> mapSets = new();
-
+    public List<string> initialList;
 
     [Header("∏  UI")]
-    [SerializeField] private GameObject loadingPanel;
+    public GameObject loadingPanel;
     [SerializeField] private UnityEngine.UI.Slider progressBar;
     [SerializeField] private TextMeshProUGUI tmiText;
 
@@ -51,6 +53,9 @@ public class MapManager : HalfSingleMono<MapManager>
     public UnityEngine.UI.Image endl;
     public TextMeshProUGUI mapNameTmp;
     public MapData currentMap;
+    public GameObject currentMapObj;
+
+    public int index;
 
 
     private PlayerCamera _playerCamera;
@@ -71,6 +76,7 @@ public class MapManager : HalfSingleMono<MapManager>
             }
         }
     }
+
     [SerializeField]
     private Dimention currentDimention;
     public Dimention CurrentDimention
@@ -90,21 +96,32 @@ public class MapManager : HalfSingleMono<MapManager>
                 mapChange.Invoke();
         }
     }
+
     protected override void Awake()
     {
         base.Awake();
+        loadingPanel.SetActive(true);
         foreach( var i in mapDatas.maps)
         {
             mapSets.Add(i);
         }
+
     }
+
     private void Start()
     {
         _playerCamera = PlayerCamera.Instance;
         PlayerInteraction.Instance.OnInteractMode(0);
-        LoadMap("DreamersPrison-1");
-
+        TutorialMap();
     }
+
+    public void NextMap()
+    {
+        currentMap = mapList[++index];
+        Destroy(currentMapObj);
+        SetMap();
+    }
+
     /* private void Update()
      {
          if (Input.GetKeyDown(KeyCode.Space))
@@ -112,52 +129,59 @@ public class MapManager : HalfSingleMono<MapManager>
              CurrentDimention = Dimention.Code;
          }
      }*/
-    public void LoadMap(string address)
+    
+    public void TutorialMap()
     {
-        StartCoroutine(LoadWithProgressBar(address));
+        initialList.Clear();
+        initialList.Add("DreamersPrison-1");
+        initialList.Add("DreamersPrison-2");
+        StartCoroutine(LoadFlow());
     }
-    IEnumerator LoadWithProgressBar(string adress)
+    IEnumerator LoadFlow()
     {
-        loadingPanel.SetActive(true);
-        progressBar.value = 0;
+        index = 0;
+        yield return StartCoroutine(LoadMapsWithProgressBar(initialList));
+        currentMap = mapList[0];
+        SetMap();
+        loadingPanel.SetActive(false);
+    }
 
-        var handle = Addressables.LoadAssetAsync<MapData>(adress);
+    public void SetMap()
+    {
+        header.sprite = currentMap.mapBanner;
+        CurrentMapCode = currentMap.mapCode;
+        currentMapObj = Instantiate(currentMap.mapPrefab, currentMap.spawnVector, Quaternion.identity);
+        PlayerInfo.Instance.gameObject.transform.position = currentMap.playerSpawn;
+        PlayerCamera.Instance.gameObject.transform.position = PlayerInfo.Instance.transform.position;
+    }
+
+    IEnumerator LoadMapsWithProgressBar(List<string> adress)
+    {
+        progressBar.value = 0;
         var index = UnityEngine.Random.Range(1, 5);
         tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
-        while (!handle.IsDone)
+        foreach (var i in adress)
         {
-            progressBar.value = handle.PercentComplete;
-            if (Input.GetKeyDown(KeyCode.Space))
+            var handle = Addressables.LoadAssetAsync<MapData>(i);
+            while (!handle.IsDone)
             {
-                index = UnityEngine.Random.Range(1, 5);
-                tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
+                //progressBar.value = handle.PercentComplete;
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    index = UnityEngine.Random.Range(1, 5);
+                    tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
+                }
+                yield return new WaitForSecondsRealtime(Time.deltaTime);
             }
-            yield return new WaitForSecondsRealtime(Time.deltaTime);
+            mapList.Add(Instantiate(handle.Result));
+            Addressables.Release(handle);
+            progressBar.value += 1f / adress.Count;
+            yield return new WaitForSeconds(0.07f);
         }
-        progressBar.value = 0.7f;
-        yield return new WaitForSeconds(0.1f);
-        var head = Addressables.LoadAssetAsync<Sprite>(handle.Result.mapCode.ToString()+"Image");
-        while (!head.IsDone)
-        {
-            progressBar.value = 0.7f+(head.PercentComplete*0.3f);
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                index = UnityEngine.Random.Range(1, 5);
-                tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
-            }
-            yield return new WaitForSecondsRealtime(Time.deltaTime);
-        }
-        header.sprite = Instantiate(head.Result);
         progressBar.value = 1;
-        Instantiate(handle.Result.mapPrefab, handle.Result.spawnVector, Quaternion.identity);
-        PlayerInfo.Instance.gameObject.transform.position = handle.Result.playerSpawn;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         PlayerInteraction.Instance.OnInteractMode(1);
-        loadingPanel.SetActive(false);
-        CurrentMapCode = handle.Result.mapCode;
-        currentMap = Instantiate(handle.Result);
-        Addressables.Release(handle);
-        Addressables.Release(head);
+
     }
 
     IEnumerator MapNameFlow()

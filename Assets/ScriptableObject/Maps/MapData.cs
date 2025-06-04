@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "MapData", menuName = "Scriptable Objects/MapData")]
 public class MapData : ScriptableObject
 {
+    public Sprite mapBanner;
     public GameObject mapPrefab;
     public MapCode mapCode;
     public string mapSubName;

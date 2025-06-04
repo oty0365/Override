@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: MapDatas
   m_EditorClassIdentifier: 
   maps:
-  - DeamersPrison-1.asset
+  - DreamersPrison-1
+  - DreamersPrison-2

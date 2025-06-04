@@ -99,6 +99,7 @@ public class PlayerCamera : MonoBehaviour
 
     public void SetZoom(float size, float speed)
     {
+
         cameraSize = size;
         cameraZoomSpeed = speed;
         StartState(CameraState.Zoom);
@@ -138,12 +139,10 @@ public class PlayerCamera : MonoBehaviour
 
             case CameraState.Zoom:
                 {
-                    if (_previousZoomCoroutine != null)
+                    if (_previousZoomCoroutine == null)
                     {
-                        StopCoroutine(_previousZoomCoroutine);
+                        _previousZoomCoroutine = StartCoroutine(ZoomFlow());
                     }
-
-                    _previousZoomCoroutine = StartCoroutine(ZoomFlow());
                     break;
                 }
 
@@ -269,6 +268,7 @@ public class PlayerCamera : MonoBehaviour
         }
 
         playerCam.orthographicSize = cameraSize;
+        _previousZoomCoroutine = null;
     }
 
     private IEnumerator RedBlinkFlow(float fadeSpeed,float redBlinkRange)

@@ -25,7 +25,7 @@ public class GreenGoblin : Enemy
     protected override void Update()
     {
         base.Update();
-        if (isStun&&fsm.currentState != fsm.states["Death"])
+        if (isStun && fsm.currentState != fsm.states["Death"])
         {
             fsm.ChangeState(fsm.states["Stun"]);
             isStun = false;
@@ -40,7 +40,7 @@ public class GreenGoblin : Enemy
 
     public override void Hit(Collider2D collider, float damage, float infiateTime)
     {
-        if (fsm.currentState != fsm.states["Stun"]&&fsm.currentState != fsm.states["Death"])
+        if (fsm.currentState != fsm.states["Stun"] && fsm.currentState != fsm.states["Death"])
         {
             fsm.ChangeState(fsm.states["Hit"]);
         }
@@ -92,12 +92,14 @@ public class GreenGoblin : Enemy
         var attack = new GreenGoblinAttack();
         var stun = new GreenGoblinStun();
         var hit = new GreenGoblinHit();
-        fsm.AddState("Walk", walk,this);
-        fsm.AddState("Death", death,this);
-        fsm.AddState("Idel", idel,this);
-        fsm.AddState("Attack", attack,this);
-        fsm.AddState("Stun", stun,this);
+        var waitCooldown = new GreenGoblinWaitCooldown(); // 새로운 상태 추가
+        fsm.AddState("Walk", walk, this);
+        fsm.AddState("Death", death, this);
+        fsm.AddState("Idel", idel, this);
+        fsm.AddState("Attack", attack, this);
+        fsm.AddState("Stun", stun, this);
         fsm.AddState("Hit", hit, this);
+        fsm.AddState("WaitCooldown", waitCooldown, this); // 새로운 상태 추가
         fsm.ChangeState(fsm.states["Idel"]);
     }
     public void OnDeath()
@@ -137,7 +139,7 @@ public class GreenGoblinHit : State
     }
     public override void OnStateEnd()
     {
-        
+
     }
 }
 public class GreenGoblinWalk : State
@@ -156,7 +158,7 @@ public class GreenGoblinWalk : State
     {
         GreenGoblin gb = GetEnemyAs<GreenGoblin>();
         gb.Flip();
-        if (!gb.finderModule.CheckMoveDist()||!gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
+        if (!gb.finderModule.CheckMoveDist() || !gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
         {
             gb.fsm.ChangeState(gb.fsm.states["Idel"]);
         }
@@ -216,6 +218,58 @@ public class GreenGoblinIdel : BaseIdel
 
     }
 }
+
+// 새로운 쿨다운 대기 상태
+public class GreenGoblinWaitCooldown : State
+{
+    float waitTime = 0f;
+    float maxWaitTime = 1.0f; // 쿨다운 대기 시간
+
+    public override void OnStateStart()
+    {
+        enemy.ani.Play("GreenGoblinIdel");
+        waitTime = 0f;
+        enemy.rb2D.linearVelocity = Vector2.zero;
+    }
+
+    public override void OnStateFixedUpdate()
+    {
+
+    }
+
+    public override void OnStateUpdate()
+    {
+        var gb = GetEnemyAs<GreenGoblin>();
+        waitTime += Time.deltaTime;
+        gb.Flip();
+
+        // 플레이어가 멀어지면 Idel 상태로 변경
+        if (!gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
+        {
+            gb.fsm.ChangeState(gb.fsm.states["Idel"]);
+            return;
+        }
+
+        // 쿨다운이 끝났고 공격 범위 내에 있으면 Attack 상태로
+        if (gb.canAttack && gb.recognitionModule.Recognize(1.4f))
+        {
+            gb.fsm.ChangeState(gb.fsm.states["Attack"]);
+            return;
+        }
+
+        // 일정 시간 대기 후 Walk 상태로 변경 (자연스러운 움직임)
+        if (waitTime > maxWaitTime)
+        {
+            gb.fsm.ChangeState(gb.fsm.states["Walk"]);
+        }
+    }
+
+    public override void OnStateEnd()
+    {
+
+    }
+}
+
 public class GreenGoblinAttack : BaseAttack
 {
     AnimatorStateInfo currAni;
@@ -234,7 +288,8 @@ public class GreenGoblinAttack : BaseAttack
         }
         else
         {
-            gb.fsm.ChangeState(gb.fsm.states["Idel"]);
+            // 쿨다운 중일 때 자연스러운 대기 상태로 전환
+            gb.fsm.ChangeState(gb.fsm.states["WaitCooldown"]);
         }
 
     }
@@ -244,7 +299,7 @@ public class GreenGoblinAttack : BaseAttack
     }
     public override void OnStateUpdate()
     {
-        
+
         var gb = GetEnemyAs<GreenGoblin>();
         currAni = gb.ani.GetCurrentAnimatorStateInfo(0);
         Debug.Log(currAni.normalizedTime);

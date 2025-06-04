@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c815442c056c7843abb2916763a96f7, type: 3}
   m_Name: DeamersPrison-1
   m_EditorClassIdentifier: 
+  mapBanner: {fileID: 21300000, guid: 1b1204a037e758b4f806b86ec9476127, type: 3}
   mapPrefab: {fileID: 8076572968436554322, guid: 60608e2229d01c8498e22fdd744832aa, type: 3}
   mapCode: 1
   mapSubName: 
   mapLevel: 0
   mapHardness: 0
   spawnVector: {x: 0, y: 0}
-  playerSpawn: {x: 0, y: 0}
+  playerSpawn: {x: -1, y: -2}

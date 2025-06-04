@@ -13,8 +13,8 @@ public class GoblinKnight : Enemy
     public GameObject attackDir;
     public Vector2 dir;
 
-    
-    
+
+
     private void Start()
     {
         InitEnemy();
@@ -22,7 +22,7 @@ public class GoblinKnight : Enemy
     protected override void Update()
     {
         base.Update();
-        if (isStun&&fsm.currentState != fsm.states["Death"])
+        if (isStun && fsm.currentState != fsm.states["Death"])
         {
             fsm.ChangeState(fsm.states["Stun"]);
             isStun = false;
@@ -37,7 +37,7 @@ public class GoblinKnight : Enemy
 
     public override void Hit(Collider2D collider, float damage, float infiateTime)
     {
-        if (fsm.currentState != fsm.states["Stun"]&&fsm.currentState != fsm.states["Death"])
+        if (fsm.currentState != fsm.states["Stun"] && fsm.currentState != fsm.states["Death"])
         {
             fsm.ChangeState(fsm.states["Hit"]);
         }
@@ -91,13 +91,15 @@ public class GoblinKnight : Enemy
         var stun = new GoblinKnightStun();
         var hit = new GoblinKnightHit();
         var aim = new GoblinKnightAim();
-        fsm.AddState("Walk", walk,this);
-        fsm.AddState("Death", death,this);
-        fsm.AddState("Idel", idel,this);
-        fsm.AddState("Attack", attack,this);
-        fsm.AddState("Stun", stun,this);
+        var waitCooldown = new GoblinKnightWaitCooldown(); // 새로운 상태 추가
+        fsm.AddState("Walk", walk, this);
+        fsm.AddState("Death", death, this);
+        fsm.AddState("Idel", idel, this);
+        fsm.AddState("Attack", attack, this);
+        fsm.AddState("Stun", stun, this);
         fsm.AddState("Hit", hit, this);
         fsm.AddState("Aim", aim, this);
+        fsm.AddState("WaitCooldown", waitCooldown, this); // 새로운 상태 추가
         fsm.ChangeState(fsm.states["Idel"]);
     }
     public void OnDeath()
@@ -137,7 +139,7 @@ public class GoblinKnightHit : State
     }
     public override void OnStateEnd()
     {
-        
+
     }
 }
 public class GoblinKnightWalk : State
@@ -156,7 +158,7 @@ public class GoblinKnightWalk : State
     {
         GoblinKnight gb = GetEnemyAs<GoblinKnight>();
         gb.Flip();
-        if (!gb.finderModule.CheckMoveDist()||!gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
+        if (!gb.finderModule.CheckMoveDist() || !gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
         {
             gb.fsm.ChangeState(gb.fsm.states["Idel"]);
         }
@@ -217,6 +219,57 @@ public class GoblinKnightIdel : BaseIdel
     }
 }
 
+// 새로운 쿨다운 대기 상태
+public class GoblinKnightWaitCooldown : State
+{
+    float waitTime = 0f;
+    float maxWaitTime = 1.0f; // 쿨다운 대기 시간
+
+    public override void OnStateStart()
+    {
+        enemy.ani.Play("GoblinKnightIdel");
+        waitTime = 0f;
+        enemy.rb2D.linearVelocity = Vector2.zero;
+    }
+
+    public override void OnStateFixedUpdate()
+    {
+
+    }
+
+    public override void OnStateUpdate()
+    {
+        var gb = GetEnemyAs<GoblinKnight>();
+        waitTime += Time.deltaTime;
+        gb.Flip();
+
+        // 플레이어가 멀어지면 Walk 상태로 변경
+        if (!gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
+        {
+            gb.fsm.ChangeState(gb.fsm.states["Idel"]);
+            return;
+        }
+
+        // 쿨다운이 끝났고 공격 범위 내에 있으면 Aim 상태로
+        if (gb.canAttack && gb.recognitionModule.Recognize(2.8f))
+        {
+            gb.fsm.ChangeState(gb.fsm.states["Aim"]);
+            return;
+        }
+
+        // 일정 시간 대기 후 Walk 상태로 변경 (자연스러운 움직임)
+        if (waitTime > maxWaitTime)
+        {
+            gb.fsm.ChangeState(gb.fsm.states["Walk"]);
+        }
+    }
+
+    public override void OnStateEnd()
+    {
+
+    }
+}
+
 public class GoblinKnightAim : BaseAttack
 {
     float i = 0f;
@@ -236,7 +289,8 @@ public class GoblinKnightAim : BaseAttack
         }
         else
         {
-            gb.fsm.ChangeState(enemy.fsm.states["Walk"]);
+            // 쿨다운 중일 때 자연스러운 대기 상태로 전환
+            gb.fsm.ChangeState(gb.fsm.states["WaitCooldown"]);
         }
 
     }
@@ -290,7 +344,7 @@ public class GoblinKnightAttack : BaseAttack
 
         var gb = GetEnemyAs<GoblinKnight>();
         gb.Attacked();
-        var deg =Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
+        var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
         gb.spear.transform.localPosition = gb.dir.normalized * 1.2f;
         gb.spear.transform.localRotation = Quaternion.Euler(0, 0, deg);
         gb.spear.SetActive(true);
@@ -305,8 +359,8 @@ public class GoblinKnightAttack : BaseAttack
         {
 
             isUsingRaycast = true;
-            targetPosition = hit.point - gb.dir * 1f; 
-            gb.rb2D.linearVelocity = Vector2.zero; 
+            targetPosition = hit.point - gb.dir * 1f;
+            gb.rb2D.linearVelocity = Vector2.zero;
         }
         else
         {
@@ -326,7 +380,7 @@ public class GoblinKnightAttack : BaseAttack
 
             gb.rb2D.MovePosition(newPos);
 
-            if (Vector2.Distance(currentPos, targetPosition) <1f)
+            if (Vector2.Distance(currentPos, targetPosition) < 1f)
             {
                 gb.rb2D.linearVelocity = Vector2.zero;
                 gb.fsm.ChangeState(enemy.fsm.states["Idel"]);
@@ -335,7 +389,7 @@ public class GoblinKnightAttack : BaseAttack
     }
     private IEnumerator AttackCoolDown()
     {
-        
+
         yield return new WaitForSeconds(1.4f);
     }
     public override void OnStateUpdate()
