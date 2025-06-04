@@ -6220,7 +6220,7 @@ Transform:
   m_GameObject: {fileID: 691240168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: -1.8, z: 0}
+  m_LocalPosition: {x: 0, y: -1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7572,7 +7572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6f439755a336243b8e2a302d753aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curLanguage: 1
+  curLanguage: 0
   array: {fileID: 11400000, guid: 23b0fd24f88cec24e82ef40d25739dee, type: 2}
 --- !u!4 &818581908
 Transform:
@@ -8738,6 +8738,8 @@ MonoBehaviour:
   endl: {fileID: 919643364}
   mapNameTmp: {fileID: 1023874107}
   currentMap: {fileID: 0}
+  currentMapObj: {fileID: 0}
+  index: 0
   currentMapCode: 0
   currentDimention: 0
 --- !u!114 &975054099

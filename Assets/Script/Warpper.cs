@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class Warpper : AInteractable
 {
-    public MapData nextMap;
     [SerializeField] private Collider2D hitBox;
-
+    [SerializeField] private bool isGoingToRoot;
     void Start()
     {
         
@@ -23,7 +22,15 @@ public class Warpper : AInteractable
         PlayerCamera.Instance.gameObject.transform.position = PlayerInfo.Instance.transform.position;
         PlayerCamera.Instance.SetZoom(1f,8.3f);
         yield return new WaitForSeconds(1.2f);
-        MapManager.Instance.NextMap();
+        if (isGoingToRoot)
+        {
+            MapManager.Instance.RootNodeMap();
+        }
+        else
+        {
+            MapManager.Instance.NextMap();
+        }
+
         MapManager.Instance.CurrentDimention = Dimention.Normal;
         PlayerCamera.Instance.SetZoom(4.5f, 15f);
         PlayerInteraction.Instance.OnInteractMode(1);

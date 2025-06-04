@@ -100,7 +100,6 @@ public class MapManager : HalfSingleMono<MapManager>
     protected override void Awake()
     {
         base.Awake();
-        loadingPanel.SetActive(true);
         foreach( var i in mapDatas.maps)
         {
             mapSets.Add(i);
@@ -137,8 +136,20 @@ public class MapManager : HalfSingleMono<MapManager>
         initialList.Add("DreamersPrison-2");
         StartCoroutine(LoadFlow());
     }
+
+    public void RootNodeMap()
+    {
+        initialList.Clear();
+        initialList.Add("RootNode-1");
+        StartCoroutine(LoadFlow());
+    }
     IEnumerator LoadFlow()
     {
+        mapList.Clear();
+        if (currentMapObj != null)
+        {
+            Destroy(currentMapObj);
+        }
         index = 0;
         yield return StartCoroutine(LoadMapsWithProgressBar(initialList));
         currentMap = mapList[0];
@@ -157,6 +168,7 @@ public class MapManager : HalfSingleMono<MapManager>
 
     IEnumerator LoadMapsWithProgressBar(List<string> adress)
     {
+        loadingPanel.SetActive(true);
         progressBar.value = 0;
         var index = UnityEngine.Random.Range(1, 5);
         tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;

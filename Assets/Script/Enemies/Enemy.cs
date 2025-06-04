@@ -225,6 +225,11 @@ public abstract class Enemy : APoolingObject
         }
 
     }
+    protected void OnDestroy()
+    {
+        staminaPoint.Death();
+        this.Death();
+    }
 
 
 }
