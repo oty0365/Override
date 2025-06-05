@@ -37,7 +37,7 @@ public class KeyBindingManager : SingleMono<KeyBindingManager>
         keyBindings["Ultimate"] = KeyCode.R;
         keyBindings["Dash"] = KeyCode.Space;
         keyBindings["Interact"] = KeyCode.F;
-        keyBindings["Heal"] = KeyCode.LeftControl;
+        keyBindings["Charge"] = KeyCode.LeftControl;
     }
     void Start()
     {

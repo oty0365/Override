@@ -245,9 +245,9 @@ GameObject:
   - component: {fileID: 8666813274974791847}
   - component: {fileID: 6577633955160848341}
   - component: {fileID: 3622482160648680618}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: SoulBullet
-  m_TagString: Untagged
+  m_TagString: damageable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,7 +318,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.84, y: 0.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -390,7 +390,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.84, y: 0.84}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.84, y: 0.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -410,6 +410,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 2
+  attack:
+    type: 0
+    damage: 1
+    infinateTime: 0.1
+    attackCollider: {fileID: 0}
+  contactedEnemies: []
   rb: {fileID: 8666813274974791847}
   sr: {fileID: 6550372808950315804}
   tr: {fileID: 2490024230228869492}

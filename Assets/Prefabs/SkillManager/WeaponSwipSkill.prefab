@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4798045946510845573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1958428633255380033}
+  - component: {fileID: 5290281084604784952}
+  m_Layer: 0
+  m_Name: WeaponSwipSkill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1958428633255380033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798045946510845573}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5290281084604784952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798045946510845573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad09994998cf56d45a301f4e0887445c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillForm: 0
+  instantinateModule:
+    attackObj: {fileID: 6409667566836235361, guid: 72e59bcf5dc8a8549b07363ec20d20d4, type: 3}
+    attackTransform: {fileID: 0}
+    range: 0
+  currentWeaponSpiner: {fileID: 0}
+  currentWeaponSlot: {fileID: 0}
+  weaponSpinners:
+  - currentWeapon: 0
+    weaponSpinner: {fileID: 2323861841161922800, guid: 99f213dad40faa44aa1fabb48c638649, type: 3}
+  - currentWeapon: 1
+    weaponSpinner: {fileID: 3596065301840618944, guid: 500c3f8a7e2b58940a09589458e077c9, type: 3}
+  - currentWeapon: 2
+    weaponSpinner: {fileID: 7994828373670616239, guid: a12a00a02e1b9b54387823fd2910688c, type: 3}
+  - currentWeapon: 3
+    weaponSpinner: {fileID: 6359448649385810678, guid: 35bd381714e3bc14dbcf029d15099980, type: 3}

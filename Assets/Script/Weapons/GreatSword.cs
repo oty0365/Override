@@ -15,6 +15,8 @@ public class GreatSword : WeaponBase
     [Header("Attack Settings")]
     public float attackSpeed = 1f;
     public float comboInputWindow = 1f;
+
+    public Attack attack;
     private void Start()
     {
         DisableAllHitbox();
@@ -70,13 +72,17 @@ public class GreatSword : WeaponBase
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-            IHitable hitable = other.GetComponent<IHitable>();
-            if (hitable != null)
-            {
-                Vector2 contactPoint = other.ClosestPoint(transform.position);
-                ObjectPooler.Instance.Get(colideParticle, contactPoint, Vector3.zero, new Vector2(2f, 2f));
-                PlayerCamera.Instance.SetShake(0.6f, 68, 0.04f);
-            }
+        IHitable hitable = other.GetComponent<IHitable>();
+        var a = other.GetComponent<Enemy>();
+        if (a != null)
+        {
+            a.Hit(attack.attackCollider, attack.damage, attack.infinateTime);
+        }
+        if (hitable != null)
+        {
+            Vector2 contactPoint = other.ClosestPoint(transform.position);
+            hitable.OnHit();
+        }
     }
 
     public override void OnAttack1Pressed()

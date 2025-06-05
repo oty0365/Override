@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b652a02b32c374cb243d519af13d01, type: 3}
   m_Name: Bounce
   m_EditorClassIdentifier: 
-  skillName: "\uBE44\uBC00\uBCD1\uAE30"
+  skillName: BlessOfSlimeKingName
   skillIcon: {fileID: 21300000, guid: 07aaf7b9c6c6e0949ac5aea7120b14e8, type: 3}
   basicCoolDown: 90
-  skillDesc: "\uD06C\uAE30\uAC00 \uCEE4\uC9C0\uBA70 /r\uBB3C\uB9AC\uACF5\uACA9\uB825r/\uC774
-    /r20%r/\uC99D\uAC00\uD558\uACE0 /g\uCCB4\uB825\uC774g/ 2\uBC30\uAC00 \uB41C\uB2E4. "
+  skillDesc: BlessOfSlimeKingDesc

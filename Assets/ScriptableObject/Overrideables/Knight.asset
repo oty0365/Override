@@ -15,8 +15,8 @@ MonoBehaviour:
   overridealbeName: "\uAE30\uC0AC"
   rarity: 4
   animationClips:
-  - {fileID: 7400000, guid: c36b4cb0c6c3fad42acd796b9dc5a77a, type: 2}
   - {fileID: 7400000, guid: e00db4acda255d94ab79a9a98f3d4543, type: 2}
+  - {fileID: 7400000, guid: c36b4cb0c6c3fad42acd796b9dc5a77a, type: 2}
   desc: "\uD55C\uB54C\uB294 \uCC2C\uB780\uD588\uC9C0\uB9CC \uC774\uC81C\uB294 \uC7AC\uC640
     \uC6A9\uC5F0\uD5A5\uC73C\uB85C \uAC00\uB4DD\uD55C\n\uBCA0\uC774\uB3C4\uC2A4\uC758
     \uAE30\uC0AC.\n\uC0C8\uB07C \uC0D0\uB7EC\uB9E8\uB354\uB3C4 \uBB34\uC11C\uC6CC\uD574\uC11C

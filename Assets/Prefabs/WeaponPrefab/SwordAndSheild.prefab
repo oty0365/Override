@@ -138,6 +138,13 @@ MonoBehaviour:
   combo: 0
   colideParticle: {fileID: 9089905416252372434, guid: cb5fdc914ea0cec46b169013be5c5482, type: 3}
   range: 0.9
+  attackSpeed: 1
+  comboInputWindow: 1
+  attack:
+    type: 0
+    damage: 3
+    infinateTime: 0.3
+    attackCollider: {fileID: 0}
 --- !u!58 &9212949366427838366
 CircleCollider2D:
   m_ObjectHideFlags: 0

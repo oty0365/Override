@@ -11,8 +11,27 @@ public enum PoolObjectType
     CrunchBite,
     BlazeOfEvil,
     HitByLayzer,
-
-
+    StaminaPoint,
+    Dummy,
+    Code,
+    ForceFromPeople,
+    SwordOfVados,
+    RedBlade,
+    VoidSword,
+    BloodKatana,
+    GreatSword,
+    Shovle,
+    WeaponSwip,
+    IceRage,
+    JellyBall,
+    SlimesBleast,
+    ThrownSlik,
+    RiseOfRadiance,
+    GoblinKnight,
+    MonsterBite,
+    Crow,
+    MonsterDagger,
+    GreenGoblin
 }
 
 public abstract class APoolingObject:MonoBehaviour
@@ -28,14 +47,13 @@ public abstract class APoolingObject:MonoBehaviour
     public abstract void OnDeathInit();
 }
 
-public class ObjectPooler : MonoBehaviour
+public class ObjectPooler : HalfSingleMono<ObjectPooler>
 {
-    public static ObjectPooler Instance { get; private set; }
     private Dictionary<PoolObjectType, Queue<APoolingObject>> objectPoolList;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Instance = this;
+        base.Awake();
         objectPoolList = new Dictionary<PoolObjectType, Queue<APoolingObject>>();
     }
 
@@ -47,17 +65,17 @@ public class ObjectPooler : MonoBehaviour
     public GameObject Get(APoolingObject prefab, Vector2 position, Vector3 rotation)
     {
         PoolObjectType key = prefab.objectType;
-
         if (!objectPoolList.ContainsKey(key))
+        {
             objectPoolList[key] = new Queue<APoolingObject>();
-
+        }
         APoolingObject obj;
-
         if (objectPoolList[key].Count == 0)
         {
             obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
             obj.objectType = key;
             obj.OnBirth();
+
         }
         else
         {
@@ -67,6 +85,7 @@ public class ObjectPooler : MonoBehaviour
             obj.gameObject.SetActive(true);
             obj.OnBirth();
         }
+
 
         return obj.gameObject;
     }
@@ -99,6 +118,31 @@ public class ObjectPooler : MonoBehaviour
 
         return obj.gameObject;
     }
+    public GameObject Get(APoolingObject prefab, Transform parent)
+    {
+        PoolObjectType key = prefab.objectType;
+
+        if (!objectPoolList.ContainsKey(key))
+            objectPoolList[key] = new Queue<APoolingObject>();
+
+        APoolingObject obj;
+
+        if (objectPoolList[key].Count == 0)
+        {
+            obj = Instantiate(prefab, parent);
+            obj.objectType = key;
+            obj.OnBirth();
+        }
+        else
+        {
+            obj = objectPoolList[key].Dequeue();
+            obj.transform.parent = parent;
+            obj.gameObject.SetActive(true);
+            obj.OnBirth();
+        }
+
+        return obj.gameObject;
+    }
 
     public void Return(APoolingObject obj)
     {
@@ -106,8 +150,10 @@ public class ObjectPooler : MonoBehaviour
 
         if (!objectPoolList.ContainsKey(key))
             objectPoolList[key] = new Queue<APoolingObject>();
-
-        obj.gameObject.SetActive(false);
+        if (obj != null)
+        {
+            obj.gameObject.SetActive(false);
+        }
         objectPoolList[key].Enqueue(obj);
     }
 }

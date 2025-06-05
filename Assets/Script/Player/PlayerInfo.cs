@@ -1,9 +1,15 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Localization.Plugins.Google.Columns;
 using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.UI;
+
+public interface Buff
+{
+    public void UseBuff();
+}
 
 public class PlayerInfo : HalfSingleMono<PlayerInfo>
 {
@@ -48,10 +54,13 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             }
             if (value > playerMaxHp)
             {
-                playerMaxHp = value;
+                _playerCurHp = playerMaxHp;
             }
-            _playerCurHp = value;
-            hpRange.text = value.ToString() + "/" + playerMaxHp.ToString();
+            else
+            {
+                _playerCurHp = value;
+            }
+            hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
             hpBar.value = _playerCurHp;
             
         }
@@ -168,7 +177,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             currentSkillData = over.characterSkillData;
             SkillManager.Instance.ChangeCharacterSkill();
             SkillManager.Instance.BreakSkillCooldown(0);
-            SkillManager.Instance.BreakSkillCooldown(1);
+            SkillManager.Instance.BreakSkillCooldown(2);
 
         }
     }
@@ -184,10 +193,16 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             WeaponCore.Instance.ChangeWeapon(playerWeaponData.weaponPrefab);
         }
     }
+    public Stack<Buff> shiledBuff = new();
     void Start()
     {
         InitializeStatus();
+
     }
+    /*private void Update()
+    {
+        Debug.Log(shiledBuff.Count);
+    }*/
 
     public void SetInfiniteTime(float time)
     {

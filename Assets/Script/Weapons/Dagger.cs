@@ -5,23 +5,25 @@ public class Dagger : WeaponBase
 {
     [SerializeField] private APoolingObject daggerBullet;
     public float daggerThrowCooldown;
-
     private GameObject _curdagger;
     private bool _isThrowing;
     private bool _canThrow;
+    public Attack attack;
 
     private static readonly int AttackHash = Animator.StringToHash("Attack");
-    private static readonly int ReturnHash = Animator.StringToHash("Return");
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         IHitable hitable = other.GetComponent<IHitable>();
+        var a = other.GetComponent<Enemy>();
+        if(a != null)
+        {
+            a.Hit(attack.attackCollider, attack.damage,attack.infinateTime);
+        }
         if (hitable != null)
         {
             Vector2 contactPoint = other.ClosestPoint(transform.position);
-            ObjectPooler.Instance.Get(colideParticle, contactPoint, Vector3.zero, Vector2.one);
-            PlayerCamera.Instance.SetShake(0.4f, 25, 0.02f);
-            Debug.Log("검과 충돌");
+            hitable.OnHit();
         }
     }
 

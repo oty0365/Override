@@ -17,4 +17,4 @@ MonoBehaviour:
     characterSkill: {fileID: 7286087600570053681, guid: 8999bef4e8aff2647a3b9716fe93a4aa, type: 3}
   ultimateSkills:
   - skillData: {fileID: 11400000, guid: 13e6bf9609a9e0d42ba2d063a30ba01e, type: 2}
-    characterSkill: {fileID: 0}
+    characterSkill: {fileID: 4042058138174927265, guid: 58ab2e424aa9ebe43aff71ae492a21a5, type: 3}

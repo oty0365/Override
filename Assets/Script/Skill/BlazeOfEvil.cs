@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class BlazeOfEvil: APoolingObject
+public class BlazeOfEvil: AAttack
 {
     public Animator curAnimation;
     private AnimatorStateInfo _stateInfo;

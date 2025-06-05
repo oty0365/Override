@@ -8,6 +8,7 @@ TagManager:
   - wall
   - augmentsui
   - hitable
+  - damageable
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - Wall
   - Bullet
   - DamageAble
-  - 
-  - 
+  - EnemyDamageAble
+  - Enemy
   - 
   - 
   - 

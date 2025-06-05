@@ -10,3 +10,6 @@ ATBwill-4,3,1,나의 능력을 이용해서 <color=red>오버라이드</color> �
 ATBrune-1,3,1,내 뒤의 작은 수정은 <color=yellow>룬</color>이라고 불린다.,The small structure behind me is called a <color=yellow>rune</color>.
 ATBrune-2,3,1,<color=yellow>룬</color>들은 각자 신비로운 힘을 담고 있지...,<color=yellow>Runes</color> each hold their own mysterious power...
 ATBrune-3,3,1,너의 긴 모험에 도움이 될거야\n볼때마다 흡수해둬.,It will help you on your long journey.\nAbsorb it whenever you see it.
+ATBwarp-1,3,1,이 세계는 지금 무너지는 단계에 있다..\n정상적인 길이라곤 전부 막혀있지...,The world is falling apart... and every sane path is already blocked.
+ATBwarp-2,3,1,훌룡한 드워프들은 임시방편으로 워프를 만들었지.\n이 워프를 타면 너의 모험을 계속 할 수 있을거다.,The skilled dwarves set up a temporary warp. It should allow you to continue your journey.
+ATBwarp-3,3,1,아직 습득할것이 남아있다면 당장 타는 것은 추천하지 않겠어..,If there's still something left to acquire{COMMA}I wouldn't recommend using it just yet...

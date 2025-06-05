@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
@@ -49,6 +50,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("È­¸é")]
     [SerializeField] private Volume volume;
     private UnityEngine.Rendering.Universal.Vignette _vignette;
+    [NonSerialized] public UnityEngine.Rendering.Universal.ColorAdjustments colorAdjustments;
     private float _fadeSpeed;
     private float _fadeAmount;
 
@@ -68,6 +70,10 @@ public class PlayerCamera : MonoBehaviour
         if (volume.profile.TryGet(out UnityEngine.Rendering.Universal.Vignette vignette))
         {
             _vignette = vignette;
+        }
+        if (volume.profile.TryGet(out UnityEngine.Rendering.Universal.ColorAdjustments colorAdj))
+        {
+            colorAdjustments = colorAdj;
         }
         cameraSize = originCameraSize;
         fallowSpeed = originFallowSpeed;
@@ -93,6 +99,7 @@ public class PlayerCamera : MonoBehaviour
 
     public void SetZoom(float size, float speed)
     {
+
         cameraSize = size;
         cameraZoomSpeed = speed;
         StartState(CameraState.Zoom);
@@ -132,12 +139,10 @@ public class PlayerCamera : MonoBehaviour
 
             case CameraState.Zoom:
                 {
-                    if (_previousZoomCoroutine != null)
+                    if (_previousZoomCoroutine == null)
                     {
-                        StopCoroutine(_previousZoomCoroutine);
+                        _previousZoomCoroutine = StartCoroutine(ZoomFlow());
                     }
-
-                    _previousZoomCoroutine = StartCoroutine(ZoomFlow());
                     break;
                 }
 
@@ -263,6 +268,7 @@ public class PlayerCamera : MonoBehaviour
         }
 
         playerCam.orthographicSize = cameraSize;
+        _previousZoomCoroutine = null;
     }
 
     private IEnumerator RedBlinkFlow(float fadeSpeed,float redBlinkRange)
@@ -304,8 +310,8 @@ public class PlayerCamera : MonoBehaviour
             float dampingFactor = 1f - (elapsed / shakeTime);
             float strength = shakingPower * dampingFactor * shakeDamping;
 
-            float offsetX = isTooWide ? 0f : Random.Range(-1f, 1f) * strength * 0.1f;
-            float offsetY = isTooTall ? 0f : Random.Range(-1f, 1f) * strength * 0.1f;
+            float offsetX = isTooWide ? 0f : UnityEngine.Random.Range(-1f, 1f) * strength * 0.1f;
+            float offsetY = isTooTall ? 0f : UnityEngine.Random.Range(-1f, 1f) * strength * 0.1f;
 
             Vector3 targetPos = originalPos + new Vector3(offsetX, offsetY, 0f);
 
