@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b652a02b32c374cb243d519af13d01, type: 3}
   m_Name: CrunchBite
   m_EditorClassIdentifier: 
-  skillName: "\uAE68\uBB3C\uC5B4 \uBD80\uC218\uAE30"
+  skillName: CrocoBiteName
   skillIcon: {fileID: 21300000, guid: 98efea4cd3304ac49a374f39510f8749, type: 3}
   basicCoolDown: 4
-  skillDesc: "\uB0A0\uCE74\uB86D\uACE0 \uB2E8\uB2E8\uD55C \uC774\uBE68\uB85C \uC801\uC744
-    \uAE68\uBB3C\uC5B4\uBD80\uC2DC\uBA70 /r{}r/\uC758 /r\uBB3C\uB9AC\uD53C\uD574r/\uB97C
-    \uC785\uD78C\uB2E4. \uC785\uD78C \uD53C\uD574\uC758 /g20%g/\uB9CC\uD07C /g\uCCB4\uB825\uC744g/
-    \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+  skillDesc: CrocoBiteDesc

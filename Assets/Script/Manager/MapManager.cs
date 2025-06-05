@@ -56,6 +56,7 @@ public class MapManager : HalfSingleMono<MapManager>
     public GameObject currentMapObj;
 
     public int index;
+    public bool isLoading;
 
 
     private PlayerCamera _playerCamera;
@@ -168,6 +169,7 @@ public class MapManager : HalfSingleMono<MapManager>
 
     IEnumerator LoadMapsWithProgressBar(List<string> adress)
     {
+        isLoading = true;
         loadingPanel.SetActive(true);
         progressBar.value = 0;
         var index = UnityEngine.Random.Range(1, 5);
@@ -193,6 +195,7 @@ public class MapManager : HalfSingleMono<MapManager>
         progressBar.value = 1;
         yield return new WaitForSeconds(1f);
         PlayerInteraction.Instance.OnInteractMode(1);
+        isLoading = false;
 
     }
 

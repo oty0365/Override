@@ -150,8 +150,10 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
 
         if (!objectPoolList.ContainsKey(key))
             objectPoolList[key] = new Queue<APoolingObject>();
-
-        obj.gameObject.SetActive(false);
+        if (obj != null)
+        {
+            obj.gameObject.SetActive(false);
+        }
         objectPoolList[key].Enqueue(obj);
     }
 }

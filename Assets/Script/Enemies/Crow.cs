@@ -78,6 +78,7 @@ public class Crow : Enemy
     }
     public override void InitEnemy()
     {
+        target = PlayerInfo.Instance.gameObject;
         attackDir.SetActive(false);
         base.InitEnemy();
         recognitionModule.Initialize();

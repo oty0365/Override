@@ -1,0 +1,25 @@
+﻿Key,Type,Priority,Ko,En
+DemonicBulletName,1,1,마의 탄환,Demonic Bullet
+DemonicBulletDesc,2,1,마의 탄환을 발사하여 적에게 각 틱마다 <color=red>7</color> 의 데미지를 준다,Breathes out a cursed mist that inflicts <color=red>7</color>damage per tick
+RuneStoneScrollName,3,1,룬 계약서,RuneStone Scroll
+RuneStoneScrollDesc,4,1,세상을 지배하기 위해 룬 계약서를 펼쳐 증강을 하나 얻는다,Unfolds a Rune Contract to gain one Augment
+CrocoBiteDesc,5,1,용족의 후예인 코니언의 이빨을 사용하여 크게 물어뜯어 적에게 <color=red>10</color> 데미지를 준다,With the fangs of Konian{COMMA} heir of the dragonkin\n delivers a vicious bite that deals <color=red>10</color>damage to the enemy
+CrocoBiteName,6,1,크로코바이트,Croco-Bite
+IceSpyralName,7,1,빙룡의 분노,Rage of IceDragon
+IceSpyralDesc,8,1,크로코의 조상인 빙룡의 힘을 빌려\n 전방으로 긴 브레스를 발사해 적에게 각 틱마다 <color=red>5</color> 데미지를 준다 ,Channels the power of the Ice Dragon\n ancestor of Croco{COMMA} to unleash a long breath forward\n dealing <color=red>5</color> damage to enemies every tick
+SlikSawDesc,8,1,실크를 발사해서 닿은 대상의 위치로 이동하며 적에겐 매 틱마다다의 <color=red>3</color> 데미지를 준다,Fires a silk thread and moves to the target on contact\n dealing <color=red>3</color> damage to enemies every tick
+SlikSawName,8,1,실크 발사,Slick Throw
+BirthOfRadianceName,8,1,광휘의 탄생,Birth of Radiance
+BirthOfRadianceDesc,8,1,염원하던 날개를 얻고 승천하여 5초간 기본 공격력이 <color=red>20</color> 증가한다,Ascends with the long-desired wings, increasing base attack power by <color=red>20</color> for 5 seconds
+ForceFromPeopleName,8,1,사람들에게서 오는 힘,Force from People
+ForceFromPeopleDesc,8,1,베이도스 사람들의 희망을 담아 공격을 무효화 할 수 있는 방어막을 생성한다,Creates a shield that nullifies attacks{COMMA} embodying the hopes of the people of Vados
+SwordOfVadosName,8,1,베이도스의 검,Sword of Vados
+SwordOfVadosDesc,8,1,사람들을 지키기 위해 극번의 힘을 모아 용살의 대검기를 날린다\n적에게 대검은 <color=red>30</color> 의 데미지를{COMMA}검기는<color=red>10</color> 의 데미지를 준다,To protect the people{COMMA} they gather the power of desperation\n to unleash the Dragon-Slaying Greatsword Strike\nThe greatsword deals <color=red>30</color> damage to the enemy{COMMA} while the sword wave deals <color=red>10</color> damage.
+SlimesEveryWhereName,8,1,감수분열,meiosis
+SlimesEveryWhereDesc,8,1,지성이 없는 자신의 분체를 만들어내고 흡수하면 <color=green>1</color> 의 체력을 회복한다,Creates a mindless clone of itself{COMMA}and upon absorbing it{COMMA}recovers <color=green>1</color>HP
+BlessOfSlimeKingName,8,1,슬라임왕의 축복,Bless of SlimeKing
+BlessOfSlimeKingDesc,8,1,자신을 가족으로 인정해준 슬라임왕의 가호를 이용하여 5초간 데미지를 무시하고 0.5초당 체력을 <color=green>1</color> 씩 회복한다,Using the blessing of the Slime King{COMMA} who accepted them as family\n they ignore all damage for 5 seconds and recover <color=green>1</color> HP every 0.5 seconds.
+ForceOfTravelerName,8,1,모험가의 근력,Force of Traveler
+ForceOfTravelerDesc,8,1,모험가일족 특유의 근력을 사용해 무기를 돌려 적에게 피해를 입힌다,Uses the unique strength of the adventurer clan to spin\ntheir weapon and deal damage to enemies
+WeaponChangeName,8,1,무기 교체,Weapon Change
+WeaponChangeDesc,8,1,빠르게 무기를 교체하여 다양한 속성을 지닌 무기들중 하나를 얻는다,Swiftly switches weapons to obtain one imbued with a random elemental attribute
