@@ -28,9 +28,62 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
     [Header("플레이어 스테이터스")]
     public Slider hpBar;
     public Slider staminaBar;
+    public Slider codeBar;
     public TextMeshProUGUI hpRange;
     public TextMeshProUGUI staminaRange;
+    public TextMeshProUGUI coinText;
     public Image defenceBar;
+
+    private int _playerCoin;
+    public int PlayerCoin
+    {
+        get => _playerCoin;
+        set
+        {
+            if (value < 0)
+            {
+                _playerCoin = 0;
+            }
+            else
+            {
+                _playerCoin = value;
+            }
+                coinText.text = _playerCoin.ToString();
+        }
+    }
+    [System.NonSerialized] private float playerMaxCodePower = 30f;
+    public float PlayerMaxCodePower
+    {
+        get => playerMaxCodePower;
+        set
+        {
+            codeBar.maxValue = value;
+            playerMaxHp = value;
+        }
+    }
+    private float _playerCurCodePower;
+    public float PlayerCurCodePower
+    {
+        get => _playerCurCodePower;
+        set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+            if (value > playerMaxCodePower)
+            {
+                _playerCurCodePower = playerMaxHp;
+            }
+            else
+            {
+                _playerCurHp = value;
+            }
+            hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
+            hpBar.value = _playerCurHp;
+
+        }
+    }
 
     [System.NonSerialized] private float playerMaxHp = 30f;
     public float PlayerMaxHp
@@ -153,6 +206,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
 
     public void InitializeStatus()
     {
+        PlayerCoin = 0;
         hpBar.maxValue = playerMaxHp;
         staminaBar.maxValue = playerMaxStamina;
         defenceBar.fillAmount = PlayerDefence / 100f;

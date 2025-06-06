@@ -29,8 +29,11 @@ public abstract class Enemy : APoolingObject
     public bool isStun;
     public bool isStunning; 
     public bool canAttack;
+    public bool isCurrupted;
 
     public StaminaPoint staminaPoint;
+    public GameObject glowEye;
+    public GameObject backParticle;
 
 
     [SerializeField]
@@ -81,6 +84,18 @@ public abstract class Enemy : APoolingObject
 
     public virtual void InitEnemy()
     {
+        if (isCurrupted)
+        {
+            sr.color = Color.black;
+            glowEye.SetActive(true);
+            backParticle.SetActive(true);
+        }
+        else
+        {
+            sr.color = Color.white;
+            glowEye.SetActive(false);
+            backParticle.SetActive(false);
+        }
         canAttack = true;
         isStun = false;
         isStunning = false;
@@ -96,23 +111,34 @@ public abstract class Enemy : APoolingObject
         c.currentEnemy = this;
         c.UpLoadEvent();
     }
-    
+    public void DeathDrop()
+    {
+        PlayerInfo.Instance.PlayerCoin += UnityEngine.Random.Range(monsterData.minCoin, monsterData.maxCoin + 1);
+        if (isCurrupted)
+        {
+            backParticle.SetActive(false);
+            glowEye.SetActive(false);
+        }
+    }
 
     public virtual void Hit(Collider2D collider, float damage, float infinateTime)
     {
         //Debug.Log("Hit");
-        if (!isStunning)
+        if (staminaPoint != null)
         {
-            CurrentStamina -= 10f;
-        }
-        CurrentHp -= damage;
-        if (_currentHitFlow != null)
-        {
-            StopCoroutine(_currentHitFlow);
-        }
-        _currentHitFlow = StartCoroutine(HitFlow());
+            if (!isStunning)
+            {
+                CurrentStamina -= 10f;
+            }
+            CurrentHp -= damage;
+            if (_currentHitFlow != null)
+            {
+                StopCoroutine(_currentHitFlow);
+            }
+            _currentHitFlow = StartCoroutine(HitFlow());
 
-        StartCoroutine(InfinateTimeFlow(collider, infinateTime));
+            StartCoroutine(InfinateTimeFlow(collider, infinateTime));
+        }
     }
 
     private IEnumerator HitFlow()
@@ -212,24 +238,28 @@ public abstract class Enemy : APoolingObject
     }
     public void Flip()
     {
-        if(target != null)
+        if (target != null)
         {
+            Vector3 scale = transform.localScale;
+
             if (target.transform.position.x < gameObject.transform.position.x)
             {
-                sr.flipX = true;
+                scale.x = -Mathf.Abs(scale.x);
             }
             else
             {
-                sr.flipX = false;
+                scale.x = Mathf.Abs(scale.x);
             }
-        }
 
+            transform.localScale = scale;
+        }
     }
     protected void OnDestroy()
     {
         staminaPoint.Death();
         this.Death();
     }
+
 
 
 }

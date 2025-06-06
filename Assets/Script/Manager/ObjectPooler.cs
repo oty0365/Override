@@ -31,7 +31,13 @@ public enum PoolObjectType
     MonsterBite,
     Crow,
     MonsterDagger,
-    GreenGoblin
+    GreenGoblin,
+    CurGoblinKnight,
+    CurCrow,
+    CurGreenGoblin,
+    SkeletonArch,
+    CurSkeletonArch,
+    Arrow,
 }
 
 public abstract class APoolingObject:MonoBehaviour
@@ -150,10 +156,8 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
 
         if (!objectPoolList.ContainsKey(key))
             objectPoolList[key] = new Queue<APoolingObject>();
-        if (obj != null)
-        {
-            obj.gameObject.SetActive(false);
-        }
+
+        obj.gameObject.SetActive(false);
         objectPoolList[key].Enqueue(obj);
     }
 }

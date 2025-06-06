@@ -30,7 +30,6 @@ public class PathFinder : MonoBehaviour
     private int[] _eightX = new int[8] { 0, 1, 1, 0, -1, -1, 1, -1 };
     private int[] _eightY = new int[8] { 1, 0, 1, -1, 0, -1, -1, 1 };
 
-    // 경로를 저장할 리스트 (기즈모에서 사용)
     private List<Vector2Int> currentPath = new List<Vector2Int>();
 
     public List<Vector2Int> PathFinding()
@@ -154,7 +153,6 @@ public class PathFinder : MonoBehaviour
             return path;
         }
 
-        // 경로를 찾지 못한 경우 빈 리스트로 설정
         currentPath.Clear();
         return null;
     }
@@ -166,7 +164,6 @@ public class PathFinder : MonoBehaviour
         Tilemap tilemap = TileMapManager.Instance?.tilemap;
         if (tilemap == null) return;
 
-        // 경로 선 그리기
         Gizmos.color = Color.green;
         for (int i = 0; i < currentPath.Count - 1; i++)
         {
@@ -175,15 +172,12 @@ public class PathFinder : MonoBehaviour
             Gizmos.DrawLine(worldPos1, worldPos2);
         }
 
-        // 경로 포인트 그리기
         Gizmos.color = Color.yellow;
         foreach (var point in currentPath)
         {
             Vector3 worldPos = tilemap.GetCellCenterWorld(new Vector3Int(point.x, point.y, 0));
             Gizmos.DrawWireSphere(worldPos, 0.1f);
         }
-
-        // 시작점과 목표점 강조
         if (currentPath.Count > 0)
         {
             Gizmos.color = Color.blue;

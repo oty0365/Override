@@ -17,5 +17,7 @@ public class MonsterData : ScriptableObject
     public float moveSpeed;
     public float recoveryTime;
     public float recognitionRange;
+    public int maxCoin;
+    public int minCoin;
     public DropTable[] dropTable;
 }

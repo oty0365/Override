@@ -172,7 +172,7 @@ public class MapManager : HalfSingleMono<MapManager>
         isLoading = true;
         loadingPanel.SetActive(true);
         progressBar.value = 0;
-        var index = UnityEngine.Random.Range(1, 5);
+        var index = UnityEngine.Random.Range(1, 7);
         tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
         foreach (var i in adress)
         {
