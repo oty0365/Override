@@ -138,6 +138,31 @@ public class MapManager : HalfSingleMono<MapManager>
         StartCoroutine(LoadFlow());
     }
 
+    public void SetGameMap(int start, int end, int midBoss, int finalBoss)
+    {
+        initialList.Clear();
+        var areaMaps = new List<string>();
+        for(int i = start; i <= end; i++)
+        {
+            areaMaps.Add(mapDatas.maps[i]);
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            var index=UnityEngine.Random.Range(0, areaMaps.Count);
+            initialList.Add(areaMaps[index]);
+            areaMaps.Remove(areaMaps[index]);
+        }
+        initialList.Add(mapDatas.maps[midBoss]);
+        for (int i = 0; i < 3; i++)
+        {
+            var index = UnityEngine.Random.Range(0, areaMaps.Count);
+            initialList.Add(areaMaps[index]);
+            areaMaps.Remove(areaMaps[index]);
+        }
+        initialList.Add(mapDatas.maps[finalBoss]);
+        StartCoroutine(LoadFlow());
+    }
+
     public void RootNodeMap()
     {
         initialList.Clear();

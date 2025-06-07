@@ -30,6 +30,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
     public Slider staminaBar;
     public Slider codeBar;
     public TextMeshProUGUI hpRange;
+    public TextMeshProUGUI codeRange;
     public TextMeshProUGUI staminaRange;
     public TextMeshProUGUI coinText;
     public Image defenceBar;
@@ -77,10 +78,10 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             }
             else
             {
-                _playerCurHp = value;
+                _playerCurCodePower = value;
             }
-            hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
-            hpBar.value = _playerCurHp;
+            codeRange.text = _playerCurCodePower.ToString() + "/" + playerMaxCodePower.ToString();
+            codeBar.value = _playerCurCodePower;
 
         }
     }
@@ -115,7 +116,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             }
             hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
             hpBar.value = _playerCurHp;
-            
+            Debug.Log(_playerCurHp);
         }
     }
     [System.NonSerialized] public float playerMaxStamina = 30f;
@@ -208,9 +209,11 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
     {
         PlayerCoin = 0;
         hpBar.maxValue = playerMaxHp;
+        codeBar.maxValue = playerMaxCodePower;
         staminaBar.maxValue = playerMaxStamina;
         defenceBar.fillAmount = PlayerDefence / 100f;
         PlayerCurHp = playerMaxHp;
+        PlayerCurCodePower = 0f;
         PlayerCurStamina = playerMaxStamina;
         _playerSkillCooldown = playerBasicSkillCooldown;
     }

@@ -302,7 +302,6 @@ public class GreenGoblinAttack : BaseAttack
 
         var gb = GetEnemyAs<GreenGoblin>();
         currAni = gb.ani.GetCurrentAnimatorStateInfo(0);
-        Debug.Log(currAni.normalizedTime);
         if (currAni.normalizedTime >= 1.0f)
         {
             gb.fsm.ChangeState(enemy.fsm.states["Idel"]);

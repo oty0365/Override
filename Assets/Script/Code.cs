@@ -38,6 +38,7 @@ public class Code : APoolingObject
         gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, target , 9 * Time.deltaTime);
         if (isReturning&&Vector2.Distance(gameObject.transform.position, PlayerInfo.Instance.gameObject.transform.position) < 0.05f)
         {
+            PlayerInfo.Instance.PlayerCurCodePower += 1;
             Death();
         }
     }

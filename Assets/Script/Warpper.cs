@@ -1,10 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
+public enum WarpMode
+{
+    Root,
+    Next,
+    Game
+}
 public class Warpper : AInteractable
 {
     [SerializeField] private Collider2D hitBox;
-    [SerializeField] private bool isGoingToRoot;
+    [SerializeField] private WarpMode warpMode;
     void Start()
     {
         
@@ -22,15 +28,18 @@ public class Warpper : AInteractable
         PlayerCamera.Instance.gameObject.transform.position = PlayerInfo.Instance.transform.position;
         PlayerCamera.Instance.SetZoom(1f,8.3f);
         yield return new WaitForSeconds(1.2f);
-        if (isGoingToRoot)
+        switch (warpMode)
         {
-            MapManager.Instance.RootNodeMap();
+            case WarpMode.Root:
+                MapManager.Instance.RootNodeMap();
+                break;
+            case WarpMode.Next:
+                MapManager.Instance.NextMap();
+                break;
+            case WarpMode.Game:
+                MapManager.Instance.SetGameMap(3,9,10,11);
+                break;
         }
-        else
-        {
-            MapManager.Instance.NextMap();
-        }
-
         MapManager.Instance.CurrentDimention = Dimention.Normal;
         PlayerCamera.Instance.SetZoom(4.5f, 15f);
         PlayerInteraction.Instance.OnInteractMode(1);
