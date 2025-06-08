@@ -4893,7 +4893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMap: {fileID: 6717042547279840078}
-  baseMap: {fileID: 0}
+  baseMap: {fileID: 3653934968322607817}
 --- !u!1 &3383187652745727772
 GameObject:
   m_ObjectHideFlags: 0

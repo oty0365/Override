@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c815442c056c7843abb2916763a96f7, type: 3}
   m_Name: LandOfOrigin-3
   m_EditorClassIdentifier: 
-  mapBanner: {fileID: 21300000, guid: 489ef3f61eb60b340a0295f8e23509d1, type: 3}
+  mapBanner: {fileID: 21300000, guid: e91a3ff194e239043ac2cafb5b6d9daf, type: 3}
   mapPrefab: {fileID: 2675549431018189336, guid: 0a1ad71a4c26d2b4b96a5a2b81507dfc, type: 3}
   mapCode: 2
   mapSubName: 
   mapLevel: 0
   mapHardness: 0
   spawnVector: {x: 0, y: 0}
-  playerSpawn: {x: 0, y: -1.8}
+  playerSpawn: {x: -1, y: -3}

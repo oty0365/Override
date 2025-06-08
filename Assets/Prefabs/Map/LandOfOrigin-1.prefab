@@ -77595,7 +77595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMap: {fileID: 5810680225265034723}
-  baseMap: {fileID: 0}
+  baseMap: {fileID: 877882142217691086}
 --- !u!1001 &5119863127505638994
 PrefabInstance:
   m_ObjectHideFlags: 0
