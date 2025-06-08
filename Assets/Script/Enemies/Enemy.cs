@@ -7,6 +7,8 @@ using UnityEngine;
 
 public abstract class Enemy : APoolingObject
 {
+    [Header("해당 배틀 매니져")]
+    public BattleManager battleManager;
     [Header("몬스터 데이터")]
     public MonsterData monsterData;
     [Header("스테미나 포인트 위치")]
@@ -93,8 +95,15 @@ public abstract class Enemy : APoolingObject
         else
         {
             sr.color = Color.white;
-            glowEye.SetActive(false);
-            backParticle.SetActive(false);
+            if (glowEye != null)
+            {
+                glowEye.SetActive(false);
+            }
+            if(backParticle != null)
+            {
+                backParticle.SetActive(false);
+            }
+
         }
         canAttack = true;
         isStun = false;
@@ -113,6 +122,7 @@ public abstract class Enemy : APoolingObject
     }
     public void DeathDrop()
     {
+        battleManager.MonsterCount--;
         PlayerInfo.Instance.PlayerCoin += UnityEngine.Random.Range(monsterData.minCoin, monsterData.maxCoin + 1);
         if (isCurrupted)
         {

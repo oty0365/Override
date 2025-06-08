@@ -47,6 +47,8 @@ public class MapManager : HalfSingleMono<MapManager>
     public GameObject loadingPanel;
     [SerializeField] private UnityEngine.UI.Slider progressBar;
     [SerializeField] private TextMeshProUGUI tmiText;
+    [SerializeField] private GameObject bugLeftPannel;
+    [SerializeField] private TextMeshProUGUI bugLeftText;
 
     public GameObject banner;
     public UnityEngine.UI.Image header;
@@ -75,6 +77,26 @@ public class MapManager : HalfSingleMono<MapManager>
 
                 StartCoroutine(MapNameFlow());
             }
+        }
+    }
+
+    private int _currentMonsters;
+    public int CurrentMonsters
+    {
+        get => _currentMonsters;
+        set
+        {
+            if (value <= 0)
+            {
+                _currentMonsters = 0;
+                bugLeftPannel.SetActive(false);
+            }
+            else
+            {
+                _currentMonsters = value;
+                bugLeftPannel.SetActive(true);
+            }
+            bugLeftText.text = _currentMonsters.ToString();
         }
     }
 
@@ -110,6 +132,7 @@ public class MapManager : HalfSingleMono<MapManager>
 
     private void Start()
     {
+        CurrentMonsters = 0;
         _playerCamera = PlayerCamera.Instance;
         PlayerInteraction.Instance.OnInteractMode(0);
         TutorialMap();
