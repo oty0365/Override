@@ -17,12 +17,6 @@ public class GreenGoblin : Enemy
 
     public APoolingObject dagger;
 
-
-
-    private void Start()
-    {
-        InitEnemy();
-    }
     protected override void Update()
     {
         base.Update();
@@ -105,12 +99,11 @@ public class GreenGoblin : Enemy
     }
     public void OnDeath()
     {
-        DeathDrop();
         StartCoroutine(DeathFlow());
     }
     private IEnumerator DeathFlow()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         Death();
     }
 }
@@ -178,7 +171,7 @@ public class GreenGoblinDeath : BaseDeath
 {
     public override void OnStateStart()
     {
-        enemy.staminaPoint.Death();
+        //enemy.staminaPoint.Death();
         enemy.ani.Play("GreenGoblinDeath");
         GetEnemyAs<GreenGoblin>().OnDeath();
     }

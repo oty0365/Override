@@ -46,6 +46,10 @@ public abstract class Enemy : APoolingObject
         set
         {
             _currentHp = value;
+            if (_currentHp <= 0)
+            {
+                DeathDrop();
+            }
         }
     }
 
@@ -67,7 +71,7 @@ public abstract class Enemy : APoolingObject
             if (value != _currentStamia)
             {
                 _currentStamia = value;
-                if (onStaminaChange != null)
+                if (onStaminaChange != null&& staminaPoint != null)
                 {
                     onStaminaChange.Invoke();
                 }
@@ -122,6 +126,9 @@ public abstract class Enemy : APoolingObject
     }
     public void DeathDrop()
     {
+        //Destroy(staminaPoint.gameObject);
+        staminaPoint.Death();
+        onStaminaChange = null;
         battleManager.MonsterCount--;
         PlayerInfo.Instance.PlayerCoin += UnityEngine.Random.Range(monsterData.minCoin, monsterData.maxCoin + 1);
         if (isCurrupted)
@@ -140,7 +147,10 @@ public abstract class Enemy : APoolingObject
             {
                 CurrentStamina -= 10f;
             }
-            CurrentHp -= damage;
+            if (CurrentHp > 0)
+            {
+                CurrentHp -= damage;
+            }
             if (_currentHitFlow != null)
             {
                 StopCoroutine(_currentHitFlow);

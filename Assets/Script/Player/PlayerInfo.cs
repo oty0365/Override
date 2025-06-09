@@ -116,7 +116,6 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             }
             hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
             hpBar.value = _playerCurHp;
-            Debug.Log(_playerCurHp);
         }
     }
     [System.NonSerialized] public float playerMaxStamina = 30f;

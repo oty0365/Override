@@ -5356,6 +5356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 26
+  battleManager: {fileID: 0}
   monsterData: {fileID: 11400000, guid: cea3536a0806eb446b2a13d180795a8d, type: 2}
   staminaPointPos: {fileID: 2115305117388534068}
   ani: {fileID: 4489814329622324135}
@@ -5366,7 +5367,7 @@ MonoBehaviour:
   isStun: 0
   isStunning: 0
   canAttack: 0
-  isCurrupted: 1
+  isCurrupted: 0
   staminaPoint: {fileID: 0}
   glowEye: {fileID: 934324056604303585}
   backParticle: {fileID: 980911751809644997}

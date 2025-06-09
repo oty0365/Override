@@ -17,10 +17,6 @@ public class SkeletonArch : Enemy
 
     public APoolingObject arrow;
 
-    private void Start()
-    {
-        InitEnemy();
-    }
     protected override void Update()
     {
         base.Update();
@@ -56,7 +52,6 @@ public class SkeletonArch : Enemy
         {
             fsm.ChangeState(fsm.states["Death"]);
         }
-        Debug.Log(CurrentHp);
     }
 
     public override void OnBirth()
@@ -125,7 +120,6 @@ public class SkeletonArch : Enemy
 
     public void OnDeath()
     {
-        DeathDrop();
         StartCoroutine(DeathFlow());
     }
 

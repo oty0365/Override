@@ -13,12 +13,6 @@ public class GoblinKnight : Enemy
     public GameObject attackDir;
     public Vector2 dir;
 
-
-
-    private void Start()
-    {
-        InitEnemy();
-    }
     protected override void Update()
     {
         base.Update();
@@ -27,6 +21,7 @@ public class GoblinKnight : Enemy
             fsm.ChangeState(fsm.states["Stun"]);
             isStun = false;
         }
+
     }
 
     protected override void FixedUpdate()
@@ -55,7 +50,6 @@ public class GoblinKnight : Enemy
         {
             fsm.ChangeState(fsm.states["Death"]);
         }
-        Debug.Log(CurrentHp);
     }
     public override void OnBirth()
     {
@@ -91,7 +85,7 @@ public class GoblinKnight : Enemy
         var stun = new GoblinKnightStun();
         var hit = new GoblinKnightHit();
         var aim = new GoblinKnightAim();
-        var waitCooldown = new GoblinKnightWaitCooldown(); // 새로운 상태 추가
+        var waitCooldown = new GoblinKnightWaitCooldown();
         fsm.AddState("Walk", walk, this);
         fsm.AddState("Death", death, this);
         fsm.AddState("Idel", idel, this);
@@ -99,12 +93,11 @@ public class GoblinKnight : Enemy
         fsm.AddState("Stun", stun, this);
         fsm.AddState("Hit", hit, this);
         fsm.AddState("Aim", aim, this);
-        fsm.AddState("WaitCooldown", waitCooldown, this); // 새로운 상태 추가
+        fsm.AddState("WaitCooldown", waitCooldown, this); 
         fsm.ChangeState(fsm.states["Idel"]);
     }
     public void OnDeath()
     {
-        DeathDrop();
         StartCoroutine(DeathFlow());
     }
     private IEnumerator DeathFlow()
@@ -177,7 +170,6 @@ public class GoblinKnightDeath : BaseDeath
 {
     public override void OnStateStart()
     {
-        enemy.staminaPoint.Death();
         enemy.ani.Play("GoblinKnightDeath");
         GetEnemyAs<GoblinKnight>().OnDeath();
     }
@@ -351,39 +343,54 @@ public class GoblinKnightAttack : BaseAttack
         {
             gb.Attacked();
         }
-        var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
-        gb.spear.transform.localPosition = gb.dir.normalized * 1.2f;
-        gb.spear.transform.localRotation = gb.attackDir.transform.localRotation;
+
+        Vector2 finalDirection = gb.dir;
+        if (gb.transform.localScale.x < 0)
+        {
+            finalDirection = new Vector2(-gb.dir.x, gb.dir.y);
+        }
+
+        var deg = Mathf.Atan2(finalDirection.y, finalDirection.x) * Mathf.Rad2Deg;
+        gb.spear.transform.localPosition = finalDirection.normalized * 1.2f;
+        if (gb.transform.localScale.x < 0)
+        {
+            deg = -deg;
+        }
+        gb.spear.transform.rotation = Quaternion.Euler(0, 0, deg);
         gb.spear.SetActive(true);
         enemy.ani.Play("GoblinKnightFire");
         i = 0f;
 
-        RaycastHit2D nearWallHit = Physics2D.Raycast(gb.transform.position, gb.dir, wallCheckDistance, LayerMask.GetMask("Wall"));
+        RaycastHit2D nearWallHit = Physics2D.Raycast(gb.transform.position, finalDirection, wallCheckDistance, LayerMask.GetMask("Wall"));
 
         Vector2 dashDirection;
 
         if (nearWallHit.collider != null)
         {
-            dashDirection = -gb.dir;
-        }
-        else
-        {
-            dashDirection = gb.dir;
-        }
+            dashDirection = -finalDirection;
+            float backoffDistance = 1.5f; 
 
-        float attackDistance = 100f;
-        RaycastHit2D hit = Physics2D.Raycast(gb.transform.position, dashDirection, attackDistance, LayerMask.GetMask("Wall"));
-
-        if (hit.collider != null)
-        {
             isUsingRaycast = true;
-            targetPosition = hit.point - dashDirection * 1f;
+            targetPosition = (Vector2)gb.transform.position + dashDirection * backoffDistance;
             gb.rb2D.linearVelocity = Vector2.zero;
         }
         else
         {
-            isUsingRaycast = false;
-            gb.rb2D.linearVelocity = dashDirection * moveSpeed;
+            dashDirection = finalDirection;
+            float attackDistance = 100f;
+            RaycastHit2D hit = Physics2D.Raycast(gb.transform.position, dashDirection, attackDistance, LayerMask.GetMask("Wall"));
+
+            if (hit.collider != null)
+            {
+                isUsingRaycast = true;
+                targetPosition = hit.point - dashDirection * 1f;
+                gb.rb2D.linearVelocity = Vector2.zero;
+            }
+            else
+            {
+                isUsingRaycast = false;
+                gb.rb2D.linearVelocity = dashDirection * moveSpeed;
+            }
         }
 
         var dashDeg = Mathf.Atan2(dashDirection.y, dashDirection.x) * Mathf.Rad2Deg;
@@ -400,7 +407,7 @@ public class GoblinKnightAttack : BaseAttack
             Vector2 newPos = Vector2.MoveTowards(currentPos, targetPosition, moveSpeed * Time.fixedDeltaTime);
             gb.rb2D.MovePosition(newPos);
 
-            if (Vector2.Distance(currentPos, targetPosition) < 1f)
+            if (Vector2.Distance(currentPos, targetPosition) < 0.5f) 
             {
                 gb.rb2D.linearVelocity = Vector2.zero;
                 gb.fsm.ChangeState(enemy.fsm.states["Idel"]);

@@ -18,12 +18,14 @@ public class StaminaPoint : APoolingObject
     }
     void Update()
     {
-        gameObject.transform.position = currentEnemy.staminaPointPos.position;
+        if (currentEnemy != null && currentEnemy.staminaPointPos != null)
+            transform.position = currentEnemy.staminaPointPos.position;
     }
     public override void OnBirth()
     {
         progress = 0f;
         sr.color = gradient.Evaluate(progress);
+
     }
     public void UpLoadEvent()
     {
@@ -50,15 +52,20 @@ public class StaminaPoint : APoolingObject
     }
     public override void OnDeathInit()
     {
-        currentEnemy.onStaminaChange -= OnvalueChange;
     }
     private IEnumerator WaitFlow()
     {
         yield return new WaitForSeconds(currentEnemy.monsterData.recoveryTime);
+
+        if (!isActiveAndEnabled || currentEnemy == null)
+            yield break;
+
         if (_recuveryFlow != null)
             StopCoroutine(_recuveryFlow);
+
         _recuveryFlow = StartCoroutine(RecoveryFlow());
     }
+
 
     private IEnumerator RecoveryFlow()
     {
@@ -66,6 +73,9 @@ public class StaminaPoint : APoolingObject
 
         while (progress > 0)
         {
+            if (!isActiveAndEnabled || currentEnemy == null || sr == null)
+                yield break;
+
             progress -= Time.deltaTime * 3f;
             progress = Mathf.Clamp01(progress);
 

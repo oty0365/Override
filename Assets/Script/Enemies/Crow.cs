@@ -15,11 +15,8 @@ public class Crow : Enemy
     public Vector2 dir;
 
     public APoolingObject crowBite;
-    
-    private void Start()
-    {
-        InitEnemy();
-    }
+
+
     protected override void Update()
     {
         base.Update();
@@ -99,7 +96,6 @@ public class Crow : Enemy
     }
     public void OnDeath()
     {
-        DeathDrop();
         StartCoroutine(DeathFlow());
     }
     private IEnumerator DeathFlow()
@@ -172,7 +168,6 @@ public class CrowDeath : BaseDeath
 {
     public override void OnStateStart()
     {
-        enemy.staminaPoint.Death();
         enemy.ani.Play("CrowDeath");
         GetEnemyAs<Crow>().OnDeath();
     }

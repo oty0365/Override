@@ -21,17 +21,30 @@ public class BattleManager : MonoBehaviour
         set
         {
             _monsterCount = value;
+            if (value <= 0)
+            {
+                if (gameEndObj != null)
+                {
+                    gameEndObj.SetActive(true);
+                }
+
+            }
             MapManager.Instance.CurrentMonsters = _monsterCount;
         }
     }
     [SerializeField] private APoolingObject[] normal;
     [SerializeField] private APoolingObject[] currupted;
     [SerializeField] private APoolingObject[] monsters;
+    [SerializeField] private GameObject gameEndObj;
     public float spawnRate;
     public List<Transform> spawns;
     private void Awake()
     {
-        if (MapManager.Instance.index > 5)
+        if (gameEndObj != null)
+        {
+            gameEndObj.SetActive(false);
+        }
+        if (MapManager.Instance.index < 5)
         {
             if(spawnMode==SpawnMode.NormalRandom)
             {

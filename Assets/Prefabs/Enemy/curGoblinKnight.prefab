@@ -5232,6 +5232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 29
+  battleManager: {fileID: 0}
   monsterData: {fileID: 11400000, guid: 1eca1b18f8f1e9c4b968a47d627a0fb3, type: 2}
   staminaPointPos: {fileID: 5942267564533520912}
   ani: {fileID: 3279666683245481118}
