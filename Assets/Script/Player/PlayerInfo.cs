@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Localization.Plugins.Google.Columns;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +13,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
 {
 
     [Header("플레이어 정보")]
+    public bool isAlive;
     public WeaponData playerWeaponData;
     public SpriteRenderer weaponCore;
     private GameObject _currentOverridingObject;
@@ -34,6 +33,8 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
     public TextMeshProUGUI staminaRange;
     public TextMeshProUGUI coinText;
     public Image defenceBar;
+
+    public APoolingObject target;
 
     private int _playerCoin;
     public int PlayerCoin
@@ -102,9 +103,14 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
         get => _playerCurHp;
         set
         {
-            if (value < 0)
+            if (value <= 0&&isAlive)
             {
+                isAlive = false;
                 value = 0;
+                PlayerCamera.Instance.StopState(CameraState.Zoom);
+                PlayerInteraction.Instance.OnInteractMode(0);
+                PlayerCamera.Instance.SetZoom(0.001f, 22f);
+                StartCoroutine(DeathFlow());
             }
             if (value > playerMaxHp)
             {
@@ -114,7 +120,15 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             {
                 _playerCurHp = value;
             }
-            hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
+            if (_playerCurHp < playerMaxHp / 3)
+            {
+                PlayerCamera.Instance.SetAbHpUi(1);
+            }
+            else
+            {
+                PlayerCamera.Instance.SetAbHpUi(0);
+            }
+                hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
             hpBar.value = _playerCurHp;
         }
     }
@@ -206,6 +220,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
 
     public void InitializeStatus()
     {
+        isAlive = true;
         PlayerCoin = 0;
         hpBar.maxValue = playerMaxHp;
         codeBar.maxValue = playerMaxCodePower;
@@ -250,15 +265,21 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
         }
     }
     public Stack<Buff> shiledBuff = new();
+
+    [SerializeField] private GameOverPanel overPanel;
     void Start()
     {
         InitializeStatus();
 
     }
-    /*private void Update()
+    private void Update()
     {
-        Debug.Log(shiledBuff.Count);
-    }*/
+        //Debug.Log(shiledBuff.Count);
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ObjectPooler.Instance.Get(target,gameObject.transform.position,new Vector3(0,0,0));
+        }
+    }
 
     public void SetInfiniteTime(float time)
     {
@@ -301,6 +322,12 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
     {
         yield return new WaitForSeconds(1f);
         _playerStaminaCoroutine = StartCoroutine(StaminaChargeFlow());
+    }
+
+    private IEnumerator DeathFlow()
+    {
+        yield return new WaitForSeconds(1f);
+        overPanel.GameOver();
     }
 
 }

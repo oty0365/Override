@@ -356,7 +356,7 @@ public class GoblinKnightAttack : BaseAttack
         {
             deg = -deg;
         }
-        gb.spear.transform.rotation = Quaternion.Euler(0, 0, deg);
+        gb.spear.transform.localRotation = Quaternion.Euler(0, 0, deg);
         gb.spear.SetActive(true);
         enemy.ani.Play("GoblinKnightFire");
         i = 0f;

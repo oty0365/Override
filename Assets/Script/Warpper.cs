@@ -26,6 +26,7 @@ public class Warpper : AInteractable
     {
         MapManager.Instance.CurrentDimention = Dimention.Code;
         PlayerCamera.Instance.gameObject.transform.position = PlayerInfo.Instance.transform.position;
+        PlayerCamera.Instance.StopState(CameraState.Zoom);
         PlayerCamera.Instance.SetZoom(1f,8.3f);
         yield return new WaitForSeconds(1.2f);
         switch (warpMode)

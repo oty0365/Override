@@ -1,0 +1,10 @@
+﻿Key,Type,Priority,Ko,En
+YouDied,1,1,파괴되었습니다!,YOU DIED
+DieMsg-1,2,1,콜렉터가 당신을 가져갑니다..,Memory freed. The Collector thanks you.
+DieMsg-2,3,1,뭔가 더 할 수 있었지만 아쉽게도 힘이 다했습니다,You could do something better but... You've fainted.
+DieMsg-3,3,1,파린은 눈앞이 깜깜해졌다!,Parin blacked out!
+DieMsg-4,3,1,한 세상을 제패하던 신은 말했다: 잘 피하고 잘 맞추세요.,Look at the moves! Look at the plays! How hilarious!
+DieMsg-5,3,1,???:"너의 생존은 여기서 끝이야",???:"Your survival ends here!"
+DieMsg-6,3,1,해치웠나..?,Well{COMMA} that happened..
+DieMsg-7,3,1,당신의 터진 멘탈(초) 이후에 부활합니다,Respawning with your shattered mind in X seconds.
+PressToRespawn,3,1,<루트 노드로 돌아가기>,<Return to Root Node>

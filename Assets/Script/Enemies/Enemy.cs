@@ -17,7 +17,6 @@ public abstract class Enemy : APoolingObject
     public Animator ani;
     public SpriteRenderer sr;
     [Header("몬스터 물리연산")]
-    public Action onStaminaChange;
     public Collider2D enemyHitBox;
     public Rigidbody2D rb2D;
     protected MaterialPropertyBlock _metProps;
@@ -48,6 +47,7 @@ public abstract class Enemy : APoolingObject
             _currentHp = value;
             if (_currentHp <= 0)
             {
+                Debug.Log("aa");
                 DeathDrop();
             }
         }
@@ -71,9 +71,13 @@ public abstract class Enemy : APoolingObject
             if (value != _currentStamia)
             {
                 _currentStamia = value;
-                if (onStaminaChange != null&& staminaPoint != null)
+                if (value != _currentStamia)
                 {
-                    onStaminaChange.Invoke();
+                    _currentStamia = value;
+                    if (staminaPoint != null && staminaPoint.gameObject.activeInHierarchy)
+                    {
+                        staminaPoint.OnvalueChange();
+                    }
                 }
             }
         }
@@ -90,6 +94,7 @@ public abstract class Enemy : APoolingObject
 
     public virtual void InitEnemy()
     {
+        gameObject.SetActive(true);
         if (isCurrupted)
         {
             sr.color = Color.black;
@@ -122,20 +127,28 @@ public abstract class Enemy : APoolingObject
         var c = o.GetComponent<StaminaPoint>();
         staminaPoint = c;
         c.currentEnemy = this;
-        c.UpLoadEvent();
     }
     public void DeathDrop()
     {
-        //Destroy(staminaPoint.gameObject);
+        
         staminaPoint.Death();
-        onStaminaChange = null;
-        battleManager.MonsterCount--;
+        if(battleManager != null)
+        {
+            battleManager.MonsterCount--;
+        }
         PlayerInfo.Instance.PlayerCoin += UnityEngine.Random.Range(monsterData.minCoin, monsterData.maxCoin + 1);
         if (isCurrupted)
         {
             backParticle.SetActive(false);
             glowEye.SetActive(false);
         }
+    }
+
+    public void RemovedByGame()
+    {
+        battleManager.MonsterCount--;
+        staminaPoint.Death();
+        Death();
     }
 
     public virtual void Hit(Collider2D collider, float damage, float infinateTime)
@@ -276,10 +289,23 @@ public abstract class Enemy : APoolingObject
     }
     protected void OnDestroy()
     {
-        staminaPoint.Death();
+        if (staminaPoint != null)
+        {
+            staminaPoint.Death();
+        }
         this.Death();
     }
 
+    void OnDisable()
+    {
+        Debug.Log($"{gameObject.name} disabled!");
+        Debug.LogError(System.Environment.StackTrace);
+    }
+
+    void OnEnable()
+    {
+        Debug.Log($"GreenGoblin {gameObject.name} enabled!");
+    }
 
 
 }

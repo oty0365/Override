@@ -244,6 +244,7 @@ public class MapManager : HalfSingleMono<MapManager>
         yield return new WaitForSeconds(1f);
         PlayerInteraction.Instance.OnInteractMode(1);
         isLoading = false;
+        PlayerInfo.Instance.InitializeStatus();
 
     }
 

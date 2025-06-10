@@ -26,7 +26,6 @@ public class GreenGoblin : Enemy
             isStun = false;
         }
     }
-
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -57,10 +56,12 @@ public class GreenGoblin : Enemy
     }
     public override void OnBirth()
     {
+        Debug.Log("Live");
         InitEnemy();
     }
     public override void OnDeathInit()
     {
+        Debug.Log("Death");
     }
     private IEnumerator AttackCoolDown()
     {
@@ -87,14 +88,14 @@ public class GreenGoblin : Enemy
         var attack = new GreenGoblinAttack();
         var stun = new GreenGoblinStun();
         var hit = new GreenGoblinHit();
-        var waitCooldown = new GreenGoblinWaitCooldown(); // 새로운 상태 추가
+        var waitCooldown = new GreenGoblinWaitCooldown();
         fsm.AddState("Walk", walk, this);
         fsm.AddState("Death", death, this);
         fsm.AddState("Idel", idel, this);
         fsm.AddState("Attack", attack, this);
         fsm.AddState("Stun", stun, this);
         fsm.AddState("Hit", hit, this);
-        fsm.AddState("WaitCooldown", waitCooldown, this); // 새로운 상태 추가
+        fsm.AddState("WaitCooldown", waitCooldown, this); 
         fsm.ChangeState(fsm.states["Idel"]);
     }
     public void OnDeath()

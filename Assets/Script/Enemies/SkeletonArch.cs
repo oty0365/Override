@@ -75,7 +75,7 @@ public class SkeletonArch : Enemy
         StartCoroutine(AttackCoolDown());
     }
 
-    public void Flip()
+    /*public void Flip()
     {
         if (target != null)
         {
@@ -92,7 +92,7 @@ public class SkeletonArch : Enemy
 
             transform.localScale = scale;
         }
-    }
+    }*/
 
     public override void InitEnemy()
     {

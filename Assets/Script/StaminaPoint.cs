@@ -27,11 +27,7 @@ public class StaminaPoint : APoolingObject
         sr.color = gradient.Evaluate(progress);
 
     }
-    public void UpLoadEvent()
-    {
-        currentEnemy.onStaminaChange += OnvalueChange;
-    }
-    private void OnvalueChange()
+    public void OnvalueChange()
     {
         progress = (currentEnemy.monsterData.maxStamina - currentEnemy.CurrentStamina) / currentEnemy.monsterData.maxStamina;
         if (progress >= 1)

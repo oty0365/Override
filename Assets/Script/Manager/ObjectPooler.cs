@@ -92,7 +92,7 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
             obj.OnBirth();
         }
 
-
+        if (obj != null) obj.gameObject.SetActive(true);
         return obj.gameObject;
     }
 

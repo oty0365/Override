@@ -38,6 +38,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private GameObject gameEndObj;
     public float spawnRate;
     public List<Transform> spawns;
+
+    public List<GameObject> spawnedMonsters;
     private void Awake()
     {
         if (gameEndObj != null)
@@ -72,6 +74,7 @@ public class BattleManager : MonoBehaviour
                 break;
 
         }
+        Debug.Log(spawnedMonsters.Count);
     }
     private void RandomSpawn()
     {
@@ -85,15 +88,19 @@ public class BattleManager : MonoBehaviour
             if (i <= spawnRate)
             {
                 var r = UnityEngine.Random.Range(0, normal.Length);
+                Debug.Log(normal[r]);
                 var o = ObjectPooler.Instance.Get(normal[r], spawn.position, Vector3.zero);
                 o.GetComponent<Enemy>().battleManager = this;
-
+                spawnedMonsters.Add(o);
+                o.gameObject.SetActive(true);
             }
             else
             {
                 var r = UnityEngine.Random.Range(0, currupted.Length);
                 var o = ObjectPooler.Instance.Get(currupted[r], spawn.position, Vector3.zero);
                 o.GetComponent<Enemy>().battleManager = this;
+                spawnedMonsters.Add(o);
+                o.gameObject.SetActive(true);
             }
         }
     }
@@ -104,6 +111,18 @@ public class BattleManager : MonoBehaviour
         {
             var o = ObjectPooler.Instance.Get(monsters[i], spawns[i].position, Vector3.zero);
             o.GetComponent<Enemy>().battleManager = this;
+            spawnedMonsters.Add(o);
+            o.gameObject.SetActive(true);
+        }
+    }
+    private void OnDestroy()
+    {
+        foreach(var i in spawnedMonsters)
+        {
+            if(i != null)
+            {
+                i.GetComponent<Enemy>().RemovedByGame();
+            }
         }
     }
 }
