@@ -287,16 +287,16 @@ public abstract class Enemy : APoolingObject
             transform.localScale = scale;
         }
     }
-    protected void OnDestroy()
+    /*protected void OnDestroy()
     {
         if (staminaPoint != null)
         {
             staminaPoint.Death();
         }
-        this.Death();
-    }
+        Death();
+    }*/
 
-    void OnDisable()
+   /* void OnDisable()
     {
         Debug.Log($"{gameObject.name} disabled!");
         Debug.LogError(System.Environment.StackTrace);
@@ -306,7 +306,7 @@ public abstract class Enemy : APoolingObject
     {
         Debug.Log($"GreenGoblin {gameObject.name} enabled!");
     }
-
+   */
 
 }
 

@@ -98,6 +98,8 @@ public class GoblinKnight : Enemy
     }
     public void OnDeath()
     {
+
+        Debug.Log("이것때문에 죽음");
         StartCoroutine(DeathFlow());
     }
     private IEnumerator DeathFlow()

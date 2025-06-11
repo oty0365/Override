@@ -34,8 +34,6 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
     public TextMeshProUGUI coinText;
     public Image defenceBar;
 
-    public APoolingObject target;
-
     private int _playerCoin;
     public int PlayerCoin
     {
@@ -272,14 +270,14 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
         InitializeStatus();
 
     }
-    private void Update()
+    /*private void Update()
     {
         //Debug.Log(shiledBuff.Count);
         if (Input.GetKeyDown(KeyCode.L))
         {
             ObjectPooler.Instance.Get(target,gameObject.transform.position,new Vector3(0,0,0));
         }
-    }
+    }*/
 
     public void SetInfiniteTime(float time)
     {

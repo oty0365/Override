@@ -42,6 +42,7 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> spawnedMonsters;
     private void Awake()
     {
+        Debug.Log("오브젝트 생성됨");
         if (gameEndObj != null)
         {
             gameEndObj.SetActive(false);
@@ -56,12 +57,14 @@ public class BattleManager : MonoBehaviour
     }
     void Start()
     {
+        MapManager.Instance.battleManager = this;
         for(var i  = 0; i < transform.childCount; i++)
         {
             spawns.Add(transform.GetChild(i));
         }
 
         MonsterCount = spawns.Count;
+        Debug.Log(spawns.Count);
         switch (spawnMode)
         {
             case SpawnMode.NormalRandom:
@@ -115,11 +118,11 @@ public class BattleManager : MonoBehaviour
             o.gameObject.SetActive(true);
         }
     }
-    private void OnDestroy()
+    public void ReturnAll()
     {
-        foreach(var i in spawnedMonsters)
+        foreach (var i in spawnedMonsters)
         {
-            if(i != null)
+            if (i != null)
             {
                 i.GetComponent<Enemy>().RemovedByGame();
             }

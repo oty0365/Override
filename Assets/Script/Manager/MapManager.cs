@@ -57,6 +57,8 @@ public class MapManager : HalfSingleMono<MapManager>
     public MapData currentMap;
     public GameObject currentMapObj;
 
+    public BattleManager battleManager;
+
     public int index;
     public bool isLoading;
 

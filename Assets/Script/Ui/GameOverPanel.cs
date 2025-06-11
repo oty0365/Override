@@ -34,6 +34,11 @@ public class GameOverPanel : MonoBehaviour
         PlayerCamera.Instance.SetAbHpUi(0);
         PlayerCamera.Instance.SetZoom(4.5f, 30f);
         gameOverPannel.SetActive(false);
+        if (MapManager.Instance.battleManager != null)
+        {
+            MapManager.Instance.battleManager.ReturnAll();
+        }
+        ObjectPooler.Instance.InitPoollist();
         MapManager.Instance.RootNodeMap();
     }
 }
