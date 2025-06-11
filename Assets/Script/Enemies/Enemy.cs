@@ -71,15 +71,12 @@ public abstract class Enemy : APoolingObject
             if (value != _currentStamia)
             {
                 _currentStamia = value;
-                if (value != _currentStamia)
+                if (staminaPoint != null)
                 {
-                    _currentStamia = value;
-                    if (staminaPoint != null && staminaPoint.gameObject.activeInHierarchy)
-                    {
-                        staminaPoint.OnvalueChange();
-                    }
+                    staminaPoint.OnvalueChange();
                 }
             }
+            Debug.Log(_currentStamia);
         }
     }
 

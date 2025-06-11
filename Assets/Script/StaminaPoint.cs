@@ -29,6 +29,7 @@ public class StaminaPoint : APoolingObject
     }
     public void OnvalueChange()
     {
+        Debug.Log(100);
         progress = (currentEnemy.monsterData.maxStamina - currentEnemy.CurrentStamina) / currentEnemy.monsterData.maxStamina;
         if (progress >= 1)
         {
@@ -43,16 +44,30 @@ public class StaminaPoint : APoolingObject
         {
             StopCoroutine(_waitFlow);
         }
-        _waitFlow = StartCoroutine(WaitFlow());
+        if (gameObject.activeSelf)
+        {
+            _waitFlow = StartCoroutine(WaitFlow());
+        }
+
 
     }
     public override void OnDeathInit()
     {
+        currentEnemy.staminaPoint = null;
+        currentEnemy = null;
+        if (_waitFlow != null)
+        {
+            StopCoroutine(_waitFlow);
+        }
+        if(_recuveryFlow != null)
+        {
+            StopCoroutine(_recuveryFlow);
+        }
+
     }
     private IEnumerator WaitFlow()
     {
         yield return new WaitForSeconds(currentEnemy.monsterData.recoveryTime);
-
         if (!isActiveAndEnabled || currentEnemy == null)
             yield break;
 

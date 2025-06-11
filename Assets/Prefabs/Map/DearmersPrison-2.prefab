@@ -71648,6 +71648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 9
+  battleManager: {fileID: 0}
   monsterData: {fileID: 11400000, guid: 9b276bd4aa3abf64f844e991baadbbed, type: 2}
   staminaPointPos: {fileID: 218749947276327720}
   ani: {fileID: 7562043705380507522}
@@ -71658,7 +71659,10 @@ MonoBehaviour:
   isStun: 0
   isStunning: 0
   canAttack: 0
+  isCurrupted: 0
   staminaPoint: {fileID: 0}
+  glowEye: {fileID: 0}
+  backParticle: {fileID: 0}
   _currentHp: 0
   _currentStamia: 0
   colideParticle: {fileID: 9089905416252372434, guid: cb5fdc914ea0cec46b169013be5c5482, type: 3}
@@ -71699,6 +71703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3129497538968041178}
   - component: {fileID: 8434152160874965230}
+  - component: {fileID: 4989212191012362099}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -71735,6 +71740,20 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &4989212191012362099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8910414835226646213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47689b7b59191fc468d2dcf0f48925c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMap: {fileID: 6671342369356023732}
+  baseMap: {fileID: 714356581372978185}
 --- !u!1 &9085292760572712850
 GameObject:
   m_ObjectHideFlags: 0

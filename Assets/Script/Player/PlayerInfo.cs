@@ -324,7 +324,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
 
     private IEnumerator DeathFlow()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.6f);
         overPanel.GameOver();
     }
 

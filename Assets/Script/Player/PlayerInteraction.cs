@@ -109,13 +109,14 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
     {
         if (_currentObject != null)
         {
-            if(!_currentObejctInteractable.autoInteraction&&Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Interact"]) && !isInteracting)
+            if(!_currentObejctInteractable.autoInteraction&&Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Interact"]))
             {
+
                 _currentObejctInteractable.OnInteract();
             }
 
         }
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Charge"]))
+        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Charge"]) && !isInteracting&&PlayerMove.Instance.canInput)
         {
             PlayerCamera.Instance.SetZoom(3, 6);
             isCharging = true;
@@ -127,8 +128,11 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
             OnInteractMode(0);
             foreach(var i in c)
             {
-                i.FallowPlayer();
-                i.target = gameObject.transform.position;
+                if (i != null)
+                {
+                    i.FallowPlayer();
+                    i.target = gameObject.transform.position;
+                }
             }
         }
         if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Charge"]))

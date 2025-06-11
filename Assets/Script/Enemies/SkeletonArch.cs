@@ -194,7 +194,6 @@ public class SkeletonArchDeath : BaseDeath
 {
     public override void OnStateStart()
     {
-        enemy.staminaPoint.Death();
         enemy.ani.Play("SkeletonArchDeath");
         GetEnemyAs<SkeletonArch>().OnDeath();
     }

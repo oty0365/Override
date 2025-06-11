@@ -62815,7 +62815,7 @@ Transform:
   m_GameObject: {fileID: 4977805979691181907}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.5588, y: 1.3242188, z: 0.10003552}
+  m_LocalPosition: {x: -1.55, y: 7.55, z: 0.10003552}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62917,6 +62917,9 @@ MonoBehaviour:
   gameEndObj: {fileID: 4977805979691181907}
   spawnRate: 5
   spawns: []
+  spawnedMonsters: []
+  items:
+  - {fileID: 8812925668726069897, guid: 4ac83bce37c4b5a4e9175684330e908e, type: 3}
 --- !u!1 &7537486234991398680
 GameObject:
   m_ObjectHideFlags: 0
@@ -63023,11 +63026,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3913960093858753190, guid: 08215cb1373c38441b6b67e3e07bf81d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -37.1188
+      value: -0.010001421
       objectReference: {fileID: 0}
     - target: {fileID: 3913960093858753190, guid: 08215cb1373c38441b6b67e3e07bf81d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.275781
+      value: 0.049999714
       objectReference: {fileID: 0}
     - target: {fileID: 3913960093858753190, guid: 08215cb1373c38441b6b67e3e07bf81d, type: 3}
       propertyPath: m_LocalPosition.z

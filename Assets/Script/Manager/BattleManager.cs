@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,10 +24,13 @@ public class BattleManager : MonoBehaviour
             _monsterCount = value;
             if (value <= 0)
             {
+                StartCoroutine(StareFlow());
                 if (gameEndObj != null)
                 {
                     gameEndObj.SetActive(true);
                 }
+                var index = UnityEngine.Random.Range(0, items.Length);
+                Instantiate(items[index], new Vector2(gameEndObj.transform.position.x,gameEndObj.transform.position.y-2f),Quaternion.identity);
 
             }
             MapManager.Instance.CurrentMonsters = _monsterCount;
@@ -40,9 +44,9 @@ public class BattleManager : MonoBehaviour
     public List<Transform> spawns;
 
     public List<GameObject> spawnedMonsters;
+    [SerializeField] private GameObject[] items;
     private void Awake()
     {
-        Debug.Log("오브젝트 생성됨");
         if (gameEndObj != null)
         {
             gameEndObj.SetActive(false);
@@ -128,4 +132,22 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+    private IEnumerator StareFlow()
+    {
+        PlayerInteraction.Instance.OnInteractMode(0);
+        PlayerCamera.Instance.target = gameEndObj;
+        while (Vector2.Distance(gameEndObj.transform.position, PlayerCamera.Instance.transform.position) > 0.1f)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        PlayerCamera.Instance.target = PlayerInfo.Instance.gameObject;
+        while (Vector2.Distance(PlayerInfo.Instance.transform.position, PlayerCamera.Instance.transform.position) > 0.1f)
+        {
+            yield return null;
+        }
+        PlayerInteraction.Instance.OnInteractMode(1);
+    }
+
+    
 }
