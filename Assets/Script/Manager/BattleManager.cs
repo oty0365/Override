@@ -9,6 +9,7 @@ public enum SpawnMode
     Set = 0,
     NormalRandom =1,
     CurruptedRandom = -1,
+    BossBattle = 2
 }
 
 public class BattleManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class BattleManager : MonoBehaviour
     public SpawnMode spawnMode;
     [SerializeField]
     private int _monsterCount;
+
+    private Coroutine _currentStareFlow;
     public int MonsterCount
     {
         get => _monsterCount;
@@ -24,7 +27,7 @@ public class BattleManager : MonoBehaviour
             _monsterCount = value;
             if (value <= 0)
             {
-                StartCoroutine(StareFlow());
+                _currentStareFlow=StartCoroutine(StareFlow());
                 if (gameEndObj != null)
                 {
                     gameEndObj.SetActive(true);
@@ -67,21 +70,24 @@ public class BattleManager : MonoBehaviour
             spawns.Add(transform.GetChild(i));
         }
 
-        MonsterCount = spawns.Count;
-        Debug.Log(spawns.Count);
         switch (spawnMode)
         {
             case SpawnMode.NormalRandom:
             case SpawnMode.CurruptedRandom:
+                MonsterCount = spawns.Count;
                 RandomSpawn();
                 break;
 
             case SpawnMode.Set:
+                MonsterCount = spawns.Count;
                 SetSpawn();
                 break;
 
+            case SpawnMode.BossBattle:
+                MonsterCount = spawns.Count;
+                break;
+
         }
-        Debug.Log(spawnedMonsters.Count);
     }
     private void RandomSpawn()
     {
@@ -95,7 +101,6 @@ public class BattleManager : MonoBehaviour
             if (i <= spawnRate)
             {
                 var r = UnityEngine.Random.Range(0, normal.Length);
-                Debug.Log(normal[r]);
                 var o = ObjectPooler.Instance.Get(normal[r], spawn.position, Vector3.zero);
                 o.GetComponent<Enemy>().battleManager = this;
                 spawnedMonsters.Add(o);
@@ -148,6 +153,15 @@ public class BattleManager : MonoBehaviour
         }
         PlayerInteraction.Instance.OnInteractMode(1);
     }
+    private void OnDestroy()
+    {
+        if (_currentStareFlow != null)
+        {
+            StopCoroutine(_currentStareFlow);
+        }
 
-    
+        PlayerCamera.Instance.target = PlayerInfo.Instance.gameObject;
+    }
+
+
 }

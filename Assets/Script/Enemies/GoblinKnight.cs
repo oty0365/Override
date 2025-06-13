@@ -352,13 +352,6 @@ public class GoblinKnightAttack : BaseAttack
             finalDirection = new Vector2(-gb.dir.x, gb.dir.y);
         }
 
-        var deg = Mathf.Atan2(finalDirection.y, finalDirection.x) * Mathf.Rad2Deg;
-        gb.spear.transform.localPosition = finalDirection.normalized * 1.2f;
-        if (gb.transform.localScale.x < 0)
-        {
-            deg = -deg;
-        }
-        gb.spear.transform.localRotation = Quaternion.Euler(0, 0, deg);
         gb.spear.SetActive(true);
         enemy.ani.Play("GoblinKnightFire");
         i = 0f;
@@ -370,7 +363,7 @@ public class GoblinKnightAttack : BaseAttack
         if (nearWallHit.collider != null)
         {
             dashDirection = -finalDirection;
-            float backoffDistance = 1.5f; 
+            float backoffDistance = 1.5f;
 
             isUsingRaycast = true;
             targetPosition = (Vector2)gb.transform.position + dashDirection * backoffDistance;
@@ -394,9 +387,20 @@ public class GoblinKnightAttack : BaseAttack
                 gb.rb2D.linearVelocity = dashDirection * moveSpeed;
             }
         }
-
         var dashDeg = Mathf.Atan2(dashDirection.y, dashDirection.x) * Mathf.Rad2Deg;
-        gb.spear.transform.localPosition = dashDirection.normalized * 1.2f;
+
+        Vector2 spearPosition;
+        if (gb.transform.localScale.x < 0)
+        {
+            spearPosition = new Vector2(-dashDirection.x, dashDirection.y).normalized * 1.2f;
+            dashDeg = 180f - dashDeg;
+        }
+        else
+        {
+            spearPosition = dashDirection.normalized * 1.2f;
+        }
+
+        gb.spear.transform.localPosition = spearPosition;
         gb.spear.transform.localRotation = Quaternion.Euler(0, 0, dashDeg);
     }
 
@@ -409,7 +413,7 @@ public class GoblinKnightAttack : BaseAttack
             Vector2 newPos = Vector2.MoveTowards(currentPos, targetPosition, moveSpeed * Time.fixedDeltaTime);
             gb.rb2D.MovePosition(newPos);
 
-            if (Vector2.Distance(currentPos, targetPosition) < 0.5f) 
+            if (Vector2.Distance(currentPos, targetPosition) < 0.5f)
             {
                 gb.rb2D.linearVelocity = Vector2.zero;
                 gb.fsm.ChangeState(enemy.fsm.states["Idel"]);

@@ -267,7 +267,7 @@ public class PlayerCamera : MonoBehaviour
             {
                 targetPos = Vector2.Lerp(
                     playerCam.transform.position,
-                    target.transform.position,
+                    (Vector2)target?.transform.position,
                     fallowSpeed * Time.deltaTime
                 );
             }

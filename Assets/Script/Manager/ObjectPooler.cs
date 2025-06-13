@@ -38,6 +38,7 @@ public enum PoolObjectType
     SkeletonArch,
     CurSkeletonArch,
     Arrow,
+    GoblinBeastRider,
 }
 
 public abstract class APoolingObject:MonoBehaviour

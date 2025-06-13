@@ -47,7 +47,6 @@ public abstract class Enemy : APoolingObject
             _currentHp = value;
             if (_currentHp <= 0)
             {
-                Debug.Log("aa");
                 DeathDrop();
             }
         }
@@ -144,7 +143,7 @@ public abstract class Enemy : APoolingObject
     public void RemovedByGame()
     {
         battleManager.MonsterCount--;
-        staminaPoint.Death();
+        //staminaPoint.Death();
         Death();
     }
 

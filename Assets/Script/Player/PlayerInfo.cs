@@ -73,7 +73,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             }
             if (value > playerMaxCodePower)
             {
-                _playerCurCodePower = playerMaxHp;
+                _playerCurCodePower = playerMaxCodePower;
             }
             else
             {

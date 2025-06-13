@@ -74,7 +74,6 @@ public class PathFinderModule : Module
 
         for (int i = 0; i < waypoints.Count; i++)
         {
-            // 타일 중점으로 계산 (x, y 모두 0.5f 추가)
             Vector2 waypointPos = new Vector2(waypoints[i].x + 0.5f, waypoints[i].y + 0.5f);
             float distance = Vector2.Distance(currentPos, waypointPos);
 
@@ -84,8 +83,6 @@ public class PathFinderModule : Module
                 closestIndex = i;
             }
         }
-
-        // 모든 지점이 너무 가까우면 첫 번째 지점 반환
         if (minDistance == float.MaxValue)
         {
             return 0;
@@ -100,19 +97,12 @@ public class PathFinderModule : Module
         {
             if (_wayPoints == null || _wayPoints.Count == 0)
                 yield break;
-
-            // 현재 위치에서 가장 가까운 웨이포인트 찾기
             Vector2 currentPos = gameObject.transform.position;
             int closestIndex = FindClosestWaypointIndex(currentPos, _wayPoints);
             int startIndex = closestIndex;
-
-            // 해당 지점부터 시작해서 끝까지 이동
             for (int i = startIndex; i < _wayPoints.Count; i++)
             {
-                // 타일 중점으로 이동 (x, y 모두 0.5f 추가)
                 var targetPos = new Vector2(_wayPoints[i].x + 0.5f, _wayPoints[i].y + 0.5f);
-
-                // 현재 위치가 이미 웨이포인트에 충분히 가까우면 건너뛰기
                 if (Vector2.Distance(gameObject.transform.position, targetPos) <= 0.3f)
                     continue;
 

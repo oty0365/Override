@@ -1,0 +1,1092 @@
+fileFormatVersion: 2
+guid: 8c1b22bbfdf84fc428c2d9dba67fbf3c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5733659909358429324
+    second: GoblinBeastRider (2)_0
+  - first:
+      213: 3021637133642462006
+    second: GoblinBeastRider (2)_1
+  - first:
+      213: -2994476681072477925
+    second: GoblinBeastRider (2)_2
+  - first:
+      213: 6382283133046263564
+    second: GoblinBeastRider (2)_3
+  - first:
+      213: -3224443190649108907
+    second: GoblinBeastRider (2)_4
+  - first:
+      213: -5087424763634810740
+    second: GoblinBeastRider (2)_5
+  - first:
+      213: -8629288683395427440
+    second: GoblinBeastRider (2)_6
+  - first:
+      213: -4265946053864249858
+    second: GoblinBeastRider (2)_7
+  - first:
+      213: -6650256317322690500
+    second: GoblinBeastRider (2)_8
+  - first:
+      213: 440600024020731681
+    second: GoblinBeastRider (2)_9
+  - first:
+      213: -6744441548336578300
+    second: GoblinBeastRider (2)_10
+  - first:
+      213: -3980095692789456468
+    second: GoblinBeastRider (2)_11
+  - first:
+      213: 5423188110981414460
+    second: GoblinBeastRider (2)_12
+  - first:
+      213: -459735312186340086
+    second: GoblinBeastRider (2)_13
+  - first:
+      213: 8204468980875068567
+    second: GoblinBeastRider (2)_14
+  - first:
+      213: 494664082826556028
+    second: GoblinBeastRider (2)_15
+  - first:
+      213: -8018160289393963492
+    second: GoblinBeastRider (2)_16
+  - first:
+      213: 1148706647237280402
+    second: GoblinBeastRider (2)_17
+  - first:
+      213: 6585546995590048321
+    second: GoblinBeastRider (2)_18
+  - first:
+      213: -6000475511791706815
+    second: GoblinBeastRider (2)_19
+  - first:
+      213: 1943315713841778935
+    second: GoblinBeastRider (2)_20
+  - first:
+      213: 3263305142813011705
+    second: GoblinBeastRider (2)_21
+  - first:
+      213: 2425924126783466167
+    second: GoblinBeastRider (2)_22
+  - first:
+      213: 9062248285742666233
+    second: GoblinBeastRider (2)_23
+  - first:
+      213: -1676769233097108908
+    second: GoblinBeastRider (2)_24
+  - first:
+      213: -4502175124471333730
+    second: GoblinBeastRider (2)_25
+  - first:
+      213: 5241599007324781486
+    second: GoblinBeastRider (2)_26
+  - first:
+      213: -6570168842001097949
+    second: GoblinBeastRider (2)_27
+  - first:
+      213: 2757895363629147653
+    second: GoblinBeastRider (2)_28
+  - first:
+      213: -5033547365333269400
+    second: GoblinBeastRider (2)_29
+  - first:
+      213: 1305349027671896999
+    second: GoblinBeastRider (2)_30
+  - first:
+      213: 5536127010442627046
+    second: GoblinBeastRider (2)_31
+  - first:
+      213: -4805701792501224314
+    second: GoblinBeastRider (2)_32
+  - first:
+      213: 7491183677136375339
+    second: GoblinBeastRider (2)_33
+  - first:
+      213: 3387941085219376500
+    second: GoblinBeastRider (2)_34
+  - first:
+      213: -2452343774190278435
+    second: GoblinBeastRider (2)_35
+  - first:
+      213: 5619708016292565453
+    second: GoblinBeastRider (2)_36
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2241
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33aa8bbf437af1b47b88ee55eb719513
+      internalID: 931329934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 2241
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ac36af6343c48944a32fb36e600ae29
+      internalID: 1946875240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 2241
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a120c7d5a28fcf2478f04fc53ec13497
+      internalID: -766500496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_3
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 2241
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f035b4b528b49504e8c5b9845731f164
+      internalID: -2083091182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_4
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2241
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8245594446ad57641ab0b3362db6d091
+      internalID: -1297010325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_5
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 2241
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd552e197631ee4f9eec1fa000634b5
+      internalID: -327562762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1921
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff0bd2ca6ccf04c48b26498781550e0b
+      internalID: 572211181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_7
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1921
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f9c030f36ab344e8ce54466674075a
+      internalID: 2044105308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1921
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 211faa746b9f8b544b1e3c3fb27e9734
+      internalID: 69554195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_9
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 1921
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3401319e12b2de742a2baeb032c113ca
+      internalID: -1495740513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_10
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1921
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3758c8b8b45ec524db9cc8dc03e0ec15
+      internalID: 2047724077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_11
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1921
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e73d67f3db6e99438e74cfb3554f418
+      internalID: -335095209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1601
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eb374dbb23f82d48b6af52edd006213
+      internalID: -1138232939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1601
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05c071bdcdbba4d49a8b425b2c8eb86e
+      internalID: 440046131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_14
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1601
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9754c32fab9f100478d10232d0083326
+      internalID: -330718839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 1601
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45895b82ab71ac74f87c19c78285c25d
+      internalID: 1736633341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1601
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00029119e8525c740936667b3b1847e7
+      internalID: -718215459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_17
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1601
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63304fb68b8b28c429aae809eec22f64
+      internalID: -1498077502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1281
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73d68806f1ef44b488a68437ba9b6f17
+      internalID: 590536183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_19
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1281
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e95f1ee7b4556f546b032d8ac5a680a3
+      internalID: 1093145999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1281
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 806bb510e9b17db47aabe27fb11d83a1
+      internalID: 985702814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_21
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 1281
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e12f619c6e365b441b5554da687a7883
+      internalID: -176567269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_22
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1281
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2432146552b444a41956292779f46126
+      internalID: -669512339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_23
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1281
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a1b7d5c3f994cb4e87d46591c32e703
+      internalID: 1769454945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 961
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 645cc26f5213e7f44b850184b91946b8
+      internalID: -1442420540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_25
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 961
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de0de874038ef724c8d5018d5e1de879
+      internalID: -932251856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_26
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 961
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e05a3545402d34540ab9f0b1bff37991
+      internalID: 1865834841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_27
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 961
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad7bcfffd4e57c4ca56dfc9cbf5cb0b
+      internalID: -1659464514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_28
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 961
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c133df5b1e001b846b01a2e9b3c4140a
+      internalID: 466044968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_29
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 961
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c124ffdac1de70c4a9222f2c6b91f42f
+      internalID: 965850516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 641
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e71fad02eb0287c4ca911982f2ba56e5
+      internalID: -1066097045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_31
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 641
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3840d158d1a4cdf44bdd6d493f8c2263
+      internalID: -1968627843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_32
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 641
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed222c2f5d4e18c47b41a0920ea9684d
+      internalID: -220967264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 321
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4093854f624fb6438dc0ee707836c9f
+      internalID: -346556361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_34
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 321
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b974ed928a52a4d904aec8063180aa
+      internalID: -557436198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7948a152ae1929a499f501041f6530df
+      internalID: -1419177163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBeastRider (2)_36
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c045aed34e553347a5bae7cc5250303
+      internalID: 84044326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 40fb8a4fa68aeea429db52c21fbbb2f1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GoblinBeastRider (2)_0: 931329934
+      GoblinBeastRider (2)_1: 1946875240
+      GoblinBeastRider (2)_10: 2047724077
+      GoblinBeastRider (2)_11: -335095209
+      GoblinBeastRider (2)_12: -1138232939
+      GoblinBeastRider (2)_13: 440046131
+      GoblinBeastRider (2)_14: -330718839
+      GoblinBeastRider (2)_15: 1736633341
+      GoblinBeastRider (2)_16: -718215459
+      GoblinBeastRider (2)_17: -1498077502
+      GoblinBeastRider (2)_18: 590536183
+      GoblinBeastRider (2)_19: 1093145999
+      GoblinBeastRider (2)_2: -766500496
+      GoblinBeastRider (2)_20: 985702814
+      GoblinBeastRider (2)_21: -176567269
+      GoblinBeastRider (2)_22: -669512339
+      GoblinBeastRider (2)_23: 1769454945
+      GoblinBeastRider (2)_24: -1442420540
+      GoblinBeastRider (2)_25: -932251856
+      GoblinBeastRider (2)_26: 1865834841
+      GoblinBeastRider (2)_27: -1659464514
+      GoblinBeastRider (2)_28: 466044968
+      GoblinBeastRider (2)_29: 965850516
+      GoblinBeastRider (2)_3: -2083091182
+      GoblinBeastRider (2)_30: -1066097045
+      GoblinBeastRider (2)_31: -1968627843
+      GoblinBeastRider (2)_32: -220967264
+      GoblinBeastRider (2)_33: -346556361
+      GoblinBeastRider (2)_34: -557436198
+      GoblinBeastRider (2)_35: -1419177163
+      GoblinBeastRider (2)_36: 84044326
+      GoblinBeastRider (2)_4: -1297010325
+      GoblinBeastRider (2)_5: -327562762
+      GoblinBeastRider (2)_6: 572211181
+      GoblinBeastRider (2)_7: 2044105308
+      GoblinBeastRider (2)_8: 69554195
+      GoblinBeastRider (2)_9: -1495740513
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
