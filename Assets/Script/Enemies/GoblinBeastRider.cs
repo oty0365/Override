@@ -128,7 +128,6 @@ public class GoblinBeastRider : Enemy
 
         if (canAttack)
         {
-            // 마지막 몬스터인 경우 중앙으로 이동하여 소환 패턴 실행
             if (MapManager.Instance.CurrentMonsters <= 1)
             {
                 Debug.Log(battleManager.MonsterCount);
@@ -138,16 +137,14 @@ public class GoblinBeastRider : Enemy
 
             float distanceToTarget = Vector2.Distance(transform.position, target.transform.position);
 
-            // 원거리 (6.5f 초과): 조준 공격만 사용
             if (distanceToTarget > 6.5f)
             {
                 fsm.ChangeState(fsm.states["Aim"]);
             }
-            // 중거리 (3f ~ 6.5f): 조준 공격과 물기 공격 중 랜덤 선택
-            else if (distanceToTarget > 3f)
+            else if (distanceToTarget > 2f)
             {
                 var randomAttack = Random.Range(0, 6);
-                if (randomAttack > 3)
+                if (randomAttack > 2)
                 {
                     fsm.ChangeState(fsm.states["Aim"]);
                 }
@@ -156,15 +153,15 @@ public class GoblinBeastRider : Enemy
                     fsm.ChangeState(fsm.states["Bite"]);
                 }
             }
-            // 근거리 (3f 이하): 물기 공격 우선, 가끔 조준 공격
+
             else
             {
                 var randomAttack = Random.Range(0, 10);
-                if (randomAttack > 7) // 30% 확률로 조준 공격
+                if (randomAttack > 7)
                 {
                     fsm.ChangeState(fsm.states["Aim"]);
                 }
-                else // 70% 확률로 물기 공격
+                else
                 {
                     fsm.ChangeState(fsm.states["Bite"]);
                 }
@@ -226,7 +223,6 @@ public class GoblinBeastRiderWalk : State
         GoblinBeastRider gb = GetEnemyAs<GoblinBeastRider>();
         gb.Flip();
 
-        // 타겟을 잃거나 이동 거리에 도달한 경우 Idle로 전환
         if (!gb.finderModule.CheckMoveDist() || !gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
         {
             gb.fsm.ChangeState(gb.fsm.states["Idel"]);
@@ -316,21 +312,17 @@ public class GoblinBeastRiderWaitCooldown : State
         waitTime += Time.deltaTime;
         gb.Flip();
 
-        // 타겟을 인식하지 못하면 Idle로 전환
         if (!gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
         {
             gb.fsm.ChangeState(gb.fsm.states["Idel"]);
             return;
         }
-
-        // 쿨다운이 끝났는지 확인하고 패턴 체크
         if (gb.canAttack)
         {
             gb.CheckPattern();
             return;
         }
 
-        // 최대 대기 시간이 지나면 Walk로 전환
         if (waitTime > maxWaitTime)
         {
             gb.fsm.ChangeState(gb.fsm.states["Walk"]);
@@ -346,13 +338,16 @@ public class GoblinBeastRiderAim : BaseAttack
 {
     float timer = 0f;
     int readyAim = 1;
+    Vector2 originalTargetDirection;
 
     public override void OnStateStart()
     {
         var gb = GetEnemyAs<GoblinBeastRider>();
         enemy.ani.Play("GoblinBeastRiderAim");
 
+        originalTargetDirection = (gb.target.transform.position - gb.transform.position).normalized;
         gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
+
         if (gb.transform.localScale.x < 0)
         {
             gb.dir = new Vector2(-gb.dir.x, gb.dir.y);
@@ -375,14 +370,12 @@ public class GoblinBeastRiderAim : BaseAttack
         timer += Time.deltaTime;
         gb.rb2D.linearVelocity = Vector2.zero;
 
-        // 조준 완료 후 공격으로 전환
         if (timer > 0.35f && readyAim > 1)
         {
             gb.fsm.ChangeState(enemy.fsm.states["Attack"]);
             return;
         }
 
-        // 첫 번째 조준 단계에서 방향 지속 업데이트
         if (readyAim <= 1)
         {
             gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
@@ -395,10 +388,23 @@ public class GoblinBeastRiderAim : BaseAttack
             gb.attackDir.gameObject.transform.localRotation = Quaternion.Euler(0, 0, deg - 90);
         }
 
-        // 1초 후 조준 단계 진행
         if (timer > 1f && readyAim <= 1)
         {
+            float previousScaleX = gb.transform.localScale.x;
             gb.Flip();
+
+            if (gb.transform.localScale.x != previousScaleX)
+            {
+                gb.dir = originalTargetDirection;
+                if (gb.transform.localScale.x < 0)
+                {
+                    gb.dir = new Vector2(-gb.dir.x, gb.dir.y);
+                }
+
+                var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
+                gb.attackDir.gameObject.transform.localRotation = Quaternion.Euler(0, 0, deg - 90);
+            }
+
             timer = 0;
             readyAim++;
         }
@@ -415,8 +421,9 @@ public class GoblinBeastRiderAttack : BaseAttack
     float timer = 0f;
     bool isUsingRaycast = false;
     Vector2 targetPosition;
-    float moveSpeed = 13.5f;
+    float moveSpeed = 30f;
     float wallCheckDistance = 2f;
+    Vector2 dashDirection;
 
     public override void OnStateStart()
     {
@@ -436,14 +443,10 @@ public class GoblinBeastRiderAttack : BaseAttack
         enemy.ani.Play("GoblinBeastRiderDash");
         timer = 0f;
 
-        // 근처에 벽이 있는지 확인
         RaycastHit2D nearWallHit = Physics2D.Raycast(gb.transform.position, finalDirection, wallCheckDistance, LayerMask.GetMask("Wall"));
-
-        Vector2 dashDirection;
 
         if (nearWallHit.collider != null)
         {
-            // 벽이 가까이 있으면 반대 방향으로 후퇴
             dashDirection = -finalDirection;
             float backoffDistance = 1.5f;
 
@@ -453,7 +456,6 @@ public class GoblinBeastRiderAttack : BaseAttack
         }
         else
         {
-            // 벽이 없으면 전진 공격
             dashDirection = finalDirection;
             float attackDistance = 100f;
             RaycastHit2D hit = Physics2D.Raycast(gb.transform.position, dashDirection, attackDistance, LayerMask.GetMask("Wall"));
@@ -471,7 +473,6 @@ public class GoblinBeastRiderAttack : BaseAttack
             }
         }
 
-        // 창 위치 및 회전 설정
         var dashDeg = Mathf.Atan2(dashDirection.y, dashDirection.x) * Mathf.Rad2Deg;
 
         Vector2 spearPosition;
@@ -491,14 +492,24 @@ public class GoblinBeastRiderAttack : BaseAttack
 
     public override void OnStateFixedUpdate()
     {
+        var gb = GetEnemyAs<GoblinBeastRider>();
+
         if (isUsingRaycast)
         {
-            var gb = GetEnemyAs<GoblinBeastRider>();
             Vector2 currentPos = gb.transform.position;
             Vector2 newPos = Vector2.MoveTowards(currentPos, targetPosition, moveSpeed * Time.fixedDeltaTime);
             gb.rb2D.MovePosition(newPos);
 
             if (Vector2.Distance(currentPos, targetPosition) < 0.5f)
+            {
+                gb.rb2D.linearVelocity = Vector2.zero;
+                gb.fsm.ChangeState(enemy.fsm.states["Idel"]);
+            }
+        }
+        else
+        {
+            RaycastHit2D wallHit = Physics2D.Raycast(gb.transform.position, dashDirection, 1f, LayerMask.GetMask("Wall"));
+            if (wallHit.collider != null)
             {
                 gb.rb2D.linearVelocity = Vector2.zero;
                 gb.fsm.ChangeState(enemy.fsm.states["Idel"]);
@@ -664,8 +675,8 @@ public class GoblinBeastRiderBite : BaseAttack
         gb.attackDir.transform.localRotation = Quaternion.Euler(0, 0, deg - 90);
 
         var o = ObjectPooler.Instance.Get(gb.grbite, gb.transform);
-        o.transform.localScale = new Vector2(3f, 3f);
-        o.transform.localPosition = gb.dir.normalized * 1.2f;
+        o.transform.localScale = new Vector2(1f, 1f);
+        o.transform.localPosition = gb.dir * 0.9f;
         o.transform.localRotation = Quaternion.Euler(0, 0, deg);
         enemy.ani.Play("GoblinBeastRiderBite");
         gb.rb2D.linearVelocity = Vector2.zero;

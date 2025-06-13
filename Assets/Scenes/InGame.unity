@@ -8270,7 +8270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6f439755a336243b8e2a302d753aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curLanguage: 0
+  curLanguage: 1
   array: {fileID: 11400000, guid: 23b0fd24f88cec24e82ef40d25739dee, type: 2}
 --- !u!4 &818581908
 Transform:

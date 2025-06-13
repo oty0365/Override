@@ -35,6 +35,7 @@ public abstract class Enemy : APoolingObject
     public StaminaPoint staminaPoint;
     public GameObject glowEye;
     public GameObject backParticle;
+    public Action onHitAction;
 
 
     [SerializeField]
@@ -45,6 +46,7 @@ public abstract class Enemy : APoolingObject
         set
         {
             _currentHp = value;
+            onHitAction?.Invoke();
             if (_currentHp <= 0)
             {
                 DeathDrop();
