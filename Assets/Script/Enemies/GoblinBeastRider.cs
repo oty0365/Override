@@ -14,6 +14,7 @@ public class GoblinBeastRider : Enemy
     public APoolingObject grbite;
     public Transform center;
     public APoolingObject greenGoblin;
+    public ParticleSystem prt;
     public Vector2 dir;
 
     protected override void Update()
@@ -33,10 +34,10 @@ public class GoblinBeastRider : Enemy
 
     public override void Hit(Collider2D collider, float damage, float inflateTime)
     {
-        if (fsm.currentState != fsm.states["Stun"] && fsm.currentState != fsm.states["Death"])
+        /*if (fsm.currentState == fsm.states["Walk"] && fsm.currentState != fsm.states["Death"])
         {
             fsm.ChangeState(fsm.states["Hit"]);
-        }
+        }*/
         base.Hit(collider, damage, inflateTime);
         PlayerCamera.Instance.SetShake(0.2f, 7.5f, 0.13f);
         ObjectPooler.Instance.Get(collideParticle, gameObject.transform.position, new Vector3(0, 0, 0), new Vector2(1f, 1f));
@@ -559,7 +560,7 @@ public class GoblinBeastRiderStun : BaseStun
         gb.Flip();
         gb.rb2D.linearVelocity = Vector2.zero;
 
-        if (timer > 2f)
+        if (timer > 3f)
         {
             gb.fsm.ChangeState(enemy.fsm.states["Idel"]);
         }
@@ -576,7 +577,9 @@ public class GoblinBeastRiderGotoCenter : BaseStun
 {
     public override void OnStateStart()
     {
+        var gb = GetEnemyAs<GoblinBeastRider>();
         enemy.ani.Play("GoblinBeastRiderWalk");
+        gb.target = gb.center.gameObject;
     }
 
     public override void OnStateFixedUpdate()
@@ -587,12 +590,13 @@ public class GoblinBeastRiderGotoCenter : BaseStun
     {
         var gb = GetEnemyAs<GoblinBeastRider>();
 
-        if (Vector2.Distance(gb.transform.position, gb.center.position) > 0.02f)
+        if (Vector2.Distance(gb.transform.position, gb.center.position) > 0.1f)
         {
-            gb.rb2D.MovePosition(Vector2.MoveTowards(gb.transform.position, gb.center.position, gb.monsterData.moveSpeed * Time.deltaTime));
+            gb.rb2D.MovePosition(Vector2.MoveTowards(gb.transform.position, gb.center.position, gb.monsterData.moveSpeed * Time.deltaTime*3f));
         }
         else
         {
+            gb.target = PlayerInfo.Instance.gameObject;
             gb.fsm.ChangeState(enemy.fsm.states["Roar"]);
         }
     }
@@ -633,9 +637,13 @@ public class GoblinBeastRiderRoar : BaseStun
             for (var i = 0; i < 4; i++)
             {
                 var generatePos = (Vector2)gb.transform.position + new Vector2(3 * x[i], 3 * y[i]);
-                ObjectPooler.Instance.Get(gb.greenGoblin, generatePos, new Vector3(0, 0, 0));
+                var a = ObjectPooler.Instance.Get(gb.greenGoblin, generatePos, new Vector3(0, 0, 0));
+                a.GetComponent<Enemy>().battleManager = gb.battleManager;
                 gb.battleManager.MonsterCount++;
             }
+            gb.prt.Clear();
+            gb.prt.Play();
+
             PlayerCamera.Instance.SetShake(0.6f, 8f, 0.5f);
         }
 
@@ -647,6 +655,8 @@ public class GoblinBeastRiderRoar : BaseStun
 
     public override void OnStateEnd()
     {
+        var gb = GetEnemyAs<GoblinBeastRider>();
+        gb.prt.Stop();
     }
 }
 

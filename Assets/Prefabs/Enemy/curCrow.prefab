@@ -226,10 +226,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 7479
+    m_Bits: 3383
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 29376
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -247,7 +247,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.039941788, y: -0.70713675}
+  m_Offset: {x: 0.039941788, y: -0.0020146966}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -257,7 +257,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.1070328, y: 0.2295723}
+  m_Size: {x: 2.1070328, y: 1.3794636}
   m_EdgeRadius: 0
 --- !u!61 &6928812875932761514
 BoxCollider2D:
@@ -293,7 +293,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.013675213, y: 0.05087763}
+  m_Offset: {x: 0.013675213, y: 0.011101633}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -303,7 +303,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.1307878, y: 1.2971882}
+  m_Size: {x: 2.1307878, y: 1.3767402}
   m_EdgeRadius: 0
 --- !u!114 &7624392224681604311
 MonoBehaviour:
@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 30
+  battleManager: {fileID: 0}
   monsterData: {fileID: 11400000, guid: 955a8a7eee2641a40a8a85f58d4062f4, type: 2}
   staminaPointPos: {fileID: 3766094596655942880}
   ani: {fileID: 264550839484805966}

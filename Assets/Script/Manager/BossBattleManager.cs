@@ -17,11 +17,19 @@ public abstract class BossBattleManager : MonoBehaviour
         bossBar.bossSlider.maxValue = boss.CurrentHp;
         ShowHp();
         boss.onHitAction += ShowHp;
+        boss.onDeathAction += EndBossBattle;
         
 
     }
     public virtual void ShowHp()
     {
         UIManager.Instance.bossBar.bossSlider.value = boss.CurrentHp;
+    }
+
+    public virtual void EndBossBattle()
+    {
+        PlayerCamera.Instance.currentZoomSize = 4.5f;
+        var bossBar = UIManager.Instance.bossBar;
+        bossBar.bossSlider.gameObject.SetActive(false);
     }
 }

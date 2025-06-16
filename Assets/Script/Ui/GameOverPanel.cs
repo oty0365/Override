@@ -33,11 +33,14 @@ public class GameOverPanel : MonoBehaviour
     {
         PlayerCamera.Instance.SetAbHpUi(0);
         PlayerCamera.Instance.SetZoom(4.5f, 30f);
+        PlayerCamera.Instance.currentZoomSize = 4.5f;
         gameOverPannel.SetActive(false);
         if (MapManager.Instance.battleManager != null)
         {
             MapManager.Instance.battleManager.ReturnAll();
         }
+        UIManager.Instance.bossBar.bossSlider.gameObject.SetActive(false);
+        MapManager.Instance.CurrentMonsters = 0;
         ObjectPooler.Instance.InitPoollist();
         MapManager.Instance.RootNodeMap();
     }

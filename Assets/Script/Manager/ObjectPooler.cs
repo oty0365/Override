@@ -39,6 +39,7 @@ public enum PoolObjectType
     CurSkeletonArch,
     Arrow,
     GoblinBeastRider,
+    SFXObj,
 }
 
 public abstract class APoolingObject:MonoBehaviour
@@ -58,7 +59,7 @@ public abstract class APoolingObject:MonoBehaviour
 public class ObjectPooler : HalfSingleMono<ObjectPooler>
 {
     [SerializeField] private GameObject retruningParentObj;
-    [SerializeField] private GameObject currentReturningParentObj;
+    public GameObject currentReturningParentObj;
     private Dictionary<PoolObjectType, Queue<APoolingObject>> objectPoolList;
 
     protected override void Awake()

@@ -1,6 +1,5 @@
 using System.Collections;
 using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 public class BossBattleWithGoblinBeastRider : BossBattleManager
@@ -8,7 +7,7 @@ public class BossBattleWithGoblinBeastRider : BossBattleManager
     void Start()
     {
         InitBoss();
-        //boss.target = null;
+        boss.target = null;
         StartCoroutine(StartBattleFlow());
     }
     private IEnumerator StartBattleFlow()
@@ -21,13 +20,14 @@ public class BossBattleWithGoblinBeastRider : BossBattleManager
         {
             yield return null;
         }
-        Debug.Log("Done");
         yield return new WaitForSeconds(0.9f);
-
+        boss.target = player;
+        yield return new WaitForSeconds(1f);
         PlayerInteraction.Instance.OnInteractMode(1);
         boss.target = player;
         PlayerCamera.Instance.target = player;
         playerCam.transform.position = player.transform.position;
+        PlayerCamera.Instance.currentZoomSize = 6;
         PlayerCamera.Instance.SetZoom(6, 14f);
         SetBossBattle();
     }

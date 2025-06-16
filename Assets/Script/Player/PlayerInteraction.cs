@@ -139,7 +139,7 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
         {
             OnInteractMode(1);
             isCharging = false;
-            PlayerCamera.Instance.SetZoom(4.5f, 6);
+            PlayerCamera.Instance.SetZoom(PlayerCamera.Instance.currentZoomSize, 6);
         }
     }
 

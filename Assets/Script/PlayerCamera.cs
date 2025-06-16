@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
@@ -38,6 +37,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("ÁÜ")]
     public float cameraSize;
     public float cameraZoomSpeed;
+    public float currentZoomSize;
 
     [Header("±âº»°ª")]
     [SerializeField] private float originFallowSpeed = 2.2f;
@@ -69,6 +69,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void Start()
     {
+        currentZoomSize = 4.5f;
         if (volume.profile.TryGet(out UnityEngine.Rendering.Universal.Vignette vignette))
         {
             _vignette = vignette;
@@ -128,7 +129,7 @@ public class PlayerCamera : MonoBehaviour
 
     public void SetZoom(float size, float speed)
     {
-
+        currentZoomSize = cameraSize;
         cameraSize = size;
         cameraZoomSpeed = speed;
         StartState(CameraState.Zoom);

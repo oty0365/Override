@@ -1,8 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(AugmentDatas))]
-public class AugmentDatasEditor : Editor
+/*public class AugmentDatasEditor : Editor
 {
     public override void OnInspectorGUI()
     {
@@ -33,3 +32,4 @@ public class AugmentDatasEditor : Editor
         Debug.Log($"{foundObjects.Length}개의 ScriptableObject를 찾았습니다.");
     }
 }
+*/

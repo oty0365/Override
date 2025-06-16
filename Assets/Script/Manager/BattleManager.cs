@@ -145,12 +145,13 @@ public class BattleManager : MonoBehaviour
         {
             yield return null;
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.85f);
         PlayerCamera.Instance.target = PlayerInfo.Instance.gameObject;
         while (Vector2.Distance(PlayerInfo.Instance.transform.position, PlayerCamera.Instance.transform.position) > 0.1f)
         {
             yield return null;
         }
+        PlayerCamera.Instance.currentZoomSize = 4.5f;
         PlayerInteraction.Instance.OnInteractMode(1);
     }
     private void OnDestroy()

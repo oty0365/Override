@@ -5120,10 +5120,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 25792
+    m_Bits: 3383
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 29376
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -5141,7 +5141,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.023583278, y: -0.92760515}
+  m_Offset: {x: -0.023583293, y: -0.20383951}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5151,7 +5151,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.88884974, y: 0.40146375}
+  m_Size: {x: 0.88884974, y: 1.848995}
   m_EdgeRadius: 0
 --- !u!61 &430163600948104871
 BoxCollider2D:
@@ -5279,6 +5279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 28
+  battleManager: {fileID: 0}
   monsterData: {fileID: 11400000, guid: b16ad2f9f1bd6204fa3d026455398a53, type: 2}
   staminaPointPos: {fileID: 3044352988851880473}
   ani: {fileID: 4410601998336270912}

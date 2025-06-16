@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Tilemaps;
@@ -167,25 +166,24 @@ public class MapManager : HalfSingleMono<MapManager>
     {
         initialList.Clear();
         var areaMaps = new List<string>();
-        initialList.Add(mapDatas.maps[midBoss]);
         for (int i = start; i <= end; i++)
         {
             areaMaps.Add(mapDatas.maps[i]);
         }
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             var index=UnityEngine.Random.Range(0, areaMaps.Count);
             initialList.Add(areaMaps[index]);
             areaMaps.Remove(areaMaps[index]);
         }
-
         for (int i = 0; i < 3; i++)
         {
             var index = UnityEngine.Random.Range(0, areaMaps.Count);
             initialList.Add(areaMaps[index]);
             areaMaps.Remove(areaMaps[index]);
         }
-        initialList.Add(mapDatas.maps[finalBoss]);
+        initialList.Add(mapDatas.maps[midBoss]);
+        //initialList.Add(mapDatas.maps[finalBoss]);
         StartCoroutine(LoadFlow());
     }
 
