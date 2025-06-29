@@ -106,7 +106,7 @@ public class GoblinBeastRider : Enemy
         fsm.AddState("GotoCenter", gotoCenter, this);
         fsm.AddState("Bite", bite, this);
         fsm.AddState("WaitCooldown", waitCooldown, this);
-        fsm.ChangeState(fsm.states["Idel"]);
+        fsm.ChangeState(fsm.states["GotoCenter"]);
     }
 
     public void OnDeath()

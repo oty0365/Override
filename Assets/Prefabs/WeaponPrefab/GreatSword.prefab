@@ -140,7 +140,7 @@ MonoBehaviour:
     type: 0
     damage: 5
     infinateTime: 0.3
-    attackCollider: {fileID: 0}
+    attackCollider: {fileID: 6856902630537589026}
 --- !u!70 &8705406636614112841
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

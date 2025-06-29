@@ -27,6 +27,7 @@ public abstract class ADamageable : APoolingObject
     }
     protected void GiveDamage(float damage)
     {
+        SoundManager.Instance.PlaySFX("PlayerHit");
         var playerInfo = PlayerInfo.Instance;
         if (playerInfo.PlayerDefence - damage >= 0)
         {

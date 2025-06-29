@@ -79658,6 +79658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 989584291837927532}
   bossName: GoblinBeastRiderName
+  bossBgmCode: GoblinBeastRider
 --- !u!1 &9155741297230988552
 GameObject:
   m_ObjectHideFlags: 0

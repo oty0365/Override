@@ -4972,7 +4972,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 3383
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 29376
@@ -5018,7 +5018,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8320
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5146,6 +5146,7 @@ MonoBehaviour:
   staminaPoint: {fileID: 0}
   glowEye: {fileID: 8970462335998819973}
   backParticle: {fileID: 8917606695044482346}
+  minHitInterval: 0.1
   _currentHp: 0
   _currentStamia: 0
   colideParticle: {fileID: 9089905416252372434, guid: cb5fdc914ea0cec46b169013be5c5482, type: 3}

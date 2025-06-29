@@ -124,7 +124,6 @@ public abstract class Enemy : APoolingObject
         isStun = false;
         isStunning = false;
 
-        // 모든 관련 딕셔너리 초기화
         CleanupAllData();
 
         fsm.InitState();
@@ -137,11 +136,8 @@ public abstract class Enemy : APoolingObject
         staminaPoint = c;
         c.currentEnemy = this;
     }
-
-    // 모든 데이터를 정리하는 메서드
     private void CleanupAllData()
     {
-        // 모든 실행 중인 코루틴 정리
         foreach (var coroutine in infinateCoroutines.Values)
         {
             if (coroutine != null)
@@ -154,8 +150,6 @@ public abstract class Enemy : APoolingObject
         infinateCoroutines.Clear();
         lastValidHitTime.Clear();
     }
-
-    // 오브젝트가 비활성화될 때 호출되는 메서드
     private void OnDisable()
     {
         CleanupAllData();
@@ -178,7 +172,6 @@ public abstract class Enemy : APoolingObject
             glowEye.SetActive(false);
         }
 
-        // 모든 데이터 정리
         CleanupAllData();
     }
 
@@ -191,8 +184,8 @@ public abstract class Enemy : APoolingObject
 
     public virtual void Hit(Collider2D collider, float damage, float infinateTime)
     {
-        Debug.Log($"Hit called - Collider: {collider.name}, Damage: {damage}, Time: {Time.time}");
-
+        //Debug.Log($"Hit called - Collider: {collider.name}, Damage: {damage}, Time: {Time.time}");
+        SoundManager.Instance.PlaySFX("Hit");
         if (staminaPoint != null)
         {
             if (!isStunning)
@@ -201,7 +194,7 @@ public abstract class Enemy : APoolingObject
             }
             if (CurrentHp > 0)
             {
-                CurrentHp -= damage;
+                CurrentHp -= damage + PlayerInfo.Instance.playerBasicAttackDamage;
             }
             if (_currentHitFlow != null)
             {

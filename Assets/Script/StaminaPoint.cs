@@ -29,7 +29,6 @@ public class StaminaPoint : APoolingObject
     }
     public void OnvalueChange()
     {
-        Debug.Log(100);
         progress = (currentEnemy.monsterData.maxStamina - currentEnemy.CurrentStamina) / currentEnemy.monsterData.maxStamina;
         if (progress >= 1)
         {

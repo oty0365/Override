@@ -182,7 +182,7 @@ Transform:
   m_GameObject: {fileID: 237628522982187107}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.14, y: -0.18, z: -1.4876076}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -289,7 +289,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 3383
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 29376
@@ -335,7 +335,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8320
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -463,6 +463,7 @@ MonoBehaviour:
   staminaPoint: {fileID: 0}
   glowEye: {fileID: 443967469120990643}
   backParticle: {fileID: 6332848329978549287}
+  minHitInterval: 0.1
   _currentHp: 0
   _currentStamia: 0
   collideParticle: {fileID: 0}

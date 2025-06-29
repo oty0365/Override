@@ -75,6 +75,14 @@ public class MapManager : HalfSingleMono<MapManager>
             {
                 currentMapCode = value;
                 mapNameTmp.text = Scripter.Instance.scripts[value.ToString()].currentText;
+                if (currentMapCode == MapCode.RootNode)
+                {
+                    SoundManager.Instance.PlayBGM(MapCode.DreamersPrison.ToString());
+                }
+                else
+                {
+                    SoundManager.Instance.PlayBGM(currentMapCode.ToString());
+                }
 
                 StartCoroutine(MapNameFlow());
             }
@@ -176,13 +184,14 @@ public class MapManager : HalfSingleMono<MapManager>
             initialList.Add(areaMaps[index]);
             areaMaps.Remove(areaMaps[index]);
         }
+        initialList.Add(mapDatas.maps[midBoss]);
         for (int i = 0; i < 3; i++)
         {
             var index = UnityEngine.Random.Range(0, areaMaps.Count);
             initialList.Add(areaMaps[index]);
             areaMaps.Remove(areaMaps[index]);
         }
-        initialList.Add(mapDatas.maps[midBoss]);
+
         //initialList.Add(mapDatas.maps[finalBoss]);
         StartCoroutine(LoadFlow());
     }

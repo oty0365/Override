@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundManager : SingleMono<SoundManager>
+public class SoundManager : HalfSingleMono<SoundManager>
 { 
     [SerializeField] private Slider volume;
     public AudioSource bgm;
     public APoolingObject sfx;
     public float fadeSpeed = 1f;
-    private Dictionary<string,AudioClip> soundDict;
+    private Dictionary<string,AudioClip> soundDict = new();
     public float SoundVolume
     {
         get => volume.value;
@@ -23,9 +23,13 @@ public class SoundManager : SingleMono<SoundManager>
         AudioClip[] clips = Resources.LoadAll<AudioClip>("SFX");
         foreach (var clip in clips)
         {
-            soundDict[clip.name] = clip;
+            Debug.Log(clip.name);
+            soundDict.Add(clip.name, clip);
         }
-
+        foreach(var i in clips)
+        {
+            Debug.Log(i);
+        }
         volume.maxValue = 100f;
         if (!PlayerPrefs.HasKey("Volume"))
         {
@@ -59,23 +63,31 @@ public class SoundManager : SingleMono<SoundManager>
 
     private IEnumerator FadeToNewBGM(string key)
     {
-        if (bgm != null)
+        /*if (bgm != null)
         {
             while (bgm.volume > 0)
             {
                 bgm.volume -= Time.deltaTime * fadeSpeed;
                 yield return null;
             }
+        }*/
+        yield return null;
+        if (soundDict.ContainsKey(key))
+        {
+            bgm.clip = soundDict[key];
+            bgm.volume = 1;
+            bgm.Play();
         }
 
-        bgm.clip = soundDict[key];
-        bgm.volume = 0;
-        bgm.Play();
-
+        /*
         while (bgm.volume < 1)
         {
             bgm.volume += Time.deltaTime * fadeSpeed;
             yield return null;
-        }
+        }*/
+    }
+    private void OnDestroy()
+    {
+        Debug.Log(1);
     }
 }

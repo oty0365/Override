@@ -18,6 +18,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private int _monsterCount;
 
+
     private Coroutine _currentStareFlow;
     public int MonsterCount
     {
@@ -65,7 +66,7 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         MapManager.Instance.battleManager = this;
-        for(var i  = 0; i < transform.childCount; i++)
+        for (var i  = 0; i < transform.childCount; i++)
         {
             spawns.Add(transform.GetChild(i));
         }
