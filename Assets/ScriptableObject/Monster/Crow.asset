@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterCode: Crow
   maxHp: 50
   maxStamina: 15
-  moveSpeed: 9
+  moveSpeed: 2.8
   recoveryTime: 1.5
   recognitionRange: 10
   maxCoin: 1

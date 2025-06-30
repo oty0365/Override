@@ -218,14 +218,15 @@ public class MapManager : HalfSingleMono<MapManager>
 
     public void SetMap()
     {
+        MapCleaner.Instance.Clear();
         header.sprite = currentMap.mapBanner;
         CurrentMapCode = currentMap.mapCode;
         currentMapObj = Instantiate(currentMap.mapPrefab, currentMap.spawnVector, Quaternion.identity);
         PlayerInfo.Instance.gameObject.transform.position = currentMap.playerSpawn;
-        PlayerCamera.Instance.gameObject.transform.position = PlayerInfo.Instance.transform.position;
+        PlayerCamera.Instance.gameObject.transform.position = new Vector3(PlayerInfo.Instance.gameObject.transform.position.x, PlayerInfo.Instance.gameObject.transform.position.y, PlayerCamera.Instance.gameObject.transform.position.z);
     }
 
-    IEnumerator LoadMapsWithProgressBar(List<string> adress)
+    /*IEnumerator LoadMapsWithProgressBar(List<string> adress)
     {
         isLoading = true;
         loadingPanel.SetActive(true);
@@ -256,7 +257,47 @@ public class MapManager : HalfSingleMono<MapManager>
         isLoading = false;
         PlayerInfo.Instance.InitializeStatus();
 
+    }*/
+    IEnumerator LoadMapsWithProgressBar(List<string> adress)
+    {
+        isLoading = true;
+        loadingPanel.SetActive(true);
+        progressBar.value = 0;
+
+        var index = UnityEngine.Random.Range(1, 7);
+        tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
+
+        mapList.Clear();
+
+        foreach (var i in adress)
+        {
+            // 1. MapData ScriptableObject 로드
+            var handle = Addressables.LoadAssetAsync<MapData>(i);
+            yield return handle;
+
+            MapData mapData = handle.Result;
+            mapList.Add(mapData); // 데이터 저장
+
+            progressBar.value += 1f / adress.Count;
+
+            // 스페이스 입력 시 TMI 교체
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                index = UnityEngine.Random.Range(1, 5);
+                tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
+            }
+
+            yield return new WaitForSeconds(0.07f);
+        }
+
+        progressBar.value = 1;
+        yield return new WaitForSeconds(0.3f);
+
+        PlayerInteraction.Instance.OnInteractMode(1);
+        isLoading = false;
+        PlayerInfo.Instance.InitializeStatus();
     }
+
 
     IEnumerator MapNameFlow()
     {

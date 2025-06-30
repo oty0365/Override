@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterCode: GoblinBeastRider
   maxHp: 440
   maxStamina: 50
-  moveSpeed: 6
+  moveSpeed: 2
   recoveryTime: 4
   recognitionRange: 1000
   maxCoin: 12

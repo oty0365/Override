@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterCode: curCrow
   maxHp: 35
   maxStamina: 15
-  moveSpeed: 11
+  moveSpeed: 3
   recoveryTime: 1.5
   recognitionRange: 10
   maxCoin: 2

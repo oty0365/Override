@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterCode: curGreenGoblin
   maxHp: 40
   maxStamina: 15
-  moveSpeed: 7
+  moveSpeed: 2.5
   recoveryTime: 0.5
   recognitionRange: 7
   maxCoin: 4

@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterCode: GoblinKnight
   maxHp: 90
   maxStamina: 20
-  moveSpeed: 7
+  moveSpeed: 2.5
   recoveryTime: 3.5
   recognitionRange: 8
   maxCoin: 3

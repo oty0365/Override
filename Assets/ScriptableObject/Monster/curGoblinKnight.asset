@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterCode: curGoblinKnight
   maxHp: 70
   maxStamina: 20
-  moveSpeed: 8
+  moveSpeed: 3
   recoveryTime: 0.5
   recognitionRange: 10
   maxCoin: 5

@@ -28,8 +28,8 @@ public class KeyBindingManager : SingleMono<KeyBindingManager>
         base.Awake();
         keyBindings["Up"] = KeyCode.W;
         keyBindings["Down"] = KeyCode.S;
-        keyBindings["Left"] = KeyCode.D;
-        keyBindings["Right"] = KeyCode.A;
+        keyBindings["Left"] = KeyCode.A;
+        keyBindings["Right"] = KeyCode.D;
         keyBindings["Attack1"] = KeyCode.Mouse0;
         keyBindings["Attack2"] = KeyCode.Mouse1;
         keyBindings["SpecialAttack1"] = KeyCode.Q;

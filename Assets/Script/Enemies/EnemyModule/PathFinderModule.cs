@@ -97,9 +97,11 @@ public class PathFinderModule : Module
         {
             if (_wayPoints == null || _wayPoints.Count == 0)
                 yield break;
+
             Vector2 currentPos = gameObject.transform.position;
             int closestIndex = FindClosestWaypointIndex(currentPos, _wayPoints);
             int startIndex = closestIndex;
+
             for (int i = startIndex; i < _wayPoints.Count; i++)
             {
                 var targetPos = new Vector2(_wayPoints[i].x + 0.5f, _wayPoints[i].y + 0.5f);
@@ -108,12 +110,24 @@ public class PathFinderModule : Module
 
                 while (Vector2.Distance(gameObject.transform.position, targetPos) > 0.1f)
                 {
-                    enemy.rb2D.MovePosition(Vector2.MoveTowards(gameObject.transform.position, targetPos, Time.deltaTime * enemy.monsterData.moveSpeed));
-                    yield return null;
+                    Vector2 currentPosition = gameObject.transform.position;
+                    Vector2 moveDirection = (targetPos - currentPosition).normalized;
+                    float moveDistance = enemy.monsterData.moveSpeed * Time.fixedDeltaTime;
+
+                    if (Vector2.Distance(currentPosition, targetPos) <= moveDistance)
+                    {
+                        enemy.rb2D.MovePosition(targetPos);
+                        break;
+                    }
+                    else
+                    {
+                        Vector2 newPosition = currentPosition + moveDirection * moveDistance;
+                        enemy.rb2D.MovePosition(newPosition);
+                    }
+
+                    yield return new WaitForFixedUpdate(); 
                 }
             }
-
-            // 최종 목표지점도 타일 중점으로 이동
             Vector2 finalTarget = new Vector2(
                 Mathf.Floor(pathFinder.target.transform.position.x) + 0.5f,
                 Mathf.Floor(pathFinder.target.transform.position.y) + 0.5f
@@ -121,13 +135,27 @@ public class PathFinderModule : Module
 
             while (Vector2.Distance(gameObject.transform.position, finalTarget) > 0.1f)
             {
-                enemy.rb2D.MovePosition(Vector2.MoveTowards(gameObject.transform.position, finalTarget, Time.deltaTime * enemy.monsterData.moveSpeed));
-                yield return null;
+                Vector2 currentPosition = gameObject.transform.position;
+                Vector2 moveDirection = (finalTarget - currentPosition).normalized;
+                float moveDistance = enemy.monsterData.moveSpeed * Time.fixedDeltaTime;
+
+                if (Vector2.Distance(currentPosition, finalTarget) <= moveDistance)
+                {
+                    enemy.rb2D.MovePosition(finalTarget);
+                    break;
+                }
+                else
+                {
+                    Vector2 newPosition = currentPosition + moveDirection * moveDistance;
+                    enemy.rb2D.MovePosition(newPosition);
+                }
+
+                yield return new WaitForFixedUpdate();
             }
         }
         else
         {
-            // 직접 타겟으로 이동할 때도 타일 중점으로 이동
+            // 직접 타겟으로 이동
             Vector2 finalTarget = new Vector2(
                 Mathf.Floor(pathFinder.target.transform.position.x) + 0.5f,
                 Mathf.Floor(pathFinder.target.transform.position.y) + 0.5f
@@ -135,8 +163,22 @@ public class PathFinderModule : Module
 
             while (Vector2.Distance(gameObject.transform.position, finalTarget) > 0.1f)
             {
-                enemy.rb2D.MovePosition(Vector2.MoveTowards(gameObject.transform.position, finalTarget, Time.deltaTime * enemy.monsterData.moveSpeed));
-                yield return null;
+                Vector2 currentPosition = gameObject.transform.position;
+                Vector2 moveDirection = (finalTarget - currentPosition).normalized;
+                float moveDistance = enemy.monsterData.moveSpeed * Time.fixedDeltaTime;
+
+                if (Vector2.Distance(currentPosition, finalTarget) <= moveDistance)
+                {
+                    enemy.rb2D.MovePosition(finalTarget);
+                    break;
+                }
+                else
+                {
+                    Vector2 newPosition = currentPosition + moveDirection * moveDistance;
+                    enemy.rb2D.MovePosition(newPosition);
+                }
+
+                yield return new WaitForFixedUpdate();
             }
         }
     }
