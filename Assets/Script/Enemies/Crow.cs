@@ -1,7 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Crow : Enemy
 {
@@ -15,11 +14,8 @@ public class Crow : Enemy
     public Vector2 dir;
 
     public APoolingObject crowBite;
-    
-    private void Start()
-    {
-        InitEnemy();
-    }
+
+
     protected override void Update()
     {
         base.Update();
@@ -171,7 +167,6 @@ public class CrowDeath : BaseDeath
 {
     public override void OnStateStart()
     {
-        enemy.staminaPoint.Death();
         enemy.ani.Play("CrowDeath");
         GetEnemyAs<Crow>().OnDeath();
     }
@@ -222,16 +217,27 @@ public class CrowAttack : BaseAttack
         var gb = GetEnemyAs<Crow>();
         if (gb.canAttack)
         {
-            gb.Attacked();
+            if (!gb.isCurrupted)
+            {
+                gb.Attacked();
+            }
             gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
+
+            if (gb.transform.localScale.x < 0)
+            {
+                gb.dir = new Vector2(-gb.dir.x, gb.dir.y);
+            }
+
+
             var deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
+
             gb.attackDir.SetActive(true);
-            gb.attackDir.transform.rotation = Quaternion.Euler(0, 0, deg - 90);
+            gb.attackDir.transform.localRotation = Quaternion.Euler(0, 0, deg - 90);
+
             var o = ObjectPooler.Instance.Get(gb.crowBite, gb.transform);
             o.transform.localScale = new Vector2(1.5f, 1.5f);
             o.transform.localPosition = gb.dir.normalized * 1.2f;
-            o.transform.rotation = Quaternion.Euler(0, 0, deg);
-
+            o.transform.localRotation = Quaternion.Euler(0, 0, deg);
             enemy.ani.Play("CrowAttack");
             gb.rb2D.linearVelocity = Vector2.zero;
         }

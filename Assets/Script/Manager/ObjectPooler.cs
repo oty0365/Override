@@ -31,11 +31,20 @@ public enum PoolObjectType
     MonsterBite,
     Crow,
     MonsterDagger,
-    GreenGoblin
+    GreenGoblin,
+    CurGoblinKnight,
+    CurCrow,
+    CurGreenGoblin,
+    SkeletonArch,
+    CurSkeletonArch,
+    Arrow,
+    GoblinBeastRider,
+    SFXObj,
 }
 
 public abstract class APoolingObject:MonoBehaviour
 {
+
     public PoolObjectType objectType;
 
     public void Death()
@@ -49,12 +58,15 @@ public abstract class APoolingObject:MonoBehaviour
 
 public class ObjectPooler : HalfSingleMono<ObjectPooler>
 {
+    [SerializeField] private GameObject retruningParentObj;
+    public GameObject currentReturningParentObj;
     private Dictionary<PoolObjectType, Queue<APoolingObject>> objectPoolList;
 
     protected override void Awake()
     {
         base.Awake();
-        objectPoolList = new Dictionary<PoolObjectType, Queue<APoolingObject>>();
+        InitPoollist();
+
     }
 
     public void ReBakeObjectPooler()
@@ -86,7 +98,9 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
             obj.OnBirth();
         }
 
+        obj.transform.SetParent(currentReturningParentObj.transform, worldPositionStays: false);
 
+        if (obj != null) obj.gameObject.SetActive(true);
         return obj.gameObject;
     }
 
@@ -115,6 +129,8 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
             obj.gameObject.SetActive(true);
             obj.OnBirth();
         }
+
+        obj.transform.SetParent(currentReturningParentObj.transform, worldPositionStays: false);
 
         return obj.gameObject;
     }
@@ -150,11 +166,17 @@ public class ObjectPooler : HalfSingleMono<ObjectPooler>
 
         if (!objectPoolList.ContainsKey(key))
             objectPoolList[key] = new Queue<APoolingObject>();
-        if (obj != null)
-        {
-            obj.gameObject.SetActive(false);
-        }
+
+        obj.gameObject.SetActive(false);
+        obj.transform.SetParent(currentReturningParentObj.transform, worldPositionStays: false);
         objectPoolList[key].Enqueue(obj);
     }
+    public void InitPoollist()
+    {
+        Destroy(currentReturningParentObj);
+        currentReturningParentObj = Instantiate(retruningParentObj);
+        objectPoolList = new Dictionary<PoolObjectType, Queue<APoolingObject>>();
+    }
+
 }
 

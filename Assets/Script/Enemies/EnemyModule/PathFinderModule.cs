@@ -74,7 +74,7 @@ public class PathFinderModule : Module
 
         for (int i = 0; i < waypoints.Count; i++)
         {
-            Vector2 waypointPos = new Vector2(waypoints[i].x + 0.5f, waypoints[i].y);
+            Vector2 waypointPos = new Vector2(waypoints[i].x + 0.5f, waypoints[i].y + 0.5f);
             float distance = Vector2.Distance(currentPos, waypointPos);
 
             if (distance > 2f && distance < minDistance)
@@ -83,8 +83,6 @@ public class PathFinderModule : Module
                 closestIndex = i;
             }
         }
-
-        // 모든 지점이 너무 가까우면 첫 번째 지점 반환
         if (minDistance == float.MaxValue)
         {
             return 0;
@@ -100,43 +98,87 @@ public class PathFinderModule : Module
             if (_wayPoints == null || _wayPoints.Count == 0)
                 yield break;
 
-            // 현재 위치에서 가장 가까운 웨이포인트 찾기
             Vector2 currentPos = gameObject.transform.position;
             int closestIndex = FindClosestWaypointIndex(currentPos, _wayPoints);
-
-            // 가장 가까운 지점부터 시작 (바로 다음이 아닌 해당 지점부터)
             int startIndex = closestIndex;
 
-            // 해당 지점부터 시작해서 끝까지 이동
             for (int i = startIndex; i < _wayPoints.Count; i++)
             {
-                var newPos = new Vector2(_wayPoints[i].x + 0.5f, _wayPoints[i].y);
-
-                // 현재 위치가 이미 웨이포인트에 충분히 가까우면 건너뛰기
-                if (Vector2.Distance(gameObject.transform.position, newPos) <= 0.3f)
+                var targetPos = new Vector2(_wayPoints[i].x + 0.5f, _wayPoints[i].y + 0.5f);
+                if (Vector2.Distance(gameObject.transform.position, targetPos) <= 0.3f)
                     continue;
 
-                while (Vector2.Distance(gameObject.transform.position, newPos) > 0.1f)
+                while (Vector2.Distance(gameObject.transform.position, targetPos) > 0.1f)
                 {
-                    enemy.rb2D.MovePosition(Vector2.MoveTowards(gameObject.transform.position, newPos, Time.deltaTime * enemy.monsterData.moveSpeed));
-                    yield return null;
+                    Vector2 currentPosition = gameObject.transform.position;
+                    Vector2 moveDirection = (targetPos - currentPosition).normalized;
+                    float moveDistance = enemy.monsterData.moveSpeed * Time.fixedDeltaTime;
+
+                    if (Vector2.Distance(currentPosition, targetPos) <= moveDistance)
+                    {
+                        enemy.rb2D.MovePosition(targetPos);
+                        break;
+                    }
+                    else
+                    {
+                        Vector2 newPosition = currentPosition + moveDirection * moveDistance;
+                        enemy.rb2D.MovePosition(newPosition);
+                    }
+
+                    yield return new WaitForFixedUpdate(); 
                 }
             }
+            Vector2 finalTarget = new Vector2(
+                Mathf.Floor(pathFinder.target.transform.position.x) + 0.5f,
+                Mathf.Floor(pathFinder.target.transform.position.y) + 0.5f
+            );
 
-            // 최종 목표지점으로 이동
-            while (Vector2.Distance(gameObject.transform.position, pathFinder.target.transform.position) > 0.1f)
+            while (Vector2.Distance(gameObject.transform.position, finalTarget) > 0.1f)
             {
-                enemy.rb2D.MovePosition(Vector2.MoveTowards(gameObject.transform.position, pathFinder.target.transform.position, Time.deltaTime * enemy.monsterData.moveSpeed));
-                yield return null;
+                Vector2 currentPosition = gameObject.transform.position;
+                Vector2 moveDirection = (finalTarget - currentPosition).normalized;
+                float moveDistance = enemy.monsterData.moveSpeed * Time.fixedDeltaTime;
+
+                if (Vector2.Distance(currentPosition, finalTarget) <= moveDistance)
+                {
+                    enemy.rb2D.MovePosition(finalTarget);
+                    break;
+                }
+                else
+                {
+                    Vector2 newPosition = currentPosition + moveDirection * moveDistance;
+                    enemy.rb2D.MovePosition(newPosition);
+                }
+
+                yield return new WaitForFixedUpdate();
             }
         }
         else
         {
-            // 직접 타겟으로 이동 (웨이포인트 없이)  
-            while (Vector2.Distance(gameObject.transform.position, pathFinder.target.transform.position) > 0.1f)
+            // 직접 타겟으로 이동
+            Vector2 finalTarget = new Vector2(
+                Mathf.Floor(pathFinder.target.transform.position.x) + 0.5f,
+                Mathf.Floor(pathFinder.target.transform.position.y) + 0.5f
+            );
+
+            while (Vector2.Distance(gameObject.transform.position, finalTarget) > 0.1f)
             {
-                enemy.rb2D.MovePosition(Vector2.MoveTowards(gameObject.transform.position, pathFinder.target.transform.position, Time.deltaTime * enemy.monsterData.moveSpeed));
-                yield return null;
+                Vector2 currentPosition = gameObject.transform.position;
+                Vector2 moveDirection = (finalTarget - currentPosition).normalized;
+                float moveDistance = enemy.monsterData.moveSpeed * Time.fixedDeltaTime;
+
+                if (Vector2.Distance(currentPosition, finalTarget) <= moveDistance)
+                {
+                    enemy.rb2D.MovePosition(finalTarget);
+                    break;
+                }
+                else
+                {
+                    Vector2 newPosition = currentPosition + moveDirection * moveDistance;
+                    enemy.rb2D.MovePosition(newPosition);
+                }
+
+                yield return new WaitForFixedUpdate();
             }
         }
     }

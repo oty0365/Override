@@ -15,7 +15,9 @@ MonoBehaviour:
   monsterCode: GreenGoblin
   maxHp: 70
   maxStamina: 15
-  moveSpeed: 7
+  moveSpeed: 2.5
   recoveryTime: 4
   recognitionRange: 7
+  maxCoin: 2
+  minCoin: 0
   dropTable: []

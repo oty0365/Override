@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
@@ -38,6 +37,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("줌")]
     public float cameraSize;
     public float cameraZoomSpeed;
+    public float currentZoomSize;
 
     [Header("기본값")]
     [SerializeField] private float originFallowSpeed = 2.2f;
@@ -50,6 +50,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("화면")]
     [SerializeField] private Volume volume;
     private UnityEngine.Rendering.Universal.Vignette _vignette;
+    private UnityEngine.Rendering.Universal.ChromaticAberration _aberration;
     [NonSerialized] public UnityEngine.Rendering.Universal.ColorAdjustments colorAdjustments;
     private float _fadeSpeed;
     private float _fadeAmount;
@@ -59,6 +60,7 @@ public class PlayerCamera : MonoBehaviour
     private Coroutine _previousZoomCoroutine;
     private Coroutine _previousShakeCoroutine;
     private Coroutine _previousGetDamageCoroutine;
+    private Coroutine _previousLowHpCoroutine;
 
     private void Awake()
     {
@@ -67,6 +69,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void Start()
     {
+        currentZoomSize = 4.5f;
         if (volume.profile.TryGet(out UnityEngine.Rendering.Universal.Vignette vignette))
         {
             _vignette = vignette;
@@ -75,6 +78,10 @@ public class PlayerCamera : MonoBehaviour
         {
             colorAdjustments = colorAdj;
         }
+        if (volume.profile.TryGet(out UnityEngine.Rendering.Universal.ChromaticAberration colorAber))
+        {
+            _aberration = colorAber;
+        }
         cameraSize = originCameraSize;
         fallowSpeed = originFallowSpeed;
         cameraZoomSpeed = originZoomSpeed;
@@ -82,7 +89,30 @@ public class PlayerCamera : MonoBehaviour
 
         StartState(CameraState.CinematicFallow);
     }
-
+    public void SetAbHpUi(int i)
+    {
+        if (_aberration == null)
+        {
+            return;
+        }
+        if (i != _aberration.intensity.value)
+        {
+            if (_previousLowHpCoroutine != null)
+            {
+                StopCoroutine(_previousLowHpCoroutine);
+            }
+            _previousLowHpCoroutine =  StartCoroutine(LowHpFlow(i));
+            _aberration.intensity.value = i;
+        }
+    }
+    IEnumerator LowHpFlow(float value)
+    {
+        while(Mathf.Abs(value-_aberration.intensity.value)>0.01f)
+        {
+            _aberration.intensity.value=Mathf.Lerp(_aberration.intensity.value, value,Time.deltaTime);
+            yield return null;
+        }
+    }
     public void SetFallow(int mode, float speed)
     {
         fallowSpeed = speed;
@@ -99,7 +129,7 @@ public class PlayerCamera : MonoBehaviour
 
     public void SetZoom(float size, float speed)
     {
-
+        currentZoomSize = cameraSize;
         cameraSize = size;
         cameraZoomSpeed = speed;
         StartState(CameraState.Zoom);
@@ -191,7 +221,7 @@ public class PlayerCamera : MonoBehaviour
                     {
                         StopCoroutine(_previousZoomCoroutine);
                     }
-
+                    _previousZoomCoroutine = null;
                     cameraZoomSpeed = originZoomSpeed;
                     cameraSize = originCameraSize;
                     break;
@@ -238,7 +268,7 @@ public class PlayerCamera : MonoBehaviour
             {
                 targetPos = Vector2.Lerp(
                     playerCam.transform.position,
-                    target.transform.position,
+                    (Vector2)target?.transform.position,
                     fallowSpeed * Time.deltaTime
                 );
             }

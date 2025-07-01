@@ -1,7 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GreenGoblin : Enemy
 {
@@ -16,12 +16,6 @@ public class GreenGoblin : Enemy
 
     public APoolingObject dagger;
 
-
-
-    private void Start()
-    {
-        InitEnemy();
-    }
     protected override void Update()
     {
         base.Update();
@@ -31,7 +25,6 @@ public class GreenGoblin : Enemy
             isStun = false;
         }
     }
-
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -62,10 +55,12 @@ public class GreenGoblin : Enemy
     }
     public override void OnBirth()
     {
+        Debug.Log("Live");
         InitEnemy();
     }
     public override void OnDeathInit()
     {
+        Debug.Log("Death");
     }
     private IEnumerator AttackCoolDown()
     {
@@ -92,14 +87,14 @@ public class GreenGoblin : Enemy
         var attack = new GreenGoblinAttack();
         var stun = new GreenGoblinStun();
         var hit = new GreenGoblinHit();
-        var waitCooldown = new GreenGoblinWaitCooldown(); // 새로운 상태 추가
+        var waitCooldown = new GreenGoblinWaitCooldown();
         fsm.AddState("Walk", walk, this);
         fsm.AddState("Death", death, this);
         fsm.AddState("Idel", idel, this);
         fsm.AddState("Attack", attack, this);
         fsm.AddState("Stun", stun, this);
         fsm.AddState("Hit", hit, this);
-        fsm.AddState("WaitCooldown", waitCooldown, this); // 새로운 상태 추가
+        fsm.AddState("WaitCooldown", waitCooldown, this); 
         fsm.ChangeState(fsm.states["Idel"]);
     }
     public void OnDeath()
@@ -108,7 +103,7 @@ public class GreenGoblin : Enemy
     }
     private IEnumerator DeathFlow()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         Death();
     }
 }
@@ -176,7 +171,7 @@ public class GreenGoblinDeath : BaseDeath
 {
     public override void OnStateStart()
     {
-        enemy.staminaPoint.Death();
+        //enemy.staminaPoint.Death();
         enemy.ani.Play("GreenGoblinDeath");
         GetEnemyAs<GreenGoblin>().OnDeath();
     }
@@ -219,11 +214,10 @@ public class GreenGoblinIdel : BaseIdel
     }
 }
 
-// 새로운 쿨다운 대기 상태
 public class GreenGoblinWaitCooldown : State
 {
     float waitTime = 0f;
-    float maxWaitTime = 1.0f; // 쿨다운 대기 시간
+    float maxWaitTime = 1.0f; 
 
     public override void OnStateStart()
     {
@@ -243,21 +237,18 @@ public class GreenGoblinWaitCooldown : State
         waitTime += Time.deltaTime;
         gb.Flip();
 
-        // 플레이어가 멀어지면 Idel 상태로 변경
         if (!gb.recognitionModule.Recognize(enemy.monsterData.recognitionRange))
         {
             gb.fsm.ChangeState(gb.fsm.states["Idel"]);
             return;
         }
 
-        // 쿨다운이 끝났고 공격 범위 내에 있으면 Attack 상태로
         if (gb.canAttack && gb.recognitionModule.Recognize(1.4f))
         {
             gb.fsm.ChangeState(gb.fsm.states["Attack"]);
             return;
         }
 
-        // 일정 시간 대기 후 Walk 상태로 변경 (자연스러운 움직임)
         if (waitTime > maxWaitTime)
         {
             gb.fsm.ChangeState(gb.fsm.states["Walk"]);
@@ -281,14 +272,16 @@ public class GreenGoblinAttack : BaseAttack
         if (gb.canAttack)
         {
             usedSkill = false;
-            gb.Attacked();
+            if (!gb.isCurrupted)
+            {
+                gb.Attacked();
+            }
             gb.rb2D.linearVelocity = Vector2.zero;
             gb.attackDir.SetActive(true);
             enemy.ani.Play("GreenGoblinAttack");
         }
         else
         {
-            // 쿨다운 중일 때 자연스러운 대기 상태로 전환
             gb.fsm.ChangeState(gb.fsm.states["WaitCooldown"]);
         }
 
@@ -302,7 +295,6 @@ public class GreenGoblinAttack : BaseAttack
 
         var gb = GetEnemyAs<GreenGoblin>();
         currAni = gb.ani.GetCurrentAnimatorStateInfo(0);
-        Debug.Log(currAni.normalizedTime);
         if (currAni.normalizedTime >= 1.0f)
         {
             gb.fsm.ChangeState(enemy.fsm.states["Idel"]);
@@ -315,15 +307,19 @@ public class GreenGoblinAttack : BaseAttack
                 var o = ObjectPooler.Instance.Get(gb.dagger, gb.transform);
                 o.transform.localScale = new Vector2(3.5f, 3.5f);
                 o.transform.localPosition = gb.dir.normalized * 1.2f;
-                o.transform.rotation = Quaternion.Euler(0, 0, deg);
+                o.transform.localRotation = Quaternion.Euler(0, 0, deg);
             }
 
         }
         else
         {
             gb.dir = gb.recognitionModule.SolveDirection(gb.target.transform.position, gb.transform.position);
+            if (gb.transform.localScale.x < 0)
+            {
+                gb.dir = new Vector2(-gb.dir.x, gb.dir.y);
+            }
             deg = Mathf.Atan2(gb.dir.y, gb.dir.x) * Mathf.Rad2Deg;
-            gb.attackDir.transform.rotation = Quaternion.Euler(0, 0, deg - 90);
+            gb.attackDir.transform.localRotation = Quaternion.Euler(0, 0, deg - 90);
         }
 
     }

@@ -7,10 +7,12 @@ public class OverrideablesGenerator : MonoBehaviour
     public AtTutorialBot tutorialBot;
     void Start()
     {
+       
         if (tutorialBot != null)
         {
             tutorialBot.makeInteracter = RandomSpawn();
             tutorialBot.makeInteracter.layer = LayerMask.NameToLayer("Default");
+            
         }
         else
         {

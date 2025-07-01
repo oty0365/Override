@@ -91,6 +91,7 @@ public class SwordAndSheild: WeaponBase
 
     private IEnumerator AttackRoutine()
     {
+        //SoundManager.Instance.PlaySFX("Slash");
         ani.speed = attackSpeed;
         float animLength = ani.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(animLength / attackSpeed);

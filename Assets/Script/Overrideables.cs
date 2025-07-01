@@ -9,6 +9,7 @@ public class Overrideables : AInteractable
 
     void Start()
     {
+        MapCleaner.Instance.Add(gameObject);
         _sr = GetComponent<SpriteRenderer>();
         var main = prt.main;
         switch (characterData.rarity)

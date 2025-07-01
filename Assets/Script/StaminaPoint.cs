@@ -18,18 +18,16 @@ public class StaminaPoint : APoolingObject
     }
     void Update()
     {
-        gameObject.transform.position = currentEnemy.staminaPointPos.position;
+        if (currentEnemy != null && currentEnemy.staminaPointPos != null)
+            transform.position = currentEnemy.staminaPointPos.position;
     }
     public override void OnBirth()
     {
         progress = 0f;
         sr.color = gradient.Evaluate(progress);
+
     }
-    public void UpLoadEvent()
-    {
-        currentEnemy.onStaminaChange += OnvalueChange;
-    }
-    private void OnvalueChange()
+    public void OnvalueChange()
     {
         progress = (currentEnemy.monsterData.maxStamina - currentEnemy.CurrentStamina) / currentEnemy.monsterData.maxStamina;
         if (progress >= 1)
@@ -45,20 +43,39 @@ public class StaminaPoint : APoolingObject
         {
             StopCoroutine(_waitFlow);
         }
-        _waitFlow = StartCoroutine(WaitFlow());
+        if (gameObject.activeSelf)
+        {
+            _waitFlow = StartCoroutine(WaitFlow());
+        }
+
 
     }
     public override void OnDeathInit()
     {
-        currentEnemy.onStaminaChange -= OnvalueChange;
+        currentEnemy.staminaPoint = null;
+        currentEnemy = null;
+        if (_waitFlow != null)
+        {
+            StopCoroutine(_waitFlow);
+        }
+        if(_recuveryFlow != null)
+        {
+            StopCoroutine(_recuveryFlow);
+        }
+
     }
     private IEnumerator WaitFlow()
     {
         yield return new WaitForSeconds(currentEnemy.monsterData.recoveryTime);
+        if (!isActiveAndEnabled || currentEnemy == null)
+            yield break;
+
         if (_recuveryFlow != null)
             StopCoroutine(_recuveryFlow);
+
         _recuveryFlow = StartCoroutine(RecoveryFlow());
     }
+
 
     private IEnumerator RecoveryFlow()
     {
@@ -66,6 +83,9 @@ public class StaminaPoint : APoolingObject
 
         while (progress > 0)
         {
+            if (!isActiveAndEnabled || currentEnemy == null || sr == null)
+                yield break;
+
             progress -= Time.deltaTime * 3f;
             progress = Mathf.Clamp01(progress);
 

@@ -29,7 +29,7 @@ public abstract class AAttack : APoolingObject
 
     public void CastDamage(Enemy target)
     {
-        target.Hit(attack.attackCollider,attack.damage,attack.infinateTime);
+        target.Hit(attack.attackCollider,attack.damage+PlayerInfo.Instance.playerBasicAttackDamage,attack.infinateTime);
     }
 
     public override void OnDeathInit()

@@ -9,5 +9,6 @@ public class TileMapUploader : MonoBehaviour
     private void Awake()
     {
         TileMapManager.Instance.SetMap(tileMap,baseMap);
+
     }
 }

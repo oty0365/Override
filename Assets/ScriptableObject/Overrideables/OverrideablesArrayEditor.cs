@@ -1,8 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(OverrideablesArray))]
-public class OverrideablesArrayEditor : Editor
+/*public class OverrideablesArrayEditor : Editor
 {
     public override void OnInspectorGUI()
     {
@@ -32,4 +31,4 @@ public class OverrideablesArrayEditor : Editor
         EditorUtility.SetDirty(array);
         Debug.Log($"{foundObjects.Length}개의 ScriptableObject를 찾았습니다.");
     }
-}
+}*/

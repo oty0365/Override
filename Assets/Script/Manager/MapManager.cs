@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Tilemaps;
@@ -47,6 +46,8 @@ public class MapManager : HalfSingleMono<MapManager>
     public GameObject loadingPanel;
     [SerializeField] private UnityEngine.UI.Slider progressBar;
     [SerializeField] private TextMeshProUGUI tmiText;
+    [SerializeField] private GameObject bugLeftPannel;
+    [SerializeField] private TextMeshProUGUI bugLeftText;
 
     public GameObject banner;
     public UnityEngine.UI.Image header;
@@ -54,6 +55,8 @@ public class MapManager : HalfSingleMono<MapManager>
     public TextMeshProUGUI mapNameTmp;
     public MapData currentMap;
     public GameObject currentMapObj;
+
+    public BattleManager battleManager;
 
     public int index;
     public bool isLoading;
@@ -72,9 +75,37 @@ public class MapManager : HalfSingleMono<MapManager>
             {
                 currentMapCode = value;
                 mapNameTmp.text = Scripter.Instance.scripts[value.ToString()].currentText;
+                if (currentMapCode == MapCode.RootNode)
+                {
+                    SoundManager.Instance.PlayBGM(MapCode.DreamersPrison.ToString());
+                }
+                else
+                {
+                    SoundManager.Instance.PlayBGM(currentMapCode.ToString());
+                }
 
                 StartCoroutine(MapNameFlow());
             }
+        }
+    }
+
+    private int _currentMonsters;
+    public int CurrentMonsters
+    {
+        get => _currentMonsters;
+        set
+        {
+            if (value <= 0)
+            {
+                _currentMonsters = 0;
+                bugLeftPannel.SetActive(false);
+            }
+            else
+            {
+                _currentMonsters = value;
+                bugLeftPannel.SetActive(true);
+            }
+            bugLeftText.text = _currentMonsters.ToString();
         }
     }
 
@@ -110,6 +141,7 @@ public class MapManager : HalfSingleMono<MapManager>
 
     private void Start()
     {
+        CurrentMonsters = 0;
         _playerCamera = PlayerCamera.Instance;
         PlayerInteraction.Instance.OnInteractMode(0);
         TutorialMap();
@@ -138,6 +170,32 @@ public class MapManager : HalfSingleMono<MapManager>
         StartCoroutine(LoadFlow());
     }
 
+    public void SetGameMap(int start, int end, int midBoss, int finalBoss)
+    {
+        initialList.Clear();
+        var areaMaps = new List<string>();
+        for (int i = start; i <= end; i++)
+        {
+            areaMaps.Add(mapDatas.maps[i]);
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            var index=UnityEngine.Random.Range(0, areaMaps.Count);
+            initialList.Add(areaMaps[index]);
+            areaMaps.Remove(areaMaps[index]);
+        }
+        initialList.Add(mapDatas.maps[midBoss]);
+        for (int i = 0; i < 3; i++)
+        {
+            var index = UnityEngine.Random.Range(0, areaMaps.Count);
+            initialList.Add(areaMaps[index]);
+            areaMaps.Remove(areaMaps[index]);
+        }
+
+        //initialList.Add(mapDatas.maps[finalBoss]);
+        StartCoroutine(LoadFlow());
+    }
+
     public void RootNodeMap()
     {
         initialList.Clear();
@@ -160,19 +218,20 @@ public class MapManager : HalfSingleMono<MapManager>
 
     public void SetMap()
     {
+        MapCleaner.Instance.Clear();
         header.sprite = currentMap.mapBanner;
         CurrentMapCode = currentMap.mapCode;
         currentMapObj = Instantiate(currentMap.mapPrefab, currentMap.spawnVector, Quaternion.identity);
         PlayerInfo.Instance.gameObject.transform.position = currentMap.playerSpawn;
-        PlayerCamera.Instance.gameObject.transform.position = PlayerInfo.Instance.transform.position;
+        PlayerCamera.Instance.gameObject.transform.position = new Vector3(PlayerInfo.Instance.gameObject.transform.position.x, PlayerInfo.Instance.gameObject.transform.position.y, PlayerCamera.Instance.gameObject.transform.position.z);
     }
 
-    IEnumerator LoadMapsWithProgressBar(List<string> adress)
+    /*IEnumerator LoadMapsWithProgressBar(List<string> adress)
     {
         isLoading = true;
         loadingPanel.SetActive(true);
         progressBar.value = 0;
-        var index = UnityEngine.Random.Range(1, 5);
+        var index = UnityEngine.Random.Range(1, 7);
         tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
         foreach (var i in adress)
         {
@@ -196,8 +255,49 @@ public class MapManager : HalfSingleMono<MapManager>
         yield return new WaitForSeconds(1f);
         PlayerInteraction.Instance.OnInteractMode(1);
         isLoading = false;
+        PlayerInfo.Instance.InitializeStatus();
 
+    }*/
+    IEnumerator LoadMapsWithProgressBar(List<string> adress)
+    {
+        isLoading = true;
+        loadingPanel.SetActive(true);
+        progressBar.value = 0;
+
+        var index = UnityEngine.Random.Range(1, 7);
+        tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
+
+        mapList.Clear();
+
+        foreach (var i in adress)
+        {
+            // 1. MapData ScriptableObject 로드
+            var handle = Addressables.LoadAssetAsync<MapData>(i);
+            yield return handle;
+
+            MapData mapData = handle.Result;
+            mapList.Add(mapData); // 데이터 저장
+
+            progressBar.value += 1f / adress.Count;
+
+            // 스페이스 입력 시 TMI 교체
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                index = UnityEngine.Random.Range(1, 5);
+                tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
+            }
+
+            yield return new WaitForSeconds(0.07f);
+        }
+
+        progressBar.value = 1;
+        yield return new WaitForSeconds(0.3f);
+
+        PlayerInteraction.Instance.OnInteractMode(1);
+        isLoading = false;
+        PlayerInfo.Instance.InitializeStatus();
     }
+
 
     IEnumerator MapNameFlow()
     {

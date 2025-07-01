@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class RunesOfAugment : AInteractable
 {
+    private void Start()
+    {
+        MapCleaner.Instance.Add(gameObject);
+        /*if (gameObject.scene.IsValid())
+        {
+            //gameObject.transform.SetParent(MapManager.Instance.currentMap.mapPrefab.transform, true);
+        }*/
+
+    }
     public override void OnInteract()
     {
         AugmentManager.Instance.RandomAugmentOutput();

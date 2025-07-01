@@ -23,6 +23,7 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
     private SpriteRenderer _sr;
     private bool _isKnockBacking;
     private bool _isDashing;
+    private bool _isRunning;
 
     private PlayerCommands _playerCommands;
     public PlayerCommands PlayerCommands
@@ -54,6 +55,7 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
     {
         canInput = true;
         _isKnockBacking = false;
+        _isRunning = false;
         _ani = PlayerAnimator.Instance.ani;
         _originMoveSpeed = moveSpeed;
         _sr = GetComponent<SpriteRenderer>();
@@ -196,6 +198,12 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
             _playerCommands = PlayerCommands.None;
             PlayerAnimator.Instance.playerCommands = _playerCommands;
             _ani.SetInteger("Behave", 0);
+            if (_isRunning)
+            {
+                _isRunning = false;
+                moveSpeed = _originMoveSpeed;
+                RemoveCommand(PlayerCommands.Run);
+            }
             return;
         }
 
@@ -224,14 +232,38 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
         if (PlayerInteraction.Instance.isInteracting)
             return;
 
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]) && PlayerBehave != PlayerBehave.Dash)
+        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]) && !_isDashing)
         {
-            AddCommand(PlayerCommands.Run);
-            moveSpeed = 5f;
+            if ((_horizontal != 0 || _vertical != 0) && PlayerInfo.Instance.PlayerCurStamina >= 6f)
+            {
+                if (!_isRunning)
+                {
+                    _isRunning = true;
+                    AddCommand(PlayerCommands.Run);
+                    moveSpeed = 5f;
+                }
+            }
         }
 
-        if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Dash"]) && PlayerBehave != PlayerBehave.Dash)
+        if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Dash"]) && !_isDashing)
         {
+            if (_isRunning)
+            {
+                _isRunning = false;
+                RemoveCommand(PlayerCommands.Run);
+                moveSpeed = _originMoveSpeed;
+            }
+        }
+        if (_isRunning && _horizontal == 0 && _vertical == 0)
+        {
+            _isRunning = false;
+            RemoveCommand(PlayerCommands.Run);
+            moveSpeed = _originMoveSpeed;
+        }
+
+        if (_isRunning && (PlayerBehave == PlayerBehave.KnockBack || PlayerBehave == PlayerBehave.Dash))
+        {
+            _isRunning = false;
             RemoveCommand(PlayerCommands.Run);
             moveSpeed = _originMoveSpeed;
         }
@@ -257,9 +289,16 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
 
     private void InputMove()
     {
+        bool wasRunning = _playerCommands.HasFlag(PlayerCommands.Run);
+
         _horizontal = 0;
         _vertical = 0;
         _playerCommands = PlayerCommands.None;
+
+        if (wasRunning && _isRunning)
+        {
+            AddCommand(PlayerCommands.Run);
+        }
 
         if (!canInput || PlayerInteraction.Instance.isInteracting)
         {
@@ -298,11 +337,18 @@ public class PlayerMove : HalfSingleMono<PlayerMove>
 
         if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Dash"]))
         {
-            if (PlayerCommands != PlayerCommands.None && PlayerInfo.Instance.PlayerCurStamina >= 6f)
+            if ((_horizontal != 0 || _vertical != 0) && PlayerInfo.Instance.PlayerCurStamina >= 6f)
             {
-                Dash();
+                if (_isRunning)
+                {
+                    _isRunning = false;
+                    moveSpeed = _originMoveSpeed;
+                    RemoveCommand(PlayerCommands.Run);
+                    Dash();
+                }
             }
         }
+
         if (_playerCommands.HasFlag(PlayerCommands.Left) && _playerCommands.HasFlag(PlayerCommands.Right))
             _horizontal = 0;
         if (_playerCommands.HasFlag(PlayerCommands.Down) && _playerCommands.HasFlag(PlayerCommands.Up))

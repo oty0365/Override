@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GoblinKnight
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+    - {fileID: 2800000, guid: c97565aca2c73aa4b9789414cd0d2bf8, type: 3}
+    - {fileID: 2800000, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - c97565aca2c73aa4b9789414cd0d2bf8: 53989776
+    - c97565aca2c73aa4b9789414cd0d2bf8: 294952356
+    - c97565aca2c73aa4b9789414cd0d2bf8: 1728199184
+    - c97565aca2c73aa4b9789414cd0d2bf8: -1127201942
+    - c97565aca2c73aa4b9789414cd0d2bf8: 859872783
+    - c97565aca2c73aa4b9789414cd0d2bf8: -572890219
+    - d615f32fa891f1c45adda0e2b2e8f3e7: 1190951680
+    - d615f32fa891f1c45adda0e2b2e8f3e7: 1698117310
+    - d615f32fa891f1c45adda0e2b2e8f3e7: 1735006262
+    - d615f32fa891f1c45adda0e2b2e8f3e7: 1782142538
+    - d615f32fa891f1c45adda0e2b2e8f3e7: 1549445356
+    - d615f32fa891f1c45adda0e2b2e8f3e7: 451187231
+    - d615f32fa891f1c45adda0e2b2e8f3e7: 1010744133
+    - d615f32fa891f1c45adda0e2b2e8f3e7: -1008542267
+    - d615f32fa891f1c45adda0e2b2e8f3e7: 261559732
+    - 2c2da87ff6b602e40b4d60855510731e: -1619935904
+    - 2c2da87ff6b602e40b4d60855510731e: -1963113611
+    - 2c2da87ff6b602e40b4d60855510731e: 49518778
+    - 2c2da87ff6b602e40b4d60855510731e: -1915976356
+    - 2c2da87ff6b602e40b4d60855510731e: 1232170901
+    - 2c2da87ff6b602e40b4d60855510731e: 373987807
+    - 2c2da87ff6b602e40b4d60855510731e: 1937623367
+    - 2c2da87ff6b602e40b4d60855510731e: 62537632
+    - 2c2da87ff6b602e40b4d60855510731e: 455155665
+    - 2c2da87ff6b602e40b4d60855510731e: 1548581558
+    - 2c2da87ff6b602e40b4d60855510731e: -1798279376
+    - 2c2da87ff6b602e40b4d60855510731e: 1557769415
+    - 2c2da87ff6b602e40b4d60855510731e: -960710321
+    - 2c2da87ff6b602e40b4d60855510731e: 536334664
+    - 2c2da87ff6b602e40b4d60855510731e: -1038257794
+    - 2c2da87ff6b602e40b4d60855510731e: -1848337436
+    - 2c2da87ff6b602e40b4d60855510731e: -1774543639
+    - 2c2da87ff6b602e40b4d60855510731e: -622477569
+    - 2c2da87ff6b602e40b4d60855510731e: 1949797726
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 53989776, guid: c97565aca2c73aa4b9789414cd0d2bf8, type: 3}
+  - {fileID: 294952356, guid: c97565aca2c73aa4b9789414cd0d2bf8, type: 3}
+  - {fileID: 1728199184, guid: c97565aca2c73aa4b9789414cd0d2bf8, type: 3}
+  - {fileID: -1127201942, guid: c97565aca2c73aa4b9789414cd0d2bf8, type: 3}
+  - {fileID: 859872783, guid: c97565aca2c73aa4b9789414cd0d2bf8, type: 3}
+  - {fileID: -572890219, guid: c97565aca2c73aa4b9789414cd0d2bf8, type: 3}
+  - {fileID: 1190951680, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+  - {fileID: 1698117310, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+  - {fileID: 1735006262, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+  - {fileID: 1782142538, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+  - {fileID: 1549445356, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+  - {fileID: 451187231, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+  - {fileID: 1010744133, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+  - {fileID: -1008542267, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+  - {fileID: 261559732, guid: d615f32fa891f1c45adda0e2b2e8f3e7, type: 3}
+  - {fileID: -1619935904, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: -1963113611, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 49518778, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: -1915976356, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 1232170901, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 373987807, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 1937623367, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 62537632, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 455155665, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 1548581558, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: -1798279376, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 1557769415, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: -960710321, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 536334664, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: -1038257794, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: -1848337436, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: -1774543639, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: -622477569, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  - {fileID: 1949797726, guid: 2c2da87ff6b602e40b4d60855510731e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - GoblinKnightStun_4
+  - GoblinKnightStun_5
+  - GoblinKnightStun_0
+  - GoblinKnightStun_1
+  - GoblinKnightStun_2
+  - GoblinKnightStun_3
+  - GoblinKnaightDeath_8
+  - GoblinKnaightDeath_5
+  - GoblinKnaightDeath_4
+  - GoblinKnaightDeath_7
+  - GoblinKnaightDeath_6
+  - GoblinKnaightDeath_1
+  - GoblinKnaightDeath_0
+  - GoblinKnaightDeath_3
+  - GoblinKnaightDeath_2
+  - GoblinKnight_18
+  - GoblinKnight_13
+  - GoblinKnight_12
+  - GoblinKnight_11
+  - GoblinKnight_10
+  - GoblinKnight_17
+  - GoblinKnight_16
+  - GoblinKnight_15
+  - GoblinKnight_14
+  - GoblinKnight_8
+  - GoblinKnight_9
+  - GoblinKnight_0
+  - GoblinKnight_1
+  - GoblinKnight_2
+  - GoblinKnight_3
+  - GoblinKnight_4
+  - GoblinKnight_5
+  - GoblinKnight_6
+  - GoblinKnight_7
+  m_RenderDataMap: {}
+  m_Tag: GoblinKnight
+  m_IsVariant: 0

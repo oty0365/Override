@@ -22,9 +22,12 @@ public abstract class ADamageable : APoolingObject
             contactPoint = other.ClosestPoint(transform.position);
             OnHit();
         }
+        OnColide();
+        
     }
     protected void GiveDamage(float damage)
     {
+        SoundManager.Instance.PlaySFX("PlayerHit");
         var playerInfo = PlayerInfo.Instance;
         if (playerInfo.PlayerDefence - damage >= 0)
         {
@@ -35,6 +38,8 @@ public abstract class ADamageable : APoolingObject
             playerInfo.PlayerCurHp += playerInfo.PlayerDefence - damage;
         }
     }
+
+    public virtual void OnColide() { }
     public abstract void OnHit();
     public bool CheckShield()
     {

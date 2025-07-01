@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 8666813274974791847}
   - component: {fileID: 6577633955160848341}
   - component: {fileID: 3622482160648680618}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: SoulBullet
   m_TagString: damageable
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ MonoBehaviour:
     type: 0
     damage: 1
     infinateTime: 0.1
-    attackCollider: {fileID: 0}
+    attackCollider: {fileID: 6577633955160848341}
   contactedEnemies: []
   rb: {fileID: 8666813274974791847}
   sr: {fileID: 6550372808950315804}

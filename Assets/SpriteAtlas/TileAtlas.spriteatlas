@@ -48,6 +48,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 29a7346e8800b5445a4d3a87d9f562b7, type: 3}
     - {fileID: 2800000, guid: 05c746f572dbd164b9165e46b0833d26, type: 3}
     - {fileID: 2800000, guid: 01628034c42cd4c478d69fe778a040a0, type: 3}
+    - {fileID: 2800000, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -73,6 +74,18 @@ SpriteAtlas:
     - 05c746f572dbd164b9165e46b0833d26: -110757281
     - 05c746f572dbd164b9165e46b0833d26: 1451721203
     - 05c746f572dbd164b9165e46b0833d26: -888361221
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: -1145743107
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: 2071239085
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: 659263932
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: 30418746
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: 1424915564
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: 1502364479
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: 165292739
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: -1771120751
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: 1517261782
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: -1199151899
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: -945606345
+    - 07fb4dd6977dd7e4aa2e7e9ae95e1048: 1361405638
     - 29a7346e8800b5445a4d3a87d9f562b7: 562044937
     - 29a7346e8800b5445a4d3a87d9f562b7: -497660681
     - 29a7346e8800b5445a4d3a87d9f562b7: 594070818
@@ -108,6 +121,18 @@ SpriteAtlas:
   - {fileID: -110757281, guid: 05c746f572dbd164b9165e46b0833d26, type: 3}
   - {fileID: 1451721203, guid: 05c746f572dbd164b9165e46b0833d26, type: 3}
   - {fileID: -888361221, guid: 05c746f572dbd164b9165e46b0833d26, type: 3}
+  - {fileID: -1145743107, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: 2071239085, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: 659263932, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: 30418746, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: 1424915564, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: 1502364479, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: 165292739, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: -1771120751, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: 1517261782, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: -1199151899, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: -945606345, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
+  - {fileID: 1361405638, guid: 07fb4dd6977dd7e4aa2e7e9ae95e1048, type: 3}
   - {fileID: 562044937, guid: 29a7346e8800b5445a4d3a87d9f562b7, type: 3}
   - {fileID: -497660681, guid: 29a7346e8800b5445a4d3a87d9f562b7, type: 3}
   - {fileID: 594070818, guid: 29a7346e8800b5445a4d3a87d9f562b7, type: 3}
@@ -142,6 +167,18 @@ SpriteAtlas:
   - Plain-1_9
   - Plain-1_11
   - Plain-1_10
+  - Plain_11
+  - Plain_10
+  - Plain_8
+  - Plain_9
+  - Plain_0
+  - Plain_1
+  - Plain_2
+  - Plain_3
+  - Plain_4
+  - Plain_5
+  - Plain_6
+  - Plain_7
   - New Piskel (13)_10
   - New Piskel (13)_11
   - New Piskel (13)_9
