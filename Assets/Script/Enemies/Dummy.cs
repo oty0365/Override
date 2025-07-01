@@ -33,5 +33,12 @@ public class Dummy : Enemy
     {
         
     }
+    private void OnDestroy()
+    {
+        if (staminaPoint!= null)
+        {
+            Destroy(staminaPoint.gameObject);
+        }
+    }
 
 }

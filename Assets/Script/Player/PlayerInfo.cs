@@ -187,7 +187,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             _playerSkillCooldown = value;
         }
     }
-    [System.NonSerialized] public float playerBasicAttackDamage = 100f;
+    [System.NonSerialized] public float playerBasicAttackDamage;
     private float _playerAttackDamage;
     public float PlayerAttackDamage
     {

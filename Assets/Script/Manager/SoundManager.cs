@@ -23,7 +23,6 @@ public class SoundManager : HalfSingleMono<SoundManager>
         AudioClip[] clips = Resources.LoadAll<AudioClip>("SFX");
         foreach (var clip in clips)
         {
-            Debug.Log(clip.name);
             soundDict.Add(clip.name, clip);
         }
         foreach(var i in clips)
