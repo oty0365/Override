@@ -178,6 +178,7 @@ public class MapManager : HalfSingleMono<MapManager>
         {
             areaMaps.Add(mapDatas.maps[i]);
         }
+        initialList.Add(mapDatas.maps[finalBoss]);
         for (int i = 0; i < 4; i++)
         {
             var index=UnityEngine.Random.Range(0, areaMaps.Count);
@@ -192,7 +193,7 @@ public class MapManager : HalfSingleMono<MapManager>
             areaMaps.Remove(areaMaps[index]);
         }
 
-        //initialList.Add(mapDatas.maps[finalBoss]);
+        //
         StartCoroutine(LoadFlow());
     }
 

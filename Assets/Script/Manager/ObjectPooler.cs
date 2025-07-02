@@ -40,6 +40,7 @@ public enum PoolObjectType
     Arrow,
     GoblinBeastRider,
     SFXObj,
+    FallenHero,
 }
 
 public abstract class APoolingObject:MonoBehaviour
