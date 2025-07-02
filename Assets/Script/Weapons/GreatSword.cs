@@ -129,20 +129,20 @@ public class GreatSword : WeaponBase
 
     public override void OnAttack2Pressed()
     {
-        isBlocking = true;
+        /*isBlocking = true;
         isAttacking = false;
         combo = 0;
         PlayerCamera.Instance.SetZoom(3f, 4);
         ComboCheck();
-        ani.SetBool(BlockHash, true);
+        ani.SetBool(BlockHash, true);*/
     }
 
     public override void OnAttack2Released()
     {
-        PlayerCamera.Instance.SetZoom(4.5f, 4);
+        /*PlayerCamera.Instance.SetZoom(4.5f, 4);
         DisableAllHitbox();
         ani.SetBool(BlockHash, false);
-        isBlocking = false;
+        isBlocking = false;*/
     }
 }
 

@@ -101,7 +101,17 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
         get => _playerCurHp;
         set
         {
-            if (value <= 0&&isAlive)
+            if (SwordAndSheild.isBlocking)
+            {
+                if (PlayerCurStamina <= 0)
+                {
+                    goto ProcessDamage;
+                }
+                return; 
+            }
+
+        ProcessDamage:
+            if (value <= 0 && isAlive)
             {
                 isAlive = false;
                 value = 0;
@@ -126,7 +136,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
             {
                 PlayerCamera.Instance.SetAbHpUi(0);
             }
-                hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
+            hpRange.text = _playerCurHp.ToString() + "/" + playerMaxHp.ToString();
             hpBar.value = _playerCurHp;
         }
     }
@@ -222,12 +232,21 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
         PlayerCoin = 0;
         hpBar.maxValue = playerMaxHp;
         codeBar.maxValue = playerMaxCodePower;
+        codeBar.gameObject.SetActive(false);
         staminaBar.maxValue = playerMaxStamina;
         defenceBar.fillAmount = PlayerDefence / 100f;
         PlayerCurHp = playerMaxHp;
         PlayerCurCodePower = 0f;
         PlayerCurStamina = playerMaxStamina;
         _playerSkillCooldown = playerBasicSkillCooldown;
+    }
+
+    public void ClearStatus()
+    {
+        PlayerMaxHp = 30f;
+        PlayerCurHp = playerMaxHp;
+        playerBasicSkillCooldown = 1f;
+        playerBasicAttackDamage = 0;
     }
 
     public GameObject CurrentOverridingObject

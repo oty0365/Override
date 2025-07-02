@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: curGreenGoblin
   m_EditorClassIdentifier: 
   monsterCode: curGreenGoblin
-  maxHp: 40
+  maxHp: 80
   maxStamina: 15
   moveSpeed: 2.5
   recoveryTime: 0.5

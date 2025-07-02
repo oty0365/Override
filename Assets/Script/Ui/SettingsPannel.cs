@@ -32,7 +32,7 @@ public class SettingsPannel : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)&&!MapManager.Instance.isLoading)
+        /*if (Input.GetKeyDown(KeyCode.Escape)&&!MapManager.Instance.isLoading)
         {
             if (!isActived)
             {
@@ -46,7 +46,7 @@ public class SettingsPannel : MonoBehaviour
                 Time.timeScale = 1;
             }
             isActived = !isActived;
-        }
+        }*/
     }
     public void OnInfoClicked()
     {

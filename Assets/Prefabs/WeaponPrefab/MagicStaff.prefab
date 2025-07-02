@@ -52,4 +52,4 @@ MonoBehaviour:
   range: 0.25
   bullets:
   - {fileID: 3622482160648680618, guid: ec545f5287d54db459e739d3494f571b, type: 3}
-  castCooldown: 0
+  castCooldown: 0.3

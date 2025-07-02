@@ -4,20 +4,30 @@ using UnityEngine;
 public class MagicStaff : WeaponBase
 {
     [SerializeField] private APoolingObject[] bullets;
-    public float castCooldown;
-
+    public float castCooldown = 0.2f;
     private GameObject _curdagger;
     private bool _canThrow;
+    private bool _isOnCooldown = false;
 
     public override void OnAttack1Pressed()
     {
-        //isAttacking = true;
+        if (_isOnCooldown) return;
+
         var playerMove = PlayerMove.Instance;
         _curdagger = ObjectPooler.Instance.Get(
             bullets[0],
             playerMove.transform.position,
             new Vector3(0, 0, WeaponCore.Instance.rotaion)
         );
+
+        StartCoroutine(AttackDelay());
+    }
+
+    private IEnumerator AttackDelay()
+    {
+        _isOnCooldown = true;
+        yield return new WaitForSeconds(castCooldown);
+        _isOnCooldown = false;
     }
 
     public override void SetColider(int index)
@@ -34,7 +44,6 @@ public class MagicStaff : WeaponBase
 
     public override void OnAttack2Pressed()
     {
-
     }
 
     public override void OnAttack2Released() { }
@@ -57,17 +66,14 @@ public class MagicStaff : WeaponBase
             {
                 OnAttack1Pressed();
             }
-
             if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Attack2"]))
             {
                 OnAttack2Pressed();
             }
-
             if (Input.GetKeyUp(KeyBindingManager.Instance.keyBindings["Attack2"]))
             {
                 OnAttack2Released();
             }
         }
-
     }
 }

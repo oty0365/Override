@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: curGoblinKnight
   m_EditorClassIdentifier: 
   monsterCode: curGoblinKnight
-  maxHp: 70
+  maxHp: 110
   maxStamina: 20
   moveSpeed: 3
   recoveryTime: 0.5

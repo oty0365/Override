@@ -116,7 +116,7 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
             }
 
         }
-        if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Charge"]) && !isInteracting&&PlayerMove.Instance.canInput)
+        /*if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Charge"]) && !isInteracting&&PlayerMove.Instance.canInput)
         {
             PlayerCamera.Instance.SetZoom(3, 6);
             isCharging = true;
@@ -140,7 +140,7 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
             OnInteractMode(1);
             isCharging = false;
             PlayerCamera.Instance.SetZoom(PlayerCamera.Instance.currentZoomSize, 6);
-        }
+        }*/
     }
 
     public void OnInteractMode(int mode)

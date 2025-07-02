@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: curCrow
   m_EditorClassIdentifier: 
   monsterCode: curCrow
-  maxHp: 35
+  maxHp: 80
   maxStamina: 15
   moveSpeed: 3
   recoveryTime: 1.5

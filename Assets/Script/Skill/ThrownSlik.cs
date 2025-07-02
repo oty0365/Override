@@ -27,13 +27,17 @@ public class ThrownSlik: AAttack
     private void OnTriggerEnter2D(Collider2D collision)
     {
         rb.linearVelocity = Vector2.zero;
-        ObjectPooler.Instance.Get(colideParticle, gameObject.transform.position, new Vector3(0, 0, 0), new Vector2(0.65f, 0.65f));
+        var a=ObjectPooler.Instance.Get(colideParticle, gameObject.transform.position, new Vector3(0, 0, 0), new Vector2(0.65f, 0.65f));
         if (Vector2.Distance(collision.ClosestPoint(transform.position), target) > 1.5f)
         {
             target = collision.ClosestPoint(transform.position);
         }
         StopCoroutine(_slikReturnFlow);
-        StartCoroutine(GoToSlik());
+        if (a.activeSelf)
+        {
+            StartCoroutine(GoToSlik());
+        }
+
     }
     private IEnumerator SlikReturnFlow()
     {
