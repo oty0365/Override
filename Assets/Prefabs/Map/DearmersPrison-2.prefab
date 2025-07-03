@@ -71663,6 +71663,7 @@ MonoBehaviour:
   staminaPoint: {fileID: 0}
   glowEye: {fileID: 0}
   backParticle: {fileID: 0}
+  minHitInterval: 0.1
   _currentHp: 0
   _currentStamia: 0
   colideParticle: {fileID: 9089905416252372434, guid: cb5fdc914ea0cec46b169013be5c5482, type: 3}

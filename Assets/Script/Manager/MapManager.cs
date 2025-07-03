@@ -298,14 +298,14 @@ public class MapManager : HalfSingleMono<MapManager>
 
     void OnDestroy()
     {
-        ReleaseMaps();
+        //ReleaseMaps();
     }
 
     void OnApplicationPause(bool pauseStatus)
     {
         if (pauseStatus)
         {
-            ReleaseMaps();
+            //ReleaseMaps();
         }
     }
 }
