@@ -125,7 +125,7 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
             if (!_currentObejctInteractable.autoInteraction &&
                Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Interact"]) &&
                Time.time - _lastInteractionTime >= interactionCooldown &&
-               _lastInteractedObject != _currentObject)
+               (_lastInteractedObject != _currentObject || !isInteracting))
             {
                 _lastInteractionTime = Time.time;
                 _lastInteractedObject = _currentObject;
@@ -164,5 +164,11 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
     {
         PlayerMove.Instance.canInput = mode != 0;
         isInteracting = mode == 0;
+
+        // 인터랙션이 끝났을 때 재상호작용 가능하도록 _lastInteractedObject 초기화
+        if (mode != 0)
+        {
+            _lastInteractedObject = null;
+        }
     }
 }

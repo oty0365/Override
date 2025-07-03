@@ -49,7 +49,12 @@ public class GameEventManager : HalfSingleMono<GameEventManager>
 
     public void UploadEvent(InGameEvent inGameEvent,Action action)
     {
+        if (eventsDict.ContainsKey(inGameEvent)) 
+        {
+            eventsDict.Remove(inGameEvent);
+        }
         eventsDict.Add(inGameEvent, action);
+
     }
     public void PrintEvnets()
     {

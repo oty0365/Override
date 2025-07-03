@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundManager : HalfSingleMono<SoundManager>
+public class SoundManager : SingleMono<SoundManager>
 { 
     [SerializeField] private Slider volume;
     public AudioSource bgm;

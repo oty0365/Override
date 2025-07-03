@@ -266,6 +266,10 @@ public class PlayerCamera : MonoBehaviour
             }
             else
             {
+                if (target == null)
+                {
+                    target = PlayerInfo.Instance.gameObject;
+                }
                 targetPos = Vector2.Lerp(
                     playerCam.transform.position,
                     (Vector2)target?.transform.position,

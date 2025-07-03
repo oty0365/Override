@@ -1,0 +1,147 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="AtAnvil" preserve="all" />
+    <type fullname="AtInCage" preserve="all" />
+    <type fullname="AtTutorialBot" preserve="all" />
+    <type fullname="BattleManager" preserve="all" />
+    <type fullname="BlazeOfEvil" preserve="all" />
+    <type fullname="BlazeOfEvilSkill" preserve="all" />
+    <type fullname="BossBattleWithGoblinBeastRider" preserve="all" />
+    <type fullname="CharacterSkillData" preserve="all" />
+    <type fullname="CodeWorldObj" preserve="all" />
+    <type fullname="Crow" preserve="all" />
+    <type fullname="CrunchBite" preserve="all" />
+    <type fullname="CrunchBiteSkill" preserve="all" />
+    <type fullname="Dialogs" preserve="all" />
+    <type fullname="DialogScript" preserve="all" />
+    <type fullname="Dummy" preserve="all" />
+    <type fullname="EnemySpear" preserve="all" />
+    <type fullname="FallenHero" preserve="all" />
+    <type fullname="ForceFormPeople" preserve="all" />
+    <type fullname="ForceFromPeopleSkill" preserve="all" />
+    <type fullname="GoblinBeastRider" preserve="all" />
+    <type fullname="GoblinKnight" preserve="all" />
+    <type fullname="GodSlimesBleast" preserve="all" />
+    <type fullname="GodSlimesBleastSkill" preserve="all" />
+    <type fullname="GreenGoblin" preserve="all" />
+    <type fullname="HealingPack" preserve="all" />
+    <type fullname="IceRage" preserve="all" />
+    <type fullname="IceRageSkill" preserve="all" />
+    <type fullname="JellyBall" preserve="all" />
+    <type fullname="JellyEverWhereSkill" preserve="all" />
+    <type fullname="MapData" preserve="all" />
+    <type fullname="MonsterArrow" preserve="all" />
+    <type fullname="MonsterBite" preserve="all" />
+    <type fullname="MonsterDagger" preserve="all" />
+    <type fullname="MonsterData" preserve="all" />
+    <type fullname="Overrideables" preserve="all" />
+    <type fullname="OverrideablesArray" preserve="all" />
+    <type fullname="OverrideablesData" preserve="all" />
+    <type fullname="OverrideablesGenerator" preserve="all" />
+    <type fullname="ParticleObject" preserve="all" />
+    <type fullname="PathFinder" preserve="all" />
+    <type fullname="PathFinderModule" preserve="all" />
+    <type fullname="PlayerAfterImage" preserve="all" />
+    <type fullname="RecognitionModule" preserve="all" />
+    <type fullname="RedBlade" preserve="all" />
+    <type fullname="RiseOfTheRadiance" preserve="all" />
+    <type fullname="RiseOfTheRadianceSkill" preserve="all" />
+    <type fullname="RunesOfAugment" preserve="all" />
+    <type fullname="SkeletonArch" preserve="all" />
+    <type fullname="SkillData" preserve="all" />
+    <type fullname="StareCutscene" preserve="all" />
+    <type fullname="StaticLayzer" preserve="all" />
+    <type fullname="SwordOfVados" preserve="all" />
+    <type fullname="SwordOfVadosSkill" preserve="all" />
+    <type fullname="TheScrollOfAugmentSkill" preserve="all" />
+    <type fullname="ThrownSlik" preserve="all" />
+    <type fullname="ThrownSlikSkill" preserve="all" />
+    <type fullname="TileMapUploader" preserve="all" />
+    <type fullname="TutorialBot" preserve="all" />
+    <type fullname="Walls" preserve="all" />
+    <type fullname="Warpper" preserve="all" />
+    <type fullname="Attack" preserve="nothing" serialized="true" />
+    <type fullname="InstantinateModule" preserve="nothing" serialized="true" />
+    <type fullname="SkillSets" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.RenderPipelines.Universal.2D.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rendering.Universal.Light2D" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="TMPro.TextMeshPro" preserve="all" />
+    <type fullname="TMPro.TMP_FontAsset" preserve="all" />
+    <type fullname="TMPro.FaceInfo_Legacy" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.FontAssetCreationSettings" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.KerningTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.LigatureSubstitutionRecord" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_Character" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontFeatureTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontWeightPair" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.VertexGradient" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.LineRenderer" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+    <type fullname="UnityEngine.Rendering.SortingGroup" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.TrailRenderer" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.U2D.SpriteAtlas" preserve="all" />
+    <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.GridModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Grid" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.ParticleSystem" preserve="all" />
+    <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.BoxCollider2D" preserve="all" />
+    <type fullname="UnityEngine.CircleCollider2D" preserve="all" />
+    <type fullname="UnityEngine.CompositeCollider2D" preserve="all" />
+    <type fullname="UnityEngine.Rigidbody2D" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Font" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TilemapModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Tilemaps.Tile" preserve="all" />
+    <type fullname="UnityEngine.Tilemaps.Tilemap" preserve="all" />
+    <type fullname="UnityEngine.Tilemaps.TilemapCollider2D" preserve="all" />
+    <type fullname="UnityEngine.Tilemaps.TilemapRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextCoreFontEngineModule">
+    <type fullname="UnityEngine.TextCore.FaceInfo" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.Glyph" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.GlyphMetrics" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.GlyphRect" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphPairAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphValueRecord" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI">
+    <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>

@@ -10,7 +10,7 @@ public class SettingsPannel : MonoBehaviour
     public int pannelMode;
 
     [SerializeField] private GameObject namePannel;
-
+    [SerializeField] private TitleUI titleUI;
     [Header("스킬 정보")]
     [SerializeField] private Image player;
     [SerializeField] private Image skill1;
@@ -32,7 +32,7 @@ public class SettingsPannel : MonoBehaviour
     }
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Escape)&&!MapManager.Instance.isLoading)
+        if (Input.GetKeyDown(KeyCode.Escape)&&!MapManager.Instance.isLoading&&!titleUI.gameObject.activeSelf&&!PlayerInteraction.Instance.isInteracting&&!PlayerInfo.Instance.isInBattle)
         {
             if (!isActived)
             {
@@ -46,7 +46,7 @@ public class SettingsPannel : MonoBehaviour
                 Time.timeScale = 1;
             }
             isActived = !isActived;
-        }*/
+        }
     }
     public void OnInfoClicked()
     {
@@ -96,5 +96,14 @@ public class SettingsPannel : MonoBehaviour
                 skillDescText.text = Scripter.Instance.scripts[SkillManager.Instance.currultimateSkill.skillDesc].currentText;
                 break;
         }
+    }
+
+    public void ToTitle()
+    {
+        titleUI.gameObject.SetActive(true);
+        settings.gameObject.SetActive(false);
+        isActived = false;
+        titleUI.OnAble();
+        MapManager.Instance.TutorialMap();
     }
 }

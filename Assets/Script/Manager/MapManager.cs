@@ -7,6 +7,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -61,6 +62,7 @@ public class MapManager : HalfSingleMono<MapManager>
     public int index;
     public bool isLoading;
 
+    private List<AsyncOperationHandle<MapData>> mapHandles = new List<AsyncOperationHandle<MapData>>();
 
     private PlayerCamera _playerCamera;
 
@@ -75,15 +77,7 @@ public class MapManager : HalfSingleMono<MapManager>
             {
                 currentMapCode = value;
                 mapNameTmp.text = Scripter.Instance.scripts[value.ToString()].currentText;
-                if (currentMapCode == MapCode.RootNode)
-                {
-                    SoundManager.Instance.PlayBGM(MapCode.DreamersPrison.ToString());
-                }
-                else
-                {
-                    SoundManager.Instance.PlayBGM(currentMapCode.ToString());
-                }
-
+                SoundManager.Instance.PlayBGM(currentMapCode.ToString());
                 StartCoroutine(MapNameFlow());
             }
         }
@@ -119,7 +113,7 @@ public class MapManager : HalfSingleMono<MapManager>
         set
         {
             currentDimention = value;
-            if(value == Dimention.Normal)
+            if (value == Dimention.Normal)
             {
                 _playerCamera.colorAdjustments.saturation.value = 0;
             }
@@ -127,14 +121,14 @@ public class MapManager : HalfSingleMono<MapManager>
             {
                 _playerCamera.colorAdjustments.saturation.value = -100;
             }
-                mapChange.Invoke();
+            mapChange.Invoke();
         }
     }
 
     protected override void Awake()
     {
         base.Awake();
-        foreach( var i in mapDatas.maps)
+        foreach (var i in mapDatas.maps)
         {
             mapSets.Add(i);
         }
@@ -156,14 +150,6 @@ public class MapManager : HalfSingleMono<MapManager>
         SetMap();
     }
 
-    /* private void Update()
-     {
-         if (Input.GetKeyDown(KeyCode.Space))
-         {
-             CurrentDimention = Dimention.Code;
-         }
-     }*/
-    
     public void TutorialMap()
     {
         initialList.Clear();
@@ -180,10 +166,9 @@ public class MapManager : HalfSingleMono<MapManager>
         {
             areaMaps.Add(mapDatas.maps[i]);
         }
-        //initialList.Add(mapDatas.maps[finalBoss]);
         for (int i = 0; i < 4; i++)
         {
-            var index=UnityEngine.Random.Range(0, areaMaps.Count);
+            var index = UnityEngine.Random.Range(0, areaMaps.Count);
             initialList.Add(areaMaps[index]);
             areaMaps.Remove(areaMaps[index]);
         }
@@ -204,8 +189,10 @@ public class MapManager : HalfSingleMono<MapManager>
         PlayerInfo.Instance.ClearStatus();
         StartCoroutine(LoadFlow());
     }
+
     IEnumerator LoadFlow()
     {
+        ReleaseMaps();
         mapList.Clear();
         if (currentMapObj != null)
         {
@@ -228,38 +215,6 @@ public class MapManager : HalfSingleMono<MapManager>
         PlayerCamera.Instance.gameObject.transform.position = new Vector3(PlayerInfo.Instance.gameObject.transform.position.x, PlayerInfo.Instance.gameObject.transform.position.y, PlayerCamera.Instance.gameObject.transform.position.z);
     }
 
-    /*IEnumerator LoadMapsWithProgressBar(List<string> adress)
-    {
-        isLoading = true;
-        loadingPanel.SetActive(true);
-        progressBar.value = 0;
-        var index = UnityEngine.Random.Range(1, 7);
-        tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
-        foreach (var i in adress)
-        {
-            var handle = Addressables.LoadAssetAsync<MapData>(i);
-            while (!handle.IsDone)
-            {
-                //progressBar.value = handle.PercentComplete;
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    index = UnityEngine.Random.Range(1, 5);
-                    tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
-                }
-                yield return new WaitForSecondsRealtime(Time.deltaTime);
-            }
-            mapList.Add(Instantiate(handle.Result));
-            Addressables.Release(handle);
-            progressBar.value += 1f / adress.Count;
-            yield return new WaitForSeconds(0.07f);
-        }
-        progressBar.value = 1;
-        yield return new WaitForSeconds(1f);
-        PlayerInteraction.Instance.OnInteractMode(1);
-        isLoading = false;
-        PlayerInfo.Instance.InitializeStatus();
-
-    }*/
     IEnumerator LoadMapsWithProgressBar(List<string> adress)
     {
         isLoading = true;
@@ -273,33 +228,41 @@ public class MapManager : HalfSingleMono<MapManager>
 
         foreach (var i in adress)
         {
-            // 1. MapData ScriptableObject 로드
             var handle = Addressables.LoadAssetAsync<MapData>(i);
             yield return handle;
 
             MapData mapData = handle.Result;
-            mapList.Add(mapData); // 데이터 저장
+            mapList.Add(mapData);
+            mapHandles.Add(handle);
 
             progressBar.value += 1f / adress.Count;
 
-            // 스페이스 입력 시 TMI 교체
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 index = UnityEngine.Random.Range(1, 5);
                 tmiText.text = Scripter.Instance.scripts["TMI-" + index].currentText;
             }
 
-            yield return new WaitForSeconds(0.07f);
+            yield return new WaitForSecondsRealtime(0.07f);
         }
 
         progressBar.value = 1;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSecondsRealtime(0.3f);
 
         PlayerInteraction.Instance.OnInteractMode(1);
         isLoading = false;
         PlayerInfo.Instance.InitializeStatus();
     }
 
+    void ReleaseMaps()
+    {
+        foreach (var handle in mapHandles)
+        {
+            if (handle.IsValid())
+                Addressables.Release(handle);
+        }
+        mapHandles.Clear();
+    }
 
     IEnumerator MapNameFlow()
     {
@@ -307,9 +270,9 @@ public class MapManager : HalfSingleMono<MapManager>
         header.color = Color.clear;
         endl.color = Color.clear;
         mapNameTmp.color = Color.clear;
-        for(var i = 0f; i < 1f; i += Time.deltaTime)
+        for (var i = 0f; i < 1f; i += Time.deltaTime)
         {
-            var a = Color.Lerp(header.color, Color.white,Time.deltaTime*3f);
+            var a = Color.Lerp(header.color, Color.white, Time.deltaTime * 3f);
             header.color = a;
             endl.color = a;
             mapNameTmp.color = a;
@@ -321,7 +284,7 @@ public class MapManager : HalfSingleMono<MapManager>
         mapNameTmp.color = Color.white;
         for (var i = 0f; i < 1f; i += Time.deltaTime)
         {
-            var a = Color.Lerp(header.color, Color.clear, Time.deltaTime*3f);
+            var a = Color.Lerp(header.color, Color.clear, Time.deltaTime * 3f);
             header.color = a;
             endl.color = a;
             mapNameTmp.color = a;
@@ -331,5 +294,18 @@ public class MapManager : HalfSingleMono<MapManager>
         endl.color = Color.clear;
         mapNameTmp.color = Color.clear;
         banner.SetActive(false);
+    }
+
+    void OnDestroy()
+    {
+        ReleaseMaps();
+    }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            ReleaseMaps();
+        }
     }
 }
