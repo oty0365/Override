@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public abstract class AInteractable:MonoBehaviour
+public abstract class AInteractable : MonoBehaviour
 {
     public GameObject interactionKeyPos;
     public bool autoInteraction;
@@ -19,18 +19,24 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
     public bool isInteracting;
     public bool isCharging;
 
+    [Header("楷加 牢磐发记 规瘤")]
+    public float interactionCooldown = 0.2f;
+
     private Collider2D[] _hits;
     private GameObject _currentObject;
     private GameObject _prevObject;
     private Vector2 _playerPos;
     private AInteractable _currentObejctInteractable;
     private TextMeshPro _interactText;
+    private float _lastInteractionTime;
+    private GameObject _lastInteractedObject;
 
     private void Start()
     {
         interactionKey.SetActive(false);
         _interactText = interactionKey.GetComponentInChildren<TextMeshPro>();
         _interactText.text = KeyBindingManager.Instance.keyBindings["Interact"].ToString();
+        _lastInteractionTime = -interactionCooldown;
     }
 
     private void FixedUpdate()
@@ -84,7 +90,13 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
                 if (_currentObejctInteractable.autoInteraction)
                 {
                     interactionKey.SetActive(false);
-                    _currentObejctInteractable.OnInteract();
+                    if (Time.time - _lastInteractionTime >= interactionCooldown &&
+                        _lastInteractedObject != _currentObject)
+                    {
+                        _lastInteractionTime = Time.time;
+                        _lastInteractedObject = _currentObject;
+                        _currentObejctInteractable.OnInteract();
+                    }
                 }
                 else if (!isInteracting)
                 {
@@ -101,6 +113,7 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
             {
                 _prevObject.GetComponent<AInteractable>().ExitInteract();
             }
+            _lastInteractedObject = null;
         }
         _prevObject = _currentObject;
     }
@@ -109,13 +122,17 @@ public class PlayerInteraction : HalfSingleMono<PlayerInteraction>
     {
         if (_currentObject != null)
         {
-            if(!_currentObejctInteractable.autoInteraction&&Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Interact"]))
+            if (!_currentObejctInteractable.autoInteraction &&
+               Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Interact"]) &&
+               Time.time - _lastInteractionTime >= interactionCooldown &&
+               _lastInteractedObject != _currentObject)
             {
-
+                _lastInteractionTime = Time.time;
+                _lastInteractedObject = _currentObject;
                 _currentObejctInteractable.OnInteract();
             }
-
         }
+
         /*if (Input.GetKeyDown(KeyBindingManager.Instance.keyBindings["Charge"]) && !isInteracting&&PlayerMove.Instance.canInput)
         {
             PlayerCamera.Instance.SetZoom(3, 6);

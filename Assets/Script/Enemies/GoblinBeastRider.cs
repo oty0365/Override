@@ -244,6 +244,8 @@ public class GoblinBeastRiderDeath : BaseDeath
     public override void OnStateStart()
     {
         enemy.ani.Play("GoblinBeastRiderDeath");
+        PlayerCamera.Instance.SetZoom(4.5f, 15f);
+        SoundManager.Instance.PlayBGM("OriginsLand");
         GetEnemyAs<GoblinBeastRider>().OnDeath();
     }
 

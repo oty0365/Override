@@ -8,7 +8,7 @@ public class TheScrollOfAugmentSkill : ACharacterSkill
     }
     public void Update()
     {
-        if (Input.GetKeyDown(_currentKey)&&SkillManager.Instance.CheckToUseSkill(skillForm))
+        if (Input.GetKeyDown(_currentKey)&&SkillManager.Instance.CheckToUseSkill(skillForm)&&PlayerInfo.Instance.isInBattle)
         {
             UseSkill();
         }

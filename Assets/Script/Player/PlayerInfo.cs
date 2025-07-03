@@ -13,6 +13,7 @@ public class PlayerInfo : HalfSingleMono<PlayerInfo>
 {
 
     [Header("플레이어 정보")]
+    public bool isInBattle;
     public bool isAlive;
     public WeaponData playerWeaponData;
     public SpriteRenderer weaponCore;

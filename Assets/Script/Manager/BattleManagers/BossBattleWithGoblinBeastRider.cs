@@ -28,7 +28,7 @@ public class BossBattleWithGoblinBeastRider : BossBattleManager
 
         PlayerInteraction.Instance.OnInteractMode(0);
         Debug.Log(PlayerCamera.Instance.target);
-        for(var i = 0f; i <= 3f; i += Time.deltaTime)
+        for(var i = 0f; i <= 2.5f; i += Time.deltaTime)
         {
             PlayerCamera.Instance.transform.position = new Vector3(boss.gameObject.transform.position.x, boss.gameObject.transform.position.y, PlayerCamera.Instance.transform.position.z);
             PlayerCamera.Instance.target = boss.gameObject;

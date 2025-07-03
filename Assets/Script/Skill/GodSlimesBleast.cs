@@ -48,6 +48,7 @@ public class GodSlimesBleast :APoolingObject
             yield return null;
         }
         sr.color = Color.clear;
+        Death();
     }
     public override void OnDeathInit()
     {

@@ -367,7 +367,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2560
+    m_Bits: 15351
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -412,7 +412,7 @@ MonoBehaviour:
   objectType: 2
   attack:
     type: 0
-    damage: 1
+    damage: 4
     infinateTime: 0.1
     attackCollider: {fileID: 6577633955160848341}
   contactedEnemies: []
@@ -420,6 +420,6 @@ MonoBehaviour:
   sr: {fileID: 6550372808950315804}
   tr: {fileID: 2490024230228869492}
   fadeSpeed: 15
-  shootSpeed: 5
+  shootSpeed: 6
   waitTime: 3
   colideParticle: {fileID: 9089905416252372434, guid: cb5fdc914ea0cec46b169013be5c5482, type: 3}

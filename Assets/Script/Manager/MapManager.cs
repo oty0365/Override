@@ -98,11 +98,13 @@ public class MapManager : HalfSingleMono<MapManager>
             if (value <= 0)
             {
                 _currentMonsters = 0;
+                PlayerInfo.Instance.isInBattle = false;
                 bugLeftPannel.SetActive(false);
             }
             else
             {
                 _currentMonsters = value;
+                PlayerInfo.Instance.isInBattle = true;
                 bugLeftPannel.SetActive(true);
             }
             bugLeftText.text = _currentMonsters.ToString();

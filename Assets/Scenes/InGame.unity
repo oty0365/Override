@@ -6928,6 +6928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363d3671462f2764c8d2aeeb5a77b288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInBattle: 0
   isAlive: 0
   playerWeaponData: {fileID: 0}
   weaponCore: {fileID: 1123678389}

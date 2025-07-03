@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoblinBeastRider
   m_EditorClassIdentifier: 
   monsterCode: GoblinBeastRider
-  maxHp: 540
-  maxStamina: 120
+  maxHp: 700
+  maxStamina: 180
   moveSpeed: 3
   recoveryTime: 4
   recognitionRange: 1000

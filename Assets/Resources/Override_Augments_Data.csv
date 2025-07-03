@@ -6,4 +6,4 @@ RunesOfHealthDesc,4,1,생명의 힘이 담긴 강건의 룬을 흡수하여 <col
 RunesOfLoopsName,5,1,루프스의 룬,Runes Of Loops
 RunesOfLoopsDesc,6,1,대마법사 루프스의 힘이 담긴 루프스의 룬을 흡수하여 <color=blue>쿨타임 감소를</color>을 <color=blue>15</color>만큼 늘린다.,Absorb the Rune of Lupus infused with the wisdom of the Great Sage Lupus increasing <color=blue>cooldown reduction</color> by <color=blue>15</color>.
 RunesOfRageName,7,1,광폭의 룬,Runes Of Rage
-RunesOfRageDesc,8,1,광룡의 힘이 담긴 광폭의 룬을 흡수하여 <color=red>기본 공력력</color>을 <color=red>7</color>만큼 늘린다.,Absorb the Rune of Fury imbued with the power of the Raged Dragon increasing your <color=red>base attack power</color> by <color=red>7</color>.
+RunesOfRageDesc,8,1,광룡의 힘이 담긴 광폭의 룬을 흡수하여 <color=red>기본 공력력</color>을 <color=red>5</color>만큼 늘린다.,Absorb the Rune of Fury imbued with the power of the Raged Dragon increasing your <color=red>base attack power</color> by <color=red>5</color>.

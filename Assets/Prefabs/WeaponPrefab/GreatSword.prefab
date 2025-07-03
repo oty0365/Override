@@ -138,7 +138,7 @@ MonoBehaviour:
   comboInputWindow: 0.6
   attack:
     type: 0
-    damage: 5
+    damage: 6
     infinateTime: 0.3
     attackCollider: {fileID: 6856902630537589026}
 --- !u!70 &8705406636614112841

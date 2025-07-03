@@ -142,9 +142,10 @@ MonoBehaviour:
   comboInputWindow: 1
   attack:
     type: 0
-    damage: 3
+    damage: 4
     infinateTime: 0.3
     attackCollider: {fileID: 9212949366427838366}
+  staminaDrainRate: 10
 --- !u!58 &9212949366427838366
 CircleCollider2D:
   m_ObjectHideFlags: 0

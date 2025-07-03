@@ -105,6 +105,6 @@ public class AugmentManager : HalfSingleMono<AugmentManager>
     [EventUpload]
     public void AttackUp()
     {
-        PlayerInfo.Instance.playerBasicAttackDamage += 7;
+        PlayerInfo.Instance.playerBasicAttackDamage += 5;
     }
 }

@@ -70,7 +70,11 @@ public class KeyBindingManager : SingleMono<KeyBindingManager>
     {
         foreach (var i in keyBindDict)
         {
-            i.Value.keyText.text = keyBindings[i.Key].ToString();
+            if (keyBindings.ContainsKey(i.Key))
+            {
+                i.Value.keyText.text = keyBindings[i.Key].ToString();
+            }
+
         }
         SaveKeyBindSets();
     }
