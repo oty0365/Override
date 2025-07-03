@@ -258,8 +258,8 @@ public class MapManager : HalfSingleMono<MapManager>
     {
         foreach (var handle in mapHandles)
         {
-            if (handle.IsValid())
-                Addressables.Release(handle);
+            /*if (handle.IsValid())
+                Addressables.Release(handle);*/
         }
         mapHandles.Clear();
     }
@@ -298,14 +298,14 @@ public class MapManager : HalfSingleMono<MapManager>
 
     void OnDestroy()
     {
-        //ReleaseMaps();
+        ReleaseMaps();
     }
 
     void OnApplicationPause(bool pauseStatus)
     {
         if (pauseStatus)
         {
-            //ReleaseMaps();
+            ReleaseMaps();
         }
     }
 }
