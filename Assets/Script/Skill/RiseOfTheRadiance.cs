@@ -31,15 +31,15 @@ public class RiseOfTheRadiance :APoolingObject
             yield return null;
         }
         sr.color = Color.white;
-        playerInfo.SetInfiniteTime(infinateTime);
+        playerInfo.playerBasicAttackDamage += 20;
+        //playerInfo.SetInfiniteTime(infinateTime);
         var counter = 0f;
         for(var i = 0f; i < infinateTime; i += Time.deltaTime)
         {
             if (i > counter)
             {
                 counter+=0.5f;
-                playerInfo.PlayerCurStamina+=3;
-                playerInfo.PlayerAttackDamage += 20;
+                playerInfo.PlayerCurStamina = playerInfo.playerMaxStamina;
             }
             yield return null;
         }
@@ -49,7 +49,7 @@ public class RiseOfTheRadiance :APoolingObject
             yield return null;
         }
         sr.color = Color.clear;
-        playerInfo.PlayerAttackDamage -= 20;
+        playerInfo.playerBasicAttackDamage -= 20;
         Death();
     }
     public override void OnDeathInit()

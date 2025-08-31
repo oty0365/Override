@@ -52,7 +52,7 @@ MonoBehaviour:
     range: 0.3
   layerMask:
     serializedVersion: 2
-    m_Bits: 5120
+    m_Bits: 1024
 --- !u!1 &9002523930592327245
 GameObject:
   m_ObjectHideFlags: 0
