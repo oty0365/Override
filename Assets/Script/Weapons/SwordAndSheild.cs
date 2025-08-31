@@ -134,7 +134,7 @@ public class SwordAndSheild : WeaponBase
         isBlocking = true;
         isAttacking = false;
         combo = 0;
-        PlayerCamera.Instance.SetZoom(3, 4);
+        ///PlayerCamera.Instance.SetZoom(3, 4);
         ComboCheck();
         ani.SetBool(BlockHash, true);
 
@@ -152,7 +152,7 @@ public class SwordAndSheild : WeaponBase
     {
         if (!isBlocking) return;
 
-        PlayerCamera.Instance.SetZoom(4.5f, 4);
+        //PlayerCamera.Instance.SetZoom(4.5f, 4);
         DisableAllHitbox();
         ani.SetBool(BlockHash, false);
         isBlocking = false;
