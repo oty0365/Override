@@ -25,7 +25,7 @@ public class ThrownSlikSkill : ACharacterSkill
         RaycastHit2D hit = Physics2D.Raycast(_playerInfo.transform.position, dir, Mathf.Infinity,layerMask);
         if (hit.collider != null)
         {
-            o.GetComponent<ThrownSlik>().target = hit.point - dir * 0.1f;
+            o.GetComponent<ThrownSlik>().target = hit.point - dir * 0.2f;
         }
 
 
