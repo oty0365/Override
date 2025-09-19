@@ -71443,7 +71443,7 @@ GameObject:
   - component: {fileID: 159209389891124419}
   - component: {fileID: 746394235680490964}
   - component: {fileID: 9167317457303865960}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
